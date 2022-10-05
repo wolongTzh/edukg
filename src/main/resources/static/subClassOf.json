@@ -1,0 +1,3179 @@
+{
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C21": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C21"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C18": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C18"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C15": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C15",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C16",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C17",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C18",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C19",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C20"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C29": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C29"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C28": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C28",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C29",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C30",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C31",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C32",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C33",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C34",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C35"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C13": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C13"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C6": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C6",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C7",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C13",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C14",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C15",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C21",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C22",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C8",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C9",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C10",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C11",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C12",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C16",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C17",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C18",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C19",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C20"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C26": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C26"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C23": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C23",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C24",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C25",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C26",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C27"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C3": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C3"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C36": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C36"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C0": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C0",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C1",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C2",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C6",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C23",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C28",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C36",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C37",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C38",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C39",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C3",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C4",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C5",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C7",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C13",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C14",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C15",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C21",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C22",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C8",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C9",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C10",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C11",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C12",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C16",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C17",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C18",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C19",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C20",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C24",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C25",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C26",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C27",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C29",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C30",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C31",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C32",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C33",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C34",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C35"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C39": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C39"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C22": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C22"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C19": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C19"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C25": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C25"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C20": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C20"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C16": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C16"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C1": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C1"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C34": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C34"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C9": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C9"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C7": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C7",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C8",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C9",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C10",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C11",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C12"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C5": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C5"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C33": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C33"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C12": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C12"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C17": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C17"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C24": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C24"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C8": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C8"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C10": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C10"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C14": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C14"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C30": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C30"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C37": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C37"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C2": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C2",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C3",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C4",
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C5"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C11": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C11"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C4": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C4"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C32": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C32"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C35": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C35"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C38": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C38"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C27": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C27"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chinese#main-C31": [
+        "http://edukg.org/knowledge/3.0/class/chinese#main-C31"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C32": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C32"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C6": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C6"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C5": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C5",
+        "http://edukg.org/knowledge/3.0/class/math#main-C6",
+        "http://edukg.org/knowledge/3.0/class/math#main-C7",
+        "http://edukg.org/knowledge/3.0/class/math#main-C8"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C42": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C42"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C29": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C29"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C38": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C38"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C36": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C36",
+        "http://edukg.org/knowledge/3.0/class/math#main-C37",
+        "http://edukg.org/knowledge/3.0/class/math#main-C38"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C35": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C35",
+        "http://edukg.org/knowledge/3.0/class/math#main-C36",
+        "http://edukg.org/knowledge/3.0/class/math#main-C39",
+        "http://edukg.org/knowledge/3.0/class/math#main-C37",
+        "http://edukg.org/knowledge/3.0/class/math#main-C38"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C26": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C26"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C10": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C10",
+        "http://edukg.org/knowledge/3.0/class/math#main-C11",
+        "http://edukg.org/knowledge/3.0/class/math#main-C13",
+        "http://edukg.org/knowledge/3.0/class/math#main-C12"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C3": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C3",
+        "http://edukg.org/knowledge/3.0/class/math#main-C4",
+        "http://edukg.org/knowledge/3.0/class/math#main-C10",
+        "http://edukg.org/knowledge/3.0/class/math#main-C14",
+        "http://edukg.org/knowledge/3.0/class/math#main-C15",
+        "http://edukg.org/knowledge/3.0/class/math#main-C24",
+        "http://edukg.org/knowledge/3.0/class/math#main-C27",
+        "http://edukg.org/knowledge/3.0/class/math#main-C28",
+        "http://edukg.org/knowledge/3.0/class/math#main-C5",
+        "http://edukg.org/knowledge/3.0/class/math#main-C9",
+        "http://edukg.org/knowledge/3.0/class/math#main-C6",
+        "http://edukg.org/knowledge/3.0/class/math#main-C7",
+        "http://edukg.org/knowledge/3.0/class/math#main-C8",
+        "http://edukg.org/knowledge/3.0/class/math#main-C11",
+        "http://edukg.org/knowledge/3.0/class/math#main-C13",
+        "http://edukg.org/knowledge/3.0/class/math#main-C12",
+        "http://edukg.org/knowledge/3.0/class/math#main-C16",
+        "http://edukg.org/knowledge/3.0/class/math#main-C17",
+        "http://edukg.org/knowledge/3.0/class/math#main-C18",
+        "http://edukg.org/knowledge/3.0/class/math#main-C23",
+        "http://edukg.org/knowledge/3.0/class/math#main-C19",
+        "http://edukg.org/knowledge/3.0/class/math#main-C20",
+        "http://edukg.org/knowledge/3.0/class/math#main-C21",
+        "http://edukg.org/knowledge/3.0/class/math#main-C22",
+        "http://edukg.org/knowledge/3.0/class/math#main-C25",
+        "http://edukg.org/knowledge/3.0/class/math#main-C26",
+        "http://edukg.org/knowledge/3.0/class/math#main-C29"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C13": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C13"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C41": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C41"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C25": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C25"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C24": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C24",
+        "http://edukg.org/knowledge/3.0/class/math#main-C25",
+        "http://edukg.org/knowledge/3.0/class/math#main-C26"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C7": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C7"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C8": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C8"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C28": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C28",
+        "http://edukg.org/knowledge/3.0/class/math#main-C29"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C22": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C22"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C18": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C18",
+        "http://edukg.org/knowledge/3.0/class/math#main-C19",
+        "http://edukg.org/knowledge/3.0/class/math#main-C20",
+        "http://edukg.org/knowledge/3.0/class/math#main-C21",
+        "http://edukg.org/knowledge/3.0/class/math#main-C22"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C27": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C27"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C40": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C40"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C12": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C12"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C11": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C11",
+        "http://edukg.org/knowledge/3.0/class/math#main-C12"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C4": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C4",
+        "http://edukg.org/knowledge/3.0/class/math#main-C5",
+        "http://edukg.org/knowledge/3.0/class/math#main-C9",
+        "http://edukg.org/knowledge/3.0/class/math#main-C6",
+        "http://edukg.org/knowledge/3.0/class/math#main-C7",
+        "http://edukg.org/knowledge/3.0/class/math#main-C8"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C16": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C16"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C0": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C0",
+        "http://edukg.org/knowledge/3.0/class/math#main-C1",
+        "http://edukg.org/knowledge/3.0/class/math#main-C2",
+        "http://edukg.org/knowledge/3.0/class/math#main-C3",
+        "http://edukg.org/knowledge/3.0/class/math#main-C30",
+        "http://edukg.org/knowledge/3.0/class/math#main-C31",
+        "http://edukg.org/knowledge/3.0/class/math#main-C35",
+        "http://edukg.org/knowledge/3.0/class/math#main-C40",
+        "http://edukg.org/knowledge/3.0/class/math#main-C41",
+        "http://edukg.org/knowledge/3.0/class/math#main-C42",
+        "http://edukg.org/knowledge/3.0/class/math#main-C43",
+        "http://edukg.org/knowledge/3.0/class/math#main-C4",
+        "http://edukg.org/knowledge/3.0/class/math#main-C10",
+        "http://edukg.org/knowledge/3.0/class/math#main-C14",
+        "http://edukg.org/knowledge/3.0/class/math#main-C15",
+        "http://edukg.org/knowledge/3.0/class/math#main-C24",
+        "http://edukg.org/knowledge/3.0/class/math#main-C27",
+        "http://edukg.org/knowledge/3.0/class/math#main-C28",
+        "http://edukg.org/knowledge/3.0/class/math#main-C5",
+        "http://edukg.org/knowledge/3.0/class/math#main-C9",
+        "http://edukg.org/knowledge/3.0/class/math#main-C6",
+        "http://edukg.org/knowledge/3.0/class/math#main-C7",
+        "http://edukg.org/knowledge/3.0/class/math#main-C8",
+        "http://edukg.org/knowledge/3.0/class/math#main-C11",
+        "http://edukg.org/knowledge/3.0/class/math#main-C13",
+        "http://edukg.org/knowledge/3.0/class/math#main-C12",
+        "http://edukg.org/knowledge/3.0/class/math#main-C16",
+        "http://edukg.org/knowledge/3.0/class/math#main-C17",
+        "http://edukg.org/knowledge/3.0/class/math#main-C18",
+        "http://edukg.org/knowledge/3.0/class/math#main-C23",
+        "http://edukg.org/knowledge/3.0/class/math#main-C19",
+        "http://edukg.org/knowledge/3.0/class/math#main-C20",
+        "http://edukg.org/knowledge/3.0/class/math#main-C21",
+        "http://edukg.org/knowledge/3.0/class/math#main-C22",
+        "http://edukg.org/knowledge/3.0/class/math#main-C25",
+        "http://edukg.org/knowledge/3.0/class/math#main-C26",
+        "http://edukg.org/knowledge/3.0/class/math#main-C29",
+        "http://edukg.org/knowledge/3.0/class/math#main-C32",
+        "http://edukg.org/knowledge/3.0/class/math#main-C33",
+        "http://edukg.org/knowledge/3.0/class/math#main-C34",
+        "http://edukg.org/knowledge/3.0/class/math#main-C36",
+        "http://edukg.org/knowledge/3.0/class/math#main-C39",
+        "http://edukg.org/knowledge/3.0/class/math#main-C37",
+        "http://edukg.org/knowledge/3.0/class/math#main-C38",
+        "http://edukg.org/knowledge/3.0/class/math#main-C44"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C39": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C39"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C17": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C17"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C43": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C43",
+        "http://edukg.org/knowledge/3.0/class/math#main-C44"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C31": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C31",
+        "http://edukg.org/knowledge/3.0/class/math#main-C32",
+        "http://edukg.org/knowledge/3.0/class/math#main-C33",
+        "http://edukg.org/knowledge/3.0/class/math#main-C34"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C37": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C37"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C34": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C34"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C2": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C2"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C23": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C23"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C15": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C15",
+        "http://edukg.org/knowledge/3.0/class/math#main-C16",
+        "http://edukg.org/knowledge/3.0/class/math#main-C17",
+        "http://edukg.org/knowledge/3.0/class/math#main-C18",
+        "http://edukg.org/knowledge/3.0/class/math#main-C23",
+        "http://edukg.org/knowledge/3.0/class/math#main-C19",
+        "http://edukg.org/knowledge/3.0/class/math#main-C20",
+        "http://edukg.org/knowledge/3.0/class/math#main-C21",
+        "http://edukg.org/knowledge/3.0/class/math#main-C22"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C21": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C21"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C9": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C9"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C33": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C33"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C14": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C14"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C30": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C30"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C44": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C44"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C19": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C19"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C20": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C20"
+    ],
+    "http://edukg.org/knowledge/3.0/class/math#main-C1": [
+        "http://edukg.org/knowledge/3.0/class/math#main-C1"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C25": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C25",
+        "http://edukg.org/knowledge/3.0/class/english#main-C26",
+        "http://edukg.org/knowledge/3.0/class/english#main-C27",
+        "http://edukg.org/knowledge/3.0/class/english#main-C28",
+        "http://edukg.org/knowledge/3.0/class/english#main-C29",
+        "http://edukg.org/knowledge/3.0/class/english#main-C30",
+        "http://edukg.org/knowledge/3.0/class/english#main-C31"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C16": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C16"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C0": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C0",
+        "http://edukg.org/knowledge/3.0/class/english#main-C1",
+        "http://edukg.org/knowledge/3.0/class/english#main-C12",
+        "http://edukg.org/knowledge/3.0/class/english#main-C13",
+        "http://edukg.org/knowledge/3.0/class/english#main-C14",
+        "http://edukg.org/knowledge/3.0/class/english#main-C15",
+        "http://edukg.org/knowledge/3.0/class/english#main-C16",
+        "http://edukg.org/knowledge/3.0/class/english#main-C17",
+        "http://edukg.org/knowledge/3.0/class/english#main-C21",
+        "http://edukg.org/knowledge/3.0/class/english#main-C24",
+        "http://edukg.org/knowledge/3.0/class/english#main-C2",
+        "http://edukg.org/knowledge/3.0/class/english#main-C3",
+        "http://edukg.org/knowledge/3.0/class/english#main-C4",
+        "http://edukg.org/knowledge/3.0/class/english#main-C5",
+        "http://edukg.org/knowledge/3.0/class/english#main-C6",
+        "http://edukg.org/knowledge/3.0/class/english#main-C7",
+        "http://edukg.org/knowledge/3.0/class/english#main-C8",
+        "http://edukg.org/knowledge/3.0/class/english#main-C9",
+        "http://edukg.org/knowledge/3.0/class/english#main-C10",
+        "http://edukg.org/knowledge/3.0/class/english#main-C11",
+        "http://edukg.org/knowledge/3.0/class/english#main-C18",
+        "http://edukg.org/knowledge/3.0/class/english#main-C19",
+        "http://edukg.org/knowledge/3.0/class/english#main-C20",
+        "http://edukg.org/knowledge/3.0/class/english#main-C22",
+        "http://edukg.org/knowledge/3.0/class/english#main-C23",
+        "http://edukg.org/knowledge/3.0/class/english#main-C25",
+        "http://edukg.org/knowledge/3.0/class/english#main-C26",
+        "http://edukg.org/knowledge/3.0/class/english#main-C27",
+        "http://edukg.org/knowledge/3.0/class/english#main-C28",
+        "http://edukg.org/knowledge/3.0/class/english#main-C29",
+        "http://edukg.org/knowledge/3.0/class/english#main-C30",
+        "http://edukg.org/knowledge/3.0/class/english#main-C31"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C17": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C17",
+        "http://edukg.org/knowledge/3.0/class/english#main-C18",
+        "http://edukg.org/knowledge/3.0/class/english#main-C19",
+        "http://edukg.org/knowledge/3.0/class/english#main-C20"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C6": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C6"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C1": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C1",
+        "http://edukg.org/knowledge/3.0/class/english#main-C2",
+        "http://edukg.org/knowledge/3.0/class/english#main-C3",
+        "http://edukg.org/knowledge/3.0/class/english#main-C4",
+        "http://edukg.org/knowledge/3.0/class/english#main-C5",
+        "http://edukg.org/knowledge/3.0/class/english#main-C6",
+        "http://edukg.org/knowledge/3.0/class/english#main-C7",
+        "http://edukg.org/knowledge/3.0/class/english#main-C8",
+        "http://edukg.org/knowledge/3.0/class/english#main-C9",
+        "http://edukg.org/knowledge/3.0/class/english#main-C10",
+        "http://edukg.org/knowledge/3.0/class/english#main-C11"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C4": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C4"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C2": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C2"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C9": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C9"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C5": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C5"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C22": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C22"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C24": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C24",
+        "http://edukg.org/knowledge/3.0/class/english#main-C25",
+        "http://edukg.org/knowledge/3.0/class/english#main-C26",
+        "http://edukg.org/knowledge/3.0/class/english#main-C27",
+        "http://edukg.org/knowledge/3.0/class/english#main-C28",
+        "http://edukg.org/knowledge/3.0/class/english#main-C29",
+        "http://edukg.org/knowledge/3.0/class/english#main-C30",
+        "http://edukg.org/knowledge/3.0/class/english#main-C31"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C10": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C10"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C19": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C19"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C7": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C7"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C3": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C3"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C21": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C21",
+        "http://edukg.org/knowledge/3.0/class/english#main-C22",
+        "http://edukg.org/knowledge/3.0/class/english#main-C23"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C23": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C23"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C8": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C8"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C11": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C11"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C14": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C14"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C18": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C18"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C15": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C15"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C20": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C20"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C31": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C31"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C28": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C28"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C29": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C29"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C12": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C12"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C27": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C27"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C30": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C30"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C13": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C13"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C32": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C32"
+    ],
+    "http://edukg.org/knowledge/3.0/class/english#main-C26": [
+        "http://edukg.org/knowledge/3.0/class/english#main-C26"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C9": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C9"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C12": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C12"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C7": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C7",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C8",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C10",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C11",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C12",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C13",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C14",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C15",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C16",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C17",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C9"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C0": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C0",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C1",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C2",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C3",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C4",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C5",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C6",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C7",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C18",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C19",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C20",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C21",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C8",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C10",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C11",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C12",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C13",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C14",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C15",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C16",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C17",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C9"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C3": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C3"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C5": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C5"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C10": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C10"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C8": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C8",
+        "http://edukg.org/knowledge/3.0/class/physics#main-C9"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C17": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C17"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C21": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C21"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C2": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C2"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C18": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C18"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C19": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C19"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C4": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C4"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C16": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C16"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C13": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C13"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C15": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C15"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C11": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C11"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C6": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C6"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C14": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C14"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C20": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C20"
+    ],
+    "http://edukg.org/knowledge/3.0/class/physics#main-C1": [
+        "http://edukg.org/knowledge/3.0/class/physics#main-C1"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C10": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C10"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C48": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C48"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C46": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C46",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C47",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C48",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C49",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C50"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C7": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C7"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C41": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C41"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C12": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C12"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C40": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C40"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C39": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C39",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C40",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C41"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C42": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C42",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C43",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C46",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C51",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C52",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C44",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C45",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C47",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C48",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C49",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C50",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C53",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C54",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C55",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C56",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C57",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C58",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C59",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C60",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C61",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C62",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C63",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C64",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C65"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C38": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C38",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C39",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C42",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C40",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C41",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C43",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C46",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C51",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C52",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C44",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C45",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C47",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C48",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C49",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C50",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C53",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C54",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C55",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C56",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C57",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C58",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C59",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C60",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C61",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C62",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C63",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C64",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C65"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C32": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C32"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C31": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C31",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C32",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C33",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C34",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C38",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C35",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C36",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C37",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C39",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C42",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C40",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C41",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C43",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C46",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C51",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C52",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C44",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C45",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C47",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C48",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C49",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C50",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C53",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C54",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C55",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C56",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C57",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C58",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C59",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C60",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C61",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C62",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C63",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C64",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C65"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C0": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C0",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C1",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C2",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C3",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C4",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C5",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C6",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C15",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C20",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C24",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C31",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C7",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C8",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C9",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C10",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C11",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C12",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C13",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C14",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C16",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C17",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C18",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C19",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C21",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C22",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C23",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C25",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C26",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C27",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C28",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C29",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C30",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C32",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C33",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C34",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C38",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C35",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C36",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C37",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C39",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C42",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C40",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C41",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C43",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C46",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C51",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C52",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C44",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C45",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C47",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C48",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C49",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C50",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C53",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C54",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C55",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C56",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C57",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C58",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C59",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C60",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C61",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C62",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C63",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C64",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C65"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C17": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C17"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C26": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C26",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C27",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C28",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C29",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C30"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C24": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C24",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C25",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C26",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C27",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C28",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C29",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C30"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C16": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C16"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C51": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C51"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C14": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C14"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C6": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C6",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C7",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C8",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C9",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C10",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C11",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C12",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C13",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C14"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C50": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C50"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C63": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C63"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C52": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C52",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C53",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C54",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C55",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C56",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C57",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C58",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C59",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C60",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C61",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C62",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C63",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C64",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C65"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C15": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C15",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C16",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C17",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C18",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C19"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C28": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C28"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C11": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C11"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C59": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C59"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C45": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C45"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C43": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C43",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C44",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C45"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C64": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C64"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C4": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C4"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C30": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C30"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C21": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C21"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C20": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C20",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C21",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C22",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C23"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C9": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C9"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C36": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C36"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C34": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C34",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C35",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C36",
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C37"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C25": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C25"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C19": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C19"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C62": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C62"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C60": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C60"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C22": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C22"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C35": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C35"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C65": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C65"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C2": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C2"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C33": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C33"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C47": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C47"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C27": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C27"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C55": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C55"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C49": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C49"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C8": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C8"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C44": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C44"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C29": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C29"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C61": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C61"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C53": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C53"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C1": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C1"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C3": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C3"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C54": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C54"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C56": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C56"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C57": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C57"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C5": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C5"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C37": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C37"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C13": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C13"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C58": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C58"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C18": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C18"
+    ],
+    "http://edukg.org/knowledge/3.0/class/chemistry#main-C23": [
+        "http://edukg.org/knowledge/3.0/class/chemistry#main-C23"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C12": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C12"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C10": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C10",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C11",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C12",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C13",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C14",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C16",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C17",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C15"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C45": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C45"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C42": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C42",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C43",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C44",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C45",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C46"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C72": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C72"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C0": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C0",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C1",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C8",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C27",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C37",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C38",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C47",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C67",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C68",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C69",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C70",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C71",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C72",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C2",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C3",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C6",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C7",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C4",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C5",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C9",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C10",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C18",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C22",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C23",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C26",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C11",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C12",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C13",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C14",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C16",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C17",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C15",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C19",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C20",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C21",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C24",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C25",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C28",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C29",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C30",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C31",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C32",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C33",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C34",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C35",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C36",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C39",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C40",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C41",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C42",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C43",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C44",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C45",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C46",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C48",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C49",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C50",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C51",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C52",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C53",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C54",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C63",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C64",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C65",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C66",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C55",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C56",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C57",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C58",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C59",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C60",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C61",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C62"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C4": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C4"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C3": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C3",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C4",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C5"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C11": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C11"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C14": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C14",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C15"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C67": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C67"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C26": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C26"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C8": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C8",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C9",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C10",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C18",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C22",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C23",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C26",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C11",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C12",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C13",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C14",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C16",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C17",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C15",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C19",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C20",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C21",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C24",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C25"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C55": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C55"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C54": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C54",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C55",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C56",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C57",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C58",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C59",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C60",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C61",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C62"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C20": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C20"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C44": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C44"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C29": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C29"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C58": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C58"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C69": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C69"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C7": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C7"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C1": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C1",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C2",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C3",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C6",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C7",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C4",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C5"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C61": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C61"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C56": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C56",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C57",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C58",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C59",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C60",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C61",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C62"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C64": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C64"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C41": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C41"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C49": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C49"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C47": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C47",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C48",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C49",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C50",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C51",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C52",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C53",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C54",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C63",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C64",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C65",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C66",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C55",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C56",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C57",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C58",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C59",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C60",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C61",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C62"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C51": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C51"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C34": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C34"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C27": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C27",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C28",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C29",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C30",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C31",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C32",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C33",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C34",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C35",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C36"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C46": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C46"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C22": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C22"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C33": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C33"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C66": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C66"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C18": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C18",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C19",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C20",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C21"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C9": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C9"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C38": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C38",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C39",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C40",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C41",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C42",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C43",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C44",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C45",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C46"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C50": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C50"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C36": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C36"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C62": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C62"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C24": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C24"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C23": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C23",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C24",
+        "http://edukg.org/knowledge/3.0/class/biology#main-C25"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C37": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C37"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C13": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C13"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C68": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C68"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C57": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C57"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C21": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C21"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C43": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C43"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C32": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C32"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C5": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C5"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C63": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C63"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C53": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C53"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C2": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C2"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C39": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C39"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C28": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C28"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C60": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C60"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C70": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C70"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C17": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C17"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C16": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C16"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C48": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C48"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C52": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C52"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C31": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C31"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C15": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C15"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C6": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C6"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C30": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C30"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C35": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C35"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C59": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C59"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C40": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C40"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C19": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C19"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C71": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C71"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C65": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C65"
+    ],
+    "http://edukg.org/knowledge/3.0/class/biology#main-C25": [
+        "http://edukg.org/knowledge/3.0/class/biology#main-C25"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C65": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C65"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C26": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C26",
+        "http://edukg.org/knowledge/3.0/class/history#main-C27",
+        "http://edukg.org/knowledge/3.0/class/history#main-C33",
+        "http://edukg.org/knowledge/3.0/class/history#main-C28",
+        "http://edukg.org/knowledge/3.0/class/history#main-C29",
+        "http://edukg.org/knowledge/3.0/class/history#main-C30",
+        "http://edukg.org/knowledge/3.0/class/history#main-C31",
+        "http://edukg.org/knowledge/3.0/class/history#main-C32"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C13": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C13"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C21": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C21"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C56": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C56",
+        "http://edukg.org/knowledge/3.0/class/history#main-C57",
+        "http://edukg.org/knowledge/3.0/class/history#main-C58",
+        "http://edukg.org/knowledge/3.0/class/history#main-C59"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C61": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C61"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C31": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C31"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C27": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C27",
+        "http://edukg.org/knowledge/3.0/class/history#main-C28",
+        "http://edukg.org/knowledge/3.0/class/history#main-C29",
+        "http://edukg.org/knowledge/3.0/class/history#main-C30",
+        "http://edukg.org/knowledge/3.0/class/history#main-C31",
+        "http://edukg.org/knowledge/3.0/class/history#main-C32"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C5": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C5"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C2": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C2",
+        "http://edukg.org/knowledge/3.0/class/history#main-C3",
+        "http://edukg.org/knowledge/3.0/class/history#main-C4",
+        "http://edukg.org/knowledge/3.0/class/history#main-C5",
+        "http://edukg.org/knowledge/3.0/class/history#main-C6"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C51": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C51"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C35": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C35"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C49": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C49"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C46": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C46",
+        "http://edukg.org/knowledge/3.0/class/history#main-C47",
+        "http://edukg.org/knowledge/3.0/class/history#main-C48",
+        "http://edukg.org/knowledge/3.0/class/history#main-C49",
+        "http://edukg.org/knowledge/3.0/class/history#main-C50",
+        "http://edukg.org/knowledge/3.0/class/history#main-C51"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C44": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C44"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C39": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C39",
+        "http://edukg.org/knowledge/3.0/class/history#main-C40",
+        "http://edukg.org/knowledge/3.0/class/history#main-C41",
+        "http://edukg.org/knowledge/3.0/class/history#main-C42",
+        "http://edukg.org/knowledge/3.0/class/history#main-C43",
+        "http://edukg.org/knowledge/3.0/class/history#main-C44",
+        "http://edukg.org/knowledge/3.0/class/history#main-C45"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C23": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C23"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C16": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C16",
+        "http://edukg.org/knowledge/3.0/class/history#main-C17",
+        "http://edukg.org/knowledge/3.0/class/history#main-C22",
+        "http://edukg.org/knowledge/3.0/class/history#main-C23",
+        "http://edukg.org/knowledge/3.0/class/history#main-C24",
+        "http://edukg.org/knowledge/3.0/class/history#main-C18",
+        "http://edukg.org/knowledge/3.0/class/history#main-C19",
+        "http://edukg.org/knowledge/3.0/class/history#main-C20",
+        "http://edukg.org/knowledge/3.0/class/history#main-C21"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C8": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C8"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C7": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C7",
+        "http://edukg.org/knowledge/3.0/class/history#main-C8",
+        "http://edukg.org/knowledge/3.0/class/history#main-C9",
+        "http://edukg.org/knowledge/3.0/class/history#main-C10"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C47": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C47"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C11": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C11",
+        "http://edukg.org/knowledge/3.0/class/history#main-C12",
+        "http://edukg.org/knowledge/3.0/class/history#main-C13",
+        "http://edukg.org/knowledge/3.0/class/history#main-C14",
+        "http://edukg.org/knowledge/3.0/class/history#main-C15"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C0": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C0",
+        "http://edukg.org/knowledge/3.0/class/history#main-C1",
+        "http://edukg.org/knowledge/3.0/class/history#main-C2",
+        "http://edukg.org/knowledge/3.0/class/history#main-C7",
+        "http://edukg.org/knowledge/3.0/class/history#main-C11",
+        "http://edukg.org/knowledge/3.0/class/history#main-C16",
+        "http://edukg.org/knowledge/3.0/class/history#main-C25",
+        "http://edukg.org/knowledge/3.0/class/history#main-C56",
+        "http://edukg.org/knowledge/3.0/class/history#main-C60",
+        "http://edukg.org/knowledge/3.0/class/history#main-C3",
+        "http://edukg.org/knowledge/3.0/class/history#main-C4",
+        "http://edukg.org/knowledge/3.0/class/history#main-C5",
+        "http://edukg.org/knowledge/3.0/class/history#main-C6",
+        "http://edukg.org/knowledge/3.0/class/history#main-C8",
+        "http://edukg.org/knowledge/3.0/class/history#main-C9",
+        "http://edukg.org/knowledge/3.0/class/history#main-C10",
+        "http://edukg.org/knowledge/3.0/class/history#main-C12",
+        "http://edukg.org/knowledge/3.0/class/history#main-C13",
+        "http://edukg.org/knowledge/3.0/class/history#main-C14",
+        "http://edukg.org/knowledge/3.0/class/history#main-C15",
+        "http://edukg.org/knowledge/3.0/class/history#main-C17",
+        "http://edukg.org/knowledge/3.0/class/history#main-C22",
+        "http://edukg.org/knowledge/3.0/class/history#main-C23",
+        "http://edukg.org/knowledge/3.0/class/history#main-C24",
+        "http://edukg.org/knowledge/3.0/class/history#main-C18",
+        "http://edukg.org/knowledge/3.0/class/history#main-C19",
+        "http://edukg.org/knowledge/3.0/class/history#main-C20",
+        "http://edukg.org/knowledge/3.0/class/history#main-C21",
+        "http://edukg.org/knowledge/3.0/class/history#main-C26",
+        "http://edukg.org/knowledge/3.0/class/history#main-C34",
+        "http://edukg.org/knowledge/3.0/class/history#main-C27",
+        "http://edukg.org/knowledge/3.0/class/history#main-C33",
+        "http://edukg.org/knowledge/3.0/class/history#main-C28",
+        "http://edukg.org/knowledge/3.0/class/history#main-C29",
+        "http://edukg.org/knowledge/3.0/class/history#main-C30",
+        "http://edukg.org/knowledge/3.0/class/history#main-C31",
+        "http://edukg.org/knowledge/3.0/class/history#main-C32",
+        "http://edukg.org/knowledge/3.0/class/history#main-C35",
+        "http://edukg.org/knowledge/3.0/class/history#main-C36",
+        "http://edukg.org/knowledge/3.0/class/history#main-C37",
+        "http://edukg.org/knowledge/3.0/class/history#main-C38",
+        "http://edukg.org/knowledge/3.0/class/history#main-C39",
+        "http://edukg.org/knowledge/3.0/class/history#main-C46",
+        "http://edukg.org/knowledge/3.0/class/history#main-C52",
+        "http://edukg.org/knowledge/3.0/class/history#main-C40",
+        "http://edukg.org/knowledge/3.0/class/history#main-C41",
+        "http://edukg.org/knowledge/3.0/class/history#main-C42",
+        "http://edukg.org/knowledge/3.0/class/history#main-C43",
+        "http://edukg.org/knowledge/3.0/class/history#main-C44",
+        "http://edukg.org/knowledge/3.0/class/history#main-C45",
+        "http://edukg.org/knowledge/3.0/class/history#main-C47",
+        "http://edukg.org/knowledge/3.0/class/history#main-C48",
+        "http://edukg.org/knowledge/3.0/class/history#main-C49",
+        "http://edukg.org/knowledge/3.0/class/history#main-C50",
+        "http://edukg.org/knowledge/3.0/class/history#main-C51",
+        "http://edukg.org/knowledge/3.0/class/history#main-C53",
+        "http://edukg.org/knowledge/3.0/class/history#main-C54",
+        "http://edukg.org/knowledge/3.0/class/history#main-C55",
+        "http://edukg.org/knowledge/3.0/class/history#main-C57",
+        "http://edukg.org/knowledge/3.0/class/history#main-C58",
+        "http://edukg.org/knowledge/3.0/class/history#main-C59",
+        "http://edukg.org/knowledge/3.0/class/history#main-C61",
+        "http://edukg.org/knowledge/3.0/class/history#main-C62",
+        "http://edukg.org/knowledge/3.0/class/history#main-C63",
+        "http://edukg.org/knowledge/3.0/class/history#main-C64",
+        "http://edukg.org/knowledge/3.0/class/history#main-C65",
+        "http://edukg.org/knowledge/3.0/class/history#main-C66",
+        "http://edukg.org/knowledge/3.0/class/history#main-C67"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C58": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C58"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C15": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C15"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C34": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C34",
+        "http://edukg.org/knowledge/3.0/class/history#main-C35",
+        "http://edukg.org/knowledge/3.0/class/history#main-C36",
+        "http://edukg.org/knowledge/3.0/class/history#main-C37",
+        "http://edukg.org/knowledge/3.0/class/history#main-C38",
+        "http://edukg.org/knowledge/3.0/class/history#main-C39",
+        "http://edukg.org/knowledge/3.0/class/history#main-C46",
+        "http://edukg.org/knowledge/3.0/class/history#main-C52",
+        "http://edukg.org/knowledge/3.0/class/history#main-C40",
+        "http://edukg.org/knowledge/3.0/class/history#main-C41",
+        "http://edukg.org/knowledge/3.0/class/history#main-C42",
+        "http://edukg.org/knowledge/3.0/class/history#main-C43",
+        "http://edukg.org/knowledge/3.0/class/history#main-C44",
+        "http://edukg.org/knowledge/3.0/class/history#main-C45",
+        "http://edukg.org/knowledge/3.0/class/history#main-C47",
+        "http://edukg.org/knowledge/3.0/class/history#main-C48",
+        "http://edukg.org/knowledge/3.0/class/history#main-C49",
+        "http://edukg.org/knowledge/3.0/class/history#main-C50",
+        "http://edukg.org/knowledge/3.0/class/history#main-C51",
+        "http://edukg.org/knowledge/3.0/class/history#main-C53",
+        "http://edukg.org/knowledge/3.0/class/history#main-C54",
+        "http://edukg.org/knowledge/3.0/class/history#main-C55"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C19": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C19"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C17": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C17",
+        "http://edukg.org/knowledge/3.0/class/history#main-C18",
+        "http://edukg.org/knowledge/3.0/class/history#main-C19",
+        "http://edukg.org/knowledge/3.0/class/history#main-C20",
+        "http://edukg.org/knowledge/3.0/class/history#main-C21"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C4": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C4"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C25": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C25",
+        "http://edukg.org/knowledge/3.0/class/history#main-C26",
+        "http://edukg.org/knowledge/3.0/class/history#main-C34",
+        "http://edukg.org/knowledge/3.0/class/history#main-C27",
+        "http://edukg.org/knowledge/3.0/class/history#main-C33",
+        "http://edukg.org/knowledge/3.0/class/history#main-C28",
+        "http://edukg.org/knowledge/3.0/class/history#main-C29",
+        "http://edukg.org/knowledge/3.0/class/history#main-C30",
+        "http://edukg.org/knowledge/3.0/class/history#main-C31",
+        "http://edukg.org/knowledge/3.0/class/history#main-C32",
+        "http://edukg.org/knowledge/3.0/class/history#main-C35",
+        "http://edukg.org/knowledge/3.0/class/history#main-C36",
+        "http://edukg.org/knowledge/3.0/class/history#main-C37",
+        "http://edukg.org/knowledge/3.0/class/history#main-C38",
+        "http://edukg.org/knowledge/3.0/class/history#main-C39",
+        "http://edukg.org/knowledge/3.0/class/history#main-C46",
+        "http://edukg.org/knowledge/3.0/class/history#main-C52",
+        "http://edukg.org/knowledge/3.0/class/history#main-C40",
+        "http://edukg.org/knowledge/3.0/class/history#main-C41",
+        "http://edukg.org/knowledge/3.0/class/history#main-C42",
+        "http://edukg.org/knowledge/3.0/class/history#main-C43",
+        "http://edukg.org/knowledge/3.0/class/history#main-C44",
+        "http://edukg.org/knowledge/3.0/class/history#main-C45",
+        "http://edukg.org/knowledge/3.0/class/history#main-C47",
+        "http://edukg.org/knowledge/3.0/class/history#main-C48",
+        "http://edukg.org/knowledge/3.0/class/history#main-C49",
+        "http://edukg.org/knowledge/3.0/class/history#main-C50",
+        "http://edukg.org/knowledge/3.0/class/history#main-C51",
+        "http://edukg.org/knowledge/3.0/class/history#main-C53",
+        "http://edukg.org/knowledge/3.0/class/history#main-C54",
+        "http://edukg.org/knowledge/3.0/class/history#main-C55"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C38": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C38"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C18": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C18"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C1": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C1"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C60": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C60",
+        "http://edukg.org/knowledge/3.0/class/history#main-C61",
+        "http://edukg.org/knowledge/3.0/class/history#main-C62",
+        "http://edukg.org/knowledge/3.0/class/history#main-C63",
+        "http://edukg.org/knowledge/3.0/class/history#main-C64",
+        "http://edukg.org/knowledge/3.0/class/history#main-C65",
+        "http://edukg.org/knowledge/3.0/class/history#main-C66",
+        "http://edukg.org/knowledge/3.0/class/history#main-C67"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C62": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C62"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C9": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C9"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C30": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C30"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C10": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C10"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C3": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C3"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C42": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C42"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C54": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C54"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C52": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C52",
+        "http://edukg.org/knowledge/3.0/class/history#main-C53",
+        "http://edukg.org/knowledge/3.0/class/history#main-C54",
+        "http://edukg.org/knowledge/3.0/class/history#main-C55"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C64": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C64"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C41": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C41"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C53": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C53"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C37": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C37"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C48": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C48"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C40": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C40"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C50": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C50"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C20": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C20"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C22": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C22"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C66": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C66"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C28": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C28"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C29": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C29"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C32": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C32"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C63": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C63"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C12": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C12"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C55": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C55"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C24": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C24"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C6": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C6"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C57": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C57"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C36": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C36"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C67": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C67"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C43": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C43"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C33": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C33"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C59": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C59"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C45": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C45"
+    ],
+    "http://edukg.org/knowledge/3.0/class/history#main-C14": [
+        "http://edukg.org/knowledge/3.0/class/history#main-C14"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C125": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C125"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C117": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C117",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C118",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C119",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C120",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C121",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C122",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C123",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C124",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C125",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C126",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C127",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C128",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C129",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C130",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C131",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C132",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C133",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C134",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C135",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C136",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C137",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C138",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C139",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C140",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C141",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C142",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C143",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C144",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C145",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C146",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C147",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C148",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C149",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C150",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C151",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C152",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C153",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C154",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C155",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C157",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C160",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C164",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C156",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C158",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C159",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C161",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C162",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C163",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C165",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C166",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C167",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C168",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C169",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C170",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C171",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C172"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C77": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C77"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C76": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C76",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C77"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C154": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C154"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C169": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C169"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C164": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C164",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C165",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C166",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C167",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C168",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C169",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C170",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C171",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C172"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C82": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C82"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C78": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C78",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C79",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C80",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C81",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C82",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C83"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C106": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C106"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C100": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C100",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C101",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C102",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C103",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C104",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C105",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C106"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C131": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C131"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C52": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C52"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C47": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C47",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C48",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C49",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C50",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C51",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C52",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C53",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C54",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C55",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C56",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C57",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C58",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C59",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C60",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C61",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C62",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C63",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C64",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C65",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C66"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C170": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C170"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C2": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C2"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C0": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C0",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C1",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C2",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C3",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C4",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C8",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C41",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C5",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C6",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C7",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C9",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C10",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C11",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C12",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C13",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C14",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C15",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C16",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C17",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C18",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C19",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C20",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C21",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C22",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C23",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C24",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C25",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C29",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C30",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C31",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C32",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C33",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C34",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C35",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C36",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C37",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C38",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C39",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C40",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C26",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C27",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C28",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C42",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C47",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C67",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C68",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C72",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C73",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C74",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C75",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C76",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C78",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C84",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C87",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C98",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C99",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C117",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C173",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C174",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C175",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C43",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C44",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C45",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C46",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C48",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C49",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C50",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C51",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C52",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C53",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C54",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C55",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C56",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C57",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C58",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C59",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C60",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C61",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C62",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C63",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C64",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C65",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C66",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C69",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C70",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C71",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C77",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C79",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C80",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C81",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C82",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C83",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C85",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C86",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C88",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C89",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C90",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C91",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C95",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C96",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C97",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C92",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C93",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C94",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C100",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C107",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C108",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C109",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C101",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C102",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C103",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C104",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C105",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C106",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C110",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C112",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C115",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C116",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C111",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C113",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C114",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C118",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C119",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C120",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C121",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C122",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C123",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C124",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C125",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C126",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C127",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C128",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C129",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C130",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C131",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C132",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C133",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C134",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C135",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C136",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C137",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C138",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C139",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C140",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C141",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C142",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C143",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C144",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C145",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C146",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C147",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C148",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C149",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C150",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C151",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C152",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C153",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C154",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C155",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C157",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C160",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C164",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C156",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C158",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C159",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C161",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C162",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C163",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C165",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C166",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C167",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C168",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C169",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C170",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C171",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C172"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C85": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C85"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C138": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C138"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C102": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C102"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C70": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C70"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C32": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C32"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C75": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C75"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C74": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C74"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C41": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C41",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C42",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C47",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C67",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C68",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C72",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C73",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C74",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C75",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C76",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C78",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C84",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C87",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C98",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C99",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C117",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C173",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C174",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C175",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C43",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C44",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C45",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C46",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C48",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C49",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C50",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C51",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C52",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C53",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C54",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C55",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C56",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C57",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C58",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C59",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C60",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C61",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C62",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C63",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C64",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C65",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C66",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C69",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C70",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C71",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C77",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C79",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C80",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C81",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C82",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C83",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C85",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C86",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C88",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C89",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C90",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C91",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C95",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C96",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C97",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C92",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C93",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C94",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C100",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C107",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C108",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C109",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C101",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C102",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C103",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C104",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C105",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C106",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C110",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C112",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C115",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C116",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C111",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C113",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C114",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C118",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C119",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C120",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C121",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C122",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C123",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C124",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C125",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C126",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C127",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C128",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C129",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C130",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C131",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C132",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C133",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C134",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C135",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C136",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C137",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C138",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C139",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C140",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C141",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C142",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C143",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C144",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C145",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C146",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C147",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C148",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C149",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C150",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C151",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C152",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C153",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C154",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C155",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C157",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C160",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C164",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C156",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C158",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C159",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C161",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C162",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C163",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C165",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C166",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C167",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C168",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C169",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C170",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C171",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C172"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C156": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C156"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C155": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C155",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C156"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C139": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C139"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C68": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C68",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C69",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C70",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C71"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C172": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C172"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C31": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C31"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C161": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C161"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C160": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C160",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C161",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C162",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C163"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C53": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C53"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C103": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C103"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C159": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C159"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C114": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C114"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C112": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C112",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C113",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C114"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C89": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C89"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C140": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C140"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C39": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C39"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C132": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C132"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C49": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C49"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C128": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C128"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C7": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C7"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C147": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C147"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C94": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C94"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C91": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C91",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C92",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C93",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C94"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C43": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C43"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C42": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C42",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C43",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C44",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C45",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C46"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C17": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C17"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C8": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C8",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C9",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C10",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C11",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C12",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C13",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C14",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C15",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C16",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C17",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C18",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C19",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C20",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C21",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C22",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C23",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C24",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C25",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C29",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C30",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C31",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C32",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C33",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C34",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C35",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C36",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C37",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C38",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C39",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C40",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C26",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C27",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C28"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C151": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C151"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C24": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C24"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C95": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C95"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C88": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C88",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C89",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C90",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C91",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C95",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C96",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C97",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C92",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C93",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C94"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C157": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C157",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C158",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C159"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C1": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C1"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C98": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C98"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C107": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C107"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C99": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C99",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C100",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C107",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C108",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C109",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C101",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C102",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C103",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C104",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C105",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C106",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C110",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C112",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C115",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C116",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C111",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C113",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C114"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C40": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C40"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C116": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C116"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C136": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C136"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C33": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C33"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C16": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C16"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C18": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C18"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C133": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C133"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C101": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C101"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C66": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C66"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C56": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C56"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C29": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C29"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C37": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C37"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C144": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C144"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C126": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C126"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C153": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C153"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C71": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C71"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C87": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C87",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C88",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C89",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C90",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C91",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C95",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C96",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C97",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C92",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C93",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C94"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C110": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C110",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C111"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C93": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C93"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C83": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C83"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C81": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C81"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C167": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C167"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C174": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C174"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C166": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C166"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C69": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C69"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C149": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C149"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C62": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C62"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C165": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C165"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C26": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C26"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C25": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C25",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C26",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C27",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C28"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C168": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C168"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C58": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C58"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C54": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C54"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C118": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C118"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C38": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C38"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C162": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C162"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C92": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C92"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C64": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C64"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C34": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C34"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C121": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C121"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C122": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C122"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C50": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C50"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C30": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C30"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C4": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C4",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C5",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C6",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C7"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C109": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C109",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C110",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C112",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C115",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C116",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C111",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C113",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C114"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C15": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C15"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C142": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C142"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C120": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C120"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C13": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C13"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C46": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C46"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C79": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C79"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C115": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C115"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C36": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C36"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C124": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C124"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C141": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C141"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C171": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C171"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C57": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C57"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C173": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C173"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C6": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C6"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C146": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C146"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C14": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C14"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C28": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C28"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C150": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C150"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C129": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C129"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C145": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C145"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C148": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C148"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C119": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C119"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C27": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C27"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C59": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C59"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C130": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C130"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C80": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C80"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C12": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C12"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C84": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C84",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C85",
+        "http://edukg.org/knowledge/3.0/class/geo#main-C86"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C20": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C20"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C9": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C9"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C60": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C60"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C137": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C137"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C11": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C11"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C72": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C72"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C10": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C10"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C152": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C152"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C22": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C22"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C123": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C123"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C61": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C61"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C3": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C3"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C111": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C111"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C48": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C48"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C97": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C97"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C23": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C23"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C51": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C51"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C135": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C135"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C163": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C163"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C44": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C44"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C45": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C45"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C134": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C134"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C65": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C65"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C158": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C158"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C90": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C90"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C104": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C104"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C108": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C108"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C21": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C21"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C55": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C55"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C35": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C35"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C113": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C113"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C143": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C143"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C127": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C127"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C67": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C67"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C5": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C5"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C175": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C175"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C86": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C86"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C19": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C19"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C96": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C96"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C105": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C105"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C63": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C63"
+    ],
+    "http://edukg.org/knowledge/3.0/class/geo#main-C73": [
+        "http://edukg.org/knowledge/3.0/class/geo#main-C73"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C37": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C37"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C36": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C36",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C37",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C38",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C39",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C40",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C41",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C42",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C43",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C44",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C45",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C46",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C49",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C50",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C51",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C52",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C53",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C54",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C55",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C56",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C57",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C47",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C48"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C27": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C27"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C2": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C2"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C53": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C53"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C11": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C11"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C56": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C56"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C47": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C47"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C46": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C46",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C47",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C48"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C23": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C23"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C5": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C5"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C42": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C42"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C31": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C31"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C30": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C30"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C29": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C29",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C30",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C31",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C32"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C18": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C18"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C1": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C1",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C2",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C3",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C4",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C5",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C6",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C7",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C8",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C9",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C10",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C11",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C12",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C13",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C14",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C15",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C16",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C17",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C18",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C19",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C20",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C21",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C22",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C23",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C24",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C25",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C26",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C27",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C28"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C10": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C10"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C16": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C16"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C35": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C35"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C24": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C24"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C55": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C55"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C9": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C9"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C54": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C54"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C26": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C26"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C33": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C33",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C34",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C35"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C43": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C43"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C8": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C8"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C21": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C21"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C14": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C14"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C7": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C7"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C51": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C51"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C0": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C0",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C1",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C29",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C33",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C36",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C2",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C3",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C4",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C5",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C6",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C7",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C8",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C9",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C10",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C11",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C12",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C13",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C14",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C15",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C16",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C17",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C18",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C19",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C20",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C21",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C22",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C23",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C24",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C25",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C26",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C27",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C28",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C30",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C31",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C32",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C34",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C35",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C37",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C38",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C39",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C40",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C41",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C42",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C43",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C44",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C45",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C46",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C49",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C50",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C51",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C52",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C53",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C54",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C55",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C56",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C57",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C47",
+        "http://edukg.org/knowledge/3.0/class/politics#main-C48"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C32": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C32"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C48": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C48"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C45": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C45"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C50": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C50"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C49": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C49"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C40": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C40"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C28": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C28"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C12": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C12"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C13": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C13"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C20": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C20"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C34": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C34"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C3": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C3"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C25": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C25"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C57": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C57"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C22": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C22"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C44": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C44"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C6": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C6"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C38": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C38"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C17": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C17"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C39": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C39"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C41": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C41"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C4": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C4"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C15": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C15"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C52": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C52"
+    ],
+    "http://edukg.org/knowledge/3.0/class/politics#main-C19": [
+        "http://edukg.org/knowledge/3.0/class/politics#main-C19"
+    ]
+}
