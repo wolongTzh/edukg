@@ -1,0 +1,276 @@
+package com.tsinghua.edukg.manager;
+
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch._types.query_dsl.BoolQuery;
+import co.elastic.clients.elasticsearch.core.GetResponse;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.HighlightField;
+import co.elastic.clients.elasticsearch.core.search.Hit;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.tsinghua.edukg.config.ElasticSearchConfig;
+import com.tsinghua.edukg.model.ExamSource;
+import com.tsinghua.edukg.model.ExamSourceFromES;
+import com.tsinghua.edukg.model.TextBook;
+import com.tsinghua.edukg.model.TextBookHighLight;
+import com.tsinghua.edukg.model.VO.GetTextBookHighLightVO;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+@Component
+public class ESManager {
+
+    @Resource
+    ElasticsearchClient client;
+
+    String examSourceIndex;
+
+    String textBookIndex;
+
+    @Autowired
+    public ESManager(ElasticSearchConfig elasticSearchConfig) {
+        examSourceIndex = elasticSearchConfig.getExamSourceIndex();
+        textBookIndex = elasticSearchConfig.getTextBookIndex();
+    }
+
+    public TextBook getTextBookFromId(String id) throws IOException {
+        GetResponse<TextBook> response = client.get(g -> g
+                        .index(textBookIndex)
+                        .id(id),
+                TextBook.class
+        );
+        if (response.found()) {
+            TextBook textBook = response.source();
+            return textBook;
+        } else {
+            return null;
+        }
+    }
+
+    public List<TextBook> getTextBookFromTerm(String termText) throws IOException {
+        List<TextBook> textBookList = new ArrayList<>();
+        SearchResponse<TextBook> termSearch = client.search(s -> s
+                        .index(textBookIndex)
+                        .query(q -> q
+                                .term(t -> t
+                                        .field("html")
+                                        .value(termText)
+                                )
+                        ),
+                TextBook.class);
+        for (Hit<TextBook> hit: termSearch.hits().hits()) {
+            textBookList.add(hit.source());
+        }
+        return textBookList;
+    }
+
+    public List<TextBookHighLight> getTextBookHighLightMsgFromTerm(String termText) throws IOException {
+        List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
+        SearchResponse<TextBook> termSearch = client.search(s -> s
+                        .index(textBookIndex)
+                        .query(q -> q
+                                .term(t -> t
+                                        .field("html")
+                                        .value(termText)
+                                )
+                        ),
+                TextBook.class);
+        for (Hit<TextBook> hit: termSearch.hits().hits()) {
+            textBookHighLightList.add(TextBookHighLight.builder()
+                    .bookId(hit.id())
+                    .example(hit.source().getHtml()).build()
+            );
+        }
+        return textBookHighLightList;
+    }
+
+    public List<TextBookHighLight> getTextBookHighLightMsgFromMatch(String matchText) throws IOException {
+        List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
+        SearchResponse<TextBook> termSearch = client.search(s -> s
+                        .index(textBookIndex)
+                        .query(q -> q
+                                .match(t -> t
+                                        .field("html")
+                                        .query(matchText)
+                                )
+                        ),
+                TextBook.class);
+        for (Hit<TextBook> hit: termSearch.hits().hits()) {
+            textBookHighLightList.add(TextBookHighLight.builder()
+                    .bookId(hit.id())
+                    .example(hit.source().getHtml()).build()
+            );
+        }
+        return textBookHighLightList;
+    }
+
+    public ExamSource getExamSourceFromId(String id) throws IOException {
+        GetResponse<ExamSourceFromES> response = client.get(g -> g
+                        .index(examSourceIndex)
+                        .id(id),
+                ExamSourceFromES.class
+        );
+        if (response.found()) {
+            ExamSourceFromES examSourceFromES = response.source();
+            String content = examSourceFromES.getContent();
+            JSONObject jsonObject = JSON.parseObject(content);
+            return new ExamSource(id, examSourceFromES.getSearchText(), jsonObject);
+        } else {
+            return null;
+        }
+    }
+
+    public List<ExamSource> getExamSourceFromTerm(String termText) throws IOException {
+        SearchResponse<ExamSourceFromES> termSearch = client.search(s -> s
+                        .index(examSourceIndex)
+                        .query(q -> q
+                                .term(t -> t
+                                        .field("searchText")
+                                        .value(termText)
+                                )
+                        ),
+                ExamSourceFromES.class);
+        List<ExamSource> examSourceList = new ArrayList<>();
+        for (Hit<ExamSourceFromES> hit: termSearch.hits().hits()) {
+            String id = hit.id();
+            ExamSourceFromES examSourceFromES = hit.source();
+            String content = examSourceFromES.getContent();
+            if(StringUtils.isEmpty(content)) {
+                continue;
+            }
+            JSONObject jsonObject = JSON.parseObject(content);
+            examSourceList.add(new ExamSource(id, examSourceFromES.getSearchText(), jsonObject));
+        }
+        return examSourceList;
+    }
+
+    public List<TextBookHighLight> getHighLightTextBookFromText(List<String> keyWords) throws IOException {
+        String field = "html";
+        List<String> retList = new ArrayList<>();
+        List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
+        BoolQuery.Builder builder = new BoolQuery.Builder();
+        for(String key : keyWords) {
+            builder.must(m -> m
+                    .term(t -> t
+                            .field(field)
+                            .value(key)
+                    )
+            );
+        }
+        BoolQuery boolQuery = builder.build();
+        SearchResponse<TextBook> termSearch = client.search(s -> s
+                        .index(textBookIndex)
+                        .query(q -> q
+                                .bool(boolQuery)
+                        )
+                        .highlight(h -> h
+                                .fields(field, new HighlightField.Builder().build())
+                        ),
+                TextBook.class);
+        for (Hit<TextBook> hit: termSearch.hits().hits()) {
+            String highlightText = "";
+            for (String highlight : hit.highlight().get(field)) {
+                highlightText += highlight;
+            }
+            textBookHighLightList.add(TextBookHighLight.builder()
+                    .bookId(hit.id())
+                    .example(highlightText.replaceAll("<.*?>|\n","").replaceAll("。.*?>",""))
+                    .build());
+        }
+        return textBookHighLightList;
+    }
+
+    public List<TextBookHighLight> getHighLightTextBookFromMiniMatch(String keyWords) throws IOException {
+        String miniMatch = "";
+        String field = "html";
+        List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
+        SearchResponse<TextBook> matchSearch;
+        if(keyWords.split(" ").length > 8) {
+            matchSearch = client.search(s -> s
+                            .index(textBookIndex)
+                            .query(q -> q
+                                    .match(t -> t
+                                            .field(field)
+                                            .query(keyWords)
+                                            .minimumShouldMatch("6")
+                                    )
+                            )
+                            .highlight(h -> h
+                                    .fields(field, new HighlightField.Builder().build())
+                            ),
+                    TextBook.class);
+        }
+        else if(keyWords.split(" ").length > 3) {
+            matchSearch = client.search(s -> s
+                            .index(textBookIndex)
+                            .query(q -> q
+                                    .match(t -> t
+                                            .field(field)
+                                            .query(keyWords)
+                                            .minimumShouldMatch("80%")
+                                    )
+                            )
+                            .highlight(h -> h
+                                    .fields(field, new HighlightField.Builder().build())
+                            ),
+                    TextBook.class);
+        }
+        else {
+            matchSearch = client.search(s -> s
+                            .index(textBookIndex)
+                            .query(q -> q
+                                    .match(t -> t
+                                            .field(field)
+                                            .query(keyWords)
+                                            .minimumShouldMatch("100%")
+                                    )
+                            )
+                            .highlight(h -> h
+                                    .fields(field, new HighlightField.Builder().build())
+                            ),
+                    TextBook.class);
+        }
+        for (Hit<TextBook> hit: matchSearch.hits().hits()) {
+            String highlightText = "";
+            for (String highlight : hit.highlight().get(field)) {
+                highlightText += highlight;
+            }
+            textBookHighLightList.add(TextBookHighLight.builder()
+                    .bookId(hit.id())
+                    .example(highlightText.replaceAll("<.*?>|\n","").replaceAll("。.*?>",""))
+                    .build());
+        }
+        return textBookHighLightList;
+    }
+
+    public List<ExamSource> getExamSourceFromMatch(String matchText) throws IOException {
+        SearchResponse<ExamSourceFromES> matchSearch = client.search(s -> s
+                        .index(examSourceIndex)
+                        .query(q -> q
+                                .match(t -> t
+                                        .field("searchText")
+                                        .query(matchText)
+                                )
+                        ),
+                ExamSourceFromES.class);
+        List<ExamSource> examSourceList = new ArrayList<>();
+        for (Hit<ExamSourceFromES> hit: matchSearch.hits().hits()) {
+            String id = hit.id();
+            ExamSourceFromES examSourceFromES = hit.source();
+            String content = examSourceFromES.getContent();
+            if(StringUtils.isEmpty(content)) {
+                continue;
+            }
+            JSONObject jsonObject = JSON.parseObject(content);
+            examSourceList.add(new ExamSource(id, examSourceFromES.getSearchText(), jsonObject));
+        }
+        return examSourceList;
+    }
+}

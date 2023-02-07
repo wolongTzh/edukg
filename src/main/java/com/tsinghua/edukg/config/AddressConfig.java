@@ -1,0 +1,31 @@
+package com.tsinghua.edukg.config;
+
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@Data
+public class AddressConfig {
+
+    @Value("${address.server.qa}")
+    private String qaAddress;
+
+    @Value("${address.server.linking}")
+    private String linkingAddress;
+
+    @Value("${address.file.examSource}")
+    private String examSourceAddress;
+
+    @Value("${address.file.jiebaDictLinux}")
+    private String jiebaDictAddressLinux;
+
+    @Value("${address.file.jiebaDictWin}")
+    private String jiebaDictAddressWin;
+
+    @Value("${address.file.stopWords}")
+    private String stopWords;
+
+    @Value("${address.sign.split}")
+    private String sign;
+}

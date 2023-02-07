@@ -1,7 +1,3 @@
 spring:
-  data:
-    neo4j:
-      uri: bolt://10.1.1.213:7687
-      username: neo4j
-      password: neo4j@keg202
-
+  profiles:
+    active: test

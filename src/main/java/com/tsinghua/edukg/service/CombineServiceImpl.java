@@ -1,0 +1,135 @@
+package com.tsinghua.edukg.service;
+
+import com.tsinghua.edukg.api.feign.QAFeignService;
+import com.tsinghua.edukg.api.model.QAParam;
+import com.tsinghua.edukg.api.model.QAResult;
+import com.tsinghua.edukg.enums.BusinessTypeEnum;
+import com.tsinghua.edukg.manager.NeoManager;
+import com.tsinghua.edukg.model.Entity;
+import com.tsinghua.edukg.model.EntitySimp;
+import com.tsinghua.edukg.model.VO.*;
+import com.tsinghua.edukg.model.params.GetExamSourceParam;
+import com.tsinghua.edukg.model.params.GetTextBookHighLightParam;
+import com.tsinghua.edukg.model.params.LinkingParam;
+import com.tsinghua.edukg.model.params.TotalSearchParam;
+import com.tsinghua.edukg.service.utils.CombineServiceUtil;
+import com.tsinghua.edukg.utils.AsyncHelper;
+import com.tsinghua.edukg.utils.CommonUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
+
+import javax.annotation.Resource;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
+
+/**
+ * 综合搜索 service impl
+ *
+ * @author tanzheng
+ * @date 2022/11/29
+ */
+@Service
+public class CombineServiceImpl implements CombineService {
+
+    @Resource
+    NeoManager neoManager;
+
+    @Autowired
+    GraphService graphService;
+
+    @Autowired
+    QAFeignService qaFeignService;
+
+    @Autowired
+    ExamSourceLinkingService examSourceLinkingService;
+
+    @Autowired
+    TextBookLinkingService textBookLinkingService;
+
+    @Autowired
+    AsyncHelper asyncHelper;
+
+    Integer pageNo = 1;
+    Integer pageSize = 10;
+
+    @Override
+    public CombineLinkingVO totalSearch(TotalSearchParam param) throws IOException {
+        String searchText = param.getSearchText();
+        CombineLinkingVO combineLinkingVO = new CombineLinkingVO();
+        // 实体链接查询
+        List<EntitySimp> instanceList = new ArrayList<>();
+        List<LinkingVO> linkingEntities = graphService.linkingEntities(LinkingParam.builder().searchText(searchText).build());
+        for(LinkingVO linkingVO : linkingEntities) {
+            instanceList.add(CombineServiceUtil.buildEntitySimpFromLinkingVO(linkingVO));
+        }
+        // 根据不同情况匹配实体名称或属性（instanceList）
+        if(linkingEntities.size() == 1) {
+            instanceList.addAll(neoManager.getEntityWithScoreFromName(searchText));
+        }
+        if(linkingEntities.size() == 0) {
+            instanceList.addAll(neoManager.getEntityWithScoreFromName(searchText));
+            instanceList.addAll(neoManager.getEntityWithScoreFromProperty(searchText));
+        }
+        if(instanceList.size() > pageSize) {
+            instanceList = instanceList.subList(0, pageSize);
+        }
+        combineLinkingVO.setInstanceList(instanceList);
+        if(instanceList.size() != 0) {
+            // 首实体详细信息赋值（instanceInfo）
+            Entity instanceInfo = neoManager.getEntityFromUri(instanceList.get(0).getUri());
+            combineLinkingVO.setInstanceInfo(instanceInfo);
+            // 试题查询（questionList）
+            combineLinkingVO.setQuestionList(examSourceLinkingService.getExamSourceFromUri(GetExamSourceParam.builder().pageNo(pageNo).pageSize(pageSize).uri(instanceInfo.getUri()).build()));
+            if(CollectionUtils.isEmpty(combineLinkingVO.getQuestionList().getData())) {
+                combineLinkingVO.setQuestionList(examSourceLinkingService.getExamSourceFromText(GetExamSourceParam.builder().pageNo(pageNo).pageSize(pageSize).searchText(searchText).build(), BusinessTypeEnum.LINKING));
+            }
+        }
+        if(instanceList.size() == 0) {
+            // 试题查询（questionList）
+            combineLinkingVO.setQuestionList(examSourceLinkingService.getExamSourceFromText(GetExamSourceParam.builder().pageNo(pageNo).pageSize(pageSize).searchText(searchText).build(), BusinessTypeEnum.LINKING));
+        }
+        // 教材查询（bookList）
+        GetTextBookHighLightVO getTextBookHighLightVO = textBookLinkingService.getHighLightMsg(GetTextBookHighLightParam.builder().pageNo(pageNo).pageSize(pageSize).searchText(searchText).build());
+//        List<TextBook> bookList = new ArrayList<>();
+//        if(getTextBookHighLightVO.getData() != null && getTextBookHighLightVO.getData().size() > 0) {
+//            for(TextBookHighLight textBookHighLight : getTextBookHighLightVO.getData()) {
+//                bookList.add(textBookLinkingService.getTextBookFromId(textBookHighLight.getBookId()));
+//            }
+//        }
+//        combineLinkingVO.setBookList(TextBookVO.builder().data(bookList).pageNo(pageNo).pageSize(pageSize).totalCount(getTextBookHighLightVO.getTotalCount()).build());
+        combineLinkingVO.setBookList(getTextBookHighLightVO);
+        return combineLinkingVO;
+    }
+
+    @Override
+    public CombineQaVO totalQa(QAParam qaParam) throws IllegalAccessException, IOException, ExecutionException, InterruptedException {
+        CombineQaVO combineQaVO = new CombineQaVO();
+        String searchText = qaParam.getQuestion();
+        Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlp(qaParam.getQuestion());
+        QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
+        // 没有答案的情况
+        if(StringUtils.isEmpty(answer.getAnswerValue())){
+            combineQaVO.setQaesGrepVO(future.get());
+            return combineQaVO;
+        }
+        combineQaVO.setAnswer(answer);
+        // 有答案没有匹配到实体的情况
+        if(StringUtils.isEmpty(answer.getObjectUri())) {
+            return combineQaVO;
+        }
+        combineQaVO.setInstanceInfo(graphService.getEntityFromUri(answer.getObjectUri()));
+        // 有答案有实体，匹配资源
+        combineQaVO.setQuestionList(examSourceLinkingService.getExamSourceFromUri(GetExamSourceParam.builder().pageNo(pageNo).pageSize(pageSize).uri(answer.getObjectUri()).build()));
+        if(CollectionUtils.isEmpty(combineQaVO.getQuestionList().getData())) {
+            combineQaVO.setQuestionList(examSourceLinkingService.getExamSourceFromText(GetExamSourceParam.builder().pageNo(pageNo).pageSize(pageSize).searchText(searchText).build(), BusinessTypeEnum.QA));
+        }
+        GetTextBookHighLightVO getTextBookHighLightVO = textBookLinkingService.getHighLightMsg(GetTextBookHighLightParam.builder().pageNo(pageNo).pageSize(pageSize).searchText(searchText).build());
+        combineQaVO.setBookList(getTextBookHighLightVO);
+        return combineQaVO;
+    }
+}

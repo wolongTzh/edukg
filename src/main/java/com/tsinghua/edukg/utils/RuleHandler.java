@@ -1,26 +1,47 @@
 package com.tsinghua.edukg.utils;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.stereotype.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
-import java.io.*;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-@Component
+/**
+ * 规则工具类（图谱相关类和属性规则映射）
+ *
+ * @author tanzheng
+ * @date 2022/10/12
+ */
+
 public class RuleHandler {
 
-    @Autowired
-    ResourceLoader resourceLoader;
+    private static final Logger logger = LoggerFactory.getLogger(RuleHandler.class);
 
-    String subjectLabelTemplate = "edukg_cls_%s__main-C0";
+    static String subjectLabelTemplate = "edukg_cls_%s__main-C0";
 
-    Map<String, String> subjectZh2En = new HashMap<String, String>(){{
+    static String subjectUriPrefixTemplate = "http://edukg.org/knowledge/3.0/instance/%s#main-E";
+
+    static String subjectUriPrefixTemplateRe = "http://edukg.org/knowledge/3.0/instance/%s#main-E(.*)";
+
+    static Pattern subjectPropertyRe = Pattern.compile("http://edukg\\.org/knowledge/3\\.0/property/(.*)#");
+
+    static Pattern subjectLabelRe = Pattern.compile("^edukg_cls_(.+)__main-C0$");
+
+    static Pattern subjectClassRe = Pattern.compile("^edukg_cls_(.+)__main-C\\d+$");
+
+    static Pattern sourceRe = Pattern.compile(".*#([^-]*)-");
+
+    static Pattern subjectPrefixRe = Pattern.compile("^edukg_ins_(.*)$");
+
+    static Pattern validLabelAbbrRe = Pattern.compile("edukg_cls_.*__.*-C.*");
+
+    static Map<String, String> subjectZh2En = new HashMap<String, String>(){{
         put("语文", "chinese");
         put("数学", "math");
         put("英语", "english");
@@ -32,50 +53,272 @@ public class RuleHandler {
         put("政治", "politics");
     }};
 
-    String cls2labelPath = new ClassPathResource("/static/cls2label.json").getURI().getPath();
+    static Map<String, String> subjects = new HashMap<String, String>(){{
+        put("chinese", "语文");
+        put("math", "数学");
+        put("english", "英语");
+        put("physics", "物理");
+        put("chemistry", "化学");
+        put("biology", "生物");
+        put("history", "历史");
+        put("geo", "地理");
+        put("politics", "政治");
+    }};
 
-    String pred2labelPath = new ClassPathResource("/static/pred2label.json").getURI().getPath();
+    static String cls2labelPath =  "static/cls2label.json";
 
-    String prefixesPath = new ClassPathResource("/static/prefixes.json").getURI().getPath();
+    static String pred2labelPath = "static/pred2label.json";
 
-    String subClassOfPath = new ClassPathResource("/static/subClassOf.json").getURI().getPath();
+    static String prefixesPath = "static/prefixes.json";
 
-    public Map<String, String> cls2labelMap;
+    static String subClassOfPath = "static/subClassOf.json";
 
-    public Map<String, String> pred2labelMap;
+    static Map<String, String> cls2labelMap;
 
-    public Map<String, String> prefixesMap;
+    static Map<String, String> pred2labelMap;
 
-    public Map<String, List<String>> subClassOfMap;
+    static Map<String, String> prefixesMap;
 
+    static Map<String, String> prefixUri2AbbrMap;
 
-    @Autowired
-    public RuleHandler() throws IOException {
-        cls2labelMap = readJson(cls2labelPath);
-        pred2labelMap = readJson(pred2labelPath);
-        prefixesMap = readJson(prefixesPath);
-        subClassOfMap = readJson(subClassOfPath);
+    static Map<String, List<String>> subClassOfMap;
+
+    static Map<String, List<String>> subClassOfAbbrMap;
+
+    static Map<String, Map<String, String>> propertyName2UriMap;
+
+    static Map<String, List<String>> propertyMap;
+
+    static Map<String, List<String>> relationMap;
+
+    static {
+        RuleHandler ruleHandler = new RuleHandler();
+        cls2labelMap = CommonUtil.readJsonInResource(new InputStreamReader(ruleHandler.getClass().getClassLoader().getResourceAsStream(cls2labelPath)));
+        pred2labelMap = CommonUtil.readJsonInResource(new InputStreamReader(ruleHandler.getClass().getClassLoader().getResourceAsStream(pred2labelPath)));
+        prefixesMap = CommonUtil.readJsonInResource(new InputStreamReader(ruleHandler.getClass().getClassLoader().getResourceAsStream(prefixesPath)));
+        subClassOfMap = CommonUtil.readJsonInResource(new InputStreamReader(ruleHandler.getClass().getClassLoader().getResourceAsStream(subClassOfPath)));
+        loadPropertyName2Uri(pred2labelMap);
+        loadGeneratePrefixes();
+        loadPropertyRelationSets();
+        loadSubAbbrMap();
     }
 
-    public String convertSubjectZh2En(String subject) {
+    /**
+     * convert系列
+     * 使用嵌入代码的静态变量转换值
+     * 例如subject的map和format模板
+     */
+
+    public static String convertSubjectZh2En(String subject) {
+        if(subjects.containsKey(subject)) {
+            return subject;
+        }
         return subjectZh2En.get(subject);
     }
 
-    public String convertSubject2Label(String subject) {
+    public static String convertSubject2Label(String subject) {
         return String.format(subjectLabelTemplate, subject);
     }
 
-    public Map readJson(String jsonPath) throws IOException {
-        File file = new File(jsonPath);
-        Reader reader = new InputStreamReader(new FileInputStream(file), "utf-8");
-        BufferedReader br = new BufferedReader(reader);
-        StringBuffer sb = new StringBuffer();
-        String s = null;
-        while((s = br.readLine()) != null){
-            sb.append(s);
-        }
-        reader.close();
-        Map map = JSON.parseObject(sb.toString());
-        return map;
+    public static String convertLabel2UriTemplate(String subject) {
+        return String.format(subjectUriPrefixTemplate, subject);
     }
+
+    /**
+     * get系列
+     * 使用static静态文件中的数据转换结果
+     */
+
+    public static String getPropertyAbbrByName(String subject, String property) {
+        String uri = "";
+        if(StringUtils.isEmpty(subject)) {
+            return uri;
+        }
+        if(propertyName2UriMap.containsKey(subject) && propertyName2UriMap.get(subject).containsKey(property)) {
+            uri = propertyName2UriMap.get(subject).get(property);
+        }
+        else if(propertyName2UriMap.containsKey("default") && propertyName2UriMap.get("default").containsKey(property)) {
+            uri = propertyName2UriMap.get("default").get(property);
+        }
+        else if(propertyName2UriMap.containsKey("common") && propertyName2UriMap.get("common").containsKey(property)) {
+            uri = propertyName2UriMap.get("common").get(property);
+        }
+        if(!StringUtils.isEmpty(uri)) {
+            String prefixUri = uri.split("#")[0] + "#";
+            String body = uri.split("#")[1];
+            if(prefixUri2AbbrMap.containsKey(prefixUri)) {
+                uri = prefixUri2AbbrMap.get(prefixUri) + "__" + body;
+            }
+        }
+        return uri;
+    }
+
+    public static String getPropertyNameByAbbr(String uri) {
+        if(StringUtils.isEmpty(uri)) {
+            return "";
+        }
+        String prefix = uri.split("__")[0];
+        String body = uri.split("__")[1];
+        if(prefixesMap.containsKey(prefix) && pred2labelMap.containsKey(prefixesMap.get(prefix) + body)) {
+            return pred2labelMap.get(prefixesMap.get(prefix) + body);
+        }
+        return "";
+    }
+
+    public static String getSubjectByUri(String uri) {
+        String uriPrefix = uri.split("#")[0] + "#";
+        if(!prefixUri2AbbrMap.containsKey(uriPrefix)) {
+            return null;
+        }
+        uriPrefix = prefixUri2AbbrMap.get(uriPrefix);
+        Matcher matcher = subjectPrefixRe.matcher(uriPrefix);
+        matcher.matches();
+        String ret = null;
+        try {
+            ret = matcher.group(1);
+        }
+        catch (Exception e) {
+
+        }
+        return ret;
+    }
+
+    public static String getLabelAbbrByUri(String uri) {
+        String prefixUri = uri.split("#")[0] + "#";
+        String body = uri.split("#")[1];
+        return prefixUri2AbbrMap.get(prefixUri) + "__" + body;
+    }
+
+    public static List<String> getSubjectProperties(String subject) {
+        if(!propertyMap.containsKey(subject)) {
+            subject = "common";
+        }
+        return propertyMap.get(subject);
+    }
+
+    public static List<String> getSubjectRelations(String subject) {
+        if(!relationMap.containsKey(subject)) {
+            subject = "common";
+        }
+        return relationMap.get(subject);
+    }
+
+    /**
+     * find系列
+     * 使用正则模板匹配信息
+     */
+
+    public static Matcher findSubjectLabel(String label) {
+        Matcher matcher = subjectLabelRe.matcher(label);
+        return matcher;
+    }
+
+    public static Matcher findSourceRe(String uri) {
+        Matcher matcher = sourceRe.matcher(uri);
+        return matcher;
+    }
+
+    public static Matcher findLabelSubject(String label) {
+        Matcher matcher = subjectClassRe.matcher(label);
+        return matcher;
+    }
+
+    public static Pattern findSubjectUriId(String subject) {
+       return Pattern.compile(String.format(subjectUriPrefixTemplateRe, subject));
+    }
+
+    public static Matcher findLabelAbbr(String label) {
+        Matcher matcher = validLabelAbbrRe.matcher(label);
+        return matcher;
+    }
+
+    /**
+     * generate系列
+     * 使用一些代码逻辑生成需要的信息
+     */
+
+    public static List<String> generateSubjectUris(Integer maxId, String subject, Integer count) {
+        String prefix = convertLabel2UriTemplate(subject);
+        List<String> retList = new ArrayList<>();
+        for(int i=maxId+1; i<maxId+count+1; i++) {
+            retList.add(prefix + i);
+        }
+        return retList;
+    }
+
+    /**
+     * grep系列
+     * 类似于实体的get方法，提供接口获取私有变量
+     */
+
+    public static Map<String, List<String>> grepSubClassOfAbbrMap() {
+        return subClassOfAbbrMap;
+    }
+
+    public static Map<String, String> grepSubjectMap() {
+        return subjects;
+    }
+
+    static void loadPropertyName2Uri(Map<String, String> propertyUri2Name) {
+        Map<String, Map<String, String>> retMap = new HashMap<>();
+        for(Map.Entry entry : propertyUri2Name.entrySet()) {
+            Matcher matcher = subjectPropertyRe.matcher((String) entry.getKey());
+            String matchStr = "";
+            if(matcher.find()) {
+                matchStr = matcher.group(1);
+            }
+            String subjectName = "default";
+            if(!StringUtils.isEmpty(matchStr)) {
+                subjectName = matchStr;
+            }
+            Map<String, String> innerMap = retMap.getOrDefault(subjectName, new HashMap<>());
+            innerMap.put((String) entry.getValue(), (String) entry.getKey());
+            retMap.put(subjectName, innerMap);
+        }
+        propertyName2UriMap = retMap;
+    }
+
+    static void loadGeneratePrefixes() {
+        prefixUri2AbbrMap = new HashMap<>();
+        for(Map.Entry entry : prefixesMap.entrySet()) {
+            prefixUri2AbbrMap.put((String) entry.getValue(), (String) entry.getKey());
+        }
+    }
+
+    static void loadPropertyRelationSets() {
+        propertyMap = new HashMap<>();
+        relationMap = new HashMap<>();
+        for(Map.Entry entry : pred2labelMap.entrySet()) {
+            String key = (String) entry.getKey();
+            String value = (String) entry.getValue();
+            Matcher matcher = subjectPropertyRe.matcher(key);
+            if(!matcher.find()) {
+                continue;
+            }
+            String subject = matcher.group(1);
+            if(key.contains("#main-P")) {
+                List<String> ls = propertyMap.getOrDefault(subject, new ArrayList<>());
+                ls.add(value);
+                propertyMap.put(subject, ls);
+            }
+            else if(key.contains("#main-R")) {
+                List<String> ls = relationMap.getOrDefault(subject, new ArrayList<>());
+                ls.add(value);
+                relationMap.put(subject, ls);
+            }
+        }
+    }
+
+    static void loadSubAbbrMap() {
+        subClassOfAbbrMap = new HashMap<>();
+        for(Map.Entry entry : subClassOfMap.entrySet()) {
+            List<String> subList = new ArrayList<>();
+            for(String s : (List<String>)entry.getValue()) {
+                subList.add(getLabelAbbrByUri(s));
+            }
+            subClassOfAbbrMap.put(getLabelAbbrByUri((String)entry.getKey()), subList);
+        }
+    }
+
+
 }

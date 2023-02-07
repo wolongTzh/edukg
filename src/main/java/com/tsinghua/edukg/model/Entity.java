@@ -1,28 +1,27 @@
 package com.tsinghua.edukg.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
-import java.util.Map;
 
+/**
+ * 图谱实体
+ *
+ * @author tanzheng
+ * @date 2022/10/12
+ */
 @Data
-public class Entity {
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder(toBuilder = true)
+public class Entity extends EntitySimp {
 
-    String name;
+    List<Property> property;
 
-    String uri;
-
-    List<String> classNameList;
-
-    Map<String, String> propertyMap;
-
-    public Entity(String name, String uri, List<String> classNameList, Map<String, String> propertyMap) {
-        this.name = name;
-        this.uri = uri;
-        this.classNameList = classNameList;
-        this.propertyMap = propertyMap;
-    }
-
-    public Entity() {
-    }
+    List<Relation> relation;
 }
