@@ -17,5 +17,7 @@ public class Property {
 
     String predicate;
 
+    String predicateLabel;
+
     String object;
 }

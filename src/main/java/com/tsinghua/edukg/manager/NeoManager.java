@@ -122,12 +122,13 @@ public class NeoManager {
                         .subject(entityName)
                         .build());
             }
+            RuleHandler.propertyConverter(properties);
             entities.add(Entity.builder()
                     .abstractMsg("")
                     .name((String) m.get("rdfs__label"))
                     .uri((String) m.get("uri"))
                     .property(properties)
-                    .classList(Arrays.asList((String[]) m.get("labels"))).build());
+                    .classList(RuleHandler.classConverter(Arrays.asList((String[]) m.get("labels")))).build());
         }
         return entities;
     }
@@ -142,7 +143,7 @@ public class NeoManager {
                     .abstractMsg("")
                     .name((String) m.get("rdfs__label"))
                     .uri((String) m.get("uri"))
-                    .classList(Arrays.asList((String[]) m.get("labels"))).build());
+                    .classList(RuleHandler.classConverter(Arrays.asList((String[]) m.get("labels")))).build());
         }
         return entityList;
     }
@@ -163,7 +164,7 @@ public class NeoManager {
             retList.add(EntityWithScore.builder()
                     .name((String) m.get("name"))
                     .uri((String) m.get("uri"))
-                    .classList(Arrays.asList((String[]) m.get("labels")))
+                    .classList(RuleHandler.classConverter(Arrays.asList((String[]) m.get("labels"))))
                     .abstractMsg("")
                     .score(scoreCalculator((String) m.get("v"), name, false))
                     .build());
@@ -184,7 +185,7 @@ public class NeoManager {
             retList.add(EntityWithScore.builder()
                     .name((String) m.get("name"))
                     .uri((String) m.get("uri"))
-                    .classList(Arrays.asList((String[]) m.get("labels")))
+                    .classList(RuleHandler.classConverter(Arrays.asList((String[]) m.get("labels"))))
                     .abstractMsg("")
                     .score(scoreCalculator((String) m.get("name"), name, true))
                     .build());
@@ -210,12 +211,13 @@ public class NeoManager {
                         .subject(entityName)
                         .build());
             }
+            RuleHandler.propertyConverter(properties);
             entity = Entity.builder()
                     .abstractMsg("")
                     .name((String) m.get("rdfs__label"))
                     .uri((String) m.get("uri"))
                     .property(properties)
-                    .classList(Arrays.asList((String[]) m.get("labels"))).build();
+                    .classList(RuleHandler.classConverter(Arrays.asList((String[]) m.get("labels")))).build();
         }
         return entity;
     }
@@ -246,9 +248,7 @@ public class NeoManager {
             Relation relation = new Relation(m);
             relations.add(relation);
         }
-        for(Relation relation : relations) {
-//            relation.setPredicate(RuleHandler.getPropertyNameByAbbr(relation.getPredicate()));
-        }
+        RuleHandler.relationConverter(relations);
         entity.setRelation(relations);
         return entity;
     }
@@ -294,9 +294,7 @@ public class NeoManager {
         for (Map<String, Object> m : result.queryResults()) {
             relations.add(new Relation(m));
         }
-        for(Relation relation : relations) {
-            relation.setPredicate(RuleHandler.getPropertyNameByAbbr(relation.getPredicate()));
-        }
+        RuleHandler.relationConverter(relations);
         return relations;
     }
 
@@ -339,9 +337,7 @@ public class NeoManager {
                     .build();
             relations.add(relation);
         }
-        for(Relation relation : relations) {
-            relation.setPredicate(RuleHandler.getPropertyNameByAbbr(relation.getPredicate()));
-        }
+        RuleHandler.relationConverter(relations);
         return relations;
     }
 

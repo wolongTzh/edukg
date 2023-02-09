@@ -25,5 +25,5 @@ public class EntitySimp {
 
     public String abstractMsg;
 
-    protected List<String> classList;
+    protected List<ClassInternal> classList;
 }

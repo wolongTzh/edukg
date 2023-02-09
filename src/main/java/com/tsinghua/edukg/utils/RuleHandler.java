@@ -1,5 +1,8 @@
 package com.tsinghua.edukg.utils;
 
+import com.tsinghua.edukg.model.ClassInternal;
+import com.tsinghua.edukg.model.Property;
+import com.tsinghua.edukg.model.Relation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
@@ -154,13 +157,25 @@ public class RuleHandler {
     }
 
     public static String getPropertyNameByAbbr(String uri) {
-        if(StringUtils.isEmpty(uri)) {
+        if(StringUtils.isEmpty(uri) || !uri.contains("__")) {
             return "";
         }
         String prefix = uri.split("__")[0];
         String body = uri.split("__")[1];
         if(prefixesMap.containsKey(prefix) && pred2labelMap.containsKey(prefixesMap.get(prefix) + body)) {
             return pred2labelMap.get(prefixesMap.get(prefix) + body);
+        }
+        return "";
+    }
+
+    public static String getClassNameByAbbr(String uri) {
+        if(StringUtils.isEmpty(uri) || !uri.contains("__")) {
+            return "";
+        }
+        String prefix = uri.split("__")[0];
+        String body = uri.split("__")[1];
+        if(prefixesMap.containsKey(prefix) && cls2labelMap.containsKey(prefixesMap.get(prefix) + body)) {
+            return cls2labelMap.get(prefixesMap.get(prefix) + body);
         }
         return "";
     }
@@ -317,6 +332,29 @@ public class RuleHandler {
                 subList.add(getLabelAbbrByUri(s));
             }
             subClassOfAbbrMap.put(getLabelAbbrByUri((String)entry.getKey()), subList);
+        }
+    }
+
+    public static List<ClassInternal> classConverter(List<String> classList) {
+        List<ClassInternal> classOutList = new ArrayList<>();
+        for(String cls : classList) {
+            classOutList.add(ClassInternal.builder()
+                    .id(cls)
+                    .label(getClassNameByAbbr(cls))
+                    .build());
+        }
+        return classOutList;
+    }
+
+    public static void propertyConverter(List<Property> properties) {
+        for(Property property : properties) {
+            property.setPredicateLabel(getPropertyNameByAbbr(property.getPredicate()));
+        }
+    }
+
+    public static void relationConverter(List<Relation> relations) {
+        for(Relation relation : relations) {
+            relation.setPredicateLabel(getPropertyNameByAbbr(relation.getPredicate()));
         }
     }
 

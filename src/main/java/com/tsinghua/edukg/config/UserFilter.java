@@ -22,6 +22,9 @@ public class UserFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
+//        if(request.getSession().getAttribute("user") == null) {
+//            System.out.println(1);
+//        }
         if(request.getMethod().equals("GET")) {
             String judge = servletRequest.getParameter("test");
             if(StringUtils.isEmpty(judge)) {

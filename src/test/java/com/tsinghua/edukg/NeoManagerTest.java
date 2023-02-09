@@ -3,10 +3,8 @@ package com.tsinghua.edukg;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.tsinghua.edukg.manager.NeoManager;
-import com.tsinghua.edukg.model.Entity;
-import com.tsinghua.edukg.model.EntityWithScore;
-import com.tsinghua.edukg.model.Property;
-import com.tsinghua.edukg.model.Relation;
+import com.tsinghua.edukg.model.*;
+import com.tsinghua.edukg.utils.RuleHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
@@ -134,9 +132,9 @@ public class NeoManagerTest {
 
     public void analyseConcrate(List<EntityWithScore> entityList) {
         for(EntityWithScore entity : entityList) {
-            for(String l : entity.getClassList()) {
-                if(l.contains("C0")) {
-                    entity.setUri(l);
+            for(ClassInternal l : entity.getClassList()) {
+                if(l.getId().contains("C0")) {
+                    entity.setUri(l.getId());
                 }
             }
         }
@@ -162,7 +160,7 @@ public class NeoManagerTest {
             retList.add(EntityWithScore.builder()
                     .name((String) m.get("name"))
                     .uri((String) m.get("uri"))
-                    .classList(Arrays.asList((String[]) m.get("labels")))
+                    .classList(RuleHandler.classConverter(Arrays.asList((String[]) m.get("labels"))))
                     .abstractMsg((String) m.get("v"))
                     .k1((String) m.get("k1"))
                     .build());
@@ -187,7 +185,7 @@ public class NeoManagerTest {
             retList.add(EntityWithScore.builder()
                     .name((String) m.get("name"))
                     .uri((String) m.get("uri"))
-                    .classList(Arrays.asList((String[]) m.get("labels")))
+                    .classList(RuleHandler.classConverter(Arrays.asList((String[]) m.get("labels"))))
                     .abstractMsg((String) m.get("v"))
                     .k1((String) m.get("k1"))
                     .build());
@@ -206,7 +204,7 @@ public class NeoManagerTest {
             retList.add(EntityWithScore.builder()
                     .name((String) m.get("name"))
                     .uri((String) m.get("uri"))
-                    .classList(Arrays.asList((String[]) m.get("labels")))
+                    .classList(RuleHandler.classConverter(Arrays.asList((String[]) m.get("labels"))))
                     .abstractMsg((String) m.get("v"))
                     .build());
         }
@@ -224,12 +222,51 @@ public class NeoManagerTest {
             retList.add(EntityWithScore.builder()
                     .name((String) m.get("name"))
                     .uri((String) m.get("uri"))
-                    .classList(Arrays.asList((String[]) m.get("labels")))
+                    .classList(RuleHandler.classConverter(Arrays.asList((String[]) m.get("labels"))))
                     .abstractMsg((String) m.get("v"))
                     .build());
         }
         retList = retList.stream().sorted(Comparator.comparingInt(EntityWithScore::getScore)).collect(Collectors.toList());
         return retList.stream().distinct().collect(Collectors.toList());
+    }
+
+    @Test
+    public void analyzeLongName() throws IOException {
+        String query = "match (n:Resource)" +
+                " return n.rdfs__label as name";
+        Result result = session.query(query, new HashMap<>());
+        Map<String, Integer> statisticMap = new HashMap<>();
+        File fileOut =new File("./longNameJson.txt");
+        if(!fileOut.exists()){
+            fileOut.createNewFile();
+        }
+        FileWriter fileWritter = new FileWriter(fileOut.getName(),true);
+        StringBuilder sb = new StringBuilder();
+        for (Map<String, Object> m : result.queryResults()) {
+            try {
+                String name = (String) m.get("name");
+                if(!StringUtils.isEmpty(name) && name.length() >= 10) {
+                    List<Entity> entityList = neoManager.getEntityListFromName(name);
+                    for(Entity entity : entityList) {
+                        Entity concrateEntity = neoManager.getEntityFromUri(entity.getUri());
+                        sb.append(JSON.toJSONString(concrateEntity));
+                        for(Relation relation : concrateEntity.getRelation()) {
+                            statisticMap.putIfAbsent(relation.getPredicate(), 0);
+                            statisticMap.put(relation.getPredicate(), statisticMap.get(relation.getPredicate()) + 1);
+                        }
+                    }
+                }
+            }
+            catch (Exception e) {
+                continue;
+            }
+        }
+        for(Map.Entry entry : statisticMap.entrySet()) {
+            log.info("关系名 : " + entry.getKey() + " & 关系出现次数 : " + entry.getValue());
+        }
+        fileWritter.write(sb.toString());
+        fileWritter.flush();
+        fileWritter.close();
     }
 
     @Test

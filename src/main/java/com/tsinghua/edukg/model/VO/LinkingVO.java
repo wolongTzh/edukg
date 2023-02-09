@@ -1,5 +1,6 @@
 package com.tsinghua.edukg.model.VO;
 
+import com.tsinghua.edukg.model.ClassInternal;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,5 +20,5 @@ public class LinkingVO {
 
     String abstractMsg;
 
-    List<String> classList;
+    List<ClassInternal> classList;
 }

@@ -18,6 +18,7 @@ import com.tsinghua.edukg.model.params.LinkingParam;
 import com.tsinghua.edukg.model.params.SearchSubgraphParam;
 import com.tsinghua.edukg.utils.CommonUtil;
 import com.tsinghua.edukg.utils.JiebaHelper;
+import com.tsinghua.edukg.utils.RuleHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -162,7 +163,7 @@ public class GraphServiceImpl implements GraphService {
                 for(String out : outContent) {
                     List<String> content = Arrays.asList(out.split(splitTag));
                     List<Integer> whereSingle = Arrays.asList(start, end);
-                    LinkingVO linkingVO = linkingVOMap.getOrDefault(seg+content.get(0), new LinkingVO(seg, content.get(0), new ArrayList<>(), "", Arrays.asList(content.get(1))));
+                    LinkingVO linkingVO = linkingVOMap.getOrDefault(seg+content.get(0), new LinkingVO(seg, content.get(0), new ArrayList<>(), "", RuleHandler.classConverter(Arrays.asList(content.get(1)))));
                     linkingVO.getWhere().add(whereSingle);
                     linkingVOMap.put(seg+content.get(0), linkingVO);
                 }

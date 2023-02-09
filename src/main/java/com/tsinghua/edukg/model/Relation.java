@@ -29,6 +29,8 @@ public class Relation {
 
     String predicate;
 
+    String predicateLabel;
+
     public Relation(Map<String, Object> map) {
         this.subject = (String) map.get("sourceName");
         this.subjectUri = (String) map.get("source");
