@@ -1,6 +1,7 @@
 package com.tsinghua.edukg.model.VO;
 
 import com.tsinghua.edukg.model.ExamSource;
+import com.tsinghua.edukg.model.TextBook;
 import com.tsinghua.edukg.model.TextBookHighLight;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,5 +20,5 @@ public class GetTextBookHighLightVO {
 
     Integer totalCount;
 
-    List<TextBookHighLight> data;
+    List<TextBook> data;
 }

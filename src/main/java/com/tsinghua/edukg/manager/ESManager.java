@@ -15,14 +15,13 @@ import com.tsinghua.edukg.model.TextBook;
 import com.tsinghua.edukg.model.TextBookHighLight;
 import com.tsinghua.edukg.model.VO.GetTextBookHighLightVO;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 @Component
 public class ESManager {
@@ -33,6 +32,8 @@ public class ESManager {
     String examSourceIndex;
 
     String textBookIndex;
+
+    String bookPicBasePath = "/data/textbook/%s/OEBPS";
 
     @Autowired
     public ESManager(ElasticSearchConfig elasticSearchConfig) {
@@ -71,8 +72,8 @@ public class ESManager {
         return textBookList;
     }
 
-    public List<TextBookHighLight> getTextBookHighLightMsgFromTerm(String termText) throws IOException {
-        List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
+    public List<TextBook> getTextBookHighLightMsgFromTerm(String termText) throws IOException {
+        List<TextBook> textBookRetList = new ArrayList<>();
         SearchResponse<TextBook> termSearch = client.search(s -> s
                         .index(textBookIndex)
                         .query(q -> q
@@ -82,17 +83,35 @@ public class ESManager {
                                 )
                         ),
                 TextBook.class);
+        Map<String,Integer> recordMap = new HashMap<>();
         for (Hit<TextBook> hit: termSearch.hits().hits()) {
-            textBookHighLightList.add(TextBookHighLight.builder()
-                    .bookId(hit.id())
-                    .example(hit.source().getHtml()).build()
-            );
+            TextBook textBook = hit.source();
+            if(recordMap.containsKey(textBook.getIsbn())) {
+                TextBook target = textBookRetList.get(recordMap.get(textBook.getIsbn()));
+                target.getChapterList().add(TextBookHighLight.builder()
+                        .bookId(hit.id())
+                        .example(hit.source().getHtml()).build());
+            }
+            else {
+                TextBook target = new TextBook();
+                BeanUtils.copyProperties(textBook, target);
+                List<TextBookHighLight> chapterList = new ArrayList<>();
+                chapterList.add(TextBookHighLight.builder()
+                        .bookId(hit.id())
+                        .example(hit.source().getHtml()).build());
+                target.setChapterList(chapterList);
+                target.setPicBasePath(String.format(bookPicBasePath, target.getBookName()));
+                target.setHtml(null);
+                target.setHtmlName(null);
+                textBookRetList.add(target);
+                recordMap.put(target.getIsbn(), textBookRetList.size()-1);
+            }
         }
-        return textBookHighLightList;
+        return textBookRetList;
     }
 
-    public List<TextBookHighLight> getTextBookHighLightMsgFromMatch(String matchText) throws IOException {
-        List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
+    public List<TextBook> getTextBookHighLightMsgFromMatch(String matchText) throws IOException {
+        List<TextBook> textBookRetList = new ArrayList<>();
         SearchResponse<TextBook> termSearch = client.search(s -> s
                         .index(textBookIndex)
                         .query(q -> q
@@ -102,13 +121,31 @@ public class ESManager {
                                 )
                         ),
                 TextBook.class);
+        Map<String,Integer> recordMap = new HashMap<>();
         for (Hit<TextBook> hit: termSearch.hits().hits()) {
-            textBookHighLightList.add(TextBookHighLight.builder()
-                    .bookId(hit.id())
-                    .example(hit.source().getHtml()).build()
-            );
+            TextBook textBook = hit.source();
+            if(recordMap.containsKey(textBook.getIsbn())) {
+                TextBook target = textBookRetList.get(recordMap.get(textBook.getIsbn()));
+                target.getChapterList().add(TextBookHighLight.builder()
+                        .bookId(hit.id())
+                        .example(hit.source().getHtml()).build());
+            }
+            else {
+                TextBook target = new TextBook();
+                BeanUtils.copyProperties(textBook, target);
+                List<TextBookHighLight> chapterList = new ArrayList<>();
+                chapterList.add(TextBookHighLight.builder()
+                        .bookId(hit.id())
+                        .example(hit.source().getHtml()).build());
+                target.setChapterList(chapterList);
+                target.setPicBasePath(String.format(bookPicBasePath, target.getBookName()));
+                target.setHtml(null);
+                target.setHtmlName(null);
+                textBookRetList.add(target);
+                recordMap.put(target.getIsbn(), textBookRetList.size()-1);
+            }
         }
-        return textBookHighLightList;
+        return textBookRetList;
     }
 
     public ExamSource getExamSourceFromId(String id) throws IOException {

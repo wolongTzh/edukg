@@ -29,16 +29,19 @@ public class TextBookLinkingServiceImpl implements TextBookLinkingService {
     @Override
     public GetTextBookHighLightVO getHighLightMsg(GetTextBookHighLightParam param) throws IOException {
         String text = param.getSearchText();
-        List<TextBookHighLight> textBookHighLightList = esManager.getTextBookHighLightMsgFromTerm(text);
-        if(textBookHighLightList.size() == 0) {
-            return new GetTextBookHighLightVO(param.getPageNo(), param.getPageSize(), 0, textBookHighLightList);
+        List<TextBook> textBookList = esManager.getTextBookHighLightMsgFromTerm(text);
+        if(textBookList.size() == 0) {
+            return new GetTextBookHighLightVO(param.getPageNo(), param.getPageSize(), 0, textBookList);
         }
-        List<TextBookHighLight> textBookHighLightListPageSplit = CommonUtil.pageHelper(textBookHighLightList, param.getPageNo() - 1, param.getPageSize());
+        List<TextBook> textBookHighLightListPageSplit = CommonUtil.pageHelper(textBookList, param.getPageNo() - 1, param.getPageSize());
         if(textBookHighLightListPageSplit == null) {
             throw new BusinessException(BusinessExceptionEnum.PAGE_DARA_OVERSIZE);
         }
-        textBookHighLightListPageSplit.forEach(t -> markHighLightText(t, text));
-        GetTextBookHighLightVO getTextBookHighLightVO = new GetTextBookHighLightVO(param.getPageNo(), param.getPageSize(), textBookHighLightList.size(), textBookHighLightListPageSplit);
+        for(TextBook textBook : textBookHighLightListPageSplit) {
+            List<TextBookHighLight> chapterList = textBook.getChapterList();
+            chapterList.forEach(t -> markHighLightText(t, text));
+        }
+        GetTextBookHighLightVO getTextBookHighLightVO = new GetTextBookHighLightVO(param.getPageNo(), param.getPageSize(), textBookList.size(), textBookHighLightListPageSplit);
         return getTextBookHighLightVO;
     }
 

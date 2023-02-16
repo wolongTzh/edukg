@@ -2,6 +2,8 @@ package com.tsinghua.edukg.model;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * 教材资源实体
  *
@@ -10,6 +12,8 @@ import lombok.Data;
  */
 @Data
 public class TextBook {
+
+    List<TextBookHighLight> chapterList;
 
     String bookName;
 
@@ -24,4 +28,6 @@ public class TextBook {
     String htmlName;
 
     String html;
+
+    String picBasePath;
 }
