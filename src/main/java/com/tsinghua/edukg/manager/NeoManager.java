@@ -135,7 +135,7 @@ public class NeoManager {
 
     public List<Entity> getEntityListFromName(String name) {
         List<Entity> entityList = new ArrayList<>();
-        String query = "MATCH (n:`Resource`) WHERE n.rdfs__label =~ \".*%s.*\" RETURN n.uri as uri, n.rdfs__label as rdfs__label, labels(n) as labels";
+        String query = "MATCH (n:`Resource`) WHERE n.rdfs__label = \"%s\" RETURN n.uri as uri, n.rdfs__label as rdfs__label, labels(n) as labels";
         query = String.format(query, name);
         Result result = session.query(query, new HashMap<>());
         for (Map<String, Object> m : result.queryResults()) {
@@ -372,9 +372,9 @@ public class NeoManager {
 //                throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "找不到" + subject + "的属性" + next.getSubject());
 //            }
             query += " SET n.`" + next.getPredicate() + "` = $newValue ";
+            map.put("newValue", next.getObject());
         }
         query += "RETURN ID(n) as id";
-        map.put("newValue", next.getObject());
         result = session.query(query, map);
         for (Map<String, Object> m : result.queryResults()) {
             if(m.size() == 0) {
@@ -383,16 +383,22 @@ public class NeoManager {
         }
     }
 
+    /**
+     * 增加或删除关系
+     * 注：pre和next的predicate要求是确定存在的，其合理性判断应由上层逻辑负责
+     * @param pre pre存在，删除关系
+     * @param next next存在，新增关系
+     */
     public void updateRelation(Relation pre, Relation next) {
         if(next != null && !StringUtils.isEmpty(next.getPredicate())) {
-            String subject = RuleHandler.getSubjectByUri(next.getSubjectUri());
-            String newType = RuleHandler.getPropertyAbbrByName(subject, next.getPredicate());
-            if(StringUtils.isEmpty(newType)) {
+//            String subject = RuleHandler.getSubjectByUri(next.getSubjectUri());
+//            String newType = RuleHandler.getPropertyAbbrByName(subject, next.getPredicate());
+//            if(StringUtils.isEmpty(newType)) {
 //                throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "找不到关系名" + next.getPredicate());
-                newType = next.getPredicate();
-            }
+//                newType = next.getPredicate();
+//            }
             String query = "MATCH (n:`Resource` { uri: $fromUri }), (m:`Resource` { uri: $toUri }) " +
-                    "CREATE (n)-[e:`" + newType + "`]->(m) " +
+                    "CREATE (n)-[e:`" + next.getPredicate() + "`]->(m) " +
                     "RETURN ID(e) as id";
             Map<String, Object> map = new HashMap<>();
             map.put("fromUri", next.getSubjectUri());
@@ -405,13 +411,13 @@ public class NeoManager {
             }
         }
         if(pre != null && !StringUtils.isEmpty(pre.getPredicate())) {
-            String subject = RuleHandler.getSubjectByUri(pre.getSubjectUri());
-            String oldType = RuleHandler.getPropertyAbbrByName(subject, pre.getPredicate());
-            if(StringUtils.isEmpty(oldType)) {
+//            String subject = RuleHandler.getSubjectByUri(pre.getSubjectUri());
+//            String oldType = RuleHandler.getPropertyAbbrByName(subject, pre.getPredicate());
+//            if(StringUtils.isEmpty(oldType)) {
 //                throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "找不到关系名" + pre.getPredicate());
-                oldType = pre.getPredicate();
-            }
-            String query = "MATCH (n:`Resource` { uri: $fromUri })-[e: `" + oldType + "`]->(m:`Resource` { uri : $toUri })" +
+//                oldType = pre.getPredicate();
+//            }
+            String query = "MATCH (n:`Resource` { uri: $fromUri })-[e: `" + pre.getPredicate() + "`]->(m:`Resource` { uri: $toUri })" +
                     "DELETE e RETURN ID(e) as id";
             Map<String, Object> map = new HashMap<>();
             map.put("fromUri", pre.getSubjectUri());
@@ -419,10 +425,7 @@ public class NeoManager {
             Result result = session.query(query, map);
             for (Map<String, Object> m : result.queryResults()) {
                 if(m.size() == 0) {
-                    map.put("fromUri", next.getSubjectUri());
-                    map.put("toUri", next.getObjectUri());
-                    session.query(query, map);
-                    throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "无法创建新关系");
+                    throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "无法删除关系");
                 }
             }
         }
@@ -482,6 +485,18 @@ public class NeoManager {
         // 插入数据库成功后，执行，更新目前的最大id
         redisManager.subjectIdIncr(subject, entities.size());
         return quikAddEntitiesVOList;
+    }
+
+    public void deleteEntityByUri(String uri) {
+        String query = "MATCH (n:`Resource` { uri: '" + uri + "'}) DELETE n";
+        Entity entity = getEntityFromUri(uri);
+        if(entity.getUri() == null) {
+            return;
+        }
+        for(Relation relation : entity.getRelation()) {
+            updateRelation(relation, null);
+        }
+        session.query(query, new HashMap<>());
     }
 
     int scoreCalculator(String source, String target, boolean fromName) {

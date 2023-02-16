@@ -5,6 +5,7 @@ import com.tsinghua.edukg.model.Property;
 import com.tsinghua.edukg.model.Relation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.io.InputStreamReader;
@@ -135,7 +136,7 @@ public class RuleHandler {
     public static String getPropertyAbbrByName(String subject, String property) {
         String uri = "";
         if(StringUtils.isEmpty(subject)) {
-            return uri;
+            return getPropertyAbbrWithoutSubject(property);
         }
         if(propertyName2UriMap.containsKey(subject) && propertyName2UriMap.get(subject).containsKey(property)) {
             uri = propertyName2UriMap.get(subject).get(property);
@@ -156,6 +157,22 @@ public class RuleHandler {
         return uri;
     }
 
+    public static String getPropertyAbbrWithoutSubject(String property) {
+        String uri = "";
+        for(Map.Entry entry : propertyName2UriMap.entrySet()) {
+            Map<String, String> map = (Map<String, String>) entry.getValue();
+            uri = map.get(property);
+            if(!StringUtils.isEmpty(uri)) {
+                String prefixUri = uri.split("#")[0] + "#";
+                String body = uri.split("#")[1];
+                if(prefixUri2AbbrMap.containsKey(prefixUri)) {
+                    uri = prefixUri2AbbrMap.get(prefixUri) + "__" + body;
+                }
+            }
+        }
+        return uri;
+    }
+
     public static String getPropertyNameByAbbr(String uri) {
         if(StringUtils.isEmpty(uri) || !uri.contains("__")) {
             return "";
@@ -164,6 +181,18 @@ public class RuleHandler {
         String body = uri.split("__")[1];
         if(prefixesMap.containsKey(prefix) && pred2labelMap.containsKey(prefixesMap.get(prefix) + body)) {
             return pred2labelMap.get(prefixesMap.get(prefix) + body);
+        }
+        return "";
+    }
+
+    public static String getPropertyNameByUri(String uri) {
+        if(StringUtils.isEmpty(uri) || !uri.contains("#")) {
+            return "";
+        }
+        String prefix = uri.split("#")[0] + "#";
+        String body = uri.split("#")[1];
+        if(prefixUri2AbbrMap.containsKey(prefix)) {
+            return prefixUri2AbbrMap.get(prefix) + "__" + body;
         }
         return "";
     }
@@ -336,6 +365,9 @@ public class RuleHandler {
     }
 
     public static List<ClassInternal> classConverter(List<String> classList) {
+        if(CollectionUtils.isEmpty(classList)) {
+            return null;
+        }
         List<ClassInternal> classOutList = new ArrayList<>();
         for(String cls : classList) {
             classOutList.add(ClassInternal.builder()
@@ -347,16 +379,21 @@ public class RuleHandler {
     }
 
     public static void propertyConverter(List<Property> properties) {
+        if(CollectionUtils.isEmpty(properties)) {
+            return;
+        }
         for(Property property : properties) {
             property.setPredicateLabel(getPropertyNameByAbbr(property.getPredicate()));
         }
     }
 
     public static void relationConverter(List<Relation> relations) {
+        if(CollectionUtils.isEmpty(relations)) {
+            return;
+        }
         for(Relation relation : relations) {
             relation.setPredicateLabel(getPropertyNameByAbbr(relation.getPredicate()));
         }
     }
-
 
 }
