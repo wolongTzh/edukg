@@ -53,61 +53,49 @@ public class GraphServiceImpl implements GraphService {
 
     private Integer openGate;
 
-    Map<String, String> linkingPathMap = new HashMap<String, String>(){{
-        put("biology", "static/processed_3.0/biology_concept_entities.csv");
-        put("chemistry", "static/processed_3.0/chemistry_concept_entities.csv");
-        put("chinese", "static/processed_3.0/chinese_concept_entities.csv");
-        put("geo", "static/processed_3.0/geo_concept_entities.csv");
-        put("history", "static/processed_3.0/history_concept_entities.csv");
-        put("math", "static/processed_3.0/math_concept_entities.csv");
-        put("physics", "static/processed_3.0/physics_concept_entities.csv");
-        put("politics", "static/processed_3.0/politics_concept_entities.csv");
-    }};
+    String linkingPath = "static/concept_entities.csv";
 
-    Map<String, List<String>> linkingContentMap = new HashMap<>();
+    Map<String, String> linkingContentMap = new HashMap<>();
 
     String splitTag = "@splitTag@";
 
     @Autowired
     public GraphServiceImpl(RedisConfig redisConfig) throws IOException {
         openGate = redisConfig.getOpenGate();
-        for(Map.Entry entry : linkingPathMap.entrySet()) {
-            String path = (String) entry.getValue();
-            List<String> contentList = CommonUtil.readTextInResource(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream(path)));
-            boolean startTag = true;
-            int uri = 0;
-            int label = 0;
-            int cls = 0;
-            for(String content : contentList) {
-                String[] spliter = content.split(",");
-                if(startTag) {
-                    startTag = false;
-                    int count = -1;
-                    for(String name : spliter) {
-                        count++;
-                        if(name.equals("uri")) {
-                            uri = count;
-                        }
-                        if(name.equals("label")) {
-                            label = count;
-                        }
-                        if(name.equals("cls")) {
-                            cls = count;
-                        }
+        String path = linkingPath;
+        List<String> contentList = CommonUtil.readTextInResource(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream(path)));
+        boolean startTag = true;
+        int uri = 0;
+        int label = 0;
+        int cls = 0;
+        for(String content : contentList) {
+            String[] spliter = content.split(",");
+            if(startTag) {
+                startTag = false;
+                int count = -1;
+                for(String name : spliter) {
+                    count++;
+                    if(name.equals("uri")) {
+                        uri = count;
+                    }
+                    if(name.equals("label")) {
+                        label = count;
+                    }
+                    if(name.equals("cls")) {
+                        cls = count;
                     }
                 }
-                if(spliter[uri].startsWith("<")) {
-                    spliter[uri] = spliter[uri].substring(1);
-                }
-                if(spliter[uri].endsWith(">")) {
-                    spliter[uri] = spliter[uri].substring(0, spliter[uri].length() - 1);
-                }
-                List<String> back = linkingContentMap.getOrDefault(spliter[label], new ArrayList<>());
-                String add = spliter[uri] + splitTag + spliter[cls];
-                back.add(add);
-                linkingContentMap.put(spliter[label], back);
             }
+            if(spliter[uri].startsWith("<")) {
+                spliter[uri] = spliter[uri].substring(1);
+            }
+            if(spliter[uri].endsWith(">")) {
+                spliter[uri] = spliter[uri].substring(0, spliter[uri].length() - 1);
+            }
+            String add = spliter[uri] + splitTag + spliter[cls];
+            linkingContentMap.putIfAbsent(spliter[label], add);
         }
+        System.out.println(1);
      }
 
     @Override
@@ -148,7 +136,7 @@ public class GraphServiceImpl implements GraphService {
         String text = param.getSearchText();
         List<String> segResult = segmenter.cutWords(text);
         List<LinkingVO> result = new ArrayList<>();
-        Map<String, List<String>> sourceMap = linkingContentMap;
+        Map<String, String> sourceMap = linkingContentMap;
         if(sourceMap == null) {
             return null;
         }
@@ -159,14 +147,12 @@ public class GraphServiceImpl implements GraphService {
             start = end;
             end += seg.length();
             if(sourceMap.containsKey(seg)) {
-                List<String> outContent = sourceMap.get(seg);
-                for(String out : outContent) {
-                    List<String> content = Arrays.asList(out.split(splitTag));
-                    List<Integer> whereSingle = Arrays.asList(start, end);
-                    LinkingVO linkingVO = linkingVOMap.getOrDefault(seg+content.get(0), new LinkingVO(seg, content.get(0), new ArrayList<>(), "", RuleHandler.classConverter(Arrays.asList(content.get(1)))));
-                    linkingVO.getWhere().add(whereSingle);
-                    linkingVOMap.put(seg+content.get(0), linkingVO);
-                }
+                List<String> content = Arrays.asList(sourceMap.get(seg).split(splitTag));
+                List<Integer> whereSingle = Arrays.asList(start, end);
+                LinkingVO linkingVO = linkingVOMap.getOrDefault(seg+content.get(0), new LinkingVO(seg, content.get(0), new ArrayList<>(), "", RuleHandler.classConverter(Arrays.asList(content.get(1)))));
+                linkingVO.getWhere().add(whereSingle);
+                linkingVOMap.put(seg+content.get(0), linkingVO);
+
             }
         }
         for(Map.Entry entry : linkingVOMap.entrySet()) {

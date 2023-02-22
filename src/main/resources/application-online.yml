@@ -1,0 +1,61 @@
+server:
+  maxHttpHeaderSize: 8KB
+  tomcat:
+    maxHttpFormPostSize: 2MB
+    maxSwallowSize: 2MB
+    maxConnections: 2000
+spring:
+  data:
+    neo4j:
+      uri: bolt://47.94.201.245:7687
+      username: neo4j
+      password: neo4j@keg202
+  redis:
+    database: 0
+    password:
+    timeout: 600ms
+    prefix: edukg:backend
+    opengate: 0
+    cluster:
+      max-redirects: 2
+      nodes:
+        - 39.97.172.123:7001
+        - 39.97.172.123:7002
+        - 39.97.172.123:7003
+        - 39.97.172.123:7004
+        - 39.97.172.123:7005
+        - 39.97.172.123:7006
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 1
+        max-wait: 200ms
+  es:
+    address: 47.94.201.245
+    port: 9200
+    scheme: http
+    username: admin
+    password: admin
+    index:
+      examSource: examsource
+      textBook: textbook
+asyn:
+  schedule:
+    corePoolSize: 10
+    maxPoolSize: 100
+    queueCapacity: 10
+    keepAliveSeconds: 60
+
+address:
+  server:
+    qa: http://47.94.201.245:9719/
+    linking: http://47.94.201.245:8000/
+  file:
+    examSource: /data/Gaokao/json
+    jiebaDictLinux: /data/jieba/dicts/%s.txt
+    jiebaDictWin: C:\\Users\\feifei\\Desktop\\Gaokao\\jieba\\dicts\\%s.txt
+    stopWords: static/stopWords.txt
+  sign:
+    split: \\
+
