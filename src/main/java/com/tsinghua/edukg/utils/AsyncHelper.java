@@ -87,4 +87,22 @@ public class AsyncHelper {
         }
         return new AsyncResult<>(qaesGrepVOList);
     }
+
+    @Async(value = "esTaskThreadPool")
+    public Future<List<QAESGrepVO>> qaBackupForHanlpSimple(String question) throws IOException {
+        List<QAESGrepVO> qaesGrepVOList = new ArrayList<>();
+        List<TextBookHighLight> sents = esManager.getHighLightTextBookFromMiniMatch(HanlpHelper.CutWordRetNeedConcernWords(question));
+        int count = 3;
+        for(TextBookHighLight sent : sents) {
+            if(count == 0) {
+                break;
+            }
+            count--;
+            qaesGrepVOList.add(QAESGrepVO.builder()
+                    .bookId(sent.getBookId())
+                    .text(sent.getExample())
+                    .build());
+        }
+        return new AsyncResult<>(qaesGrepVOList);
+    }
 }
