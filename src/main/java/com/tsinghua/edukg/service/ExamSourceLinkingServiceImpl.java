@@ -9,7 +9,9 @@ import com.tsinghua.edukg.exception.BusinessException;
 import com.tsinghua.edukg.manager.ESManager;
 import com.tsinghua.edukg.model.ExamSource;
 import com.tsinghua.edukg.model.VO.GetExamSourceVO;
+import com.tsinghua.edukg.model.VO.QAESGrepVO;
 import com.tsinghua.edukg.model.params.GetExamSourceParam;
+import com.tsinghua.edukg.utils.AsyncHelper;
 import com.tsinghua.edukg.utils.CommonUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 /**
  * 试题资源读取 service
@@ -42,6 +46,9 @@ public class ExamSourceLinkingServiceImpl implements ExamSourceLinkingService {
 
     @Resource
     ESManager esManager;
+
+    @Autowired
+    AsyncHelper asyncHelper;
 
     @Autowired
     public ExamSourceLinkingServiceImpl(AddressConfig addressConfig) {
@@ -92,6 +99,13 @@ public class ExamSourceLinkingServiceImpl implements ExamSourceLinkingService {
         }
         GetExamSourceVO getExamSourceVO = new GetExamSourceVO(param.getPageNo(), param.getPageSize(), examSourceList.size(), retList);
         return getExamSourceVO;
+    }
+
+    @Override
+    public List<QAESGrepVO> getAnswerFromIRQA(String question) throws IOException, ExecutionException, InterruptedException {
+        Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlp(question);
+        List<QAESGrepVO> result = future.get();
+        return result;
     }
 
     List<JSONObject> findExamSourceJsonByNames(List<String> nameList) throws IOException {

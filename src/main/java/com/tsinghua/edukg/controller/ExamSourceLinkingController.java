@@ -3,6 +3,7 @@ package com.tsinghua.edukg.controller;
 import com.tsinghua.edukg.controller.utils.ExamSourceControllerUtil;
 import com.tsinghua.edukg.enums.BusinessTypeEnum;
 import com.tsinghua.edukg.model.VO.GetExamSourceVO;
+import com.tsinghua.edukg.model.VO.QAESGrepVO;
 import com.tsinghua.edukg.model.WebResInfo;
 import com.tsinghua.edukg.model.params.GetExamSourceParam;
 import com.tsinghua.edukg.service.ExamSourceLinkingService;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * 试题资源读取 controller
@@ -51,5 +54,16 @@ public class ExamSourceLinkingController {
         ExamSourceControllerUtil.validGetFromText(param);
         GetExamSourceVO examSourceVO = examSourceLinkingService.getExamSourceFromText(param, BusinessTypeEnum.LINKING);
         return WebUtil.successResult(examSourceVO);
+    }
+
+    /**
+     * IRQA
+     *
+     * @return
+     */
+    @GetMapping(value = "irqa")
+    public WebResInfo irqa(String question) throws IOException, ExecutionException, InterruptedException {
+        List<QAESGrepVO> qaesGrepVOList = examSourceLinkingService.getAnswerFromIRQA(question);
+        return WebUtil.successResult(qaesGrepVOList.get(0));
     }
 }
