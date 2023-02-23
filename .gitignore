@@ -20,6 +20,7 @@ mvnw*
 *.iml
 *.ipr
 *.txt
+name2uri.json
 
 ### NetBeans ###
 /nbproject/private/
