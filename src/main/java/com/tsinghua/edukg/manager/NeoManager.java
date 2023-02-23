@@ -304,9 +304,11 @@ public class NeoManager {
         if(headNode == null || tailNode == null) {
             return null;
         }
-        String findNodesInPathQuery = "match l=shortestPath(("+
-                "{uri:'" + head + "'})"+
-                "-[*.." + maxJumpTime + "]-({uri:'" + tail + "'}))"+
+        String findNodesInPathQuery = "match l=shortestPath((" +
+                "x{uri:'" + head + "'})" +
+                "-[*.." + maxJumpTime + "]-(y{uri:'" + tail + "'}))" +
+                " with *, relationships(l) as rels" +
+                " where all(rel in rels where type(rel) <> \"edukg_prop_common__main-R10\")" +
                 " UNWIND relationships(l) as r UNWIND NODES(l) as n return r,n";
         Result result = session.query(findNodesInPathQuery, new HashMap<>());
         Map<String, String> relationMap = new HashMap<>();
