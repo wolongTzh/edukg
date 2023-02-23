@@ -21,4 +21,6 @@ public interface CombineService {
     CombineLinkingVO totalSearch(TotalSearchParam param) throws IOException;
 
     CombineQaVO totalQa(QAParam qaParam) throws IllegalAccessException, IOException, ExecutionException, InterruptedException;
+
+    public CombineQaVO totalQaForTest(QAParam qaParam) throws IllegalAccessException, IOException, ExecutionException, InterruptedException;
 }

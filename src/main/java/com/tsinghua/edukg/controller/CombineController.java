@@ -54,4 +54,16 @@ public class CombineController {
         CombineQaVO combineQaVO = combineService.totalQa(qaParam);
         return WebUtil.successResult(combineQaVO);
     }
+
+    /**
+     * 问答综合搜索
+     *
+     * @return
+     */
+    @PostMapping(value = "totalQaForTest")
+    public WebResInfo totalQaForTest(@RequestBody QAParam qaParam) throws IllegalAccessException, IOException, ExecutionException, InterruptedException {
+        AlgorithmControllerUtil.validInputQuestionParam(qaParam);
+        CombineQaVO combineQaVO = combineService.totalQaForTest(qaParam);
+        return WebUtil.successResult(combineQaVO);
+    }
 }
