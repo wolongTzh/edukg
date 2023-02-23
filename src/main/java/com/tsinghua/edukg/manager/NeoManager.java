@@ -472,7 +472,7 @@ public class NeoManager {
             params.add(String.format("`%s`:'%s'", "uri", uri));
             params.add(String.format("`%s`:'%s'", "rdfs__label", name));
             for(Property property : entity.getProperty()) {
-                String propertyAbbr = RuleHandler.getPropertyAbbrByName(subject, property.getSubject());
+                String propertyAbbr = property.getPredicate();
                 if(StringUtils.isEmpty(propertyAbbr)) {
                     continue;
                 }
