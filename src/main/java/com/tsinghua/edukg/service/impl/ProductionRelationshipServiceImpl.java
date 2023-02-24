@@ -1,4 +1,4 @@
-package com.tsinghua.edukg.service;
+package com.tsinghua.edukg.service.impl;
 
 import com.tsinghua.edukg.dao.neo.CompanyEntryRepository;
 import com.tsinghua.edukg.dao.neo.ProductEntryRepository;
@@ -7,6 +7,7 @@ import com.tsinghua.edukg.model.CompanyEntryNode;
 import com.tsinghua.edukg.model.ProductEntryNode;
 import com.tsinghua.edukg.model.ProductionRelationship;
 import com.tsinghua.edukg.model.RelationshipDto;
+import com.tsinghua.edukg.service.ProductionRelationshipService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

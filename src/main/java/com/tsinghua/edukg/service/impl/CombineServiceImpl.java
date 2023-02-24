@@ -1,4 +1,4 @@
-package com.tsinghua.edukg.service;
+package com.tsinghua.edukg.service.impl;
 
 import com.tsinghua.edukg.api.feign.QAFeignService;
 import com.tsinghua.edukg.api.model.QAParam;
@@ -12,6 +12,10 @@ import com.tsinghua.edukg.model.params.GetExamSourceParam;
 import com.tsinghua.edukg.model.params.GetTextBookHighLightParam;
 import com.tsinghua.edukg.model.params.LinkingParam;
 import com.tsinghua.edukg.model.params.TotalSearchParam;
+import com.tsinghua.edukg.service.CombineService;
+import com.tsinghua.edukg.service.ExamSourceLinkingService;
+import com.tsinghua.edukg.service.GraphService;
+import com.tsinghua.edukg.service.TextBookLinkingService;
 import com.tsinghua.edukg.service.utils.CombineServiceUtil;
 import com.tsinghua.edukg.utils.AsyncHelper;
 import com.tsinghua.edukg.utils.CommonUtil;
@@ -140,7 +144,7 @@ public class CombineServiceImpl implements CombineService {
         Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlpSimple(qaParam.getQuestion());
         QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
         // 没有答案的情况
-        if(StringUtils.isEmpty(answer.getAnswerValue())){
+        if(StringUtils.isEmpty(answer.getAnswerValue())) {
             combineQaVO.setQaesGrepVO(future.get());
             return combineQaVO;
         }

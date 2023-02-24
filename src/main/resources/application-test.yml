@@ -5,6 +5,12 @@ server:
     maxSwallowSize: 2MB
     maxConnections: 2000
 spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 读库和写库的地址，目前写库可以配置为一个，读库可配置为多个
+    url: jdbc:mysql://47.94.201.245:3306/edukg?useSSL=false&serverTimezone=Asia/Shanghai&autoReconnect=true&characterEncoding=utf8
+    username: root
+    password: Keg2022!
   data:
     neo4j:
       uri: bolt://47.94.201.245:7687
@@ -40,6 +46,10 @@ spring:
     index:
       examSource: examsource
       textBook: textbook
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.tsinghua.edukg.dao.entity
 asyn:
   schedule:
     corePoolSize: 10
@@ -55,7 +65,7 @@ address:
     examSource: /data/Gaokao/json
     jiebaDictLinux: /data/jieba/dicts/%s.txt
     jiebaDictWin: C:\\Users\\feifei\\Desktop\\Gaokao\\jieba\\dicts\\%s.txt
-    stopWords: static/stopWords.txt
+    stopWords: static/stopWords.out
   sign:
     split: \\
 

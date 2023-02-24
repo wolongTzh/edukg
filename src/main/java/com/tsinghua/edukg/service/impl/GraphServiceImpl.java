@@ -1,4 +1,4 @@
-package com.tsinghua.edukg.service;
+package com.tsinghua.edukg.service.impl;
 
 import com.huaban.analysis.jieba.JiebaSegmenter;
 import com.huaban.analysis.jieba.WordDictionary;
@@ -16,6 +16,7 @@ import com.tsinghua.edukg.model.Relation;
 import com.tsinghua.edukg.model.params.HotEntitiesParam;
 import com.tsinghua.edukg.model.params.LinkingParam;
 import com.tsinghua.edukg.model.params.SearchSubgraphParam;
+import com.tsinghua.edukg.service.GraphService;
 import com.tsinghua.edukg.utils.CommonUtil;
 import com.tsinghua.edukg.utils.JiebaHelper;
 import com.tsinghua.edukg.utils.RuleHandler;

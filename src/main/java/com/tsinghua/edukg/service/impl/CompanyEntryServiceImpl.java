@@ -1,8 +1,9 @@
-package com.tsinghua.edukg.service;
+package com.tsinghua.edukg.service.impl;
 
 import com.google.common.collect.Lists;
 import com.tsinghua.edukg.dao.neo.CompanyEntryRepository;
 import com.tsinghua.edukg.model.CompanyEntryNode;
+import com.tsinghua.edukg.service.CompanyEntryService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.neo4j.ogm.model.Result;

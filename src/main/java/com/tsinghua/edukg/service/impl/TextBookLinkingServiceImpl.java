@@ -1,4 +1,4 @@
-package com.tsinghua.edukg.service;
+package com.tsinghua.edukg.service.impl;
 
 import com.tsinghua.edukg.enums.BusinessExceptionEnum;
 import com.tsinghua.edukg.exception.BusinessException;
@@ -7,6 +7,7 @@ import com.tsinghua.edukg.model.TextBook;
 import com.tsinghua.edukg.model.TextBookHighLight;
 import com.tsinghua.edukg.model.VO.GetTextBookHighLightVO;
 import com.tsinghua.edukg.model.params.GetTextBookHighLightParam;
+import com.tsinghua.edukg.service.TextBookLinkingService;
 import com.tsinghua.edukg.utils.CommonUtil;
 import org.springframework.stereotype.Service;
 

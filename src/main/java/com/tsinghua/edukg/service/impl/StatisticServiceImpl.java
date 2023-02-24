@@ -1,4 +1,4 @@
-package com.tsinghua.edukg.service;
+package com.tsinghua.edukg.service.impl;
 
 import com.tsinghua.edukg.config.RedisConfig;
 import com.tsinghua.edukg.manager.NeoAssisManager;
@@ -10,6 +10,7 @@ import com.tsinghua.edukg.model.params.GetAllEntityListParam;
 import com.tsinghua.edukg.model.params.GetEntityListParam;
 import com.tsinghua.edukg.model.Entity;
 import com.tsinghua.edukg.model.params.SubjectStatParam;
+import com.tsinghua.edukg.service.StatisticService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

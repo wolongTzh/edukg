@@ -1,4 +1,4 @@
-package com.tsinghua.edukg.service;
+package com.tsinghua.edukg.service.impl;
 
 import com.tsinghua.edukg.manager.NeoManager;
 import com.tsinghua.edukg.model.DTO.QuikAddEntitiesDTO;
@@ -7,6 +7,7 @@ import com.tsinghua.edukg.model.params.GetRelationAndPropertyParam;
 import com.tsinghua.edukg.model.params.UpdateLabelsParam;
 import com.tsinghua.edukg.model.params.UpdatePropertyParam;
 import com.tsinghua.edukg.model.params.UpdateRelationParam;
+import com.tsinghua.edukg.service.EditorService;
 import com.tsinghua.edukg.utils.RuleHandler;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;

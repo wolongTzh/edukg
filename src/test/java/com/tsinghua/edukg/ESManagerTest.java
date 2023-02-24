@@ -5,6 +5,7 @@ import com.tsinghua.edukg.manager.ESManager;
 import com.tsinghua.edukg.model.ExamSource;
 import com.tsinghua.edukg.model.TextBook;
 import com.tsinghua.edukg.model.TextBookHighLight;
+import com.tsinghua.edukg.utils.HanlpHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -63,10 +64,11 @@ public class ESManagerTest {
     @Test
     public void getHighLightTextBookFromTextTest() throws IOException {
         List<String> keyWords = Arrays.asList("十月革命","意义");
-        List<TextBookHighLight> retList = esManager.getHighLightTextBookFromText(keyWords);
+        String question = "十月革命的意义是什么？";
+        List<TextBookHighLight> retList = esManager.getHighLightTextBookFromMiniMatch(HanlpHelper.CutWordRetNeedConcernWords(question));
         for(TextBookHighLight s : retList) {
 //            s.replaceAll("。.*?>","。");
-            System.out.println(s.getExample());
+            System.out.println(s.getExample() + "\n\n");
         }
 //        log.info(JSON.toJSONString(retList));
     }

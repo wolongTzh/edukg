@@ -1,9 +1,10 @@
-package com.tsinghua.edukg.service;
+package com.tsinghua.edukg.service.impl;
 
 import com.google.common.collect.Lists;
 import com.tsinghua.edukg.dao.neo.ProductEntryRepository;
 import com.tsinghua.edukg.model.CompanyEntryNode;
 import com.tsinghua.edukg.model.ProductEntryNode;
+import com.tsinghua.edukg.service.ProductEntryService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
