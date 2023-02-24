@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * 课程资源读取 controller
  *
@@ -31,7 +33,7 @@ public class CourseSourceLinkingController {
      */
     @GetMapping(value = "findCourse")
     public WebResInfo getBookData(String uri) {
-        Course course = courseService.getCourseFromUri(uri);
-        return WebUtil.successResult(course);
+        List<Course> courseList = courseService.getCourseFromUri(uri);
+        return WebUtil.successResult(courseList);
     }
 }

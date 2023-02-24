@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 @Slf4j
 public class SqlManagerTest {
@@ -25,8 +27,8 @@ public class SqlManagerTest {
     @Test
     public void testGetCourseByUri() {
         String uri = "http://edukg.org/knowledge/3.0/instance/chinese#main-E6763";
-        Course course = courseManager.getCourseByUri(uri);
-        System.out.println(JSON.toJSONString(course));
+        List<Course> courseList = courseManager.getCourseByUri(uri);
+        System.out.println(JSON.toJSONString(courseList));
     }
 
     @Test

@@ -2,6 +2,8 @@ package com.tsinghua.edukg.dao.mapper;
 
 import com.tsinghua.edukg.dao.entity.Course;
 
+import java.util.List;
+
 public interface CourseMapper {
     int deleteByPrimaryKey(String courseId);
 
@@ -11,7 +13,7 @@ public interface CourseMapper {
 
     Course selectByPrimaryKey(String courseId);
 
-    Course selectByUri(String uri);
+    List<Course> selectByUri(String uri);
 
     int updateByPrimaryKeySelective(Course record);
 

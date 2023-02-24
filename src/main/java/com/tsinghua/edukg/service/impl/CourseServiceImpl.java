@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Slf4j
 public class CourseServiceImpl implements CourseService {
@@ -15,7 +17,7 @@ public class CourseServiceImpl implements CourseService {
     CourseManager courseManager;
 
     @Override
-    public Course getCourseFromUri(String uri) {
+    public List<Course> getCourseFromUri(String uri) {
         return courseManager.getCourseByUri(uri);
     }
 }

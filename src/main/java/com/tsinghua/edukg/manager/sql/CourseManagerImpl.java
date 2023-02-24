@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Slf4j
 @Component
@@ -20,7 +21,7 @@ public class CourseManagerImpl implements CourseManager {
     }
 
     @Override
-    public Course getCourseByUri(String uri) {
+    public List<Course> getCourseByUri(String uri) {
         return courseMapper.selectByUri(uri);
     }
 }

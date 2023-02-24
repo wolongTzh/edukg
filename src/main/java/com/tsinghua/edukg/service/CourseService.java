@@ -2,7 +2,9 @@ package com.tsinghua.edukg.service;
 
 import com.tsinghua.edukg.dao.entity.Course;
 
+import java.util.List;
+
 public interface CourseService {
 
-    public Course getCourseFromUri(String uri);
+    public List<Course> getCourseFromUri(String uri);
 }
