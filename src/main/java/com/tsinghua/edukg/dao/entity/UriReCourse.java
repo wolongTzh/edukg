@@ -1,5 +1,8 @@
 package com.tsinghua.edukg.dao.entity;
 
+import lombok.Builder;
+
+@Builder
 public class UriReCourse {
     private Integer id;
 

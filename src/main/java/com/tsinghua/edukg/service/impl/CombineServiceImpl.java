@@ -3,6 +3,7 @@ package com.tsinghua.edukg.service.impl;
 import com.tsinghua.edukg.api.feign.QAFeignService;
 import com.tsinghua.edukg.api.model.QAParam;
 import com.tsinghua.edukg.api.model.QAResult;
+import com.tsinghua.edukg.dao.entity.Course;
 import com.tsinghua.edukg.enums.BusinessTypeEnum;
 import com.tsinghua.edukg.manager.NeoManager;
 import com.tsinghua.edukg.model.Entity;
@@ -12,10 +13,7 @@ import com.tsinghua.edukg.model.params.GetExamSourceParam;
 import com.tsinghua.edukg.model.params.GetTextBookHighLightParam;
 import com.tsinghua.edukg.model.params.LinkingParam;
 import com.tsinghua.edukg.model.params.TotalSearchParam;
-import com.tsinghua.edukg.service.CombineService;
-import com.tsinghua.edukg.service.ExamSourceLinkingService;
-import com.tsinghua.edukg.service.GraphService;
-import com.tsinghua.edukg.service.TextBookLinkingService;
+import com.tsinghua.edukg.service.*;
 import com.tsinghua.edukg.service.utils.CombineServiceUtil;
 import com.tsinghua.edukg.utils.AsyncHelper;
 import com.tsinghua.edukg.utils.CommonUtil;
@@ -58,6 +56,9 @@ public class CombineServiceImpl implements CombineService {
     @Autowired
     AsyncHelper asyncHelper;
 
+    @Autowired
+    CourseService courseService;
+
     Integer pageNo = 1;
     Integer pageSize = 10;
 
@@ -86,6 +87,7 @@ public class CombineServiceImpl implements CombineService {
         if(instanceList.size() != 0) {
             // 首实体详细信息赋值（instanceInfo）
             Entity instanceInfo = neoManager.getEntityFromUri(instanceList.get(0).getUri());
+            combineLinkingVO.setCourseList(courseService.getCourseFromUri(instanceList.get(0).getUri()));
             combineLinkingVO.setInstanceInfo(instanceInfo);
             // 试题查询（questionList）
             combineLinkingVO.setQuestionList(examSourceLinkingService.getExamSourceFromUri(GetExamSourceParam.builder().pageNo(pageNo).pageSize(pageSize).uri(instanceInfo.getUri()).build()));

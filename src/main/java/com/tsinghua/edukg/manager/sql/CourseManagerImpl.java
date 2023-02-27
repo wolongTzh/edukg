@@ -24,4 +24,9 @@ public class CourseManagerImpl implements CourseManager {
     public List<Course> getCourseByUri(String uri) {
         return courseMapper.selectByUri(uri);
     }
+
+    @Override
+    public int insert(Course course) {
+        return courseMapper.insert(course);
+    }
 }

@@ -9,4 +9,6 @@ public interface CourseManager {
     public Course getCourseById(String id);
 
     public List<Course> getCourseByUri(String uri);
+
+    public int insert(Course course);
 }

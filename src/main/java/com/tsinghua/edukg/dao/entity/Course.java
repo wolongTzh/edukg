@@ -1,5 +1,8 @@
 package com.tsinghua.edukg.dao.entity;
 
+import lombok.Builder;
+
+@Builder
 public class Course {
     private String courseId;
 
@@ -17,7 +20,9 @@ public class Course {
 
     private String bookName;
 
-    public Course(String courseId, String courseName, String coverImg, Integer grade, String chapterId, String chapterName, String bookId, String bookName) {
+    private String subject;
+
+    public Course(String courseId, String courseName, String coverImg, Integer grade, String chapterId, String chapterName, String bookId, String bookName, String subject) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.coverImg = coverImg;
@@ -26,6 +31,7 @@ public class Course {
         this.chapterName = chapterName;
         this.bookId = bookId;
         this.bookName = bookName;
+        this.subject = subject;
     }
 
     public Course() {
@@ -94,5 +100,13 @@ public class Course {
 
     public void setBookName(String bookName) {
         this.bookName = bookName == null ? null : bookName.trim();
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 }

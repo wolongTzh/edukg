@@ -11,10 +11,11 @@
       <arg column="chapter_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="book_id" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="book_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="subject" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    course_id, course_name, cover_img, grade, chapter_id, chapter_name, book_id, book_name
+    course_id, course_name, cover_img, grade, chapter_id, chapter_name, book_id, book_name, subject
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -37,10 +38,10 @@
   <insert id="insert" parameterType="com.tsinghua.edukg.dao.entity.Course">
     insert into course (course_id, course_name, cover_img, 
       grade, chapter_id, chapter_name, 
-      book_id, book_name)
+      book_id, book_name, subject)
     values (#{courseId,jdbcType=VARCHAR}, #{courseName,jdbcType=VARCHAR}, #{coverImg,jdbcType=VARCHAR}, 
       #{grade,jdbcType=INTEGER}, #{chapterId,jdbcType=VARCHAR}, #{chapterName,jdbcType=VARCHAR}, 
-      #{bookId,jdbcType=VARCHAR}, #{bookName,jdbcType=VARCHAR})
+      #{bookId,jdbcType=VARCHAR}, #{bookName,jdbcType=VARCHAR}, #{subject,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.tsinghua.edukg.dao.entity.Course">
     insert into course
@@ -69,6 +70,9 @@
       <if test="bookName != null">
         book_name,
       </if>
+      <if test="subject != null">
+        subject,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="courseId != null">
@@ -94,6 +98,9 @@
       </if>
       <if test="bookName != null">
         #{bookName,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null">
+        #{subject,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -121,6 +128,9 @@
       <if test="bookName != null">
         book_name = #{bookName,jdbcType=VARCHAR},
       </if>
+      <if test="subject != null">
+        subject = #{bookName,jdbcType=VARCHAR},
+      </if>
     </set>
     where course_id = #{courseId,jdbcType=VARCHAR}
   </update>
@@ -133,6 +143,7 @@
       chapter_name = #{chapterName,jdbcType=VARCHAR},
       book_id = #{bookId,jdbcType=VARCHAR},
       book_name = #{bookName,jdbcType=VARCHAR}
+      subject = #{subject,jdbcType=VARCHAR}
     where course_id = #{courseId,jdbcType=VARCHAR}
   </update>
 </mapper>
