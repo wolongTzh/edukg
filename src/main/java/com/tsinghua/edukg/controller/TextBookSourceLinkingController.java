@@ -35,8 +35,8 @@ public class TextBookSourceLinkingController {
      * @return
      */
     @GetMapping(value = "getBookData")
-    public WebResInfo getBookData(String bookId) throws IOException {
-        TextBook textBook = textBookLinkingService.getTextBookFromId(bookId);
+    public WebResInfo getBookData(String chapterId) throws IOException {
+        TextBook textBook = textBookLinkingService.getTextBookFromId(chapterId);
         return WebUtil.successResult(textBook);
     }
 

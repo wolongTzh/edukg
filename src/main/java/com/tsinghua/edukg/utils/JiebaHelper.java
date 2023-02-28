@@ -24,6 +24,9 @@ public class JiebaHelper {
                     retWords.add("李白");
                 }
             }
+            if(!String.join("", retWords).contains("李白")) {
+                retWords.add("李白");
+            }
             return retWords;
         }
         return jiebaSegmenter.sentenceProcess(sents);
