@@ -5,6 +5,12 @@ server:
     maxSwallowSize: 2MB
     maxConnections: 2000
 spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 读库和写库的地址，目前写库可以配置为一个，读库可配置为多个
+    url: jdbc:mysql://47.94.201.245:3306/edukg?useSSL=false&serverTimezone=Asia/Shanghai&autoReconnect=true&characterEncoding=utf8
+    username: root
+    password: Keg2022!
   data:
     neo4j:
       uri: bolt://47.94.201.245:7687
@@ -19,12 +25,12 @@ spring:
     cluster:
       max-redirects: 2
       nodes:
-        - 39.97.172.123:7001
-        - 39.97.172.123:7002
-        - 39.97.172.123:7003
-        - 39.97.172.123:7004
-        - 39.97.172.123:7005
-        - 39.97.172.123:7006
+        - 47.94.201.245:7001
+        - 47.94.201.245:7002
+        - 47.94.201.245:7003
+        - 47.94.201.245:7004
+        - 47.94.201.245:7005
+        - 47.94.201.245:7006
     lettuce:
       pool:
         max-active: 8
@@ -40,6 +46,10 @@ spring:
     index:
       examSource: examsource
       textBook: textbook
+
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.tsinghua.edukg.dao.entity
 asyn:
   schedule:
     corePoolSize: 10

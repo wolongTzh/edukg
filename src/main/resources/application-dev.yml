@@ -5,6 +5,12 @@ server:
     maxSwallowSize: 2MB
     maxConnections: 2000
 spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # 读库和写库的地址，目前写库可以配置为一个，读库可配置为多个
+    url: jdbc:mysql://10.1.1.213:3306/edukg?useSSL=false&serverTimezone=Asia/Shanghai&autoReconnect=true&characterEncoding=utf8
+    username: root
+    password: mysql@keg202
   data:
     neo4j:
       uri: bolt://10.1.1.213:7687
@@ -31,6 +37,15 @@ spring:
         max-idle: 8
         min-idle: 1
         max-wait: 200ms
+asyn:
+  schedule:
+    corePoolSize: 10
+    maxPoolSize: 100
+    queueCapacity: 10
+    keepAliveSeconds: 60
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.tsinghua.edukg.dao.entity
 asyn:
   schedule:
     corePoolSize: 10
