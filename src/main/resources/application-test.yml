@@ -64,8 +64,9 @@ address:
   file:
     examSource: /data/Gaokao/json
     jiebaDictLinux: /data/jieba/dicts/%s.txt
+    textbook: /data/textbook/%s/OEBPS
     jiebaDictWin: C:\\Users\\feifei\\Desktop\\Gaokao\\jieba\\dicts\\%s.txt
     stopWords: static/stopWords.out
   sign:
-    split: \\
+    split: /
 

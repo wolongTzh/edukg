@@ -17,6 +17,9 @@ public class AddressConfig {
     @Value("${address.file.examSource}")
     private String examSourceAddress;
 
+    @Value("${address.file.textbook}")
+    private String bookBasePath;
+
     @Value("${address.file.jiebaDictLinux}")
     private String jiebaDictAddressLinux;
 

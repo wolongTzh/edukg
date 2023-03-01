@@ -8,6 +8,7 @@ import co.elastic.clients.elasticsearch.core.search.HighlightField;
 import co.elastic.clients.elasticsearch.core.search.Hit;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.tsinghua.edukg.config.AddressConfig;
 import com.tsinghua.edukg.config.ElasticSearchConfig;
 import com.tsinghua.edukg.model.ExamSource;
 import com.tsinghua.edukg.model.ExamSourceFromES;
@@ -33,12 +34,13 @@ public class ESManager {
 
     String textBookIndex;
 
-    String bookPicBasePath = "/data/textbook/%s/OEBPS";
+    String bookPicBasePath;
 
     @Autowired
-    public ESManager(ElasticSearchConfig elasticSearchConfig) {
+    public ESManager(ElasticSearchConfig elasticSearchConfig, AddressConfig addressConfig) {
         examSourceIndex = elasticSearchConfig.getExamSourceIndex();
         textBookIndex = elasticSearchConfig.getTextBookIndex();
+        bookPicBasePath = addressConfig.getBookBasePath();
     }
 
     public TextBook getTextBookFromId(String id) throws IOException {
