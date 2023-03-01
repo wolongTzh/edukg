@@ -46,12 +46,7 @@ asyn:
 mybatis:
   mapper-locations: classpath:/mapper/*.xml
   type-aliases-package: com.tsinghua.edukg.dao.entity
-asyn:
-  schedule:
-    corePoolSize: 10
-    maxPoolSize: 100
-    queueCapacity: 10
-    keepAliveSeconds: 60
+
 
 address:
   server:
