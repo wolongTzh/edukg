@@ -45,7 +45,7 @@ spring:
     password: admin
     index:
       examSource: examsource
-      textBook: textbook
+      textBook: irqa
 
 mybatis:
   mapper-locations: classpath:/mapper/*.xml

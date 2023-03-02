@@ -12,4 +12,6 @@ public class TextBookHighLight {
     String bookId;
 
     String example;
+
+    double score;
 }

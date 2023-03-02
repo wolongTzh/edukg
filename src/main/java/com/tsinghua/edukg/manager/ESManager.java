@@ -10,10 +10,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.tsinghua.edukg.config.AddressConfig;
 import com.tsinghua.edukg.config.ElasticSearchConfig;
-import com.tsinghua.edukg.model.ExamSource;
-import com.tsinghua.edukg.model.ExamSourceFromES;
-import com.tsinghua.edukg.model.TextBook;
-import com.tsinghua.edukg.model.TextBookHighLight;
+import com.tsinghua.edukg.model.*;
 import com.tsinghua.edukg.model.VO.GetTextBookHighLightVO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -228,9 +225,9 @@ public class ESManager {
 
     public List<TextBookHighLight> getHighLightTextBookFromMiniMatch(String keyWords) throws IOException {
         String miniMatch = "";
-        String field = "html";
+        String field = "content";
         List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
-        SearchResponse<TextBook> matchSearch;
+        SearchResponse<IrqaTextBook> matchSearch;
         if(keyWords.split(" ").length > 8) {
             matchSearch = client.search(s -> s
                             .index(textBookIndex)
@@ -244,7 +241,7 @@ public class ESManager {
                             .highlight(h -> h
                                     .fields(field, new HighlightField.Builder().build())
                             ),
-                    TextBook.class);
+                    IrqaTextBook.class);
         }
         else if(keyWords.split(" ").length > 3) {
             matchSearch = client.search(s -> s
@@ -259,7 +256,7 @@ public class ESManager {
                             .highlight(h -> h
                                     .fields(field, new HighlightField.Builder().build())
                             ),
-                    TextBook.class);
+                    IrqaTextBook.class);
         }
         else {
             matchSearch = client.search(s -> s
@@ -274,16 +271,13 @@ public class ESManager {
                             .highlight(h -> h
                                     .fields(field, new HighlightField.Builder().build())
                             ),
-                    TextBook.class);
+                    IrqaTextBook.class);
         }
-        for (Hit<TextBook> hit: matchSearch.hits().hits()) {
-            String highlightText = "";
-            for (String highlight : hit.highlight().get(field)) {
-                highlightText += highlight;
-            }
+        for (Hit<IrqaTextBook> hit: matchSearch.hits().hits()) {
             textBookHighLightList.add(TextBookHighLight.builder()
                     .bookId(hit.id())
-                    .example(highlightText.replaceAll("<.*?>|\n","").replaceAll("。.*?>",""))
+                    .example(hit.source().getContent())
+                    .score(hit.score())
                     .build());
         }
         return textBookHighLightList;
