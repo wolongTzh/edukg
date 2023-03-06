@@ -62,9 +62,9 @@ address:
     qa: http://47.94.201.245:9719/
     linking: http://47.94.201.245:8000/
   file:
-    examSource: /data1/Gaokao/json
+    examSource: /data/Gaokao/json
     jiebaDictLinux: /data1/jieba/dicts/%s.txt
-    textbook: /data1/textbook/%s/OEBPS
+    textbook: /data/textbook/%s/OEBPS
     jiebaDictWin: C:\\Users\\feifei\\Desktop\\Gaokao\\jieba\\dicts\\%s.txt
     stopWords: static/stopWords.out
   sign:
