@@ -195,7 +195,7 @@ public class EntityCombination {
                 if (name.split("的").length == 2) {
                     String prefix = name.split("的")[0];
                     String suffix = name.split("的")[1];
-                    if (nameSet.contains(prefix) && !StringUtils.isEmpty(RuleHandler.getPropertyAbbrByName(null, suffix))) {
+                    if (nameSet.contains(prefix) && !StringUtils.isEmpty(RuleHandler.getPropertyAbbrWithoutSubject(suffix))) {
                         List<Entity> entityList = neoManager.getEntityListFromName(name);
                         for(Entity entity : entityList) {
                             Entity concrateEntity = neoManager.getEntityFromUri(entity.getUri());
@@ -205,7 +205,7 @@ public class EntityCombination {
                                 if(property.getPredicateLabel().equals("内容") || property.getPredicateLabel().equals("包含")) {
                                     List<Entity> targetEntityList = neoManager.getEntityListFromName(prefix);
                                     Entity targetEntity = neoManager.getEntityFromUri(targetEntityList.get(0).getUri());
-                                    String temps = RuleHandler.getPropertyAbbrByName(null, suffix);
+                                    String temps = RuleHandler.getPropertyAbbrWithoutSubject(suffix);
                                     Property propertyAdd = Property.builder()
                                             .subject(prefix)
                                             .object(property.getObject())

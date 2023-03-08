@@ -129,8 +129,8 @@ public class RuleHandler {
     }
 
     /**
-     * get系列
-     * 使用static静态文件中的数据转换结果
+     * 中文属性关系名 -> 属性关系uri
+     * 例子："构成" -> "http://edukg.org/knowledge/3.0/property/chemistry#main-P15"
      */
 
     public static String getPropertyAbbrByName(String subject, String property) {
@@ -157,6 +157,12 @@ public class RuleHandler {
         return uri;
     }
 
+    /**
+     * 中文属性关系名 -> 属性关系uri（无学科版本）
+     * 例子："构成" -> "http://edukg.org/knowledge/3.0/property/chemistry#main-P15"
+     * @param property
+     * @return
+     */
     public static String getPropertyAbbrWithoutSubject(String property) {
         String uri = "";
         for(Map.Entry entry : propertyName2UriMap.entrySet()) {
@@ -173,6 +179,12 @@ public class RuleHandler {
         return uri;
     }
 
+    /**
+     * 给出属性关系uri -> 对应的中文
+     * 例子："edukg_prop_english__main-P108" -> "易混辨析"
+     * @param uri
+     * @return
+     */
     public static String getPropertyNameByAbbr(String uri) {
         if(StringUtils.isEmpty(uri) || !uri.contains("__")) {
             return "";

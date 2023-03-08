@@ -151,6 +151,26 @@ public class CombineServiceImpl implements CombineService {
     }
 
     @Override
+    public CombineQaVO simpleQA(QAParam qaParam) throws IllegalAccessException, IOException, ExecutionException, InterruptedException {
+        CombineQaVO combineQaVO = new CombineQaVO();
+        String searchText = qaParam.getQuestion();
+        Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlp(qaParam.getQuestion());
+        QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
+        // 没有答案的情况
+        if(StringUtils.isEmpty(answer.getAnswerValue())){
+            combineQaVO.setQaesGrepVO(future.get());
+            return combineQaVO;
+        }
+        combineQaVO.setAnswer(answer);
+        // 有答案没有匹配到实体的情况
+        if(StringUtils.isEmpty(answer.getObjectUri())) {
+            return combineQaVO;
+        }
+        combineQaVO.setInstanceInfo(graphService.getEntityFromUri(answer.getObjectUri()));
+        return combineQaVO;
+    }
+
+    @Override
     public CombineQaVO totalQaForTest(QAParam qaParam) throws IllegalAccessException, IOException, ExecutionException, InterruptedException {
         CombineQaVO combineQaVO = new CombineQaVO();
         String searchText = qaParam.getQuestion();

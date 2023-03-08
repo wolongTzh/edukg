@@ -367,6 +367,10 @@ public class NeoManager {
 //            if(proCode == null) {
 //                throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "找不到" + subject + "的属性" + prev.getSubject());
 //            }
+            if(StringUtils.isEmpty(RuleHandler.getPropertyAbbrWithoutSubject(prev.getSubject()))
+                    && StringUtils.isEmpty(RuleHandler.getPropertyNameByAbbr(prev.getSubject()))) {
+                throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "找不到关系名" + prev.getSubject());
+            }
             query += " AND n.`" + prev.getPredicate() + "` = $oldValue REMOVE n.`" + prev.getPredicate() + "` ";
             map.put("oldValue", prev.getObject());
         }
@@ -375,6 +379,10 @@ public class NeoManager {
 //            if(proCode == null) {
 //                throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "找不到" + subject + "的属性" + next.getSubject());
 //            }
+            if(StringUtils.isEmpty(RuleHandler.getPropertyAbbrWithoutSubject(next.getSubject()))
+                    && StringUtils.isEmpty(RuleHandler.getPropertyNameByAbbr(next.getSubject()))) {
+                throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "找不到关系名" + next.getSubject());
+            }
             query += " SET n.`" + next.getPredicate() + "` = $newValue ";
             map.put("newValue", next.getObject());
         }
@@ -401,6 +409,10 @@ public class NeoManager {
 //                throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "找不到关系名" + next.getPredicate());
 //                newType = next.getPredicate();
 //            }
+            if(StringUtils.isEmpty(RuleHandler.getPropertyAbbrWithoutSubject(next.getPredicate()))
+                    && StringUtils.isEmpty(RuleHandler.getPropertyNameByAbbr(next.getPredicate()))) {
+                throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "找不到关系名" + next.getPredicate());
+            }
             String query = "MATCH (n:`Resource` { uri: $fromUri }), (m:`Resource` { uri: $toUri }) " +
                     "CREATE (n)-[e:`" + next.getPredicate() + "`]->(m) " +
                     "RETURN ID(e) as id";
@@ -421,6 +433,10 @@ public class NeoManager {
 //                throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "找不到关系名" + pre.getPredicate());
 //                oldType = pre.getPredicate();
 //            }
+            if(StringUtils.isEmpty(RuleHandler.getPropertyAbbrWithoutSubject(pre.getPredicate()))
+                    && StringUtils.isEmpty(RuleHandler.getPropertyNameByAbbr(pre.getPredicate()))) {
+                throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "找不到关系名" + pre.getPredicate());
+            }
             String query = "MATCH (n:`Resource` { uri: $fromUri })-[e: `" + pre.getPredicate() + "`]->(m:`Resource` { uri: $toUri })" +
                     "DELETE e RETURN ID(e) as id";
             Map<String, Object> map = new HashMap<>();

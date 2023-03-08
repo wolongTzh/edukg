@@ -22,5 +22,7 @@ public interface CombineService {
 
     CombineQaVO totalQa(QAParam qaParam) throws IllegalAccessException, IOException, ExecutionException, InterruptedException;
 
+    CombineQaVO simpleQA(QAParam qaParam) throws IllegalAccessException, IOException, ExecutionException, InterruptedException;
+
     public CombineQaVO totalQaForTest(QAParam qaParam) throws IllegalAccessException, IOException, ExecutionException, InterruptedException;
 }

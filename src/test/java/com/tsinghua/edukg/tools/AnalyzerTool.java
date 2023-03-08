@@ -77,7 +77,7 @@ public class AnalyzerTool {
                 if(name.split("的").length == 2) {
                     String prefix =  name.split("的")[0];
                     String suffix =  name.split("的")[1];
-                    if(nameSet.contains(prefix) && !RuleHandler.getPropertyAbbrByName(null, suffix).equals("")) {
+                    if(nameSet.contains(prefix) && !RuleHandler.getPropertyAbbrWithoutSubject(suffix).equals("")) {
                         sb.append(prefix + " " + suffix + "\n");
                         if(!StringUtils.isEmpty(name) && name.length() >= 10) {
                             List<Entity> entityList = neoManager.getEntityListFromName(name);
@@ -146,7 +146,7 @@ public class AnalyzerTool {
 //                        notExistPredicate.putIfAbsent(suffix, 0);
 //                        notExistPredicate.put(suffix, notExistPredicate.get(suffix) + 1);
 //                    }
-                    if (nameSet.contains(prefix) && StringUtils.isEmpty(RuleHandler.getPropertyAbbrByName(null, suffix))) {
+                    if (nameSet.contains(prefix) && StringUtils.isEmpty(RuleHandler.getPropertyAbbrWithoutSubject(suffix))) {
                         if (!StringUtils.isEmpty(name)) {
                             List<Entity> entityList = neoManager.getEntityListFromName(name);
                             for(Entity entity : entityList) {

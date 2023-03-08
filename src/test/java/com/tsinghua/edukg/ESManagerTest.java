@@ -64,11 +64,11 @@ public class ESManagerTest {
     @Test
     public void getHighLightTextBookFromTextTest() throws IOException {
         List<String> keyWords = Arrays.asList("十月革命","意义");
-        String question = "十月革命的意义是什么？";
+        String question = "中国的首都是哪里";
         List<TextBookHighLight> retList = esManager.getHighLightTextBookFromMiniMatch(HanlpHelper.CutWordRetNeedConcernWords(question));
         for(TextBookHighLight s : retList) {
 //            s.replaceAll("。.*?>","。");
-            System.out.println(s.getExample() + "\n\n");
+            System.out.println(s.getScore() + " | " + s.getExample() + "\n\n");
         }
 //        log.info(JSON.toJSONString(retList));
     }

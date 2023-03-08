@@ -60,7 +60,7 @@ public class NeoManagerTest {
     @Test
     public void findPathBetweenNodesTest() {
         String head = "http://edukg.org/knowledge/3.0/instance/chinese#main-E6763";
-        String tail = "http://edukg.org/knowledge/3.0/instance/chinese#main-E646";
+        String tail = "http://edukg.org/knowledge/3.0/instance/chinese#main-E1525";
         Integer maxJumpTime = 5;
         List<Relation> resultList = neoManager.findPathBetweenNodes(head, tail, maxJumpTime);
         log.info(JSON.toJSONString(resultList));
