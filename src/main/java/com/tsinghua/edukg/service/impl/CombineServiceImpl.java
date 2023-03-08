@@ -24,10 +24,7 @@ import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.stream.Collectors;
@@ -78,8 +75,17 @@ public class CombineServiceImpl implements CombineService {
         // 根据不同情况匹配实体名称或属性（instanceList）
         if(linkingEntities.size() == 1) {
             instanceList.addAll(neoManager.getEntityWithScoreFromName(searchText));
+            // 去重
             instanceList = instanceList.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(()
-                    -> new TreeSet<>(Comparator.comparing(EntitySimp :: getUri))), ArrayList::new));
+                    -> new TreeSet<>(Comparator.comparing(EntitySimp :: getName))), ArrayList::new));
+            // 排序
+            Collections.sort(instanceList, new Comparator<EntitySimp>() {
+                public int compare(EntitySimp s1, EntitySimp s2) {
+                    return s1.getName().length() - (s2.getName().length());
+                }
+            });
+            // 过滤
+            instanceList = instanceList.stream().filter(s -> s.getName().length() < 10).collect(Collectors.toList());
         }
         if(linkingEntities.size() == 0) {
             instanceList.addAll(neoManager.getEntityWithScoreFromName(searchText));
