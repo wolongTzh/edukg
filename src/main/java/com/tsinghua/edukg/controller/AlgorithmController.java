@@ -10,7 +10,6 @@ import com.tsinghua.edukg.api.model.EntityLinkParam;
 import com.tsinghua.edukg.api.model.QAParam;
 import com.tsinghua.edukg.api.model.QAResult;
 import com.tsinghua.edukg.controller.utils.AlgorithmControllerUtil;
-import com.tsinghua.edukg.model.VO.CombineQaVO;
 import com.tsinghua.edukg.model.WebResInfo;
 import com.tsinghua.edukg.service.CombineService;
 import com.tsinghua.edukg.utils.CommonUtil;
@@ -22,9 +21,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 /**
  * api controller
@@ -58,10 +55,11 @@ public class AlgorithmController {
      * @return
      */
     @PostMapping(value = "qa")
-    public WebResInfo inputQuestion(@RequestBody QAParam param) throws IllegalAccessException, InterruptedException, ExecutionException, IOException {
+    public WebResInfo inputQuestion(@RequestBody QAParam param) throws IllegalAccessException {
         AlgorithmControllerUtil.validInputQuestionParam(param);
-        CombineQaVO combineQaVO = combineService.simpleQA(param);
-        return WebUtil.successResult(combineQaVO);
+        ApiResult<QAResult> qaResult = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(param));
+        QAResult accQaResult = qaResult.getAnswerData();
+        return WebUtil.successResult(accQaResult);
     }
 
     /**
