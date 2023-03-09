@@ -37,6 +37,15 @@ spring:
         max-idle: 8
         min-idle: 1
         max-wait: 200ms
+  es:
+    address: 47.94.201.245
+    port: 9200
+    scheme: http
+    username: admin
+    password: admin
+    index:
+      examSource: examsource
+      textBook: irqa
 asyn:
   schedule:
     corePoolSize: 10
