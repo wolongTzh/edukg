@@ -66,6 +66,7 @@ address:
     jiebaDictLinux: /data1/jieba/dicts/%s.txt
     textbook: /data/textbook/%s/OEBPS
     jiebaDictWin: C:\\Users\\feifei\\Desktop\\Gaokao\\jieba\\dicts\\%s.txt
+    stopWords: static/stopWords.out
   sign:
     split: /
 
