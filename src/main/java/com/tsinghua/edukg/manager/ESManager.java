@@ -31,12 +31,15 @@ public class ESManager {
 
     String textBookIndex;
 
+    String irqaIndex;
+
     String bookPicBasePath;
 
     @Autowired
     public ESManager(ElasticSearchConfig elasticSearchConfig, AddressConfig addressConfig) {
         examSourceIndex = elasticSearchConfig.getExamSourceIndex();
         textBookIndex = elasticSearchConfig.getTextBookIndex();
+        irqaIndex = elasticSearchConfig.getIrqaIndex();
         bookPicBasePath = addressConfig.getBookBasePath();
     }
 
@@ -187,8 +190,14 @@ public class ESManager {
         return examSourceList;
     }
 
+    /**
+     * 谭峥版本irqa检索（效果不如刘阳版本）
+     * @param keyWords
+     * @return
+     * @throws IOException
+     */
     public List<TextBookHighLight> getHighLightTextBookFromText(List<String> keyWords) throws IOException {
-        String field = "html";
+        String field = "content";
         List<String> retList = new ArrayList<>();
         List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
         BoolQuery.Builder builder = new BoolQuery.Builder();
@@ -202,7 +211,7 @@ public class ESManager {
         }
         BoolQuery boolQuery = builder.build();
         SearchResponse<TextBook> termSearch = client.search(s -> s
-                        .index(textBookIndex)
+                        .index(irqaIndex)
                         .query(q -> q
                                 .bool(boolQuery)
                         )
@@ -223,6 +232,12 @@ public class ESManager {
         return textBookHighLightList;
     }
 
+    /**
+     * 刘阳版本irqa检索
+     * @param keyWords
+     * @return
+     * @throws IOException
+     */
     public List<TextBookHighLight> getHighLightTextBookFromMiniMatch(String keyWords) throws IOException {
         String miniMatch = "";
         String field = "content";
@@ -230,7 +245,7 @@ public class ESManager {
         SearchResponse<IrqaTextBook> matchSearch;
         if(keyWords.split(" ").length > 8) {
             matchSearch = client.search(s -> s
-                            .index(textBookIndex)
+                            .index(irqaIndex)
                             .query(q -> q
                                     .match(t -> t
                                             .field(field)
@@ -245,7 +260,7 @@ public class ESManager {
         }
         else if(keyWords.split(" ").length > 3) {
             matchSearch = client.search(s -> s
-                            .index(textBookIndex)
+                            .index(irqaIndex)
                             .query(q -> q
                                     .match(t -> t
                                             .field(field)
@@ -260,7 +275,7 @@ public class ESManager {
         }
         else {
             matchSearch = client.search(s -> s
-                            .index(textBookIndex)
+                            .index(irqaIndex)
                             .query(q -> q
                                     .match(t -> t
                                             .field(field)

@@ -40,6 +40,9 @@ public class ElasticSearchConfig {
     @Value("${spring.es.index.textbook}")
     String textBookIndex;
 
+    @Value("${spring.es.index.irqa}")
+    String irqaIndex;
+
     @Bean
     public ElasticsearchClient esRestClientWithCred(){
         final CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
@@ -65,5 +68,9 @@ public class ElasticSearchConfig {
 
     public String getTextBookIndex() {
         return textBookIndex;
+    }
+
+    public String getIrqaIndex() {
+        return irqaIndex;
     }
 }

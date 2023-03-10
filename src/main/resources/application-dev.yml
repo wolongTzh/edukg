@@ -45,7 +45,8 @@ spring:
     password: admin
     index:
       examSource: examsource
-      textBook: irqa
+      irqa: irqa
+      textBook: textbook
 asyn:
   schedule:
     corePoolSize: 10
