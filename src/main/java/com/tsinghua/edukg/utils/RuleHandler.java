@@ -9,10 +9,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,6 +23,12 @@ import java.util.regex.Pattern;
 public class RuleHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(RuleHandler.class);
+
+    // 失效链接，应被过滤掉
+    static List<String> invalidUrl = Arrays.asList("http://edukg.org","http://kb.cs.tsinghua.edu.cn");
+
+    // 失效关系，应被过滤掉
+    static List<String> filteredRel = Arrays.asList("edukg_prop_common__main-R1","edukg_prop_common__main-R3","edukg_prop_common__main-R10");
 
     static String subjectLabelTemplate = "edukg_cls_%s__main-C0";
 
@@ -159,7 +162,7 @@ public class RuleHandler {
 
     /**
      * 中文属性关系名 -> 属性关系uri（无学科版本）
-     * 例子："构成" -> "http://edukg.org/knowledge/3.0/property/chemistry#main-P15"
+     * 例子："易混辨析" -> "edukg_prop_english__main-P108"
      * @param property
      * @return
      */
@@ -394,8 +397,16 @@ public class RuleHandler {
         if(CollectionUtils.isEmpty(properties)) {
             return;
         }
-        for(Property property : properties) {
+        Iterator<Property> iterator = properties.iterator();
+        while (iterator.hasNext()) {
+            Property property = iterator.next();
             property.setPredicateLabel(getPropertyNameByAbbr(property.getPredicate()));
+            for(String url : invalidUrl) {
+                if(property.getObject().contains(url)) {
+                    iterator.remove();
+                    break;
+                }
+            }
         }
     }
 
@@ -403,7 +414,13 @@ public class RuleHandler {
         if(CollectionUtils.isEmpty(relations)) {
             return;
         }
-        for(Relation relation : relations) {
+        Iterator<Relation> iterator = relations.iterator();
+        while (iterator.hasNext()) {
+            Relation relation = iterator.next();
+            if (filteredRel.contains(relation.getPredicate())) {
+                iterator.remove();
+                continue;
+            }
             relation.setPredicateLabel(getPropertyNameByAbbr(relation.getPredicate()));
         }
     }
