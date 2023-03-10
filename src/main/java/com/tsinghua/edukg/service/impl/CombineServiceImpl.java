@@ -17,6 +17,7 @@ import com.tsinghua.edukg.service.*;
 import com.tsinghua.edukg.service.utils.CombineServiceUtil;
 import com.tsinghua.edukg.utils.AsyncHelper;
 import com.tsinghua.edukg.utils.CommonUtil;
+import com.tsinghua.edukg.utils.RuleHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -127,6 +128,10 @@ public class CombineServiceImpl implements CombineService {
     public CombineQaVO totalQa(QAParam qaParam) throws IllegalAccessException, IOException, ExecutionException, InterruptedException {
         CombineQaVO combineQaVO = new CombineQaVO();
         String searchText = qaParam.getQuestion();
+        // 判断如果输入的不是个问题就返回
+        if(!RuleHandler.judgeQuestion(searchText)) {
+            return combineQaVO;
+        }
         Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlp(qaParam.getQuestion());
         QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
         // 没有答案的情况

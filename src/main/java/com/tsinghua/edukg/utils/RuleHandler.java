@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -23,6 +24,10 @@ import java.util.regex.Pattern;
 public class RuleHandler {
 
     private static final Logger logger = LoggerFactory.getLogger(RuleHandler.class);
+
+    static String questionJudgePath = "static/questionJudge.out";
+
+    static List<String> questionJudgeList = new ArrayList<>();
 
     // 失效链接，应被过滤掉
     static List<String> invalidUrl = Arrays.asList("http://edukg.org","http://kb.cs.tsinghua.edu.cn");
@@ -104,10 +109,30 @@ public class RuleHandler {
         pred2labelMap = CommonUtil.readJsonInResource(new InputStreamReader(ruleHandler.getClass().getClassLoader().getResourceAsStream(pred2labelPath)));
         prefixesMap = CommonUtil.readJsonInResource(new InputStreamReader(ruleHandler.getClass().getClassLoader().getResourceAsStream(prefixesPath)));
         subClassOfMap = CommonUtil.readJsonInResource(new InputStreamReader(ruleHandler.getClass().getClassLoader().getResourceAsStream(subClassOfPath)));
+        try {
+            questionJudgeList = CommonUtil.readTextInResource(new InputStreamReader(ruleHandler.getClass().getClassLoader().getResourceAsStream(questionJudgePath)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         loadPropertyName2Uri(pred2labelMap);
         loadGeneratePrefixes();
         loadPropertyRelationSets();
         loadSubAbbrMap();
+    }
+
+    /**
+     * 判断是否输入的是一个问题
+     * 方法是根据词表匹配看看是否有问题中出现的常用词语来判断
+     * @param question
+     * @return
+     */
+    public static boolean judgeQuestion(String question) {
+        for(String s : questionJudgeList) {
+            if(question.contains(s)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
