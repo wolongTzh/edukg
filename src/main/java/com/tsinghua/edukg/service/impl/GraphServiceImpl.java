@@ -129,6 +129,9 @@ public class GraphServiceImpl implements GraphService {
         if(relations == null || relations.size() == 0) {
             throw new BusinessException(BusinessExceptionEnum.START_OR_TAIL_URI_ERROR);
         }
+        if(relations.size() > 10) {
+            relations = relations.subList(0, 11);
+        }
         return relations;
     }
 
