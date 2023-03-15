@@ -208,6 +208,30 @@ public class RuleHandler {
     }
 
     /**
+     * 中文属性关系名 -> 属性关系uri（无学科版本）
+     * 例子："易混辨析" -> ["edukg_prop_english__main-P108", edukg_prop_common__main-P54"]
+     * @param property
+     * @return
+     */
+    public static List<String> geAlltPropertyAbbrWithoutSubject(String property) {
+        List<String> uriList = new ArrayList<>();
+        String uri = "";
+        for(Map.Entry entry : propertyName2UriMap.entrySet()) {
+            Map<String, String> map = (Map<String, String>) entry.getValue();
+            uri = map.get(property);
+            if(!StringUtils.isEmpty(uri)) {
+                String prefixUri = uri.split("#")[0] + "#";
+                String body = uri.split("#")[1];
+                if(prefixUri2AbbrMap.containsKey(prefixUri)) {
+                    uri = prefixUri2AbbrMap.get(prefixUri) + "__" + body;
+                    uriList.add(uri);
+                }
+            }
+        }
+        return uriList;
+    }
+
+    /**
      * 给出属性关系uri -> 对应的中文
      * 例子："edukg_prop_english__main-P108" -> "易混辨析"
      * @param uri

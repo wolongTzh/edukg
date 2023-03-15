@@ -6,6 +6,8 @@ import com.tsinghua.edukg.model.ClassInternal;
 import com.tsinghua.edukg.model.Entity;
 import com.tsinghua.edukg.model.EntityWithScore;
 import com.tsinghua.edukg.model.Relation;
+import com.tsinghua.edukg.model.params.SearchSubgraphParam;
+import com.tsinghua.edukg.service.GraphService;
 import com.tsinghua.edukg.utils.RuleHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -25,6 +27,9 @@ public class NeoManagerTest {
 
     @Resource
     NeoManager neoManager;
+
+    @Autowired
+    GraphService graphService;
 
     @Autowired
     @Qualifier("neo4jSession")
@@ -59,10 +64,22 @@ public class NeoManagerTest {
 
     @Test
     public void findPathBetweenNodesTest() {
-        String head = "http://edukg.org/knowledge/3.0/instance/chinese#main-E6763";
-        String tail = "http://edukg.org/knowledge/3.0/instance/chinese#main-E1525";
+        String head = "http://edukg.org/knowledge/3.0/instance/geo#main-E63";
+        String tail = "http://edukg.org/knowledge/3.0/instance/chemistry#main-E1538";
         Integer maxJumpTime = 5;
         List<Relation> resultList = neoManager.findPathBetweenNodes(head, tail, maxJumpTime);
+        log.info(JSON.toJSONString(resultList));
+    }
+
+    @Test
+    public void findPathBetweenNodesServiceTest() {
+        String head = "http://edukg.org/knowledge/3.0/instance/geo#main-E63";
+        String tail = "http://edukg.org/knowledge/3.0/instance/chemistry#main-E1538";
+        Integer maxJumpTime = 5;
+        List<String> insList = Arrays.asList(head, tail);
+        SearchSubgraphParam searchSubgraphParam = new SearchSubgraphParam();
+        searchSubgraphParam.setInstanceList(insList);
+        List<Relation> resultList = graphService.searchSubgraph(searchSubgraphParam);
         log.info(JSON.toJSONString(resultList));
     }
 

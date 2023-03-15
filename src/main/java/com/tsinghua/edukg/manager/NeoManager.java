@@ -34,6 +34,9 @@ public class NeoManager {
     @Autowired
     RedisManager redisManager;
 
+    @Autowired
+    NeoAssisManager neoAssisManager;
+
     public List<String> getUrisFromKeywordWithPage(String keyword, String subject, String label, Integer page, Integer size) {
         String query = "MATCH (n:Resource) %s RETURN n.uri skip $skip LIMIT $limit";
         Map<String, Object> map = new HashMap<>();
@@ -476,7 +479,8 @@ public class NeoManager {
     public synchronized List<QuikAddEntitiesVO> batchAddEntities(String subject, String label, List<Entity> entities) {
         List<QuikAddEntitiesVO> quikAddEntitiesVOList = new ArrayList<>();
         // 从缓存中获取学科的最大id（该方法包含了缓存如果不存在就去数据库查询的逻辑）
-        Integer maxId = redisManager.getMaxIdWithSubject(subject);
+//        Integer maxId = redisManager.getMaxIdWithSubject(subject);
+        Integer maxId = neoAssisManager.getSubjectMaxId(subject);
         List<String> uriList = RuleHandler.generateSubjectUris(maxId, subject, entities.size());
         String subjectLabel = RuleHandler.convertSubject2Label(subject);
         List<String> labels = Arrays.asList("Resource", label, subjectLabel);
@@ -503,7 +507,7 @@ public class NeoManager {
         String query = "CREATE " + String.join(",", nodes);
         session.query(query, new HashMap<>());
         // 插入数据库成功后，执行，更新目前的最大id
-        redisManager.subjectIdIncr(subject, entities.size());
+//        redisManager.subjectIdIncr(subject, entities.size());
         return quikAddEntitiesVOList;
     }
 

@@ -19,7 +19,7 @@ public class HanLpTest {
 
     @Test
     public void splitter() {
-        String text = "李白字什么？";
+        String text = "成都";
         List<Term> splits = HanlpHelper.cutWords(text);
         String needConcernWords = HanlpHelper.CutWordRetNeedConcernWords(text);
         System.out.println(needConcernWords);

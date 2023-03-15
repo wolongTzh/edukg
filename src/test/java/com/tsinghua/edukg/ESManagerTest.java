@@ -56,7 +56,7 @@ public class ESManagerTest {
 
     @Test
     public void getTextBookFromTerm() throws IOException {
-        String text = "混";
+        String text = "十月革命";
         List<TextBook> textBookList = esManager.getTextBookFromTerm(text);
         textBookList.forEach(t -> log.info(JSON.toJSONString(t)));
     }

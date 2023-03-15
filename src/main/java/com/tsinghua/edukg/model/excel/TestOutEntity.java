@@ -30,6 +30,9 @@ public class TestOutEntity {
     @ExcelProperty(value = "谓词")
     String predicate;
 
+    @ExcelProperty(value = "top1关联谓词")
+    String bestPred;
+
     @ExcelProperty(value = "目标实体")
     String target;
 
