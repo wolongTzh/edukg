@@ -20,6 +20,7 @@ import java.util.List;
 public interface GraphService {
 
     Entity getEntityFromUri(String uri);
+    List<Entity> getEntityFromClass(String className);
 
     List<Entity> getEntityFromName(String searchText);
 

@@ -136,6 +136,20 @@ public class NeoManager {
         return entities;
     }
 
+    public List<Entity> getEntityListFromClass(String className) {
+        List<Entity> entityList = new ArrayList<>();
+        String query = "MATCH (n:`%s`) RETURN n.uri as uri, n.rdfs__label as rdfs__label";
+        query = String.format(query, className);
+        Result result = session.query(query, new HashMap<>());
+        for (Map<String, Object> m : result.queryResults()) {
+            entityList.add(Entity.builder()
+                    .abstractMsg("")
+                    .name((String) m.get("rdfs__label"))
+                    .uri((String) m.get("uri")).build());
+        }
+        return entityList;
+    }
+
     public List<Entity> getEntityListFromName(String name) {
         List<Entity> entityList = new ArrayList<>();
         String query = "MATCH (n:`Resource`) WHERE n.rdfs__label = \"%s\" RETURN n.uri as uri, n.rdfs__label as rdfs__label, labels(n) as labels";
@@ -382,9 +396,9 @@ public class NeoManager {
 //            if(proCode == null) {
 //                throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "找不到" + subject + "的属性" + next.getSubject());
 //            }
-            if(StringUtils.isEmpty(RuleHandler.getPropertyAbbrWithoutSubject(next.getSubject()))
-                    && StringUtils.isEmpty(RuleHandler.getPropertyNameByAbbr(next.getSubject()))) {
-                throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "找不到关系名" + next.getSubject());
+            if(StringUtils.isEmpty(RuleHandler.getPropertyAbbrWithoutSubject(next.getPredicate()))
+                    && StringUtils.isEmpty(RuleHandler.getPropertyNameByAbbr(next.getPredicate()))) {
+                throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "找不到关系名" + next.getPredicate());
             }
             query += " SET n.`" + next.getPredicate() + "` = $newValue ";
             map.put("newValue", next.getObject());

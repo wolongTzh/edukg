@@ -449,36 +449,4 @@ public class EntityCombination {
         return reflectionMap;
     }
 
-    /**
-     * 删除实体
-     * 根据uri删除实体
-     * deleteUriRecord（读）
-     * @throws IOException
-     */
-    @Test
-    public void deleteByUri() throws IOException {
-        File file =new File("./deleteUriRecordOfTpl.txt");
-        File failedRecord = new File("./failedRecord.txt");
-        FileWriter fileWritter = new FileWriter(failedRecord.getName(),true);
-        StringBuilder sb = new StringBuilder();
-        List<String> contents = new ArrayList<>();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file))) {
-            contents = bufferedReader.lines().collect(Collectors.toList());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        for(String content : contents) {
-            String uri = content.split(" ")[0];
-            try{
-                neoManager.deleteEntityByUri(uri);
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-                sb.append(content + "\n" + e.getMessage() + "\n\n");
-            }
-        }
-        fileWritter.write(sb.toString());
-        fileWritter.flush();
-        fileWritter.close();
-    }
 }

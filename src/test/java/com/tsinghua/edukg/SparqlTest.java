@@ -25,7 +25,7 @@ public class SparqlTest {
     /**
      * 输出txt文件路径
      */
-    String outputPath = "./authorPoetOut.txt";
+    String outputPath = "./storyOut.txt";
 
     @Test
     public void handler() throws IOException {
@@ -48,12 +48,19 @@ public class SparqlTest {
                 " ?x rdfs:label ?xn.\n"+
                 " ?y rdfs:label ?yn.}\n" +
                 " ORDER BY ?xn";
+
+        String story  = "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+                "prefix co: <http://edukb.org/knowledge/0.1/property/common#>\n" +
+                " SELECT ?yn\n" +
+                " WHERE\n" +
+                "{ <http://edukb.org/knowledge/0.1/instance/chinese#-2d62088cc92cdb173bf208abf8187935> co:example ?yn.}";
+
         switch (threadShold) {
             case 1:
-                testSparql(includeRelation);
+                testSparql(story);
                 break;
             case 2:
-                writeFile(authorAndPoet);
+                writeFile(story);
                 break;
             default:
                 break;
@@ -72,9 +79,15 @@ public class SparqlTest {
             QuerySolution querySolution = results.next();
             RDFNode nodeX = querySolution.get("xn");
             RDFNode nodeY = querySolution.get("yn");
-            String x = nodeX.toString();
-            String y = nodeY.toString();
-            System.out.println(x + " " + y + "\n");
+            String x = "";
+            String y = "";
+            if(nodeX != null) {
+                x = nodeX.toString();
+            }
+            if(nodeY != null) {
+                y = nodeY.toString();
+            }
+            System.out.println(x + " " + y);
         }
     }
 
@@ -85,15 +98,21 @@ public class SparqlTest {
         //ttl文件路径
         model.read(inputPath);
         Query query = QueryFactory.create(sql);
-        QueryExecution qe = QueryExecutionFactory.create(query, model);
+        QueryExecution qe =  QueryExecutionFactory.create(query, model);
         StringBuilder sb = new StringBuilder();
         ResultSet results = qe.execSelect();
         while (results.hasNext()) {
             QuerySolution querySolution = results.next();
             RDFNode nodeX = querySolution.get("xn");
             RDFNode nodeY = querySolution.get("yn");
-            String x = nodeX.toString();
-            String y = nodeY.toString();
+            String x = "";
+            String y = "";
+            if(nodeX != null) {
+                x = nodeX.toString();
+            }
+            if(nodeY != null) {
+                y = nodeY.toString();
+            }
             sb.append(x + " " + y + "\n");
         }
         fileWritter.write(sb.toString());

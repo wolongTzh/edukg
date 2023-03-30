@@ -1,7 +1,12 @@
 package com.tsinghua.edukg.tools;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONException;
+import com.alibaba.fastjson.JSONObject;
 import com.tsinghua.edukg.manager.NeoManager;
+import com.tsinghua.edukg.model.ClassInternal;
+import com.tsinghua.edukg.model.ClassTree;
 import com.tsinghua.edukg.model.Entity;
 import com.tsinghua.edukg.model.Property;
 import com.tsinghua.edukg.utils.RuleHandler;
@@ -30,6 +35,10 @@ public class AnalyzerTool {
     @Autowired
     @Qualifier("neo4jSession")
     Session session;
+
+    static JSONObject merged = new JSONObject();
+
+    static List<String> needRemove = new ArrayList<>();
 
     /**
      * 长实体名实体分析工具
@@ -188,6 +197,22 @@ public class AnalyzerTool {
         fileWritter.flush();
         fileWritter.close();
     }
+    @Test
+    public void subClassJsonGen() throws IOException {
+        Map<String, List<String>> subClassMap = RuleHandler.grepSubClassOfAbbrMap();
+        List<String> subjects = Arrays.asList("chinese", "math", "english", "physics", "biology", "chemistry", "geo", "history", "politics");
+        for(String subject : subjects) {
+            String path = "./" + subject + "_tree.json";
+            List<String> needRemove = new ArrayList<>();
+            JSONObject fusionMap = mergeHierarchy(needRemove, subject, subClassMap, subClassMap);
+            File conceptEntities = new File(path);
+            FileWriter fileWritter = new FileWriter(conceptEntities.getName(),false);
+            ClassTree classTree = transfer(fusionMap);
+            fileWritter.write(JSON.toJSONString(classTree));
+            fileWritter.flush();
+            fileWritter.close();
+        }
+    }
 
     /**
      * 使用 Map按value进行排序
@@ -215,5 +240,97 @@ public class AnalyzerTool {
             sortedMap.put(tmpEntry.getKey(), tmpEntry.getValue());
         }
         return sortedMap;
+    }
+
+    public static JSONObject mergeHierarchy( List<String> needRemove, String subject, Map<String, List<String>> hierarchy, Map<String, List<String>> hierarchyMap) {
+        JSONObject merge = new JSONObject();
+
+        for (String key : hierarchy.keySet()) {
+            if(!key.contains(subject)) {
+                continue;
+            }
+            List<String> needRemove1 = new ArrayList<>();
+            List<String> value = hierarchy.get(key);
+            if (value != null && !value.isEmpty()) {
+                JSONObject mergedValue = new JSONObject();
+                boolean start = true;
+                for (String childKey : value) {
+                    if(start) {
+                        start = false;
+                        continue;
+                    }
+                    if (hierarchyMap.containsKey(childKey)) {
+                        Map<String, List<String>> childMap = new HashMap<>();
+                        childMap.put(childKey, hierarchyMap.get(childKey));
+                        JSONObject childValue = mergeHierarchy(needRemove1, subject, childMap, hierarchyMap);
+                        needRemove.add(childKey);
+                        if (childValue.get(childKey) == null) {
+                            continue;
+                        }
+                        else if (childValue.getJSONObject(childKey).size() != 0) {
+                            mergedValue.put(childKey, childValue.get(childKey));
+                            for(Map.Entry<String, Object> entry : childValue.entrySet()) {
+                                needRemove.add(entry.getKey());
+                            }
+                        }
+                        else {
+                            mergedValue.put(childKey, RuleHandler.getClassNameByAbbr(childKey));
+                        }
+                    } else {
+                        mergedValue.put(childKey, ClassInternal.builder()
+                                        .label(RuleHandler.getClassNameByAbbr(childKey))
+                                        .id(RuleHandler.getClassNameByAbbr(childKey))
+                                        .build());
+                    }
+                }
+                merge.put(key, mergedValue);
+            } else {
+                merge.put(key, ClassInternal.builder()
+                        .label(RuleHandler.getClassNameByAbbr(key))
+                        .id(RuleHandler.getClassNameByAbbr(key))
+                        .build());
+
+            }
+        }
+        if(hierarchy.size() == hierarchyMap.size()) {
+            System.out.println(1);
+        }
+        for(String del : needRemove) {
+            merge.remove(del);
+        }
+        return merge;
+    }
+
+    public static ClassTree transfer(JSONObject jsonObject) {
+        String outKey = jsonObject.entrySet().iterator().next().getKey();
+        List<ClassTree> classTreeList = new ArrayList<>();
+        ClassTree head = ClassTree.builder()
+                .id(outKey)
+                .label(RuleHandler.getClassNameByAbbr(outKey))
+                .childNodes(classTreeList)
+                .build();
+        Object inner = jsonObject.get(outKey);
+        if(inner instanceof String) {
+            return head;
+        }
+        Set<Map.Entry<String, Object>> entrySet = ((JSONObject) inner).entrySet();
+        for(Map.Entry<String, Object> entry : entrySet) {
+            Object value = entry.getValue();
+            ClassTree classTree;
+            if(value instanceof String) {
+                classTree = ClassTree.builder()
+                        .id(entry.getKey())
+                        .label(RuleHandler.getClassNameByAbbr(entry.getKey()))
+                        .childNodes(null)
+                        .build();
+            }
+            else {
+                JSONObject handle = new JSONObject();
+                handle.put(entry.getKey(), value);
+                classTree = transfer(handle);
+            }
+            classTreeList.add(classTree);
+        }
+        return head;
     }
 }

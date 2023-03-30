@@ -54,6 +54,18 @@ public class GraphController {
         return WebUtil.successResult(entityList);
     }
 
+    /**
+     * 通过class名查询实体接口
+     *
+     * @return
+     */
+    @GetMapping(value = "findInstanceByClass")
+    public WebResInfo getEntityFromClass(String className) {
+        GraphControllerUtil.validGetEntityParam(className);
+        List<Entity> entityList = graphService.getEntityFromClass(className);
+        return WebUtil.successResult(entityList);
+    }
+
 
     /**
      * 获取九学科各自范围内的涉及关系数量最多的前10个实体

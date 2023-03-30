@@ -261,6 +261,12 @@ public class RuleHandler {
         return "";
     }
 
+    /**
+     * 根据label的uri给出对应的英文编码
+     * 举例：http://edukg.org/knowledge/3.0/class/chinese#main-C0 -> edukg_cls_chinese__main-C0
+     * @param uri
+     * @return
+     */
     public static String getClassNameByAbbr(String uri) {
         if(StringUtils.isEmpty(uri) || !uri.contains("__")) {
             return "";
@@ -361,6 +367,15 @@ public class RuleHandler {
 
     public static Map<String, List<String>> grepSubClassOfAbbrMap() {
         return subClassOfAbbrMap;
+    }
+
+    /**
+     * grep系列
+     * 类似于实体的get方法，提供接口获取私有变量
+     */
+
+    public static Map<String, String> grepClassOfAbbrMap() {
+        return cls2labelMap;
     }
 
     public static Map<String, String> grepSubjectMap() {

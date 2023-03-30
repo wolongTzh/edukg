@@ -1,6 +1,7 @@
 package com.tsinghua.edukg.utils;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.tsinghua.edukg.enums.BusinessExceptionEnum;
 import com.tsinghua.edukg.exception.BusinessException;
@@ -8,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.util.StringUtils;
 
 import java.io.*;
 import java.lang.reflect.Field;
@@ -17,6 +19,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class CommonUtil {
 
@@ -78,6 +81,19 @@ public class CommonUtil {
         return JSON.parseObject(jsonStr);
     }
 
+    public static JSONArray readJsonArray(String filePath) throws IOException {
+        File file = new File(filePath);
+        Reader reader = new InputStreamReader(new FileInputStream(file), "Utf-8");
+        int ch = 0;
+        StringBuffer sb = new StringBuffer();
+        while ((ch = reader.read()) != -1) {
+            sb.append((char) ch);
+        }
+        reader.close();
+        String jsonStr = sb.toString();
+        return JSON.parseArray(jsonStr);
+    }
+
     public static Map<String, String> readMapOut(String filePath) throws IOException {
         JSONObject jsonObject = readJsonOut(filePath);
         return (Map) JSON.parseObject(JSON.toJSONString(jsonObject));
@@ -120,6 +136,17 @@ public class CommonUtil {
         return ret;
     }
 
+    public static List<String> readTextFromPath(String path) {
+        File file =new File(path);
+        List<String> contents = new ArrayList<>();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file));) {
+            contents = bufferedReader.lines().collect(Collectors.toList());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return contents;
+    }
+
     /**
      * 分页工具，根据输入进行分页 (页号从0开始)
      * @param input 输入的list
@@ -147,7 +174,8 @@ public class CommonUtil {
      */
     public static List<String> getMiddleTextFromTags(String source, String target, String preTag, String postTag) {
         List<String> resultList = new ArrayList<>();
-        Pattern pattern = Pattern.compile(String.format("([^%s]*%s[^%s]*)", preTag, target, postTag));
+        Pattern pattern;
+        pattern = Pattern.compile(String.format("([^%s]*%s[^%s]*)", preTag, target, postTag));
         Matcher matcher = pattern.matcher(source);
         while(matcher.find()) {
             String result = matcher.group(1);
@@ -156,7 +184,32 @@ public class CommonUtil {
         return resultList;
     }
 
-    public static void main(String[] args) throws IOException {
+    /**
+     * 根据前后标签获取target在source中的文本片段
+     * @param source 原文本
+     * @param preTag 前标签
+     * @param postTag 后标签
+     * @return
+     */
+    public static List<String> getMiddleTextFromTags(String source, String preTag, String postTag) {
+        List<String> resultList = new ArrayList<>();
+        Pattern pattern;
+        pattern = Pattern.compile(String.format("%s.*?%s", preTag, postTag));
+        Matcher matcher = pattern.matcher(source);
+        while(matcher.find()) {
+            String result = matcher.group(0);
+            resultList.add(result);
+        }
+        return resultList;
+    }
 
+    public static void main(String[] args) throws IOException {
+        String source = "《我生活的故事》（líng）《海伦·凯勒日记》";
+        String preTag = "（";
+        String postTag = "）";
+        List<String> results = getMiddleTextFromTags(source, preTag, postTag);
+        for(String s : results) {
+            System.out.println(s);
+        }
     }
 }

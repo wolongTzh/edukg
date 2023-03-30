@@ -109,6 +109,12 @@ public class GraphServiceImpl implements GraphService {
     }
 
     @Override
+    public List<Entity> getEntityFromClass(String className) {
+        List<Entity> entityList = neoManager.getEntityListFromClass(className);
+        return entityList;
+    }
+
+    @Override
     public List<Entity> getEntityFromName(String searchText) {
         List<Entity> entityList = neoManager.getEntityListFromName(searchText);
         return entityList;

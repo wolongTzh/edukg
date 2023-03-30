@@ -1,0 +1,890 @@
+[
+  {
+    "uri": "",
+    "property": {
+      "subject": "勃兰兑斯",
+      "predicate": "edukg_prop_history__main-P133",
+      "object": "丹麦"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E7689",
+    "property": {
+      "subject": "纸上谈兵",
+      "predicate": "edukg_prop_history__main-P313",
+      "object": "赵括"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "完璧归赵",
+      "predicate": "edukg_prop_history__main-P313",
+      "object": "蔺相如"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "背水一战",
+      "predicate": "edukg_prop_history__main-P313",
+      "object": "韩信"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E6617",
+    "property": {
+      "subject": "列子",
+      "predicate": "edukg_prop_history__main-P328",
+      "object": "御寇、道家"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E6639",
+    "property": {
+      "subject": "韩愈",
+      "predicate": "edukg_prop_history__main-P32",
+      "object": "唐代著名思想家、政治家、文学家，与柳宗元倡导古文运动，列“唐宋八大家”之首"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E5641",
+    "property": {
+      "subject": "吆喝",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "高声呼叫：哏哏的吆喝，正难息怒。"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E2343",
+    "property": {
+      "subject": "阁下",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "敬辞，称对方，从前书函中常用，今多用于外交场合：大使阁下ㄧ首相阁下。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "长相思·山一程",
+      "predicate": "edukg_prop_common__main-P3",
+      "object": "山一程，水一程，身向榆关那畔行，夜深千帐灯。 风一更，雪一更，聒碎乡心梦不成，故园无此声。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "七律·长征",
+      "predicate": "edukg_prop_common__main-P3",
+      "object": "红军不怕远征难，万水千山只等闲。五岭逶迤腾细浪，乌蒙磅礴走泥丸。金沙水拍云崖暖，大渡桥横铁索寒。更喜岷山千里雪，三军过后尽开颜。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "清平乐·村居",
+      "predicate": "edukg_prop_common__main-P3",
+      "object": "茅檐低小，溪上青青草。 醉里吴音相媚好，白发谁家翁媪？ 大儿锄豆溪东，中儿正织鸡笼。 最喜小儿亡赖，溪头卧剥莲蓬。(亡 通：无)"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "山中杂诗",
+      "predicate": "edukg_prop_common__main-P3",
+      "object": "山际见来烟，竹中窥落日。 鸟向檐上飞，云从窗里出。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "四时田园杂兴·其二",
+      "predicate": "edukg_prop_common__main-P3",
+      "object": "梅子金黄杏子肥，麦花雪白菜花稀。 日长篱落无人过，惟有蜻蜓蛱蝶飞。(惟 通 唯)"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "津津有味",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "津津：兴趣浓厚的样子。指吃得很有味道或谈得很有兴趣。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "气愤填胸",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "形容愤怒之情充满胸中。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "无病而呻",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "没有病却发出痛苦的声音，比喻文艺作品没有真情实感而矫揉造作。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "引人入胜",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "胜：胜境。引人进入佳境。现多用来指风景或文艺作品特别吸引人。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "笑靥",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "①靥：面颊上的酒窝。笑时脸上露出的酒窝。也指笑脸：微笑时露出两个笑靥｜她面带笑靥｜纵言及平生，相视开笑靥。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "饱满",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "①丰满：颗粒饱满。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "冗杂",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "多而杂乱：事务冗杂｜重复冗杂。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "五脏六腑",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "五脏：脾、肺、肾、肝、心；六腑：胃、大肠、小肠、三焦、膀胱、胆。人体内脏器官的统称。也比喻事物的内部情况。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "秋浦歌",
+      "predicate": "edukg_prop_common__main-P3",
+      "object": "秋浦歌炉火照天地，红星乱紫烟。赧郎明月夜，歌曲动寒川。红彤彤的炉火映红了人们的脸，趁着月色，一边劳动，一边歌唱，歌唱打破了夜色的幽静和神秘的氛围，也震荡着寒冷的水面。(意思对即可)"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "苍松怪石图题诗",
+      "predicate": "edukg_prop_common__main-P3",
+      "object": "君不见，岁之寒，何处求芳草。又不见，松之乔，青青复矫矫。天地本无心，万物贵其真。直干壮川岳，秀色无等伦。饱历冰与霜，千年方未已。拥护天阙高且坚，迥干春风碧云里。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "落花生",
+      "predicate": "edukg_prop_history__main-P418",
+      "object": "许地山"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "妙手回春",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "回春：使春天重返，比喻将快死的人救活。指医生医术高明。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "一马当先",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "原指作战时策马冲锋在前。形容领先。也比喻工作走在群众前面，积极带头。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "信马由缰",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "信、由：听任。骑着马无目的地闲逛。比喻随便走走。也比喻无主见，随外力而转移。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "千军万马",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "形容雄壮的队伍或浩大的声势。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "招兵买马",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "旧时指组织或扩充武装力量。后比喻组织或扩充人力。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "万马奔腾",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "成千上万匹刀在奔跑腾跃。形容群众性的活动声势浩大或场面热烈。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "盲人瞎马",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "盲人骑着瞎马。比喻盲目行动，后果十分危险。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "名不见经传",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "经传：指被古人尊崇为典范的著作。经传上没有记载。后常指人没有名声或论述没有根据。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "随波逐流",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "逐：追随。随着波浪起伏，跟着流水漂荡。比喻没有坚定的立场，缺乏判断是非的能力，只能随着别人走。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "邂逅",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "①不期而遇：一朝邂逅成相识。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "跋涉",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "登山涉水。形容旅途艰辛：长途跋涉。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "罢黜不肖",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "撤销不作为的官员"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "碧波盈盈",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "碧绿色的水波荡漾"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "不饥不寒",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "不挨饿受冻。生活不愁温饱。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "不假典故",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "不借助典故"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "灿若晨星",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "若，意思是像……一样；灿，意思是灿烂，耀眼。晨星，当指早晨的星星，其实就是指启明星。合起来的意思就是，像启明星一样灿烂。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "苍茫无垠",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "边,岸,界限苍茫无垠,空阔辽远,没有边际."
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "踌躇",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "①犹豫，迟疑不决：踌躇地呆坐了很久。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "丑陋",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "外表难看：此人相貌丑陋，但心地善良。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "初心不泯",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "说一个人如初、没变过"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "垂头丧气",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "垂头：耷拉着脑袋；丧气：神情沮丧。形容因失败或不顺利而情绪低落、萎蘼不振的样子。"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E903",
+    "property": {
+      "subject": "怠",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "● 怠dài ㄉㄞˋ ◎ 懒惰，忪懈：怠惰。怠倦。怠工。懈怠。 ◎ 轻慢，不尊敬：怠傲。怠慢。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "淡薄名利",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "意为轻视在外的名声与利益"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "东张西望",
+      "predicate": "edukg_prop_english__main-P102",
+      "object": "褒义词"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "逢人必缘",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "相逢就是缘分"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "沽饮",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "买酒来喝"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E2832",
+    "property": {
+      "subject": "观",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "● 观（觀）guān ㄍㄨㄢˉ ◎ 看，察看：观看。观止（赞叹所看到的事物极端完美，无以复加）。观风（ａ．暗中察看动静，以定行止；ｂ．观察民间风俗习惯，生活状态）。观阵。观赏。观察。观感。参观。 ◎ 看到的景象或样子：观瞻（ａ．事物的外观、景象及其留给人们的印象；ｂ．注视，瞻望）。大观。奇观。 ◎ 对事物的看法、认识：观点。观念。主观。客观。世界观。 ● 观（觀）guàn ㄍㄨㄢˋ ◎ 道教的庙宇：白云观。紫阳观。 ◎ 古代宫门前的双阙。 ◎ 楼台：楼观。台观。 ◎ 姓。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "害群之马",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "危害马群的劣马。比喻危害社会或集体的人。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "挥骊得珠",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "骊，古指黑龙。在骊龙的颔下取得宝珠。原指冒大险得大利。后常比喻文章含义深刻，措辞扼要，得到要领。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "羁绊",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "①缠住了不能脱身；束缚：挣脱～ㄧ冲破旧习惯势力的～。 ②感情和感情之间的维系，人与人（事物）的内在关系"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/politics#main-E3397",
+    "property": {
+      "subject": "价值",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "①体现在商品里的社会必要劳动。价值量的大小决定于生产这一商品所需的社会必要劳动时间的多少。不经过人类劳动加工的东西，如空气，即使对人们有使用价值，也不具有价值。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "坚韧",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "坚固有韧性：质地坚韧。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "金玉其外，败絮其中",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "败絮：烂棉花"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "久旱逢甘雨",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "逢：遇到。干旱了很久，忽然遇到一场好雨。形容盼望已久终于如愿的欣喜心情。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "拘泥",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "①固执死板，不知变通：拘泥原文，食古不化。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "刻舟求剑",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "比喻不懂事物已发展变化而仍静止地看问题。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "空荏之壳",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "用来形容人外表严厉而内心怯懦"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "乐此不疲",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "此：这。因酷爱干某事而不感觉厌烦。形容对某事特别爱好而沉浸其中。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "帘隐青灯",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "寺庙庵观（“青灯”一般都对应“古佛”）中的灯光，在窗帘的遮蔽下隐没不见了"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "灵心观照",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "心有灵犀一点通"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "滦谏",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "谏诤的言词"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "瞒天过海",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "用欺骗的手段在暗地里活动。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "耄耋",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "年老；高龄：君无大贵，但得耄耋足矣。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "命运多舛",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "舛：违背。一生经历坎坷，遭遇不好。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "难以停滞",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "无法停下来的意思"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "袅袅",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "1.轻盈纤美貌。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "起死回生",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "把快要死的人救活。形容医术高明。也比喻把已经没有希望的事物挽救过来。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "气喘吁吁",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "形容呼吸急促，大声喘气。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "迄今",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "至今;到现在。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "强闻博识",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "强,强大.闻：见闻.博,渊博.识,见识.形容知识丰富,全面"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "弱不难堪",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "入门容易，学精难"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/history#main-E13260",
+    "property": {
+      "subject": "三国鼎立",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "魏蜀吴三国鼎立,是形容在三国鼎盛时代势均力敌.像\"鼎\"一样地各据一方,\"鼎立\"是形象生动地描述各方\"势力\""
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "三十而立",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "指人在三十岁前后有所成就。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "韶华逝水",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "青春年华如同东流逝去的水，一去不复返了"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "舍本逐末",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "舍：舍弃；逐：追求。抛弃根本的、主要的，而去追求枝节的、次要的。比喻不抓根本环节，而只在枝节问题上下功夫。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "摊破词结",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "动词加名词结构"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "唯恐有失",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "是指担心出现失误，出现状况"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "无缘无故",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "没有一点原因。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "兴衰得失",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "意思是事物变化发展的相对状态——兴（兴盛）衰（衰落）得（得益）失（失利）。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "拥军",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "地方拥护军队。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "欲",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "● 欲yù ㄩˋ ◎ 想得到某种东西或想达到某种目的的要求：欲念。欲望。欲火。食欲。情欲。禁欲。纵欲。 ◎ 想要，希望：欲盖弥彰。欲罢不能。欲速不达。 ◎ 需要：胆欲大而心欲细。 ◎ 能要：摇摇欲坠。山雨欲来风满楼。 ◎ 婉顺的样子。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "赞不绝口",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "不住口地称赞。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "缜密",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "细致;周密。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "争而不得",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "取得、得到"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "指鹿为马",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "指着鹿，说是马。比喻故意颠倒黑白，混淆是非。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "重岗叠阜",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "意思同“重峦叠嶂”——层层叠叠、连绵不断的山峰"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "另类独行",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "与众不同,行为和常人不一样,也可以是一种张扬自我的方式"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "远书",
+      "predicate": "edukg_prop_history__main-P418",
+      "object": "止庵"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E7756",
+    "property": {
+      "subject": "开天辟地",
+      "predicate": "edukg_prop_biology__main-P114",
+      "object": "三国·吴·徐整《三五历纪》：“天地混沌如鸡子，盘古生在其中，万八千岁，天地开辟，阳清为天，阴浊为地，盘古在其中。”"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "烟云笼罩",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "烟气和云雾缭绕、覆盖"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "九日送人",
+      "predicate": "edukg_prop_history__main-P418",
+      "object": "李嘉祐、司空曙、刘昚虚"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E7802",
+    "property": {
+      "subject": "投桃报李",
+      "predicate": "edukg_prop_biology__main-P114",
+      "object": "《诗经·大雅·抑》：“投我以桃，报之以李。”"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E7856",
+    "property": {
+      "subject": "东山再起",
+      "predicate": "edukg_prop_biology__main-P114",
+      "object": "晋书·谢安传》：“隐居会稽东山，年逾四十复出为桓温司马，累迁中书、司徒等要职，晋室赖以转危为安。”"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "大人虎变",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "虎变：如虎身花纹的变化。比喻居上位者出处行动变化莫测。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "变幻莫测",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "变幻：变化不可测度。变化很多，不能预料。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "苍狗白衣",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "同白衣苍狗，比喻世事变化无常。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "风云变幻",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "象风云那样变化不定。比喻时局变化迅速，动向难以预料。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "海屋添筹",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "海屋：寓言中堆存记录沧桑变化筹码的房间；筹：筹码。旧时用于祝人长寿。"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E3408",
+    "property": {
+      "subject": "形异意同",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "有所转换实质一致"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "不赞",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "一句话也不说。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "蜕化变质",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "蜕化：虫类脱皮变化。比喻人堕落变坏。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "一狐之腋",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "腋：指狐狸腋下的皮毛。一只狐狸腋下的皮毛。比喻珍贵的东西。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "泾渭分明",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "泾河水清，渭河水浑，泾河的水流入渭河时，清浊不混。比喻界限清楚或是非分明。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "亡羊补牢",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "牢：关牲口的圈"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "厉兵秣马",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "厉：同“砺”，磨；兵：兵器；秣：喂牲口。磨好兵器，喂好马。形容准备战斗。"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E7975",
+    "property": {
+      "subject": "火中取栗",
+      "predicate": "edukg_prop_biology__main-P114",
+      "object": "十七世纪法国寓言诗人拉·封丹的寓言《猴子与猫》载：猴子骗猫取火中栗子，栗子让猴子吃了，猫却把脚上的毛烧掉了。"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "琴瑟不调",
+      "predicate": "edukg_prop_common__main-P4",
+      "object": "琴瑟：古乐器名，比喻夫妇。①指琴瑟合奏时，声音没有调整得和谐。②比喻夫妻不和。"
+    }
+  }
+]

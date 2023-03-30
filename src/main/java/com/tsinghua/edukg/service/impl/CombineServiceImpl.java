@@ -88,7 +88,7 @@ public class CombineServiceImpl implements CombineService {
             // 过滤
             instanceList = instanceList.stream().filter(s -> s.getName().length() < 10).collect(Collectors.toList());
         }
-        if(linkingEntities.size() == 0) {
+        if(CollectionUtils.isEmpty(linkingEntities)) {
             instanceList.addAll(neoManager.getEntityWithScoreFromName(searchText));
             instanceList.addAll(neoManager.getEntityWithScoreFromProperty(searchText));
         }
@@ -96,7 +96,7 @@ public class CombineServiceImpl implements CombineService {
             instanceList = instanceList.subList(0, pageSize);
         }
         combineLinkingVO.setInstanceList(instanceList);
-        if(instanceList.size() != 0) {
+        if(!CollectionUtils.isEmpty(instanceList)) {
             // 首实体详细信息赋值（instanceInfo）
             Entity instanceInfo = neoManager.getEntityFromUri(instanceList.get(0).getUri());
             combineLinkingVO.setCourseList(courseService.getCourseFromUri(instanceList.get(0).getUri()));

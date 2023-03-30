@@ -1,7 +1,9 @@
 package com.tsinghua.edukg.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 实体属性
@@ -10,6 +12,8 @@ import lombok.Data;
  * @date 2022/10/12
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
 public class Property {
 

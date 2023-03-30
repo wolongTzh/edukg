@@ -96,6 +96,12 @@ public class NeoManagerTest {
         List<EntityWithScore> entityWithScores = neoManager.getEntityWithScoreFromName(name);
         log.info(JSON.toJSONString(entityWithScores));
     }
+    @Test
+    public void getEntityListFromClass() {
+        String className = "edukg_cls_chinese__main-C23";
+        List<Entity> entityList = neoManager.getEntityListFromClass(className);
+        log.info(JSON.toJSONString(entityList));
+    }
 
     @Test
     public void getEntityFromUri() {
