@@ -68,6 +68,17 @@ public class CommonUtil {
         return map;
     }
 
+    public static List<String> readPlainTextFile(String path) {
+        File file =new File(path);
+        List<String> contents = new ArrayList<>();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(file));) {
+            contents = bufferedReader.lines().collect(Collectors.toList());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return contents;
+    }
+
     public static JSONObject readJsonOut(String filePath) throws IOException {
         File file = new File(filePath);
         Reader reader = new InputStreamReader(new FileInputStream(file), "Utf-8");

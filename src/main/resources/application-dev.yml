@@ -41,8 +41,8 @@ spring:
     address: 47.94.201.245
     port: 9200
     scheme: http
-    username: admin
-    password: admin
+    username: elastic
+    password: 5Vc8fC8kjJNiT=SYZFKF
     index:
       examSource: examsource
       irqa: irqa
