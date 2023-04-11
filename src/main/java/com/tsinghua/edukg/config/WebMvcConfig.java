@@ -11,5 +11,8 @@ public class WebMvcConfig  implements WebMvcConfigurer {
         // /data/**是静态映射， file:/data/是文件在服务器的路径
         registry.addResourceHandler("/data/**")
                 .addResourceLocations("file:/data/");
+        // /data1/**是静态映射， file:/data1/是文件在服务器的路径
+        registry.addResourceHandler("/data1/**")
+                .addResourceLocations("file:/data1/");
     }
 }
