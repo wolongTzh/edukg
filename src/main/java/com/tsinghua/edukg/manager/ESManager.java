@@ -210,7 +210,7 @@ public class ESManager {
             );
         }
         BoolQuery boolQuery = builder.build();
-        SearchResponse<TextBook> termSearch = client.search(s -> s
+        SearchResponse<IRQALiu> termSearch = client.search(s -> s
                         .index(irqaIndex)
                         .query(q -> q
                                 .bool(boolQuery)
@@ -218,8 +218,8 @@ public class ESManager {
                         .highlight(h -> h
                                 .fields(field, new HighlightField.Builder().build())
                         ),
-                TextBook.class);
-        for (Hit<TextBook> hit: termSearch.hits().hits()) {
+                IRQALiu.class);
+        for (Hit<IRQALiu> hit: termSearch.hits().hits()) {
             String highlightText = "";
             for (String highlight : hit.highlight().get(field)) {
                 highlightText += highlight;
@@ -242,7 +242,7 @@ public class ESManager {
         String miniMatch = "";
         String field = "all";
         List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
-        SearchResponse<IrqaTextBook> matchSearch;
+        SearchResponse<IRQALiu> matchSearch;
         if(keyWords.split(" ").length > 8) {
             matchSearch = client.search(s -> s
                             .index(irqaIndex)
@@ -256,7 +256,7 @@ public class ESManager {
                             .highlight(h -> h
                                     .fields(field, new HighlightField.Builder().build())
                             ),
-                    IrqaTextBook.class);
+                    IRQALiu.class);
         }
         else if(keyWords.split(" ").length > 3) {
             matchSearch = client.search(s -> s
@@ -271,7 +271,7 @@ public class ESManager {
                             .highlight(h -> h
                                     .fields(field, new HighlightField.Builder().build())
                             ),
-                    IrqaTextBook.class);
+                    IRQALiu.class);
         }
         else {
             matchSearch = client.search(s -> s
@@ -286,12 +286,12 @@ public class ESManager {
                             .highlight(h -> h
                                     .fields(field, new HighlightField.Builder().build())
                             ),
-                    IrqaTextBook.class);
+                    IRQALiu.class);
         }
-        for (Hit<IrqaTextBook> hit: matchSearch.hits().hits()) {
+        for (Hit<IRQALiu> hit: matchSearch.hits().hits()) {
             textBookHighLightList.add(TextBookHighLight.builder()
                     .bookId(hit.id())
-                    .example(hit.source().getContent())
+                    .example(hit.source().getAll())
                     .score(hit.score())
                     .build());
         }
