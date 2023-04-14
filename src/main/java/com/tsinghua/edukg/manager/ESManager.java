@@ -197,7 +197,7 @@ public class ESManager {
      * @throws IOException
      */
     public List<TextBookHighLight> getHighLightTextBookFromText(List<String> keyWords) throws IOException {
-        String field = "content";
+        String field = "all";
         List<String> retList = new ArrayList<>();
         List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
         BoolQuery.Builder builder = new BoolQuery.Builder();
@@ -240,7 +240,7 @@ public class ESManager {
      */
     public List<TextBookHighLight> getHighLightTextBookFromMiniMatch(String keyWords) throws IOException {
         String miniMatch = "";
-        String field = "content";
+        String field = "all";
         List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
         SearchResponse<IrqaTextBook> matchSearch;
         if(keyWords.split(" ").length > 8) {
