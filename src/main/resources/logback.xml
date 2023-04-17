@@ -6,6 +6,9 @@
         <encoder charset="UTF-8">
             <pattern>[%-5level] %d{HH:mm:ss.SSS} [%thread] %logger{36} - %msg%n</pattern>
         </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>warn</level>
+        </filter>
     </appender>
 
     <!-- 日志级别 -->
