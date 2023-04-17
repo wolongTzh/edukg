@@ -78,6 +78,7 @@ public class SparqlTest {
 
         List<String> contents = CommonUtil.readPlainTextFile("./anoData/propertyLs.txt");
         for(String content : contents) {
+            log.info("start：" + content + "\n");
             String filePath = "./anoData/prop/";
             filePath += content.split(" ")[0] + ".txt";
             String pred = "<" + content.split(" ")[1] + ">";
