@@ -6,6 +6,7 @@ import org.apache.jena.query.*;
 import org.apache.jena.rdf.model.*;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.StringUtils;
 
 import java.io.*;
 import java.util.*;
@@ -129,15 +130,15 @@ public class SparqlTest {
             String realPro2Source = String.format(pro2Source, uri, uri);
             List<String> sourceList = propPariOut(realPro2Source, "annotation.ttl", pro2SourceParam);
             for(String sl : sourceList) {
-                if(name.equals("也")) {
-                    System.out.println(1);
-                }
                 String proSource = sl.split(" ")[1];
                 String predName = sl.split(" ")[0];
                 if(!predName.equals(pred) && !pred.contains(predName)) {
                     continue;
                 }
                 String cls = retMap.get(uri);
+                if(StringUtils.isEmpty(cls) || cls.length() < 2) {
+                    continue;
+                }
                 fileWritter.write(name + " " + cls.substring(1, cls.length()) + " " + uri + " " + pred + " " + proSource + "\n");
                 fileWritter.flush();
                 retList.add(name + " " + uri + " " + pred + " " + proSource);
