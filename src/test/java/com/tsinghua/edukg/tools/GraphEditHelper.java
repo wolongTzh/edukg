@@ -318,7 +318,7 @@ public class GraphEditHelper {
                     entityList.add(entity);
                     log.info(JSON.toJSONString(entity));
                 }
-//                neoManager.batchAddEntities(subject, label, entityList);
+                neoManager.batchAddEntities(subject, label, entityList);
             }
             catch (Exception e) {
                 sb.append(innerObject.toJSONString() + "\n");

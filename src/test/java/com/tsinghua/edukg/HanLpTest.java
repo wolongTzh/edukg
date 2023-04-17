@@ -19,7 +19,7 @@ public class HanLpTest {
 
     @Test
     public void splitter() {
-        String text = "成都";
+        String text = "欧阳修字什么，自号什么？晚年又号什么？哪个朝代的文学家？";
         List<Term> splits = HanlpHelper.cutWords(text);
         String needConcernWords = HanlpHelper.CutWordRetNeedConcernWords(text);
         System.out.println(needConcernWords);

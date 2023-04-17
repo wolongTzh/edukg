@@ -1,128 +1,170 @@
 [
   {
-    "subject": "四面楚歌",
+    "subject": "《己亥杂诗》",
     "subjectUri": "",
-    "predicate": "edukg_prop_chemistry__main-R6",
-    "object": "项羽",
-    "objectUri": "http://edukg.org/knowledge/3.0/instance/history#main-E23"
+    "predicate": "edukg_prop_chinese__main-R2",
+    "object": "龚自珍",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E2742"
   },
   {
-    "subject": "《归去来兮辞》",
+    "subject": "《满江红》",
+    "subjectUri": "",
+    "predicate": "edukg_prop_chinese__main-R2",
+    "object": "岳飞",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/history#main-E1598"
+  },
+  {
+    "subject": "《春晓》",
+    "subjectUri": "",
+    "predicate": "edukg_prop_chinese__main-R2",
+    "object": "孟浩然",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E1703"
+  },
+  {
+    "subject": "《清平乐·村居》",
+    "subjectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E8211",
+    "predicate": "edukg_prop_chinese__main-R2",
+    "object": "辛弃疾",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E6114"
+  },
+  {
+    "subject": "《黄石草堂·其二》",
+    "subjectUri": "",
+    "predicate": "edukg_prop_chinese__main-R2",
+    "object": "周如砥",
+    "objectUri": ""
+  },
+  {
+    "subject": "《鹧鸪天·雪照山城玉指寒》",
+    "subjectUri": "",
+    "predicate": "edukg_prop_chinese__main-R2",
+    "object": "刘著",
+    "objectUri": ""
+  },
+  {
+    "subject": "《定风波》",
+    "subjectUri": "",
+    "predicate": "edukg_prop_chinese__main-R2",
+    "object": "苏轼",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E6342"
+  },
+  {
+    "subject": "《梅岭三章》",
+    "subjectUri": "",
+    "predicate": "edukg_prop_chinese__main-R2",
+    "object": "陈毅",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/history#main-E2370"
+  },
+  {
+    "subject": "《卜算子·咏梅》",
+    "subjectUri": "",
+    "predicate": "edukg_prop_chinese__main-R2",
+    "object": "毛泽东",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/history#main-E1997"
+  },
+  {
+    "subject": "《望天门山》",
+    "subjectUri": "",
+    "predicate": "edukg_prop_chinese__main-R2",
+    "object": "李白",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E6763"
+  },
+  {
+    "subject": "《饮湖上初晴后雨二首·其二》",
+    "subjectUri": "",
+    "predicate": "edukg_prop_chinese__main-R2",
+    "object": "苏轼",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E6342"
+  },
+  {
+    "subject": "《秋思》",
+    "subjectUri": "",
+    "predicate": "edukg_prop_chinese__main-R2",
+    "object": "张籍",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/history#main-E10667"
+  },
+  {
+    "subject": "《望月怀远》",
+    "subjectUri": "",
+    "predicate": "edukg_prop_chinese__main-R2",
+    "object": "张九龄",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/politics#xlore-E4946"
+  },
+  {
+    "subject": "《归去来兮辞·并序》",
     "subjectUri": "",
     "predicate": "edukg_prop_chinese__main-R2",
     "object": "陶渊明",
     "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E1343"
   },
   {
-    "subject": "黔驴技穷",
-    "subjectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E7724",
-    "predicate": "edukg_prop_chinese__main-R2",
-    "object": "柳宗元",
-    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E5094"
-  },
-  {
-    "subject": "《再塑生命》",
+    "subject": "《沁园春·长沙》",
     "subjectUri": "",
     "predicate": "edukg_prop_chinese__main-R2",
-    "object": "海伦·凯勒",
-    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E2026"
+    "object": "毛泽东",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/history#main-E1997"
   },
   {
-    "subject": "卧薪尝胆",
+    "subject": "《沁园春·雪》",
     "subjectUri": "",
-    "predicate": "edukg_prop_chemistry__main-R6",
-    "object": "勾践",
-    "objectUri": "http://edukg.org/knowledge/3.0/instance/history#main-E11596"
+    "predicate": "edukg_prop_chinese__main-R2",
+    "object": "毛泽东",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/history#main-E1997"
   },
   {
-    "subject": "草船借箭",
+    "subject": "《西江月·夜行黄沙道中》",
     "subjectUri": "",
-    "predicate": "edukg_prop_chemistry__main-R6",
-    "object": "诸葛亮",
-    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E6916"
-  },
-  {
-    "subject": "题西林壁",
-    "subjectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E7407",
     "predicate": "edukg_prop_chinese__main-R2",
-    "object": "苏轼",
-    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E6342"
+    "object": "辛弃疾",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E6114"
   },
   {
-    "subject": "夜书所见",
-    "subjectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E7417",
+    "subject": "《长歌行》",
+    "subjectUri": "",
     "predicate": "edukg_prop_chinese__main-R2",
-    "object": "叶绍翁",
-    "objectUri": "http://edukg.org/knowledge/3.0/instance/history#main-E13451"
+    "object": "汉乐府",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E2029"
   },
   {
-    "subject": "黄鹤楼送孟浩然之广陵",
-    "subjectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E7403",
+    "subject": "《子夜吴歌·秋歌》",
+    "subjectUri": "",
     "predicate": "edukg_prop_chinese__main-R2",
     "object": "李白",
     "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E6763"
   },
   {
-    "subject": "晓出净慈寺送林子方",
-    "subjectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E7390",
-    "predicate": "edukg_prop_chinese__main-R2",
-    "object": "杨万里",
-    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E4284"
-  },
-  {
-    "subject": "芙蓉楼送辛渐",
-    "subjectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E7410",
-    "predicate": "edukg_prop_chinese__main-R2",
-    "object": "王昌龄",
-    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E172"
-  },
-  {
-    "subject": "闻鸡起舞",
+    "subject": "《狼三则·其二》",
     "subjectUri": "",
+    "predicate": "edukg_prop_chinese__main-R2",
+    "object": "蒲松龄",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E5274"
+  },
+  {
+    "subject": "《核舟记》",
+    "subjectUri": "",
+    "predicate": "edukg_prop_chinese__main-R2",
+    "object": "魏学洢",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E7238"
+  },
+  {
+    "subject": "《七古残句》",
+    "subjectUri": "",
+    "predicate": "edukg_prop_chinese__main-R2",
+    "object": "毛泽东",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/history#main-E1997"
+  },
+  {
+    "subject": "《童趣》",
+    "subjectUri": "",
+    "predicate": "edukg_prop_chinese__main-R2",
+    "object": "沈复",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E7269"
+  },
+  {
+    "subject": "望梅止渴",
+    "subjectUri": "http://edukg.org/knowledge/3.0/instance/biology#main-E10738",
     "predicate": "edukg_prop_chemistry__main-R6",
-    "object": "祖逖",
-    "objectUri": "http://edukg.org/knowledge/3.0/instance/history#main-E11250"
-  },
-  {
-    "subject": "红楼梦",
-    "subjectUri": "",
-    "predicate": "edukg_prop_chinese__main-R2",
-    "object": "曹雪芹",
-    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E1268"
-  },
-  {
-    "subject": "珍珠鸟",
-    "subjectUri": "",
-    "predicate": "edukg_prop_chinese__main-R2",
-    "object": "冯骥才",
-    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E7036"
-  },
-  {
-    "subject": "学弈",
-    "subjectUri": "",
-    "predicate": "edukg_prop_common__main-P10",
-    "object": "《孟子》",
-    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E4646"
-  },
-  {
-    "subject": "出言不逊",
-    "subjectUri": "",
-    "predicate": "edukg_prop_chemistry__main-R6",
-    "object": "张郃",
-    "objectUri": "http://edukg.org/knowledge/3.0/instance/history#main-E1400"
-  },
-  {
-    "subject": "墨梅",
-    "subjectUri": "",
-    "predicate": "edukg_prop_chinese__main-R2",
-    "object": "王冕",
-    "objectUri": "http://edukg.org/knowledge/3.0/instance/history#main-E5403"
-  },
-  {
-    "subject": "大器晚成",
-    "subjectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E8086",
-    "predicate": "edukg_prop_chemistry__main-R6",
-    "object": "崔琰",
-    "objectUri": "http://edukg.org/knowledge/3.0/instance/history#main-E14783"
+    "object": "曹操",
+    "objectUri": "http://edukg.org/knowledge/3.0/instance/chinese#main-E4158"
   }
 ]

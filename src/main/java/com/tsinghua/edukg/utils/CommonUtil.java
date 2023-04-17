@@ -13,10 +13,7 @@ import org.springframework.util.StringUtils;
 
 import java.io.*;
 import java.lang.reflect.Field;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -108,6 +105,25 @@ public class CommonUtil {
     public static Map<String, String> readMapOut(String filePath) throws IOException {
         JSONObject jsonObject = readJsonOut(filePath);
         return (Map) JSON.parseObject(JSON.toJSONString(jsonObject));
+    }
+
+    public static void failedRecord(String content) throws IOException {
+        File file = new File("./failedRecord.txt");
+        if(!file.exists()){
+            file.createNewFile();
+        }
+        FileWriter fileWriter = new FileWriter(file.getName(),true);
+        fileWriter.write(content);
+        fileWriter.flush();
+        fileWriter.close();
+    }
+
+    public static List<String> readDir(String dirName) {
+        File file = new File(dirName);
+        if(file.isDirectory()) {
+            return Arrays.asList(file.list());
+        }
+        return null;
     }
 
     /**
