@@ -78,7 +78,7 @@ public class SparqlTest {
 
         List<String> contents = CommonUtil.readPlainTextFile("./anoData/propertyLs.txt");
         for(String content : contents) {
-            String filePath = "C:\\Users\\Administrator\\Documents\\edukg\\anoData\\prop\\";
+            String filePath = "./anoData./prop";
             filePath += content.split(" ")[0] + ".txt";
             String pred = "<" + content.split(" ")[1] + ">";
             getProLoc(pred, filePath);
