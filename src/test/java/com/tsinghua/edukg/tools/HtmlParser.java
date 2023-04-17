@@ -54,14 +54,14 @@ public class HtmlParser {
                     List<String> cls = Arrays.asList(content.split(" ")[1].split(","));
                     String objectUrl = content.split(" ")[4];
                     String objectName = content.split(" ")[3];
-                    String htmlPath = "D:\\";
+                    String htmlPath = "/data1/home/keg";
                     if(!subjectUrl.split("#xpointer")[0].split("/")[1].equals(objectUrl.split("#xpointer")[0].split("/")[1])) {
                         CommonUtil.failedRecord(content);
                         continue;
                     }
                     int index = Integer.parseInt(subjectUrl.split("#xpointer")[0].split("label/")[1]);
                     ZYKHtml zykHtml = zykHtmlMapper.selectByPrimaryKey(index);
-                    htmlPath += zykHtml.getFilePath().replace("/", "\\");
+                    htmlPath += zykHtml.getFilePath();
                     File htmlFile = new File(htmlPath);
                     Document document = Jsoup.parse(htmlFile, "UTF-8");
                     SourceInfo outerSource = getAlignMsg(subjectUrl, objectUrl, document);
