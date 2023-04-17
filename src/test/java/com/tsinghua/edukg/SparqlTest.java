@@ -117,11 +117,13 @@ public class SparqlTest {
         List<String> nameList = propPariOut(name2Source, "knowledge.ttl", name2SourceParam);
         List<String> retList = new ArrayList<>();
         Map<String, String> retMap = clsOut(clsQuery, "knowledge.ttl");
+        int count = 0;
         for(String nl : nameList) {
-            String name = nl.split(" ")[0];
-            if(name.equals("设问")) {
-                System.out.println(1);
+            count++;
+            if(count % 10 == 0) {
+                log.info("当前：" + count + " 总共：" + nameList.size());
             }
+            String name = nl.split(" ")[0];
             String uri = nl.split(" ")[1];
             String pred = nl.split(" ")[2];
             String realPro2Source = String.format(pro2Source, uri, uri);
