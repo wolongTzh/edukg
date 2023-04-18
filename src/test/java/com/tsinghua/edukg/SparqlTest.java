@@ -124,12 +124,18 @@ public class SparqlTest {
             if(count % 10 == 0) {
                 log.info("当前：" + count + " 总共：" + nameList.size());
             }
+            if(StringUtils.isEmpty(nl) || nl.split(" ").length < 3) {
+                continue;
+            }
             String name = nl.split(" ")[0];
             String uri = nl.split(" ")[1];
             String pred = nl.split(" ")[2];
             String realPro2Source = String.format(pro2Source, uri, uri);
             List<String> sourceList = propPariOut(realPro2Source, "annotation.ttl", pro2SourceParam);
             for(String sl : sourceList) {
+                if(StringUtils.isEmpty(sl) || sl.split(" ").length < 2) {
+                    continue;
+                }
                 String proSource = sl.split(" ")[1];
                 String predName = sl.split(" ")[0];
                 if(!predName.equals(pred) && !pred.contains(predName)) {
@@ -189,6 +195,9 @@ public class SparqlTest {
                 if(proSource.equals(oburi)) {
                     String cls = retMap.get(uri);
                     String objCls = retMap.get(oburi);
+                    if(StringUtils.isEmpty(cls) || cls.length() < 2) {
+                        continue;
+                    }
                     fileWritter.write(name + " " + cls.substring(1, cls.length()) + " " + uri + " " + pred + " " + objCls + " " + proSource + "\n");
                     fileWritter.flush();
                     retList.add(name + " " + uri + " " + pred + " " + proSource);
