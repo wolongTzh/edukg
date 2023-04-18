@@ -180,6 +180,9 @@ public class SparqlTest {
         List<String> retList = new ArrayList<>();
         Map<String, String> retMap = clsOut(clsQuery, "knowledge.ttl");
         for(String nl : nameList) {
+            if(StringUtils.isEmpty(nl) || nl.split(" ").length < 4) {
+                continue;
+            }
             String name = nl.split(" ")[0];
             String uri = nl.split(" ")[1];
             String pred = nl.split(" ")[2];
@@ -187,6 +190,9 @@ public class SparqlTest {
             String realPro2Source = String.format(pro2Source, uri, uri);
             List<String> sourceList = propPariOut(realPro2Source, "annotation.ttl", pro2SourceParam);
             for(String sl : sourceList) {
+                if(StringUtils.isEmpty(sl) || sl.split(" ").length < 2) {
+                    continue;
+                }
                 String proSource = sl.split(" ")[1];
                 String predName = sl.split(" ")[0];
                 if(!predName.equals(pred) && !pred.contains(predName)) {

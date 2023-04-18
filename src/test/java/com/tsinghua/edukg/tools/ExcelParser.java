@@ -54,6 +54,7 @@ public class ExcelParser {
                 outEntities.add(OutEntity.builder()
                                 .subject(out.getSource())
                                 .predicate(out.getPredicate())
+                                .predicateAnswer(out.getAnswerByAlgo())
                                 .answer(out.getAnswer())
                                 .question(out.getContent())
                                 .id(out.getId())
@@ -133,6 +134,7 @@ class OutEntity {
     public String subject;
 
     public String predicate;
+    public String predicateAnswer;
 
     public String answer;
 }
