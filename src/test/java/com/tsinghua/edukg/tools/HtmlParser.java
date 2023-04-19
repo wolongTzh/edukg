@@ -47,7 +47,10 @@ public class HtmlParser {
         for(String fileName : fileNames) {
             List<String> contents = CommonUtil.readPlainTextFile(basePath + fileName);
             Set<String> subjectCls = new HashSet<>();
+            int count = 0;
             for(String content : contents) {
+                count++;
+                log.info("当前文件：" + fileName + " 当前轮回数：" + count + " 总轮回数：" + contents.size());
                 try {
                     String subjectUrl = content.split(" ")[2];
                     String subjectName = content.split(" ")[0];
