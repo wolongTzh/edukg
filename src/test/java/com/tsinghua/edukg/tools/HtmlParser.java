@@ -33,7 +33,7 @@ public class HtmlParser {
     ZYKHtmlMapper zykHtmlMapper;
 
     @Test
-    public void gen() throws IOException {
+    public void genProp() throws IOException {
         String basePath = "./anoData/prop/";
         String propOut = "./propOut.txt";
         String jsonOut = "./jsonOut.json";
@@ -77,7 +77,7 @@ public class HtmlParser {
                     alignIndexNew(outerSource, objectSource, subjectSource);
                     entities.add(subjectName);
                     subjectCls.addAll(cls);
-                    Outer outer = genOuter(cls, subjectSource, objectSource, outerSource, fileName);
+                    Outer outer = genOuterProp(cls, subjectSource, objectSource, outerSource, fileName);
                     fileWriter1.write(JSON.toJSONString(outer, SerializerFeature.DisableCircularReferenceDetect) + "\n");
                     fileWriter1.flush();
                     System.out.println(JSON.toJSONString(outer, SerializerFeature.DisableCircularReferenceDetect));
@@ -126,7 +126,107 @@ public class HtmlParser {
 //        }
     }
 
-    public Outer genOuter(List<String> cls, SourceInfo subjectSource, SourceInfo objectSource, SourceInfo outerSource, String fileName) {
+    @Test
+    public void genRela() throws IOException {
+        String basePath = "./anoData/rela/";
+        String propOut = "./relaOut.txt";
+        String jsonOut = "./jsonOut.json";
+        File file = new File(propOut);
+        File file1 = new File(jsonOut);
+        FileWriter fileWriter = new FileWriter(file.getName(), false);
+        FileWriter fileWriter1 = new FileWriter(file1.getName(), false);
+        List<String> fileNames = CommonUtil.readDir(basePath);
+        StringBuilder sb = new StringBuilder();
+        Set<String> entities = new HashSet<>();
+        for(String fileName : fileNames) {
+            List<String> contents = CommonUtil.readPlainTextFile(basePath + fileName);
+            Set<String> subjectCls = new HashSet<>();
+            Set<String> objectCls = new HashSet<>();
+            int count = 0;
+            for(String content : contents) {
+                count++;
+                log.info("当前文件：" + fileName + " 当前轮回数：" + count + " 总轮回数：" + contents.size());
+                try {
+                    String subjectUrl = content.split(" ")[2];
+                    String subjectName = content.split(" ")[0];
+                    List<String> cls = Arrays.asList(content.split(" ")[1].split(","));
+                    List<String> cls2 = Arrays.asList(content.split(" ")[4].split(","));
+                    String objectUrl = content.split(" ")[5];
+                    String objectName = content.split(" ")[3];
+                    String htmlPath = "D:";
+                    if(!subjectUrl.split("#xpointer")[0].split("/")[1].equals(objectUrl.split("#xpointer")[0].split("/")[1])) {
+                        CommonUtil.failedRecord(content);
+                        continue;
+                    }
+                    int index = Integer.parseInt(subjectUrl.split("#xpointer")[0].split("label/")[1]);
+                    ZYKHtml zykHtml = zykHtmlMapper.selectByPrimaryKey(index);
+                    htmlPath += zykHtml.getFilePath().replace("/", "\\");
+                    File htmlFile = new File(htmlPath);
+                    Document document = Jsoup.parse(htmlFile, "UTF-8");
+                    SourceInfo outerSource = getAlignMsg(subjectUrl, objectUrl, document);
+                    SourceInfo objectSource = getSource(objectUrl, document, objectName);
+                    SourceInfo subjectSource = getSource(subjectUrl, document, subjectName);
+                    if(outerSource == null || subjectSource == null) {
+                        CommonUtil.failedRecord(content);
+                        continue;
+                    }
+                    alignIndexNew(outerSource, objectSource, subjectSource);
+                    entities.add(subjectName);
+                    entities.add(objectName);
+                    subjectCls.addAll(cls);
+                    objectCls.addAll(cls2);
+                    Outer outer = genOuterRela(cls, cls2, subjectSource, objectSource, outerSource, fileName);
+                    fileWriter1.write(JSON.toJSONString(outer, SerializerFeature.DisableCircularReferenceDetect) + "\n");
+                    fileWriter1.flush();
+                    System.out.println(JSON.toJSONString(outer, SerializerFeature.DisableCircularReferenceDetect));
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            sb.append(fileName.replace(".txt", "") + "：\n");
+            sb.append("主体：");
+            for(String clsName : subjectCls) {
+                sb.append(clsName + "|");
+            }
+            sb.append("\n客体：");
+            for(String clsName : objectCls) {
+                sb.append(clsName + "|");
+            }
+        }
+        StringBuilder outerSb = new StringBuilder();
+        outerSb.append("\n实体：\n");
+        for(String entityName : entities) {
+            outerSb.append(entityName + "\n");
+        }
+        outerSb.append("关系：\n");
+        outerSb.append(sb);
+        fileWriter.write(outerSb.toString());
+        fileWriter.flush();
+        fileWriter.close();
+        fileWriter1.close();
+
+//        try {
+//            File htmlFile = new File("Chapter_01_62_知识4中国古代作家简介.html");
+//            Document document = Jsoup.parse(htmlFile, "UTF-8");
+//            String subjectUrl = "http://kb.cs.tsinghua.edu.cn/apibztask/label/3663#xpointer(start-point(string-range(//BODY/P[64]/SPAN[1]/text()[1],'',3))/range-to(string-range(//BODY/P[64]/SPAN[1]/text()[1],'',5)))";
+//            String subjectName = "宋濂";
+//            String objectUrl = "http://kb.cs.tsinghua.edu.cn/apibztask/label/3663#xpointer(start-point(string-range(//BODY/P[64]/text()[1],'',19))/range-to(string-range(//BODY/P[64]/text()[1],'',21)))";
+//            String objectName = "景濂";
+//            SourceInfo outerSource = getAlignMsg(subjectUrl, objectUrl, document);
+//            SourceInfo objectSource = getSource(objectUrl, document, objectName);
+//            SourceInfo subjectSource = getSource(subjectUrl, document, subjectName);
+//            if(outerSource == null || subjectSource == null) {
+//                CommonUtil.failedRecord();
+//            }
+//            alignIndex(outerSource, objectSource, subjectSource);
+//            System.out.println(subjectSource.getRawText().substring(24, 26));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+    }
+
+    public Outer genOuterProp(List<String> cls, SourceInfo subjectSource, SourceInfo objectSource, SourceInfo outerSource, String fileName) {
         Entity subjectEntity = Entity.builder()
                 .text(subjectSource.getName())
                 .type(cls)
@@ -135,6 +235,34 @@ public class HtmlParser {
         Entity objectEntity = Entity.builder()
                 .text(objectSource.getName())
                 .type(Arrays.asList("属性"))
+                .offset(genOffset(objectSource.getStartPos(), objectSource.getEndPos()))
+                .build();
+        List<Entity> args = new ArrayList<>();
+        args.add(subjectEntity);
+        args.add(objectEntity);
+        Relation relation = Relation.builder()
+                .type(fileName.replace(".txt", ""))
+                .args(args)
+                .build();
+        List<Relation> relations = new ArrayList<>();
+        relations.add(relation);
+        Outer outer = Outer.builder()
+                .text(outerSource.getRawText())
+                .entity(args)
+                .relation(relations)
+                .build();
+        return outer;
+    }
+
+    public Outer genOuterRela(List<String> cls1, List<String> cls2, SourceInfo subjectSource, SourceInfo objectSource, SourceInfo outerSource, String fileName) {
+        Entity subjectEntity = Entity.builder()
+                .text(subjectSource.getName())
+                .type(cls1)
+                .offset(genOffset(subjectSource.getStartPos(), subjectSource.getEndPos()))
+                .build();
+        Entity objectEntity = Entity.builder()
+                .text(objectSource.getName())
+                .type(cls2)
                 .offset(genOffset(objectSource.getStartPos(), objectSource.getEndPos()))
                 .build();
         List<Entity> args = new ArrayList<>();
