@@ -179,9 +179,14 @@ public class SparqlTest {
         List<String> nameList = propPariOut(name2Source, "knowledge.ttl", name2SourceParam);
         List<String> retList = new ArrayList<>();
         Map<String, String> retMap = clsOut(clsQuery, "knowledge.ttl");
+        int count = 0;
         for(String nl : nameList) {
+            count++;
             if(StringUtils.isEmpty(nl) || nl.split(" ").length < 4) {
                 continue;
+            }
+            if(count % 10 == 0) {
+                log.info("文件：" + outputPath + " 当前：" + count + " 总共：" + nameList.size());
             }
             String name = nl.split(" ")[0];
             String uri = nl.split(" ")[1];
@@ -189,14 +194,9 @@ public class SparqlTest {
             String oburi = nl.split(" ")[3];
             String realPro2Source = String.format(pro2Source, uri, uri);
             List<String> sourceList = propPariOut(realPro2Source, "annotation.ttl", pro2SourceParam);
-            int count = 0;
             for(String sl : sourceList) {
                 if(StringUtils.isEmpty(sl) || sl.split(" ").length < 2) {
                     continue;
-                }
-                count++;
-                if(count % 10 == 0) {
-                    log.info("文件：" + outputPath + " 当前：" + count + " 总共：" + nameList.size());
                 }
                 String proSource = sl.split(" ")[1];
                 String predName = sl.split(" ")[0];
