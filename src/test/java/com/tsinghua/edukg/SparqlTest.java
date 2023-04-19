@@ -77,21 +77,21 @@ public class SparqlTest {
     @Test
     public void getAllPre() throws IOException {
 
-        List<String> contents = CommonUtil.readPlainTextFile("./anoData/propertyLs.txt");
-        for(String content : contents) {
-            log.info("start：" + content + "\n");
-            String filePath = "./anoData/prop/";
-            filePath += content.split(" ")[0] + ".txt";
-            String pred = "<" + content.split(" ")[1] + ">";
-            getProLoc(pred, filePath);
-        }
-//        contents = CommonUtil.readPlainTextFile("./anoData/relationLs.txt");
+//        List<String> contents = CommonUtil.readPlainTextFile("./anoData/propertyLs.txt");
 //        for(String content : contents) {
-//            String filePath = "C:\\Users\\Administrator\\Documents\\edukg\\anoData\\rela\\";
+//            log.info("start：" + content + "\n");
+//            String filePath = "./anoData/prop/";
 //            filePath += content.split(" ")[0] + ".txt";
 //            String pred = "<" + content.split(" ")[1] + ">";
-//            getRelationLoc(pred, filePath);
+//            getProLoc(pred, filePath);
 //        }
+        List<String> contents = CommonUtil.readPlainTextFile("./anoData/relationLs.txt");
+        for(String content : contents) {
+            String filePath = "./anoData/rela/";
+            filePath += content.split(" ")[0] + ".txt";
+            String pred = "<" + content.split(" ")[1] + ">";
+            getRelationLoc(pred, filePath);
+        }
     }
 
     public void getProLoc(String preType, String outputPath) throws IOException {
@@ -189,9 +189,14 @@ public class SparqlTest {
             String oburi = nl.split(" ")[3];
             String realPro2Source = String.format(pro2Source, uri, uri);
             List<String> sourceList = propPariOut(realPro2Source, "annotation.ttl", pro2SourceParam);
+            int count = 0;
             for(String sl : sourceList) {
                 if(StringUtils.isEmpty(sl) || sl.split(" ").length < 2) {
                     continue;
+                }
+                count++;
+                if(count % 10 == 0) {
+                    log.info("文件：" + outputPath + " 当前：" + count + " 总共：" + nameList.size());
                 }
                 String proSource = sl.split(" ")[1];
                 String predName = sl.split(" ")[0];
