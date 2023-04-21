@@ -88,6 +88,7 @@ public class HtmlParser {
             }
             sb.append(fileName.replace(".txt", "") + "：\n");
             sb.append("主体：");
+            sb.append("实体" + "|");
             for(String clsName : subjectCls) {
                 sb.append(clsName + "|");
             }
@@ -186,10 +187,12 @@ public class HtmlParser {
             }
             sb.append(fileName.replace(".txt", "") + "：\n");
             sb.append("主体：");
+            sb.append("实体" + "|");
             for(String clsName : subjectCls) {
                 sb.append(clsName + "|");
             }
             sb.append("\n客体：");
+            sb.append("实体" + "|");
             for(String clsName : objectCls) {
                 sb.append(clsName + "|");
             }
