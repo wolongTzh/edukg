@@ -160,7 +160,7 @@ public class HtmlParser {
                     }
                     int index = Integer.parseInt(subjectUrl.split("#xpointer")[0].split("label/")[1]);
                     ZYKHtml zykHtml = zykHtmlMapper.selectByPrimaryKey(index);
-                    htmlPath += zykHtml.getFilePath().replace("/", "\\");
+                    htmlPath += zykHtml.getFilePath();
                     File htmlFile = new File(htmlPath);
                     Document document = Jsoup.parse(htmlFile, "UTF-8");
                     SourceInfo outerSource = getAlignMsg(subjectUrl, objectUrl, document);
