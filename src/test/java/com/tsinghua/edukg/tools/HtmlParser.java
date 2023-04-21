@@ -304,7 +304,7 @@ public class HtmlParser {
         String object = objectSource.getName();
         objectSource.setStartPos(rawText.split(object)[0].length());
         objectSource.setEndPos(rawText.split(object)[0].length() + object.length());
-        subjectSource.setEndPos(rawText.split(subject)[0].length());
+        subjectSource.setStartPos(rawText.split(subject)[0].length());
         subjectSource.setEndPos(rawText.split(subject)[0].length() + subject.length());
     }
     public static SourceInfo getSource(String url, Document document, String name) {
