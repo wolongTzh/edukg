@@ -36,7 +36,7 @@ public class HtmlParser {
     public void genProp() throws IOException {
         String basePath = "./anoData/prop/";
         String propOut = "./propOut.txt";
-        String jsonOut = "./jsonOut.json";
+        String jsonOut = "./jsonOutProp.json";
         File file = new File(propOut);
         File file1 = new File(jsonOut);
         FileWriter fileWriter = new FileWriter(file.getName(), false);
@@ -71,7 +71,7 @@ public class HtmlParser {
                     SourceInfo objectSource = getSource(objectUrl, document, objectName);
                     SourceInfo subjectSource = getSource(subjectUrl, document, subjectName);
                     if(outerSource == null || subjectSource == null) {
-                        CommonUtil.failedRecord(content);
+                        CommonUtil.failedRecord(content + "\n");
                         continue;
                     }
                     alignIndexNew(outerSource, objectSource, subjectSource);
@@ -130,7 +130,7 @@ public class HtmlParser {
     public void genRela() throws IOException {
         String basePath = "./anoData/rela/";
         String propOut = "./relaOut.txt";
-        String jsonOut = "./jsonOut.json";
+        String jsonOut = "./jsonOutRela.json";
         File file = new File(propOut);
         File file1 = new File(jsonOut);
         FileWriter fileWriter = new FileWriter(file.getName(), false);
@@ -153,7 +153,7 @@ public class HtmlParser {
                     List<String> cls2 = Arrays.asList(content.split(" ")[4].split(","));
                     String objectUrl = content.split(" ")[5];
                     String objectName = content.split(" ")[3];
-                    String htmlPath = "D:";
+                    String htmlPath = "/data1/home/keg";
                     if(!subjectUrl.split("#xpointer")[0].split("/")[1].equals(objectUrl.split("#xpointer")[0].split("/")[1])) {
                         CommonUtil.failedRecord(content);
                         continue;
@@ -167,7 +167,7 @@ public class HtmlParser {
                     SourceInfo objectSource = getSource(objectUrl, document, objectName);
                     SourceInfo subjectSource = getSource(subjectUrl, document, subjectName);
                     if(outerSource == null || subjectSource == null) {
-                        CommonUtil.failedRecord(content);
+                        CommonUtil.failedRecord(content + "\n");
                         continue;
                     }
                     alignIndexNew(outerSource, objectSource, subjectSource);
@@ -321,7 +321,12 @@ public class HtmlParser {
         for(Node child : spanElement.childNodes()) {
             if(child instanceof TextNode) {
                 rawText = ((TextNode) child).text().toString();
-                parseName = ((TextNode) child).text().toString().substring(start, end);
+                try {
+                    parseName = ((TextNode) child).text().toString().substring(start, end);
+                }
+                catch (Exception e) {
+                    continue;
+                }
                 break;
             }
             String childText = child.toString();
