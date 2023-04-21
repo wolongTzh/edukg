@@ -1,0 +1,146 @@
+[
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/history#main-E2807",
+    "property": {
+      "subject": "拜占廷帝国的灭亡",
+      "predicate": "edukg_prop_history__main-P234",
+      "object": "开放宽容使文明繁荣，保守狭隘使文明衰落。文明不分国界，只有落后和先进之分。保持虚心的态度，积极地向先进的文明学习，才能屹立于世界民族之林。"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/history#main-E12693",
+    "property": {
+      "subject": "新航路开辟",
+      "predicate": "edukg_prop_history__main-P115",
+      "object": "商品经济的发展和资本主义萌芽的出现(根本原因）"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "中华民国纪年",
+      "predicate": "edukg_prop_history__main-P200",
+      "object": "民国纪年是从中华民国成立的这一年开始计算，即以1912年作为民国元年"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/history#main-E3239",
+    "property": {
+      "subject": "英国资产阶级革命",
+      "predicate": "edukg_prop_history__main-P339",
+      "object": "（1）政治上：推翻了封建君主专制，确立了资产阶级的统治地位。 （2）经济上：为英国资本主义的迅速发展扫清了道路。 （3）国际影响：推动了欧洲资产阶级革命的发展和世界历史的发展进程。"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/chinese#xlore-E8014",
+    "property": {
+      "subject": "西夏",
+      "predicate": "edukg_prop_history__main-P505",
+      "object": "兴庆"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "甲午战争",
+      "predicate": "edukg_prop_history__main-P26",
+      "object": "中/日"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/history#main-E11758",
+    "property": {
+      "subject": "明治维新",
+      "predicate": "edukg_prop_history__main-P134",
+      "object": "日本"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/history#main-E15549",
+    "property": {
+      "subject": "贝尔福宣言",
+      "predicate": "edukg_prop_history__main-P134",
+      "object": "英国"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/history#main-E13657",
+    "property": {
+      "subject": "罗马帝国",
+      "predicate": "edukg_prop_history__main-P172",
+      "object": "屋大维"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/chinese#xlore-E5449",
+    "property": {
+      "subject": "唐朝",
+      "predicate": "edukg_prop_history__main-P172",
+      "object": "李渊"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "大禹",
+      "predicate": "edukg_prop_history__main-P101",
+      "object": "鲧"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/physics#main-E1360",
+    "property": {
+      "subject": "电磁感应",
+      "predicate": "edukg_prop_history__main-P85",
+      "object": "法拉第|1831年，英国科学家法拉第发现电磁感应现象"
+    }
+  },
+  {
+    "uri": "",
+    "property": {
+      "subject": "赵光义",
+      "predicate": "edukg_prop_history__main-P33",
+      "object": "北宋"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/history#main-E12198",
+    "property": {
+      "subject": "孙武",
+      "predicate": "edukg_prop_history__main-P399",
+      "object": "长卿"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/history#main-E7851",
+    "property": {
+      "subject": "虎门销烟",
+      "predicate": "edukg_prop_history__main-P263",
+      "object": "1839年3月到6月"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/history#main-E11236",
+    "property": {
+      "subject": "商鞅变法",
+      "predicate": "edukg_prop_history__main-P263",
+      "object": "公元前356年，商鞅在秦孝公的支持下开始变法"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/history#main-E4978",
+    "property": {
+      "subject": "新中国成立",
+      "predicate": "edukg_prop_history__main-P541",
+      "object": "对于国内的意义，可概括为一句话：新中国的成立，开辟了中国历史的新纪元。这句话可从以下几个方面来理解：①从近代以来中国革命的历程来认识。新中国的成立，结束了中国100多年来被侵略被奴役的屈辱历史，使中国真正成为独立自主的国家。②从所处的不同革命时期来认识。新中国的成立标志着新民主主义革命的基本胜利，中国开始了向社会主义过渡的新时期。③从中国人民的政治地位变化来认识。中国人民经过100多年不屈不挠的斗争，终于在中国共产党的领导下，推翻了帝国主义、封建主义、官僚资本主义三座大山的压迫，从此站了起来，成为国家的主人。④从人民经济文化生活水平的变化来认识。新中国成立后，人民的经济文化生活水平不断提高，特别是改革开放以来，更是发生了翻天覆地的变化。 对于国际意义的认识：新中国的成立，使世界近1/4的人口摆脱了殖民主义统治，大大削弱了帝国主义的力量，壮大了世界和平、民主和社会主义的力量，鼓舞了世界被压迫民族和被压迫人民争取解放的斗争。"
+    }
+  },
+  {
+    "uri": "http://edukg.org/knowledge/3.0/instance/history#main-E293",
+    "property": {
+      "subject": "义和团运动",
+      "predicate": "edukg_prop_common__main-P23",
+      "object": "英勇抗击八国联军侵略的农民爱国运动是义和团运动"
+    }
+  }
+]

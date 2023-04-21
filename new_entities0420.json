@@ -1,0 +1,62 @@
+[
+  {
+    "subject": "history",
+    "label": "edukg_cls_history__main-C46",
+    "entities": [
+      {
+        "name": "俄底浦斯王",
+        "abstractMsg": "",
+        "property": [],
+        "relation": []
+      }
+    ]
+  },
+  {
+    "subject": "history",
+    "label": "edukg_cls_history__main-C0",
+    "entities": [
+      {
+        "name": "中华民国纪年",
+        "abstractMsg": "",
+        "property": [],
+        "relation": []
+      }
+    ]
+  },
+  {
+    "subject": "history",
+    "label": "edukg_cls_history__main-C2",
+    "entities": [
+      {
+        "name": "大禹",
+        "abstractMsg": "",
+        "property": [],
+        "relation": []
+      }
+    ]
+  },
+  {
+    "subject": "history",
+    "label": "edukg_cls_history__main-C63",
+    "entities": [
+      {
+        "name": "甲午战争",
+        "abstractMsg": "",
+        "property": [],
+        "relation": []
+      }
+    ]
+  },
+  {
+    "subject": "history",
+    "label": "edukg_cls_history__main-C3",
+    "entities": [
+      {
+        "name": "赵光义",
+        "abstractMsg": "",
+        "property": [],
+        "relation": []
+      }
+    ]
+  }
+]

@@ -34,11 +34,11 @@ public class GraphEditorProcess {
     @Test
     public void mainProcess() throws IOException {
 
-        String entityAddPath = "new_entities0328.json";
+        String entityAddPath = "./new_entities0420.json";
         String entityAddFailedPath = "./new_entity_failed.txt";
-        String propAddPath = "prop_triples.json";
+        String propAddPath = "./prop_triples-history.json";
         String propAddFailedPath = "./prop_add_failed.txt";
-        String relationAddPath = "relation_triples.json";
+        String relationAddPath = "./relation_triples-history.json";
         String relationAddFailedPath = "./relation_add_failed.txt";
 
         Map<String, String> nameMap = addEntityWithPureJSON(entityAddPath, entityAddFailedPath);
