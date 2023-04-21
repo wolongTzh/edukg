@@ -90,6 +90,9 @@ public class HtmlParser {
             sb.append("主体：");
             sb.append("实体" + "|");
             for(String clsName : subjectCls) {
+                if(clsName.equals("")) {
+                    continue;
+                }
                 sb.append(clsName + "|");
             }
             sb.append("\n客体：属性\n");
@@ -189,11 +192,17 @@ public class HtmlParser {
             sb.append("主体：");
             sb.append("实体" + "|");
             for(String clsName : subjectCls) {
+                if(clsName.equals("")) {
+                    continue;
+                }
                 sb.append(clsName + "|");
             }
             sb.append("\n客体：");
             sb.append("实体" + "|");
             for(String clsName : objectCls) {
+                if(clsName.equals("")) {
+                    continue;
+                }
                 sb.append(clsName + "|");
             }
             sb.append("\n");
