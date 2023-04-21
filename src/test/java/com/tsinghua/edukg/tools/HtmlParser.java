@@ -312,10 +312,22 @@ public class HtmlParser {
         String template = url.split("BODY/")[1].split("/text\\(\\)")[0];
         Element spanElement = document.select("body").first();
         for(String atom : template.split("/")) {
-            spanElement = spanElement.select(atom.split("\\[")[0]).get(Integer.parseInt(atom.split("\\[")[1].split("\\]")[0]) - 1);
+            try {
+                spanElement = spanElement.select(atom.split("\\[")[0]).get(Integer.parseInt(atom.split("\\[")[1].split("\\]")[0]) - 1);
+            }
+            catch (Exception e) {
+                continue;
+            }
         }
-        int start = Integer.parseInt(url.split("\\)\\)")[0].split("'',")[1]);
-        int end = Integer.parseInt(url.split("\\)\\)\\)")[0].split("'',")[2]);
+        int start = 0;
+        int end = 0;
+        try {
+            start = Integer.parseInt(url.split("\\)\\)")[0].split("'',")[1]);
+            end = Integer.parseInt(url.split("\\)\\)\\)")[0].split("'',")[2]);
+        }
+        catch (Exception e) {
+            return null;
+        }
         String rawText = "", parseName = "";
         int alignLen = 0;
         for(Node child : spanElement.childNodes()) {
