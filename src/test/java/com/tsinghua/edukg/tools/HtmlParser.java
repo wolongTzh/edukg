@@ -193,9 +193,10 @@ public class HtmlParser {
             for(String clsName : objectCls) {
                 sb.append(clsName + "|");
             }
+            sb.append("\n");
         }
         StringBuilder outerSb = new StringBuilder();
-        outerSb.append("\n实体：\n");
+        outerSb.append("实体：\n");
         for(String entityName : entities) {
             outerSb.append(entityName + "\n");
         }
