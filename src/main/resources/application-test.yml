@@ -44,7 +44,7 @@ spring:
     username: elastic
     password: 5Vc8fC8kjJNiT=SYZFKF
     index:
-      examSource: examsource
+      examSource: examresource
       irqa: irqa
       textBook: textbook
 
