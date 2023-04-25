@@ -99,6 +99,8 @@ public class CombineServiceImpl implements CombineService {
         if(!CollectionUtils.isEmpty(instanceList)) {
             // 首实体详细信息赋值（instanceInfo）
             Entity instanceInfo = neoManager.getEntityFromUri(instanceList.get(0).getUri());
+            RuleHandler.propertyConverter(instanceInfo.getProperty());
+            RuleHandler.relationConverter(instanceInfo.getRelation());
             combineLinkingVO.setCourseList(courseService.getCourseFromUri(instanceList.get(0).getUri()));
             combineLinkingVO.setInstanceInfo(instanceInfo);
             // 试题查询（questionList）

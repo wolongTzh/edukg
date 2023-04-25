@@ -3,6 +3,7 @@ package com.tsinghua.edukg;
 import com.alibaba.fastjson.JSON;
 import com.tsinghua.edukg.controller.utils.GraphControllerUtil;
 import com.tsinghua.edukg.model.Entity;
+import com.tsinghua.edukg.model.EntityWithSource;
 import com.tsinghua.edukg.model.Relation;
 import com.tsinghua.edukg.model.VO.LinkingVO;
 import com.tsinghua.edukg.model.params.HotEntitiesParam;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +42,13 @@ public class GraphServiceTest {
         GraphControllerUtil.validAndFillHotEntitiesParam(param);
         List<Entity> entityList = graphService.getHotEntities(param);
         log.info(JSON.toJSONString(entityList));
+    }
+
+    @Test
+    public void getEntityWithSource() throws IOException {
+        String uri = "http://edukg.org/knowledge/3.0/instance/chinese#main-E6763";
+        EntityWithSource entityWithSource = graphService.getEntityWithSourceFromUri(uri);
+        log.info(JSON.toJSONString(entityWithSource));
     }
 
     @Test

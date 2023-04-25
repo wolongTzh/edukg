@@ -228,7 +228,6 @@ public class NeoManager {
                         .subject(entityName)
                         .build());
             }
-            RuleHandler.propertyConverter(properties);
             entity = Entity.builder()
                     .abstractMsg("")
                     .name((String) m.get("rdfs__label"))
@@ -265,7 +264,6 @@ public class NeoManager {
             Relation relation = new Relation(m);
             relations.add(relation);
         }
-        RuleHandler.relationConverter(relations);
         entity.setRelation(relations);
         return entity;
     }
@@ -311,7 +309,6 @@ public class NeoManager {
         for (Map<String, Object> m : result.queryResults()) {
             relations.add(new Relation(m));
         }
-        RuleHandler.relationConverter(relations);
         return relations;
     }
 
@@ -358,7 +355,6 @@ public class NeoManager {
                     .build();
             relations.add(relation);
         }
-        RuleHandler.relationConverter(relations);
         return relations;
     }
 

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tsinghua.edukg.dao.mapper.ZYKHtmlMapper">
+  <resultMap id="BaseResultMap" type="com.tsinghua.edukg.dao.entity.ZYKHtml">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="resource_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="title" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="file_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="file_size" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="file_path" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="order_num" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="description" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, resource_id, title, file_name, file_size, file_path, order_num, description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from zyk_html
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from zyk_html
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tsinghua.edukg.dao.entity.ZYKHtml">
+    insert into zyk_html (id, resource_id, title, 
+      file_name, file_size, file_path, 
+      order_num, description)
+    values (#{id,jdbcType=INTEGER}, #{resourceId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{fileName,jdbcType=VARCHAR}, #{fileSize,jdbcType=INTEGER}, #{filePath,jdbcType=VARCHAR}, 
+      #{orderNum,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tsinghua.edukg.dao.entity.ZYKHtml">
+    insert into zyk_html
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="resourceId != null">
+        resource_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="fileName != null">
+        file_name,
+      </if>
+      <if test="fileSize != null">
+        file_size,
+      </if>
+      <if test="filePath != null">
+        file_path,
+      </if>
+      <if test="orderNum != null">
+        order_num,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="resourceId != null">
+        #{resourceId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        #{fileSize,jdbcType=INTEGER},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null">
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tsinghua.edukg.dao.entity.ZYKHtml">
+    update zyk_html
+    <set>
+      <if test="resourceId != null">
+        resource_id = #{resourceId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        file_name = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        file_size = #{fileSize,jdbcType=INTEGER},
+      </if>
+      <if test="filePath != null">
+        file_path = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNum != null">
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tsinghua.edukg.dao.entity.ZYKHtml">
+    update zyk_html
+    set resource_id = #{resourceId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      file_name = #{fileName,jdbcType=VARCHAR},
+      file_size = #{fileSize,jdbcType=INTEGER},
+      file_path = #{filePath,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

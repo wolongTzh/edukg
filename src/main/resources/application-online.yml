@@ -68,6 +68,7 @@ address:
     textbook: /data/textbook/%s/OEBPS
     jiebaDictWin: C:\\Users\\feifei\\Desktop\\Gaokao\\jieba\\dicts\\%s.txt
     stopWords: static/stopWords.out
+    sourcePath: /data1/home/keg
   sign:
     split: /
 

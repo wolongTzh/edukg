@@ -5,14 +5,15 @@ import com.huaban.analysis.jieba.WordDictionary;
 import com.tsinghua.edukg.config.AddressConfig;
 import com.tsinghua.edukg.config.RedisConfig;
 import com.tsinghua.edukg.constant.BusinessConstant;
+import com.tsinghua.edukg.dao.entity.ZYKHtml;
+import com.tsinghua.edukg.dao.mapper.ZYKHtmlMapper;
 import com.tsinghua.edukg.enums.BusinessExceptionEnum;
 import com.tsinghua.edukg.exception.BusinessException;
 import com.tsinghua.edukg.manager.NeoAssisManager;
 import com.tsinghua.edukg.manager.NeoManager;
 import com.tsinghua.edukg.manager.RedisManager;
-import com.tsinghua.edukg.model.Entity;
+import com.tsinghua.edukg.model.*;
 import com.tsinghua.edukg.model.VO.LinkingVO;
-import com.tsinghua.edukg.model.Relation;
 import com.tsinghua.edukg.model.params.HotEntitiesParam;
 import com.tsinghua.edukg.model.params.LinkingParam;
 import com.tsinghua.edukg.model.params.SearchSubgraphParam;
@@ -20,12 +21,13 @@ import com.tsinghua.edukg.service.GraphService;
 import com.tsinghua.edukg.utils.CommonUtil;
 import com.tsinghua.edukg.utils.JiebaHelper;
 import com.tsinghua.edukg.utils.RuleHandler;
+import com.tsinghua.edukg.utils.XpointerUtil;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -49,6 +51,9 @@ public class GraphServiceImpl implements GraphService {
     @Resource
     NeoAssisManager neoAssisManager;
 
+    @Resource
+    ZYKHtmlMapper zykHtmlMapper;
+
     @Autowired
     private JiebaHelper segmenter;
 
@@ -60,10 +65,13 @@ public class GraphServiceImpl implements GraphService {
 
     String splitTag = "@splitTag@";
 
+    String sourcePath = "";
+
     @Autowired
-    public GraphServiceImpl(RedisConfig redisConfig) throws IOException {
+    public GraphServiceImpl(RedisConfig redisConfig, AddressConfig addressConfig) throws IOException {
         openGate = redisConfig.getOpenGate();
         String path = linkingPath;
+        sourcePath = addressConfig.getSourcePath();
         List<String> contentList = CommonUtil.readTextInResource(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream(path)));
         boolean startTag = true;
         int uri = 0;
@@ -102,10 +110,62 @@ public class GraphServiceImpl implements GraphService {
     @Override
     public Entity getEntityFromUri(String uri) {
         Entity entity = neoManager.getEntityFromUri(uri);
+        RuleHandler.propertyConverter(entity.getProperty());
+        RuleHandler.relationConverter(entity.getRelation());
         if(entity.getUri() == null) {
             return null;
         }
         return entity;
+    }
+
+    @Override
+    public EntityWithSource getEntityWithSourceFromUri(String uri) throws IOException {
+        Entity entity = neoManager.getEntityFromUri(uri);
+        Source source = null;
+        if(entity.getUri() == null) {
+            return null;
+        }
+        for(Property property : entity.getProperty()) {
+            if(property.getPredicate().equals("edukg_prop_common__main-P10")) {
+                try {
+                    source = getSourceFromXpointer(property.getObject());
+                }
+                catch (Exception e) {
+
+                }
+            }
+        }
+        RuleHandler.propertyConverter(entity.getProperty());
+        RuleHandler.relationConverter(entity.getRelation());
+        EntityWithSource entityWithSource = EntityWithSource.builder()
+                .source(source)
+                .build();
+        BeanUtils.copyProperties(entity, entityWithSource);
+        return entityWithSource;
+    }
+
+    public Source getSourceFromXpointer(String pointer) throws IOException {
+        int index = Integer.parseInt(pointer.split("#xpointer")[0].split("label/")[1]);
+        ZYKHtml zykHtml = zykHtmlMapper.selectByPrimaryKey(index);
+        String htmlPath = sourcePath + zykHtml.getFilePath();
+        File file = new File(htmlPath);
+        String html = "";
+        if(file.exists()){
+            Long filelength = file.length(); // 获取文件长度
+            byte[] filecontent = new byte[filelength.intValue()];
+            FileInputStream in = new FileInputStream(file);
+            in.read(filecontent);
+            in.close();
+            html = new String(filecontent, "utf-8");// 返回文件内容,默认编码
+        }
+        List<String> pager = XpointerUtil.getPager(html, pointer);
+        index = Integer.parseInt(htmlPath.split("epub/")[1].split("/Text")[0]);
+        String cover = sourcePath + String.format("/epubimg/%s/A_01_cover.jpg", index);
+        String content = sourcePath + String.format("/epubimg/%s/%s.jpg", index, pager.get(0));
+        return Source.builder()
+                .cover(cover)
+                .content(content)
+                .build();
     }
 
     @Override
@@ -132,6 +192,7 @@ public class GraphServiceImpl implements GraphService {
     public List<Relation> searchSubgraph(SearchSubgraphParam param) {
         List<String> instanceList = param.getInstanceList();
         List<Relation> relations = neoManager.findPathBetweenNodes(instanceList.get(0), instanceList.get(1), BusinessConstant.MAX_JUMP_TIME);
+        RuleHandler.relationConverter(relations);
         if(relations == null || relations.size() == 0) {
             throw new BusinessException(BusinessExceptionEnum.START_OR_TAIL_URI_ERROR);
         }

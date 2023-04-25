@@ -29,6 +29,9 @@ public class AddressConfig {
     @Value("${address.file.stopWords}")
     private String stopWords;
 
+    @Value("${address.file.sourcePath}")
+    private String sourcePath;
+
     @Value("${address.sign.split}")
     private String sign;
 }

@@ -1,6 +1,7 @@
 package com.tsinghua.edukg.service;
 
 import com.tsinghua.edukg.model.Entity;
+import com.tsinghua.edukg.model.EntityWithSource;
 import com.tsinghua.edukg.model.VO.LinkingVO;
 import com.tsinghua.edukg.model.Relation;
 import com.tsinghua.edukg.model.params.HotEntitiesParam;
@@ -8,6 +9,7 @@ import com.tsinghua.edukg.model.params.LinkingParam;
 import com.tsinghua.edukg.model.params.SearchSubgraphParam;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -20,6 +22,7 @@ import java.util.List;
 public interface GraphService {
 
     Entity getEntityFromUri(String uri);
+    EntityWithSource getEntityWithSourceFromUri(String uri) throws IOException;
     List<Entity> getEntityFromClass(String className);
 
     List<Entity> getEntityFromName(String searchText);
