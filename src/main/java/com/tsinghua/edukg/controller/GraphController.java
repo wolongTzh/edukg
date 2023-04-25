@@ -2,6 +2,7 @@ package com.tsinghua.edukg.controller;
 
 import com.tsinghua.edukg.controller.utils.GraphControllerUtil;
 import com.tsinghua.edukg.model.Entity;
+import com.tsinghua.edukg.model.EntityWithSource;
 import com.tsinghua.edukg.model.VO.LinkingVO;
 import com.tsinghua.edukg.model.Relation;
 import com.tsinghua.edukg.model.WebResInfo;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -36,10 +38,10 @@ public class GraphController {
      * @return
      */
     @GetMapping(value = "getInstanceInfo")
-    public WebResInfo getEntity(String uri) {
+    public WebResInfo getEntity(String uri) throws IOException {
         GraphControllerUtil.validGetEntityParam(uri);
-        Entity entity = graphService.getEntityFromUri(uri);
-        return WebUtil.successResult(entity);
+        EntityWithSource entityWithSource = graphService.getEntityWithSourceFromUri(uri);
+        return WebUtil.successResult(entityWithSource);
     }
 
     /**
