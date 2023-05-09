@@ -158,6 +158,9 @@ public class GraphServiceImpl implements GraphService {
             in.close();
             html = new String(filecontent, "utf-8");// 返回文件内容,默认编码
         }
+        else {
+            return null;
+        }
         List<String> pager = XpointerUtil.getPager(html, pointer);
         index = Integer.parseInt(htmlPath.split("epub/")[1].split("/Text")[0]);
         String cover = sourcePath + String.format("/epubimg/%s/A_01_cover.jpg", index);
