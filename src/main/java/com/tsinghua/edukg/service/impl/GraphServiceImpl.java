@@ -165,6 +165,10 @@ public class GraphServiceImpl implements GraphService {
         index = Integer.parseInt(htmlPath.split("epub/")[1].split("/Text")[0]);
         String cover = sourcePath + String.format("/epub/%s/Images/Cover.jpg", index);
         String content = sourcePath + String.format("/epubimg/%s/%s.jpg", index, pager.get(0));
+        File contentImg = new File(content);
+        if(!contentImg.exists()) {
+            content = null;
+        }
         return Source.builder()
                 .cover(cover)
                 .content(content)
