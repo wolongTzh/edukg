@@ -49,6 +49,12 @@
             <artifactId>lombok</artifactId>
             <version>1.18.4</version>
         </dependency>
+        <!-- druid数据库连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.26</version>
+        </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
