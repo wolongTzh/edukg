@@ -399,6 +399,7 @@ public class NeoManager {
                     .object((String) end.property("name"))
                     .objectUri((String) end.property("uri"))
                     .predicate(type)
+                    .predicateLabel(type)
                     .build();
             relations.add(relation);
         }
