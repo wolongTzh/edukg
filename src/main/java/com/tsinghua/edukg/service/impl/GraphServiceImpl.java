@@ -199,7 +199,6 @@ public class GraphServiceImpl implements GraphService {
     public List<Relation> searchSubgraph(SearchSubgraphParam param) {
         List<String> instanceList = param.getInstanceList();
         List<Relation> relations = neoManager.findPathBetweenNodesFromReslib(instanceList.get(0), instanceList.get(1));
-        RuleHandler.relationConverter(relations);
         if(relations == null || relations.size() == 0) {
             throw new BusinessException(BusinessExceptionEnum.START_OR_TAIL_URI_ERROR);
         }
