@@ -32,15 +32,25 @@ public class NeoManagerTest {
     GraphService graphService;
 
     @Autowired
-    @Qualifier("neo4jSession")
+    @Qualifier("neo4jSession2")
     Session session;
 
     @Test
     public void getBareEntityFromNameTest() {
-        String name = "基因";
+        String name = "爱因斯坦";
         List<Entity> entityList = neoManager.getEntityListFromName(name);
         log.info(JSON.toJSONString(entityList));
     }
+
+    @Test
+    public void getShortestPathFromReslib() {
+        String name1 = "李白";
+        String name2 = "爱因斯坦";
+        List<Relation> relations = neoManager.findPathBetweenNodesFromReslib(name1, name2);
+        log.info(JSON.toJSONString(relations));
+    }
+
+
 
     @Test
     public void getUrisFromKeywordWithPageTest() {

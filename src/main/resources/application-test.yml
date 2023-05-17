@@ -50,12 +50,16 @@ spring:
       # 日志用的filter:log4j
       # 防御sql注入的filter:wall
       filters: stat
-
   data:
     neo4j:
-      uri: bolt://47.94.201.245:7687
-      username: neo4j
-      password: neo4j@keg202
+      domain1:
+        uri: bolt://47.94.201.245:7687
+        username: neo4j
+        password: neo4j@keg202
+      domain2:
+        uri: bolt://47.94.201.245:27687
+        username: neo4j
+        password: kegneo4j
   redis:
     database: 0
     password:

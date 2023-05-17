@@ -28,6 +28,10 @@ import java.util.stream.Collectors;
 public class NeoManager {
 
     @Autowired
+    @Qualifier("neo4jSession2")
+    Session session2;
+
+    @Autowired
     @Qualifier("neo4jSession")
     Session session;
 
@@ -350,6 +354,49 @@ public class NeoManager {
                     .subject((String) start.property("rdfs__label"))
                     .subjectUri((String) start.property("uri"))
                     .object((String) end.property("rdfs__label"))
+                    .objectUri((String) end.property("uri"))
+                    .predicate(type)
+                    .build();
+            relations.add(relation);
+        }
+        return relations;
+    }
+
+    public List<Relation> findPathBetweenNodesFromReslib(String head, String tail) {
+        Entity headNode = getBareEntityFromUri(head);
+        Entity tailNode = getBareEntityFromUri(tail);
+        if(headNode == null || tailNode == null) {
+            return null;
+        }
+        String findNodesInPathQuery = "match l=allshortestpaths((" +
+                "x{name:'" + head + "'})" +
+                "-[*]-(y{name:'" + tail + "'}))" +
+                " with *, relationships(l) as rels" +
+                " UNWIND relationships(l) as r UNWIND NODES(l) as n return r,n";
+        Result result = session2.query(findNodesInPathQuery, new HashMap<>());
+        Map<String, String> relationMap = new HashMap<>();
+        Map<String, NodeModel> nodeMap = new HashMap<>();
+        String splitIdTag = "-";
+        for (Map<String, Object> m : result.queryResults()) {
+            RelationshipModel relation = (RelationshipModel) m.get("r");
+            NodeModel node = (NodeModel) m.get("n");
+            String relationKey = relation.getStartNode().toString() + splitIdTag + relation.getEndNode().toString();
+            if(!relationMap.containsKey(relationKey)) {
+                relationMap.put(relationKey, (String) relation.getPropertyList().get(1).getValue());
+            }
+            nodeMap.put(node.getId().toString(), node);
+        }
+        List<Relation> relations = new ArrayList<>();
+        for(Map.Entry entry : relationMap.entrySet()) {
+            String type = (String) entry.getValue();
+            String startId = ((String) entry.getKey()).split("-")[0];
+            String endId = ((String) entry.getKey()).split("-")[1];
+            NodeModel start = nodeMap.get(startId);
+            NodeModel end = nodeMap.get(endId);
+            Relation relation = Relation.builder()
+                    .subject((String) start.property("name"))
+                    .subjectUri((String) start.property("uri"))
+                    .object((String) end.property("name"))
                     .objectUri((String) end.property("uri"))
                     .predicate(type)
                     .build();

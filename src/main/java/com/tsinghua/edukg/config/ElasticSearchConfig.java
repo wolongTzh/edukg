@@ -52,7 +52,7 @@ public class ElasticSearchConfig {
                 .setHttpClientConfigCallback(new RestClientBuilder.HttpClientConfigCallback() {
                     @Override
                     public HttpAsyncClientBuilder customizeHttpClient(HttpAsyncClientBuilder httpAsyncClientBuilder) {
-                        return httpAsyncClientBuilder.setDefaultCredentialsProvider(credentialsProvider);
+                        return httpAsyncClientBuilder.setDefaultCredentialsProvider(credentialsProvider).setKeepAliveStrategy((response, context) -> 1800 * 1000);
                     }
                 });
         RestClient restClient = restClientBuilder.build();
