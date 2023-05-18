@@ -1,6 +1,9 @@
 package com.tsinghua.edukg.service.impl;
 
+import com.tsinghua.edukg.api.feign.BimpmFeignService;
 import com.tsinghua.edukg.api.feign.QAFeignService;
+import com.tsinghua.edukg.api.model.BimpmParam;
+import com.tsinghua.edukg.api.model.BimpmResult;
 import com.tsinghua.edukg.api.model.QAParam;
 import com.tsinghua.edukg.api.model.QAResult;
 import com.tsinghua.edukg.dao.entity.Course;
@@ -47,6 +50,9 @@ public class CombineServiceImpl implements CombineService {
 
     @Autowired
     QAFeignService qaFeignService;
+
+    @Autowired
+    BimpmFeignService bimpmFeignService;
 
     @Autowired
     ExamSourceLinkingService examSourceLinkingService;
@@ -181,16 +187,39 @@ public class CombineServiceImpl implements CombineService {
         String searchText = qaParam.getQuestion();
         Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlpSimple(qaParam.getQuestion());
         QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
-        // 没有答案的情况
-        if(StringUtils.isEmpty(answer.getAnswerValue())) {
-            combineQaVO.setQaesGrepVO(future.get());
+        String answerList = "";
+        List<QAESGrepVO> qaesGrepVOS = future.get();
+        int count = 5;
+        if(!StringUtils.isEmpty(answer.getAnswerValue())) {
+            answerList += answer.getAnswerValue() + "\t";
+        }
+        for(QAESGrepVO qaesGrepVO : qaesGrepVOS) {
+            if(count == 1) {
+                answerList += qaesGrepVO.getText();
+                break;
+            }
+            else {
+                answerList += qaesGrepVO.getText() + "\t";
+            }
+            count--;
+        }
+        BimpmParam bimpmParam = new BimpmParam(answerList, qaParam.getQuestion());
+        BimpmResult bimpmResult = bimpmFeignService.bimpmRequest(bimpmParam);
+        Integer index = Integer.parseInt(bimpmResult.getIndex());
+        // kbqa有返回结果且选到了kbqa
+        if(index == 0 && !StringUtils.isEmpty(answer.getAnswerValue())) {
+            combineQaVO.setAnswer(answer);
             return combineQaVO;
         }
-        combineQaVO.setAnswer(answer);
-        // 有答案没有匹配到实体的情况
-        if(StringUtils.isEmpty(answer.getObjectUri())) {
-            return combineQaVO;
+        // kbqa有返回结果但是并没有选到kbqa
+        if(!StringUtils.isEmpty(answer.getAnswerValue())) {
+            index--;
         }
+        // 选到了irqa的场景
+        QAESGrepVO qaesGrepVO = qaesGrepVOS.get(index);
+        List<QAESGrepVO> qaesGrepVOList = new ArrayList<>();
+        qaesGrepVOList.add(qaesGrepVO);
+        combineQaVO.setQaesGrepVO(qaesGrepVOList);
         return combineQaVO;
     }
 }

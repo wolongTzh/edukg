@@ -97,7 +97,7 @@ public class AsyncHelper {
         BimpmResult bimpmResult = bimpmFeignService.bimpmRequest(bimpmParam);
         Integer index = Integer.parseInt(bimpmResult.getIndex());
         TextBookHighLight sent;
-        if(index >= 0 && index < count) {
+        if(index >= 0 && index < 5) {
             sent = sents.get(index);
         }
         else {
@@ -129,13 +129,19 @@ public class AsyncHelper {
                 answers += sent.getExample() + "\t";
             }
             count--;
+//            List<LinkingVO> linkingVOList = graphService.linkingEntities(LinkingParam.builder().searchText(sent.getExample()).build());
+//            qaesGrepVOList.add(QAESGrepVO.builder()
+//                    .bookId(sent.getBookId())
+//                    .linkingVOList(linkingVOList)
+//                    .text(sent.getExample())
+//                    .build());
 
         }
         BimpmParam bimpmParam = new BimpmParam(answers, question);
         BimpmResult bimpmResult = bimpmFeignService.bimpmRequest(bimpmParam);
         Integer index = Integer.parseInt(bimpmResult.getIndex());
         TextBookHighLight sent;
-        if(index >= 0 && index < count) {
+        if(index >= 0 && index < 5) {
             sent = sents.get(index);
         }
         else {

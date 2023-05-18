@@ -154,7 +154,7 @@ public class NeoManagerTest {
     @Test
     public void analyseNodes() {
         List<EntityWithScore> retList = new ArrayList<>();
-        String query = "match (n) return n";
+        String query = "match (n) n.uri as uri return uri ";
         Result result = session.query(query, new HashMap<>());
         for (Map<String, Object> m : result.queryResults()) {
             retList.add(EntityWithScore.builder()
