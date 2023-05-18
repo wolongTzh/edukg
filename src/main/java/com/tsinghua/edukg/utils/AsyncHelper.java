@@ -129,12 +129,12 @@ public class AsyncHelper {
                 answers += sent.getExample() + "\t";
             }
             count--;
-//            List<LinkingVO> linkingVOList = graphService.linkingEntities(LinkingParam.builder().searchText(sent.getExample()).build());
-//            qaesGrepVOList.add(QAESGrepVO.builder()
-//                    .bookId(sent.getBookId())
-//                    .linkingVOList(linkingVOList)
-//                    .text(sent.getExample())
-//                    .build());
+            List<LinkingVO> linkingVOList = graphService.linkingEntities(LinkingParam.builder().searchText(sent.getExample()).build());
+            qaesGrepVOList.add(QAESGrepVO.builder()
+                    .bookId(sent.getBookId())
+                    .linkingVOList(linkingVOList)
+                    .text(sent.getExample())
+                    .build());
 
         }
         BimpmParam bimpmParam = new BimpmParam(answers, question);
