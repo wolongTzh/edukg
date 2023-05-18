@@ -72,7 +72,7 @@ public class AsyncHelper {
     public Future<List<QAESGrepVO>> qaBackupForHanlp(String question) throws IOException {
         List<QAESGrepVO> qaesGrepVOList = new ArrayList<>();
         List<TextBookHighLight> sents = esManager.getHighLightTextBookFromMiniMatch(HanlpHelper.CutWordRetNeedConcernWords(question));
-        int count = 3;
+        int count = 10;
         for(TextBookHighLight sent : sents) {
             if(count == 0) {
                 break;
@@ -92,7 +92,7 @@ public class AsyncHelper {
     public Future<List<QAESGrepVO>> qaBackupForHanlpSimple(String question) throws IOException {
         List<QAESGrepVO> qaesGrepVOList = new ArrayList<>();
         List<TextBookHighLight> sents = esManager.getHighLightTextBookFromMiniMatch(HanlpHelper.CutWordRetNeedConcernWords(question));
-        int count = 3;
+        int count = 10;
         for(TextBookHighLight sent : sents) {
             if(count == 0) {
                 break;

@@ -19,18 +19,17 @@ public class HanLpTest {
 
     @Test
     public void splitter() {
-        String text = "成都";
+        String text = "孟子是儒家思想的代表人物,他的主要作品有哪些？";
         List<Term> splits = HanlpHelper.cutWords(text);
-        String needConcernWords = HanlpHelper.CutWordRetNeedConcernWords(text);
-        System.out.println(needConcernWords);
-        for(Term s : splits) {
-            System.out.println(s.word);
+        splits = HanlpHelper.CutWordRetNeedConcernWords(text);
+        for(Term term : splits) {
+            System.out.println(term.word + " ");
         }
     }
 
     @Test
     public void jiebaSplitter() {
-        List<String> retWords = jiebaHelper.cutWords("你是否知道李白字什么？");
+        List<String> retWords = jiebaHelper.cutWords("孟子是儒家思想的代表人物,他的主要作品有哪些？");
         for(String s : retWords) {
             System.out.println(s);
         }

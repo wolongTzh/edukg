@@ -190,6 +190,18 @@ public class ESTest {
                     )
             );
         }
+        builder = builder.should(s -> s
+                .matchPhrase(m -> m
+                        .field("html")
+                        .query("测试")
+                )
+        );
+        builder = builder.should(s -> s
+                .matchPhrase(m -> m
+                        .field("html")
+                        .query("测试")
+                )
+        );
         BoolQuery boolQuery = builder.build();
         SearchResponse<TextBook> boolSearch = client.search(s -> s
                         .index(index)

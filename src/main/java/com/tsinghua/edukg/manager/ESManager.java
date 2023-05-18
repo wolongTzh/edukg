@@ -8,10 +8,12 @@ import co.elastic.clients.elasticsearch.core.search.HighlightField;
 import co.elastic.clients.elasticsearch.core.search.Hit;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.hankcs.hanlp.seg.common.Term;
 import com.tsinghua.edukg.config.AddressConfig;
 import com.tsinghua.edukg.config.ElasticSearchConfig;
 import com.tsinghua.edukg.model.*;
 import com.tsinghua.edukg.model.VO.GetTextBookHighLightVO;
+import com.tsinghua.edukg.utils.HanlpHelper;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -238,56 +240,32 @@ public class ESManager {
      * @return
      * @throws IOException
      */
-    public List<TextBookHighLight> getHighLightTextBookFromMiniMatch(String keyWords) throws IOException {
-        String miniMatch = "";
+    public List<TextBookHighLight> getHighLightTextBookFromMiniMatch(List<Term> keyWords) throws IOException {
         String field = "all";
         List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
         SearchResponse<IRQALiu> matchSearch;
-        if(keyWords.split(" ").length > 8) {
-            matchSearch = client.search(s -> s
-                            .index(irqaIndex)
-                            .query(q -> q
-                                    .match(t -> t
-                                            .field(field)
-                                            .query(keyWords)
-                                            .minimumShouldMatch("6")
-                                    )
-                            )
-                            .highlight(h -> h
-                                    .fields(field, new HighlightField.Builder().build())
-                            ),
-                    IRQALiu.class);
+        String firstWordsMatch = "";
+        BoolQuery.Builder builder = new BoolQuery.Builder();
+        for(Term term : keyWords) {
+            if(HanlpHelper.stopWords.contains(term.word)) {
+                continue;
+            }
+            firstWordsMatch += " " + term.word;
         }
-        else if(keyWords.split(" ").length > 3) {
-            matchSearch = client.search(s -> s
-                            .index(irqaIndex)
-                            .query(q -> q
-                                    .match(t -> t
-                                            .field(field)
-                                            .query(keyWords)
-                                            .minimumShouldMatch("80%")
-                                    )
-                            )
-                            .highlight(h -> h
-                                    .fields(field, new HighlightField.Builder().build())
-                            ),
-                    IRQALiu.class);
-        }
-        else {
-            matchSearch = client.search(s -> s
-                            .index(irqaIndex)
-                            .query(q -> q
-                                    .match(t -> t
-                                            .field(field)
-                                            .query(keyWords)
-                                            .minimumShouldMatch("100%")
-                                    )
-                            )
-                            .highlight(h -> h
-                                    .fields(field, new HighlightField.Builder().build())
-                            ),
-                    IRQALiu.class);
-        }
+        String finalMatch = firstWordsMatch;
+        builder = builder.must(m -> m
+                .match(ma -> ma
+                        .field(field)
+                        .query(finalMatch)
+                )
+        );
+        BoolQuery boolQuery = builder.build();
+        matchSearch = client.search(s -> s
+                        .index(irqaIndex)
+                        .query(b -> b
+                                .bool(boolQuery)
+                        ),
+                IRQALiu.class);
         for (Hit<IRQALiu> hit: matchSearch.hits().hits()) {
             textBookHighLightList.add(TextBookHighLight.builder()
                     .bookId(hit.id())

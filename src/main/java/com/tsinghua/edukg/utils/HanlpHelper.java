@@ -12,7 +12,7 @@ public class HanlpHelper {
 
     //抽取问题中的关键词 策略:一级重要(名词\术语等),与查询;二级重要(形容词等),或查询;不重要(语气词,助词,代词等),不查询
     //一级重要
-    static List<Nature> firstClassNatureList = new ArrayList<>(Arrays.asList(
+    public static List<Nature> firstClassNatureList = new ArrayList<>(Arrays.asList(
             Nature.a,    /*	 形容词	*/
             Nature.f,    /*	 方位词	*/
             Nature.g,    /*	 学术词汇	*/
@@ -62,7 +62,7 @@ public class HanlpHelper {
 
     ));
     //二级重要
-    static List<Nature> secondClassNatureList = new ArrayList<>(Arrays.asList(
+    public static List<Nature> secondClassNatureList = new ArrayList<>(Arrays.asList(
             Nature.ad,    /*	 副形词	*/
             Nature.m,    /*	 数词	*/
             Nature.Mg,    /*	 甲乙丙丁之类的数词	*/
@@ -83,7 +83,7 @@ public class HanlpHelper {
             Nature.vl    /*	 动词性惯用语	*/
     ));
     //三级重要
-    static List<Nature> thirdClassNatureList = new ArrayList<>(Arrays.asList(
+    public static List<Nature> thirdClassNatureList = new ArrayList<>(Arrays.asList(
 
             Nature.ag,    /*	 形容词性语素	*/
             Nature.al,    /*	 形容词性惯用语	*/
@@ -160,7 +160,7 @@ public class HanlpHelper {
     ));
 
     //代词 用处是将代词之后的名词给去掉
-    static List<Nature> rNatureList = new ArrayList<>(Arrays.asList(
+    public static List<Nature> rNatureList = new ArrayList<>(Arrays.asList(
             Nature.r,    /*	 代词	*/
             Nature.rg,    /*	 代词性语素	*/
             Nature.Rg,    /*	 古汉语代词性语素	*/
@@ -180,21 +180,9 @@ public class HanlpHelper {
             "是"
     ));
 
-    public static String CutWordRetNeedConcernWords(String text) {
+    public static List<Term> CutWordRetNeedConcernWords(String text) {
         List<Term> words = HanLP.segment(text);
-        String needConcernWords = "";
-        for(Term word : words) {
-            if(stopWords.contains(word.word)) {
-                continue;
-            }
-            if(firstClassNatureList.contains(word.nature)) {
-                needConcernWords += word.word + " ";
-            }
-            else if(secondClassNatureList.contains(word.nature)) {
-                needConcernWords += word.word + " ";
-            }
-        }
-        return needConcernWords.trim();
+        return words;
     }
 
     public static List<Term> cutWords(String source) {

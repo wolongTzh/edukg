@@ -151,6 +151,22 @@ public class NeoManagerTest {
         System.out.println(1);
     }
 
+    @Test
+    public void analyseNodes() {
+        List<EntityWithScore> retList = new ArrayList<>();
+        String query = "match (n) return n";
+        Result result = session.query(query, new HashMap<>());
+        for (Map<String, Object> m : result.queryResults()) {
+            retList.add(EntityWithScore.builder()
+                    .name((String) m.get("name"))
+                    .uri((String) m.get("uri"))
+                    .classList(RuleHandler.classConverter(Arrays.asList((String[]) m.get("labels"))))
+                    .abstractMsg((String) m.get("v"))
+                    .build());
+        }
+        retList = retList.stream().sorted(Comparator.comparingInt(EntityWithScore::getScore)).collect(Collectors.toList());
+    }
+
     public void analyseConcrate(List<EntityWithScore> entityList) {
         for(EntityWithScore entity : entityList) {
             for(ClassInternal l : entity.getClassList()) {
