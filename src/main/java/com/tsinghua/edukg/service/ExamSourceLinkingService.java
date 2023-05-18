@@ -24,5 +24,5 @@ public interface ExamSourceLinkingService {
 
     public GetExamSourceVO getExamSourceFromText(GetExamSourceParam param, BusinessTypeEnum type) throws IOException;
 
-    public List<QAESGrepVO> getAnswerFromIRQA(String question) throws IOException, ExecutionException, InterruptedException;
+    public List<QAESGrepVO> getAnswerFromIRQA(String question) throws IOException, ExecutionException, InterruptedException, IllegalAccessException;
 }

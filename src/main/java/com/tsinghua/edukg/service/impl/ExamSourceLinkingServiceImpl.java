@@ -103,7 +103,7 @@ public class ExamSourceLinkingServiceImpl implements ExamSourceLinkingService {
     }
 
     @Override
-    public List<QAESGrepVO> getAnswerFromIRQA(String question) throws IOException, ExecutionException, InterruptedException {
+    public List<QAESGrepVO> getAnswerFromIRQA(String question) throws IOException, ExecutionException, InterruptedException, IllegalAccessException {
         Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlpSimple(question);
         List<QAESGrepVO> result = future.get();
         return result;

@@ -62,7 +62,7 @@ public class ExamSourceLinkingController {
      * @return
      */
     @GetMapping(value = "irqa")
-    public WebResInfo irqa(String question) throws IOException, ExecutionException, InterruptedException {
+    public WebResInfo irqa(String question) throws IOException, ExecutionException, InterruptedException, IllegalAccessException {
         List<QAESGrepVO> qaesGrepVOList = examSourceLinkingService.getAnswerFromIRQA(question);
         return WebUtil.successResult(qaesGrepVOList);
     }

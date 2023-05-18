@@ -1,6 +1,9 @@
 package com.tsinghua.edukg.utils;
 
 import com.huaban.analysis.jieba.JiebaSegmenter;
+import com.tsinghua.edukg.api.feign.BimpmFeignService;
+import com.tsinghua.edukg.api.model.BimpmParam;
+import com.tsinghua.edukg.api.model.BimpmResult;
 import com.tsinghua.edukg.config.AddressConfig;
 import com.tsinghua.edukg.manager.ESManager;
 import com.tsinghua.edukg.model.TextBookHighLight;
@@ -32,6 +35,9 @@ public class AsyncHelper {
 
     @Autowired
     ESManager esManager;
+
+    @Autowired
+    BimpmFeignService bimpmFeignService;
 
     Set<String> stopWordsSet;
 
@@ -69,40 +75,78 @@ public class AsyncHelper {
     }
 
     @Async(value = "esTaskThreadPool")
-    public Future<List<QAESGrepVO>> qaBackupForHanlp(String question) throws IOException {
+    public Future<List<QAESGrepVO>> qaBackupForHanlp(String question) throws IOException, IllegalAccessException {
         List<QAESGrepVO> qaesGrepVOList = new ArrayList<>();
         List<TextBookHighLight> sents = esManager.getHighLightTextBookFromMiniMatch(HanlpHelper.CutWordRetNeedConcernWords(question));
         int count = 10;
+        String answers = "";
         for(TextBookHighLight sent : sents) {
             if(count == 0) {
                 break;
             }
+            if(count == 1) {
+                answers += sent.getExample();
+            }
+            else {
+                answers += sent.getExample() + "\t";
+            }
             count--;
-            List<LinkingVO> linkingVOList = graphService.linkingEntities(LinkingParam.builder().searchText(sent.getExample()).build());
-            qaesGrepVOList.add(QAESGrepVO.builder()
-                    .bookId(sent.getBookId())
-                    .linkingVOList(linkingVOList)
-                    .text(sent.getExample())
-                    .build());
+
         }
+        BimpmParam bimpmParam = new BimpmParam(answers, question);
+        BimpmResult bimpmResult = bimpmFeignService.bimpmRequest(bimpmParam);
+        Integer index = Integer.parseInt(bimpmResult.getIndex());
+        TextBookHighLight sent;
+        if(index >= 0 && index < count) {
+            sent = sents.get(index);
+        }
+        else {
+            sent = sents.get(0);
+        }
+        List<LinkingVO> linkingVOList = graphService.linkingEntities(LinkingParam.builder().searchText(sent.getExample()).build());
+        qaesGrepVOList.add(QAESGrepVO.builder()
+                .bookId(sent.getBookId())
+                .linkingVOList(linkingVOList)
+                .text(sent.getExample())
+                .build());
         return new AsyncResult<>(qaesGrepVOList);
     }
 
     @Async(value = "esTaskThreadPool")
-    public Future<List<QAESGrepVO>> qaBackupForHanlpSimple(String question) throws IOException {
+    public Future<List<QAESGrepVO>> qaBackupForHanlpSimple(String question) throws IOException, IllegalAccessException {
         List<QAESGrepVO> qaesGrepVOList = new ArrayList<>();
         List<TextBookHighLight> sents = esManager.getHighLightTextBookFromMiniMatch(HanlpHelper.CutWordRetNeedConcernWords(question));
         int count = 10;
+        String answers = "";
         for(TextBookHighLight sent : sents) {
             if(count == 0) {
                 break;
             }
+            if(count == 1) {
+                answers += sent.getExample();
+            }
+            else {
+                answers += sent.getExample() + "\t";
+            }
             count--;
-            qaesGrepVOList.add(QAESGrepVO.builder()
-                    .bookId(sent.getBookId())
-                    .text(sent.getExample())
-                    .build());
+
         }
+        BimpmParam bimpmParam = new BimpmParam(answers, question);
+        BimpmResult bimpmResult = bimpmFeignService.bimpmRequest(bimpmParam);
+        Integer index = Integer.parseInt(bimpmResult.getIndex());
+        TextBookHighLight sent;
+        if(index >= 0 && index < count) {
+            sent = sents.get(index);
+        }
+        else {
+            sent = sents.get(0);
+        }
+        List<LinkingVO> linkingVOList = graphService.linkingEntities(LinkingParam.builder().searchText(sent.getExample()).build());
+        qaesGrepVOList.add(QAESGrepVO.builder()
+                .bookId(sent.getBookId())
+                .linkingVOList(linkingVOList)
+                .text(sent.getExample())
+                .build());
         return new AsyncResult<>(qaesGrepVOList);
     }
 }
