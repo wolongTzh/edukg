@@ -97,7 +97,7 @@ public class AsyncHelper {
         BimpmResult bimpmResult = bimpmFeignService.bimpmRequest(bimpmParam);
         Integer index = Integer.parseInt(bimpmResult.getIndex());
         TextBookHighLight sent;
-        if(index >= 0 && index < 5) {
+        if(index >= 0 && index < 10) {
             sent = sents.get(index);
         }
         else {
@@ -141,7 +141,7 @@ public class AsyncHelper {
         BimpmResult bimpmResult = bimpmFeignService.bimpmRequest(bimpmParam);
         Integer index = Integer.parseInt(bimpmResult.getIndex());
         TextBookHighLight sent;
-        if(index >= 0 && index < 5) {
+        if(index >= 0 && index < 10) {
             sent = sents.get(index);
         }
         else {
