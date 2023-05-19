@@ -269,7 +269,7 @@ public class ESManager {
         for (Hit<IRQALiu> hit: matchSearch.hits().hits()) {
             textBookHighLightList.add(TextBookHighLight.builder()
                     .bookId(hit.id())
-                    .example(hit.source().getAll())
+                    .example(hit.source().getValue())
                     .score(hit.score())
                     .build());
         }
