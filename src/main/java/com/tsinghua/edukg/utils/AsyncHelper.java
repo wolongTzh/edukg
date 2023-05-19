@@ -116,12 +116,30 @@ public class AsyncHelper {
     public Future<List<QAESGrepVO>> qaBackupForHanlpSimple(String question) throws IOException, IllegalAccessException {
         List<QAESGrepVO> qaesGrepVOList = new ArrayList<>();
         List<TextBookHighLight> sents = esManager.getHighLightTextBookFromMiniMatch(HanlpHelper.CutWordRetNeedConcernWords(question));
-        int count = 10;
+        List<TextBookHighLight> sentsRestrict = esManager.getHighLightTextBookFromMiniMatchRestrict(HanlpHelper.CutWordRetNeedConcernWords(question));
+        List<TextBookHighLight> accSents = new ArrayList<>();
+        int count = 3;
         String answers = "";
         for(TextBookHighLight sent : sents) {
             if(count == 0) {
                 break;
             }
+            accSents.add(sent);
+            if(count == 1 && sentsRestrict.size() == 0) {
+                answers += sent.getExample();
+            }
+            else {
+                answers += sent.getExample() + "\t";
+            }
+            count--;
+
+        }
+        count = 3;
+        for(TextBookHighLight sent : sentsRestrict) {
+            if(count == 0) {
+                break;
+            }
+            accSents.add(sent);
             if(count == 1) {
                 answers += sent.getExample();
             }
@@ -129,23 +147,17 @@ public class AsyncHelper {
                 answers += sent.getExample() + "\t";
             }
             count--;
-//            List<LinkingVO> linkingVOList = graphService.linkingEntities(LinkingParam.builder().searchText(sent.getExample()).build());
-//            qaesGrepVOList.add(QAESGrepVO.builder()
-//                    .bookId(sent.getBookId())
-//                    .linkingVOList(linkingVOList)
-//                    .text(sent.getExample())
-//                    .build());
 
         }
         BimpmParam bimpmParam = new BimpmParam(answers, question);
         BimpmResult bimpmResult = bimpmFeignService.bimpmRequest(bimpmParam);
         Integer index = Integer.parseInt(bimpmResult.getIndex());
         TextBookHighLight sent;
-        if(index >= 0 && index < 10) {
-            sent = sents.get(index);
+        if(index >= 0 && index < accSents.size()) {
+            sent = accSents.get(index);
         }
         else {
-            sent = sents.get(0);
+            sent = accSents.get(0);
         }
         List<LinkingVO> linkingVOList = graphService.linkingEntities(LinkingParam.builder().searchText(sent.getExample()).build());
         qaesGrepVOList.add(QAESGrepVO.builder()

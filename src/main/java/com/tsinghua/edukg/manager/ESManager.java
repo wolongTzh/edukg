@@ -276,6 +276,71 @@ public class ESManager {
         return textBookHighLightList;
     }
 
+    /**
+     * 刘阳版本irqa检索
+     * @param keyWords
+     * @return
+     * @throws IOException
+     */
+    public List<TextBookHighLight> getHighLightTextBookFromMiniMatchRestrict(List<Term> keyWords) throws IOException {
+        String field = "all";
+        List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
+        SearchResponse<IRQALiu> matchSearch;
+        String firstWordsMatch = "";
+        BoolQuery.Builder builder = new BoolQuery.Builder();
+        for(Term term : keyWords) {
+            if(HanlpHelper.stopWords.contains(term.word)) {
+                continue;
+            }
+            if(HanlpHelper.firstClassNatureList.contains(term.nature) || HanlpHelper.secondClassNatureList.contains(term.nature)) {
+                firstWordsMatch += " " + term.word;
+            }
+        }
+        String finalMatch = firstWordsMatch;
+        if(firstWordsMatch.split(" ").length > 8) {
+            builder = builder.must(m -> m
+                    .match(ma -> ma
+                            .field(field)
+                            .query(finalMatch)
+                            .minimumShouldMatch("6")
+                    )
+            );
+        }
+        else if(firstWordsMatch.split(" ").length > 3) {
+            builder = builder.must(m -> m
+                    .match(ma -> ma
+                            .field(field)
+                            .query(finalMatch)
+                            .minimumShouldMatch("80%")
+                    )
+            );
+        }
+        else {
+            builder = builder.must(m -> m
+                    .match(ma -> ma
+                            .field(field)
+                            .query(finalMatch)
+                            .minimumShouldMatch("100%")
+                    )
+            );
+        }
+        BoolQuery boolQuery = builder.build();
+        matchSearch = client.search(s -> s
+                        .index(irqaIndex)
+                        .query(b -> b
+                                .bool(boolQuery)
+                        ),
+                IRQALiu.class);
+        for (Hit<IRQALiu> hit: matchSearch.hits().hits()) {
+            textBookHighLightList.add(TextBookHighLight.builder()
+                    .bookId(hit.id())
+                    .example(hit.source().getAll())
+                    .score(hit.score())
+                    .build());
+        }
+        return textBookHighLightList;
+    }
+
     public List<ExamSource> getExamSourceFromMatch(String matchText) throws IOException {
         SearchResponse<ExamSourceFromES> matchSearch = client.search(s -> s
                         .index(examSourceIndex)
