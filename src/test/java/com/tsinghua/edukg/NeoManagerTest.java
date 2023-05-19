@@ -2,12 +2,10 @@ package com.tsinghua.edukg;
 
 import com.alibaba.fastjson.JSON;
 import com.tsinghua.edukg.manager.NeoManager;
-import com.tsinghua.edukg.model.ClassInternal;
-import com.tsinghua.edukg.model.Entity;
-import com.tsinghua.edukg.model.EntityWithScore;
-import com.tsinghua.edukg.model.Relation;
+import com.tsinghua.edukg.model.*;
 import com.tsinghua.edukg.model.params.SearchSubgraphParam;
 import com.tsinghua.edukg.service.GraphService;
+import com.tsinghua.edukg.utils.CommonUtil;
 import com.tsinghua.edukg.utils.RuleHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -18,6 +16,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -152,19 +153,60 @@ public class NeoManagerTest {
     }
 
     @Test
-    public void analyseNodes() {
-        List<EntityWithScore> retList = new ArrayList<>();
-        String query = "match (n) n.uri as uri return uri ";
-        Result result = session.query(query, new HashMap<>());
-        for (Map<String, Object> m : result.queryResults()) {
-            retList.add(EntityWithScore.builder()
-                    .name((String) m.get("name"))
-                    .uri((String) m.get("uri"))
-                    .classList(RuleHandler.classConverter(Arrays.asList((String[]) m.get("labels"))))
-                    .abstractMsg((String) m.get("v"))
-                    .build());
+    public void analyseNodes() throws IOException {
+        List<String> uriList = CommonUtil.readTextFromPath("./recordUri.txt");
+        File file1 = new File("./relationWeakNodes.txt");
+        File file2 = new File("./propWeakNodes.txt");
+        FileWriter fileWriter1 = new FileWriter(file1.getName());
+        FileWriter fileWriter2 = new FileWriter(file2.getName());
+        int progress = 0;
+        int relationFileCount = 0;
+        int propFileCount = 0;
+        for(String uri : uriList) {
+            progress++;
+            System.out.println("progress = " + progress);
+            if(propFileCount > 10000) {
+                file2 = new File("./propWeakNodes" + progress + ".txt");
+                fileWriter2.close();
+                fileWriter2 = new FileWriter(file2.getName());
+                propFileCount = 0;
+            }
+            if(relationFileCount > 10000) {
+                file1 = new File("./relationWeakNodes" + progress + ".txt");
+                fileWriter1.close();
+                fileWriter1 = new FileWriter(file1.getName());
+                relationFileCount = 0;
+            }
+            Entity entity = neoManager.getEntityFromUri(uri);
+            if(entity.getUri() == null) {
+                continue;
+            }
+            if(entity.getProperty().size() < 3) {
+                propFileCount += writeWeakNodes(fileWriter2, entity);
+            }
+            if(entity.getRelation().size() == 0) {
+                relationFileCount += writeWeakNodes(fileWriter1, entity);
+            }
         }
-        retList = retList.stream().sorted(Comparator.comparingInt(EntityWithScore::getScore)).collect(Collectors.toList());
+        fileWriter1.close();
+        fileWriter2.close();
+    }
+
+    public Integer writeWeakNodes(FileWriter fileWriter, Entity entity) throws IOException {
+        String needWrite = "";
+        needWrite += "uri=" + entity.getUri() + " " + "name=" + entity.getName() + "\n";
+        int acc = 2;
+        for(Property property : entity.getProperty()) {
+            acc += 2;
+            needWrite += "propName=" + property.getPredicateLabel() + " " + "objectName=" + property.getObject() + "\n";
+        }
+        for(Relation relation : entity.getRelation()) {
+            acc += 2;
+            needWrite += "relationName=" + relation.getPredicateLabel() + " " + "subject=" + relation.getSubject() + " " + "object=" + relation.getObject() + "\n";
+        }
+        fileWriter.write(needWrite + "\n");
+        fileWriter.flush();
+        return acc;
     }
 
     public void analyseConcrate(List<EntityWithScore> entityList) {

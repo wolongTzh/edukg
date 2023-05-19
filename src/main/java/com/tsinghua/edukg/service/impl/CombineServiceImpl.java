@@ -187,39 +187,14 @@ public class CombineServiceImpl implements CombineService {
         String searchText = qaParam.getQuestion();
         Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlpSimple(qaParam.getQuestion());
         QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
-        String answerList = "";
         List<QAESGrepVO> qaesGrepVOS = future.get();
-        int count = 5;
-        if(!StringUtils.isEmpty(answer.getAnswerValue())) {
-            answerList += answer.getAnswerValue() + "\t";
+        // kbqa没有返回结果
+        if(StringUtils.isEmpty(answer.getAnswerValue())) {
+            combineQaVO.setQaesGrepVO(qaesGrepVOS);
         }
-        for(QAESGrepVO qaesGrepVO : qaesGrepVOS) {
-            if(count == 1) {
-                answerList += qaesGrepVO.getText();
-                break;
-            }
-            else {
-                answerList += qaesGrepVO.getText() + "\t";
-            }
-            count--;
-        }
-        BimpmParam bimpmParam = new BimpmParam(answerList, qaParam.getQuestion());
-        BimpmResult bimpmResult = bimpmFeignService.bimpmRequest(bimpmParam);
-        Integer index = Integer.parseInt(bimpmResult.getIndex());
-        // kbqa有返回结果且选到了kbqa
-        if(index == 0 && !StringUtils.isEmpty(answer.getAnswerValue())) {
+        else {
             combineQaVO.setAnswer(answer);
-            return combineQaVO;
         }
-        // kbqa有返回结果但是并没有选到kbqa
-        if(!StringUtils.isEmpty(answer.getAnswerValue())) {
-            index--;
-        }
-        // 选到了irqa的场景
-        QAESGrepVO qaesGrepVO = qaesGrepVOS.get(index);
-        List<QAESGrepVO> qaesGrepVOList = new ArrayList<>();
-        qaesGrepVOList.add(qaesGrepVO);
-        combineQaVO.setQaesGrepVO(qaesGrepVOList);
         return combineQaVO;
     }
 }
