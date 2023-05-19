@@ -78,7 +78,7 @@ public class AsyncHelper {
     public Future<List<QAESGrepVO>> qaBackupForHanlp(String question) throws IOException, IllegalAccessException {
         List<QAESGrepVO> qaesGrepVOList = new ArrayList<>();
         List<TextBookHighLight> sents = esManager.getHighLightTextBookFromMiniMatch(HanlpHelper.CutWordRetNeedConcernWords(question));
-        int count = 5;
+        int count = 10;
         String answers = "";
         for(TextBookHighLight sent : sents) {
             if(count == 0) {
@@ -116,7 +116,7 @@ public class AsyncHelper {
     public Future<List<QAESGrepVO>> qaBackupForHanlpSimple(String question) throws IOException, IllegalAccessException {
         List<QAESGrepVO> qaesGrepVOList = new ArrayList<>();
         List<TextBookHighLight> sents = esManager.getHighLightTextBookFromMiniMatch(HanlpHelper.CutWordRetNeedConcernWords(question));
-        int count = 5;
+        int count = 10;
         String answers = "";
         for(TextBookHighLight sent : sents) {
             if(count == 0) {
@@ -129,12 +129,12 @@ public class AsyncHelper {
                 answers += sent.getExample() + "\t";
             }
             count--;
-            List<LinkingVO> linkingVOList = graphService.linkingEntities(LinkingParam.builder().searchText(sent.getExample()).build());
-            qaesGrepVOList.add(QAESGrepVO.builder()
-                    .bookId(sent.getBookId())
-                    .linkingVOList(linkingVOList)
-                    .text(sent.getExample())
-                    .build());
+//            List<LinkingVO> linkingVOList = graphService.linkingEntities(LinkingParam.builder().searchText(sent.getExample()).build());
+//            qaesGrepVOList.add(QAESGrepVO.builder()
+//                    .bookId(sent.getBookId())
+//                    .linkingVOList(linkingVOList)
+//                    .text(sent.getExample())
+//                    .build());
 
         }
         BimpmParam bimpmParam = new BimpmParam(answers, question);
