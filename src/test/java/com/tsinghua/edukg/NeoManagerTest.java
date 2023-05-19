@@ -41,8 +41,16 @@ public class NeoManagerTest {
         List<String> uriList = CommonUtil.readTextFromPath("./recordUri.txt");
         File file1 = new File("./out/relationWeakNodes.txt");
         File file2 = new File("./out/propWeakNodes.txt");
+        File file3 = new File("./out/propWeakNodesSingle.txt");
+        File file4 = new File("./out/propWeakNodesLong.txt");
+        File file5 = new File("./out/propWeakNodesAnno.txt");
+        File file6 = new File("./out/propWeakNodesOther.txt");
         FileWriter fileWriter1 = new FileWriter(file1.getName());
         FileWriter fileWriter2 = new FileWriter(file2.getName());
+        FileWriter fileWriter3 = new FileWriter(file3.getName());
+        FileWriter fileWriter4 = new FileWriter(file4.getName());
+        FileWriter fileWriter5 = new FileWriter(file5.getName());
+        FileWriter fileWriter6 = new FileWriter(file6.getName());
         int progress = 0;
         int relationFileCount = 0;
         int propFileCount = 0;
@@ -66,6 +74,18 @@ public class NeoManagerTest {
                 continue;
             }
             if(entity.getProperty().size() < 3) {
+                if(entity.getName().length() == 1) {
+                    writeWeakNodesSwitchLine(fileWriter3, entity);
+                }
+                else if(entity.getName().length() > 8) {
+                    writeWeakNodesSwitchLine(fileWriter4, entity);
+                }
+                else if(entity.getUri().contains("annotation")) {
+                    writeWeakNodesSwitchLine(fileWriter5, entity);
+                }
+                else {
+                    writeWeakNodesSwitchLine(fileWriter6, entity);
+                }
                 propFileCount += writeWeakNodes(fileWriter2, entity);
             }
             if(entity.getRelation().size() == 0) {
@@ -76,7 +96,7 @@ public class NeoManagerTest {
         fileWriter2.close();
     }
 
-    public Integer writeWeakNodes(FileWriter fileWriter, Entity entity) throws IOException {
+    public Integer writeWeakNodesSwitchLine(FileWriter fileWriter, Entity entity) throws IOException {
         String needWrite = "";
         needWrite += "uri=" + entity.getUri() + " " + "name=" + entity.getName() + "\n";
         int acc = 2;
@@ -87,6 +107,23 @@ public class NeoManagerTest {
         for(Relation relation : entity.getRelation()) {
             acc += 2;
             needWrite += "relationName=" + relation.getPredicateLabel() + " " + "subject=" + relation.getSubject() + " " + "object=" + relation.getObject() + "\n";
+        }
+        fileWriter.write(needWrite + "\n");
+        fileWriter.flush();
+        return acc;
+    }
+
+    public Integer writeWeakNodes(FileWriter fileWriter, Entity entity) throws IOException {
+        String needWrite = "";
+        needWrite += "uri=" + entity.getUri() + " " + "name=" + entity.getName() + " ";
+        int acc = 1;
+        for(Property property : entity.getProperty()) {
+            acc += 1;
+            needWrite += "propName=" + property.getPredicateLabel() + " " + "objectName=" + property.getObject() + " ";
+        }
+        for(Relation relation : entity.getRelation()) {
+            acc += 1;
+            needWrite += "relationName=" + relation.getPredicateLabel() + " " + "subject=" + relation.getSubject() + " " + "object=" + relation.getObject() + " ";
         }
         fileWriter.write(needWrite + "\n");
         fileWriter.flush();
