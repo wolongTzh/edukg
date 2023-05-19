@@ -44,7 +44,7 @@ public class NeoManagerTest {
         File file2 = new File("./out/propWeakNodes.txt");
         File file3 = new File("./out/propWeakNodesSingle.txt");
         File file4 = new File("./out/propWeakNodesLong.txt");
-        File file5 = new File("./out/propWeakNodesAnno.txt");
+        File file5 = new File("./out/propWeakNodesLegacy.txt");
         File file6 = new File("./out/propWeakNodesOther.txt");
         FileWriter fileWriter1 = new FileWriter(file1.getName());
         FileWriter fileWriter2 = new FileWriter(file2.getName());
@@ -75,7 +75,7 @@ public class NeoManagerTest {
                 continue;
             }
             if(entity.getProperty().size() < 3) {
-                if(entity.getUri().contains("annotation")) {
+                if(entity.getUri().contains("annotation") || entity.getUri().contains("category")) {
                     writeWeakNodesSwitchLine(fileWriter5, entity);
                 }
                 else if(!StringUtils.isEmpty(entity.getName()) && entity.getName().length() == 1) {
