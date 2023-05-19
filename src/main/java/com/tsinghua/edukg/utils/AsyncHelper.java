@@ -116,26 +116,10 @@ public class AsyncHelper {
     public Future<List<QAESGrepVO>> qaBackupForHanlpSimple(String question) throws IOException, IllegalAccessException {
         List<QAESGrepVO> qaesGrepVOList = new ArrayList<>();
         List<TextBookHighLight> sents = esManager.getHighLightTextBookFromMiniMatch(HanlpHelper.CutWordRetNeedConcernWords(question));
-        List<TextBookHighLight> sentsRestrict = esManager.getHighLightTextBookFromMiniMatchRestrict(HanlpHelper.CutWordRetNeedConcernWords(question));
         List<TextBookHighLight> accSents = new ArrayList<>();
-        int count = 3;
+        int count = 5;
         String answers = "";
         for(TextBookHighLight sent : sents) {
-            if(count == 0) {
-                break;
-            }
-            accSents.add(sent);
-            if(count == 1 && sentsRestrict.size() == 0) {
-                answers += sent.getExample();
-            }
-            else {
-                answers += sent.getExample() + "\t";
-            }
-            count--;
-
-        }
-        count = 3;
-        for(TextBookHighLight sent : sentsRestrict) {
             if(count == 0) {
                 break;
             }
