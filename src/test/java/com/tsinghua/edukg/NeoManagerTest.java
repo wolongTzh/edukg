@@ -14,6 +14,7 @@ import org.neo4j.ogm.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.io.File;
@@ -74,14 +75,14 @@ public class NeoManagerTest {
                 continue;
             }
             if(entity.getProperty().size() < 3) {
-                if(entity.getName().length() == 1) {
+                if(entity.getUri().contains("annotation")) {
+                    writeWeakNodesSwitchLine(fileWriter5, entity);
+                }
+                else if(!StringUtils.isEmpty(entity.getName()) && entity.getName().length() == 1) {
                     writeWeakNodesSwitchLine(fileWriter3, entity);
                 }
-                else if(entity.getName().length() > 8) {
+                else if(!StringUtils.isEmpty(entity.getName()) && entity.getName().length() > 8) {
                     writeWeakNodesSwitchLine(fileWriter4, entity);
-                }
-                else if(entity.getUri().contains("annotation")) {
-                    writeWeakNodesSwitchLine(fileWriter5, entity);
                 }
                 else {
                     writeWeakNodesSwitchLine(fileWriter6, entity);
