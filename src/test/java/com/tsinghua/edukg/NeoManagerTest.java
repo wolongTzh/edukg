@@ -52,6 +52,10 @@ public class NeoManagerTest {
         FileWriter fileWriter4 = new FileWriter(file4.getName());
         FileWriter fileWriter5 = new FileWriter(file5.getName());
         FileWriter fileWriter6 = new FileWriter(file6.getName());
+        int countSingle = 0;
+        int countLong = 0;
+        int countLegacy = 0;
+        int countOther = 0;
         int progress = 0;
         int relationFileCount = 0;
         int propFileCount = 0;
@@ -77,15 +81,19 @@ public class NeoManagerTest {
             if(entity.getProperty().size() < 3) {
                 if(entity.getUri().contains("annotation") || entity.getUri().contains("category")) {
                     writeWeakNodesSwitchLine(fileWriter5, entity);
+                    countLegacy++;
                 }
                 else if(!StringUtils.isEmpty(entity.getName()) && entity.getName().length() == 1) {
                     writeWeakNodesSwitchLine(fileWriter3, entity);
+                    countSingle++;
                 }
                 else if(!StringUtils.isEmpty(entity.getName()) && entity.getName().length() > 8) {
                     writeWeakNodesSwitchLine(fileWriter4, entity);
+                    countLong++;
                 }
                 else {
                     writeWeakNodesSwitchLine(fileWriter6, entity);
+                    countOther++;
                 }
                 propFileCount += writeWeakNodes(fileWriter2, entity);
             }
@@ -95,6 +103,10 @@ public class NeoManagerTest {
         }
         fileWriter1.close();
         fileWriter2.close();
+        System.out.println("countLegacy = " + countLegacy);
+        System.out.println("countSingle = " + countSingle);
+        System.out.println("countLong = " + countLong);
+        System.out.println("countOther = " + countOther);
     }
 
     public Integer writeWeakNodesSwitchLine(FileWriter fileWriter, Entity entity) throws IOException {
