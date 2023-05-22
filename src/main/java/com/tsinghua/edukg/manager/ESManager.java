@@ -283,6 +283,48 @@ public class ESManager {
      * @return
      * @throws IOException
      */
+    public List<TextBookHighLight> getHighLightTextBookFromMiniMatchNew(String question, String subject) throws IOException {
+        String field = "all";
+        List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
+        SearchResponse<IRQALiu> matchSearch;
+        String firstWordsMatch = "";
+        BoolQuery.Builder builder = new BoolQuery.Builder();
+        builder = builder.must(m -> m
+                .matchPhrase(ma -> ma
+                        .field(field)
+                        .query(subject)
+                )
+        );
+        builder = builder.must(m -> m
+                .match(ma -> ma
+                        .field(field)
+                        .query(question)
+                )
+        );
+        BoolQuery boolQuery = builder.build();
+        matchSearch = client.search(s -> s
+                        .index(irqaIndex)
+                        .query(b -> b
+                                .bool(boolQuery)
+                        ),
+                IRQALiu.class);
+        for (Hit<IRQALiu> hit: matchSearch.hits().hits()) {
+            textBookHighLightList.add(TextBookHighLight.builder()
+                    .bookId(hit.id())
+                    .example(hit.source().getAll())
+                    .value(hit.source().getValue())
+                    .score(hit.score())
+                    .build());
+        }
+        return textBookHighLightList;
+    }
+
+    /**
+     * 刘阳版本irqa检索
+     * @param keyWords
+     * @return
+     * @throws IOException
+     */
     public List<TextBookHighLight> getHighLightTextBookFromMiniMatchRestrict(List<Term> keyWords) throws IOException {
         String field = "all";
         List<TextBookHighLight> textBookHighLightList = new ArrayList<>();

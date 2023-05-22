@@ -2,8 +2,11 @@ package com.tsinghua.edukg.utils;
 
 import com.huaban.analysis.jieba.JiebaSegmenter;
 import com.tsinghua.edukg.api.feign.BimpmFeignService;
+import com.tsinghua.edukg.api.feign.QAFeignService;
 import com.tsinghua.edukg.api.model.BimpmParam;
 import com.tsinghua.edukg.api.model.BimpmResult;
+import com.tsinghua.edukg.api.model.QAParam;
+import com.tsinghua.edukg.api.model.QAResult;
 import com.tsinghua.edukg.config.AddressConfig;
 import com.tsinghua.edukg.manager.ESManager;
 import com.tsinghua.edukg.model.TextBookHighLight;
@@ -15,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -32,6 +36,9 @@ public class AsyncHelper {
 
     @Autowired
     GraphService graphService;
+
+    @Autowired
+    QAFeignService qaFeignService;
 
     @Autowired
     ESManager esManager;
@@ -148,6 +155,58 @@ public class AsyncHelper {
                 .bookId(sent.getBookId())
                 .linkingVOList(linkingVOList)
                 .text(sent.getValue())
+                .build());
+        return new AsyncResult<>(qaesGrepVOList);
+    }
+
+    @Async(value = "esTaskThreadPool")
+    public Future<List<QAESGrepVO>> qaBackupForHanlpSimpleNew(String question) throws IOException, IllegalAccessException {
+        List<QAESGrepVO> qaesGrepVOList = new ArrayList<>();
+        QAParam qaParam = new QAParam();
+        qaParam.setQuestion(question);
+        QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
+        List<TextBookHighLight> sents;
+        if(!StringUtils.isEmpty(answer.getSubject())) {
+            sents = esManager.getHighLightTextBookFromMiniMatchNew(question, answer.getSubject());
+        }
+        else {
+            sents = esManager.getHighLightTextBookFromMiniMatch(HanlpHelper.CutWordRetNeedConcernWords(question));
+        }
+        if(sents.size() == 0) {
+            sents = esManager.getHighLightTextBookFromMiniMatch(HanlpHelper.CutWordRetNeedConcernWords(question));
+        }
+        List<TextBookHighLight> accSents = new ArrayList<>();
+        int count = 5;
+        String answers = "";
+        for(TextBookHighLight sent : sents) {
+            if(count == 0) {
+                break;
+            }
+            accSents.add(sent);
+            if(count == 1) {
+                answers += sent.getExample();
+            }
+            else {
+                answers += sent.getExample() + "\t";
+            }
+            count--;
+
+        }
+        BimpmParam bimpmParam = new BimpmParam(answers, question);
+        BimpmResult bimpmResult = bimpmFeignService.bimpmRequest(bimpmParam);
+        Integer index = Integer.parseInt(bimpmResult.getIndex());
+        TextBookHighLight sent;
+        if(index >= 0 && index < accSents.size()) {
+            sent = accSents.get(index);
+        }
+        else {
+            sent = accSents.get(0);
+        }
+        List<LinkingVO> linkingVOList = graphService.linkingEntities(LinkingParam.builder().searchText(sent.getExample()).build());
+        qaesGrepVOList.add(QAESGrepVO.builder()
+                .bookId(sent.getBookId())
+                .linkingVOList(linkingVOList)
+                .text(sent.getExample())
                 .build());
         return new AsyncResult<>(qaesGrepVOList);
     }
