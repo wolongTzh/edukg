@@ -147,7 +147,7 @@ public class AsyncHelper {
         qaesGrepVOList.add(QAESGrepVO.builder()
                 .bookId(sent.getBookId())
                 .linkingVOList(linkingVOList)
-                .text(sent.getExample())
+                .text(sent.getValue())
                 .build());
         return new AsyncResult<>(qaesGrepVOList);
     }
