@@ -41,7 +41,7 @@ public class NeoManagerTest {
 
     @Test
     public void analyseNodes() throws IOException {
-        List<String> uriList = CommonUtil.readTextFromPath("./recordUri.txt");
+        List<String> uriList = CommonUtil.readTextFromPath("./source/recordUri.txt");
         List<WeakNodeCase> allWeakNodes = new ArrayList<>();
         List<String> tops = Arrays.asList("single", "legacy", "noRelation");
         Map<String, WeakNodeCase> topWeakNodes = createNode(tops, allWeakNodes);
