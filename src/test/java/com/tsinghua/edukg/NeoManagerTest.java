@@ -37,8 +37,68 @@ public class NeoManagerTest {
     @Qualifier("neo4jSession")
     Session session;
 
+
+
     @Test
     public void analyseNodes() throws IOException {
+        List<String> uriList = CommonUtil.readTextFromPath("./recordUri.txt");
+        List<WeakNodeCase> allWeakNodes = new ArrayList<>();
+        List<String> tops = Arrays.asList("single", "legacy", "noRelation");
+        Map<String, WeakNodeCase> topWeakNodes = createNode(tops, allWeakNodes);
+        List<String> subjects = Arrays.asList("chinese", "math", "english", "history", "geo", "politics", "physics", "chemistry", "biology");
+        Map<String, WeakNodeCase> subjectWeakNodes = createNode(subjects, allWeakNodes);
+        int progress = 0;
+        for(String uri : uriList) {
+            progress++;
+            System.out.println("progress = " + progress);
+            Entity entity = neoManager.getEntityFromUri(uri);
+            if(entity.getUri() == null) {
+                continue;
+            }
+            if(entity.getProperty().size() < 3) {
+                if(entity.getUri().contains("annotation") || entity.getUri().contains("category")) {
+                    topWeakNodes.get("legacy").writeWeakNodesSwitchLine(entity);
+                }
+                else if(!StringUtils.isEmpty(entity.getName()) && entity.getName().length() == 1) {
+                    topWeakNodes.get("single").writeWeakNodesSwitchLine(entity);
+                }
+                else if(!StringUtils.isEmpty(entity.getName()) && entity.getName().length() > 8) {
+                    for(String subject : subjects) {
+                        if(entity.getUri().contains(subject)) {
+                            WeakNodeCase weakNodeCase = subjectWeakNodes.get(subject);
+                            weakNodeCase.writeWeakNodesSwitchLine(entity);
+                        }
+                    }
+                }
+                else {
+                    for(String subject : subjects) {
+                        if(entity.getUri().contains(subject)) {
+                            WeakNodeCase weakNodeCase = subjectWeakNodes.get(subject);
+                            weakNodeCase.writeWeakNodesSwitchLine(entity);
+                        }
+                    }
+                }
+            }
+            if(entity.getRelation().size() == 0) {
+                topWeakNodes.get("noRelation").writeWeakNodesSwitchLine(entity);
+            }
+        }
+        for(WeakNodeCase weakNodeCase : allWeakNodes) {
+            weakNodeCase.printCount();
+        }
+    }
+
+    public Map<String, WeakNodeCase> createNode(List<String> names, List<WeakNodeCase> allNodes) throws IOException {
+        Map<String, WeakNodeCase> nodesMap = new HashMap<>();
+        for(String name : names) {
+            WeakNodeCase weakNodeCase = new WeakNodeCase(name);
+            nodesMap.put(name, weakNodeCase);
+            allNodes.add(weakNodeCase);
+        }
+        return nodesMap;
+    }
+
+    public void analyseNodesOld() throws IOException {
         List<String> uriList = CommonUtil.readTextFromPath("./recordUri.txt");
         File file1 = new File("./out/relationWeakNodes.txt");
         File file2 = new File("./out/propWeakNodes.txt");
@@ -46,12 +106,30 @@ public class NeoManagerTest {
         File file4 = new File("./out/propWeakNodesLong.txt");
         File file5 = new File("./out/propWeakNodesLegacy.txt");
         File file6 = new File("./out/propWeakNodesOther.txt");
+        File fileChinese = new File("./out/propWeakNodesChinese.txt");
+        File fileMath = new File("./out/propWeakNodesMath.txt");
+        File fileEnglish = new File("./out/propWeakNodesEnglish.txt");
+        File fileHistory = new File("./out/propWeakNodesHistory.txt");
+        File fileGeo = new File("./out/propWeakNodesGeo.txt");
+        File filePolitics = new File("./out/propWeakNodesPolitics.txt");
+        File filePhysics = new File("./out/propWeakNodesPhysics.txt");
+        File fileChemistry = new File("./out/propWeakNodesChemistry.txt");
+        File fileBiology = new File("./out/propWeakNodesBiology.txt");
         FileWriter fileWriter1 = new FileWriter(file1.getName());
         FileWriter fileWriter2 = new FileWriter(file2.getName());
         FileWriter fileWriter3 = new FileWriter(file3.getName());
         FileWriter fileWriter4 = new FileWriter(file4.getName());
         FileWriter fileWriter5 = new FileWriter(file5.getName());
         FileWriter fileWriter6 = new FileWriter(file6.getName());
+        FileWriter fileWriterChinese = new FileWriter(fileChinese.getName());
+        FileWriter fileWriterMath = new FileWriter(fileMath.getName());
+        FileWriter fileWriterEnglish = new FileWriter(fileEnglish.getName());
+        FileWriter fileWriterHistory = new FileWriter(fileHistory.getName());
+        FileWriter fileWriterGeo = new FileWriter(fileGeo.getName());
+        FileWriter fileWriterPolitics = new FileWriter(filePolitics.getName());
+        FileWriter fileWriterPhysics = new FileWriter(filePhysics.getName());
+        FileWriter fileWriterChemistry = new FileWriter(fileChemistry.getName());
+        FileWriter fileWriterBiology = new FileWriter(fileBiology.getName());
         int countSingle = 0;
         int countLong = 0;
         int countLegacy = 0;
@@ -113,6 +191,47 @@ public class NeoManagerTest {
         System.out.println("countOther = " + countOther);
         System.out.println("countProp = " + countProp);
         System.out.println("countRelation = " + countRelation);
+    }
+
+    class WeakNodeCase {
+
+        String name;
+
+        File file;
+
+        FileWriter fileWriter;
+
+        Integer count = 0;
+
+        public WeakNodeCase(String name) throws IOException {
+            this.name = name;
+            String path = "./" + name + ".txt";
+            file = new File(path);
+            fileWriter = new FileWriter(file.getName());
+        }
+
+        public void printCount() throws IOException {
+            System.out.println("The count of" + name + " = " + count);
+            fileWriter.close();
+        }
+
+        public Integer writeWeakNodesSwitchLine(Entity entity) throws IOException {
+            String needWrite = "";
+            needWrite += "uri=" + entity.getUri() + " " + "name=" + entity.getName() + "\n";
+            int acc = 2;
+            for(Property property : entity.getProperty()) {
+                acc += 2;
+                needWrite += "propName=" + property.getPredicateLabel() + " " + "objectName=" + property.getObject() + "\n";
+            }
+            for(Relation relation : entity.getRelation()) {
+                acc += 2;
+                needWrite += "relationName=" + relation.getPredicateLabel() + " " + "subject=" + relation.getSubject() + " " + "object=" + relation.getObject() + "\n";
+            }
+            fileWriter.write(needWrite + "\n");
+            fileWriter.flush();
+            count++;
+            return acc;
+        }
     }
 
     public Integer writeWeakNodesSwitchLine(FileWriter fileWriter, Entity entity) throws IOException {
