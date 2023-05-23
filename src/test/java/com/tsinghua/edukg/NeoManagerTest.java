@@ -221,7 +221,7 @@ public class NeoManagerTest {
             int acc = 2;
             for(Property property : entity.getProperty()) {
                 acc += 2;
-                needWrite += "propName=" + property.getPredicateLabel() + " " + "objectName=" + property.getObject() + "\n";
+                needWrite += "propName=" + (StringUtils.isEmpty(property.getPredicateLabel()) ? property.getPredicate() : property.getPredicateLabel()) + " " + "objectName=" + property.getObject() + "\n";
             }
             for(Relation relation : entity.getRelation()) {
                 acc += 2;
