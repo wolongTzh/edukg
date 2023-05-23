@@ -202,6 +202,7 @@ public class AsyncHelper {
         else {
             sent = accSents.get(0);
         }
+        sent = sents.get(0);
         List<LinkingVO> linkingVOList = graphService.linkingEntities(LinkingParam.builder().searchText(sent.getExample()).build());
         qaesGrepVOList.add(QAESGrepVO.builder()
                 .bookId(sent.getBookId())
