@@ -254,7 +254,7 @@ public class NeoManagerTest {
         }
 
         public void printCount() throws IOException {
-            System.out.println("The count of" + name + " = " + count);
+            System.out.println("The count of " + name + " = " + count);
             fileWriter.close();
         }
 
