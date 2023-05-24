@@ -2,6 +2,7 @@ package com.tsinghua.edukg.manager;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.query_dsl.BoolQuery;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch.core.GetResponse;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.HighlightField;
@@ -270,7 +271,6 @@ public class ESManager {
             textBookHighLightList.add(TextBookHighLight.builder()
                     .bookId(hit.id())
                     .example(hit.source().getAll())
-                    .value(hit.source().getValue())
                     .score(hit.score())
                     .build());
         }
@@ -283,24 +283,41 @@ public class ESManager {
      * @return
      * @throws IOException
      */
-    public List<TextBookHighLight> getHighLightTextBookFromMiniMatchNew(String question, String subject) throws IOException {
+    public List<TextBookHighLight> getHighLightTextBookFromMiniMatchNew(List<Term> keyWords, String subject, String predicate) throws IOException {
         String field = "all";
         List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
         SearchResponse<IRQALiu> matchSearch;
         String firstWordsMatch = "";
         BoolQuery.Builder builder = new BoolQuery.Builder();
+        for(Term term : keyWords) {
+            if(HanlpHelper.stopWords.contains(term.word)) {
+                continue;
+            }
+            firstWordsMatch += " " + term.word;
+        }
+        String finalMatch = firstWordsMatch;
         builder = builder.must(m -> m
                 .matchPhrase(ma -> ma
                         .field(field)
                         .query(subject)
                 )
         );
-        builder = builder.must(m -> m
-                .match(ma -> ma
-                        .field(field)
-                        .query(question)
-                )
-        );
+        if(!org.springframework.util.StringUtils.isEmpty(predicate)) {
+            builder = builder.must(m -> m
+                    .term(ma -> ma
+                            .field(field)
+                            .value(predicate)
+                    )
+            );
+        }
+        else {
+            builder = builder.must(m -> m
+                    .match(ma -> ma
+                            .field(field)
+                            .query(finalMatch)
+                    )
+            );
+        }
         BoolQuery boolQuery = builder.build();
         matchSearch = client.search(s -> s
                         .index(irqaIndex)
@@ -308,14 +325,46 @@ public class ESManager {
                                 .bool(boolQuery)
                         ),
                 IRQALiu.class);
+        if(matchSearch.hits().hits().size() == 0) {
+            builder = new BoolQuery.Builder();
+            builder = builder.must(m -> m
+                    .match(ma -> ma
+                            .field(field)
+                            .query(subject)
+                    )
+            );
+            if(!org.springframework.util.StringUtils.isEmpty(predicate)) {
+                builder = builder.must(m -> m
+                        .term(ma -> ma
+                                .field(field)
+                                .value(predicate)
+                        )
+                );
+            }
+            else {
+                builder = builder.must(m -> m
+                        .match(ma -> ma
+                                .field(field)
+                                .query(finalMatch)
+                        )
+                );
+            }
+            BoolQuery newBoolQuery = builder.build();
+            matchSearch = client.search(s -> s
+                            .index(irqaIndex)
+                            .query(b -> b
+                                    .bool(newBoolQuery)
+                            ),
+                    IRQALiu.class);
+        }
         for (Hit<IRQALiu> hit: matchSearch.hits().hits()) {
             textBookHighLightList.add(TextBookHighLight.builder()
                     .bookId(hit.id())
                     .example(hit.source().getAll())
-                    .value(hit.source().getValue())
                     .score(hit.score())
                     .build());
         }
+
         return textBookHighLightList;
     }
 

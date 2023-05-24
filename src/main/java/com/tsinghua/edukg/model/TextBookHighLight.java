@@ -13,7 +13,5 @@ public class TextBookHighLight {
 
     String example;
 
-    String value;
-
     double score;
 }

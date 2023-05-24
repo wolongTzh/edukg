@@ -154,7 +154,7 @@ public class AsyncHelper {
         qaesGrepVOList.add(QAESGrepVO.builder()
                 .bookId(sent.getBookId())
                 .linkingVOList(linkingVOList)
-                .text(sent.getValue())
+                .text(sent.getExample())
                 .build());
         return new AsyncResult<>(qaesGrepVOList);
     }
@@ -166,8 +166,12 @@ public class AsyncHelper {
         qaParam.setQuestion(question);
         QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
         List<TextBookHighLight> sents;
+        String predicate = answer.getPredicate();
+        if(!StringUtils.isEmpty(predicate) && !question.contains(predicate)) {
+            predicate = null;
+        }
         if(!StringUtils.isEmpty(answer.getSubject())) {
-            sents = esManager.getHighLightTextBookFromMiniMatchNew(question, answer.getSubject());
+            sents = esManager.getHighLightTextBookFromMiniMatchNew(HanlpHelper.CutWordRetNeedConcernWords(question), answer.getSubject(), predicate);
         }
         else {
             sents = esManager.getHighLightTextBookFromMiniMatch(HanlpHelper.CutWordRetNeedConcernWords(question));
@@ -202,7 +206,6 @@ public class AsyncHelper {
         else {
             sent = accSents.get(0);
         }
-        sent = sents.get(0);
         List<LinkingVO> linkingVOList = graphService.linkingEntities(LinkingParam.builder().searchText(sent.getExample()).build());
         qaesGrepVOList.add(QAESGrepVO.builder()
                 .bookId(sent.getBookId())
