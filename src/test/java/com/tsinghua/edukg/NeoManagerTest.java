@@ -220,11 +220,11 @@ public class NeoManagerTest {
                 else if(!property.getPredicateLabel().equals("名称") && property.getObject().equals(entity.getName())) {
                     weakNodeCaseMap.get("nouse").writeWeakNodesSwitchLine(entity);
                 }
-                else if(entity.getName().length() >= 10) {
-                    weakNodeCaseMap.get("nameLong").writeWeakNodesSwitchLine(entity);
-                }
                 else if(property.getObject().length() >= 50) {
                     weakNodeCaseMap.get("contentLong").writeWeakNodesSwitchLine(entity);
+                }
+                else if(entity.getName().length() >= 10) {
+                    weakNodeCaseMap.get("nameLong").writeWeakNodesSwitchLine(entity);
                 }
                 else if(entity.getName().length() == 1) {
                     weakNodeCaseMap.get("short").writeWeakNodesSwitchLine(entity);
