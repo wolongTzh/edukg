@@ -232,6 +232,7 @@ public class NeoManagerTest {
                 else {
                     weakNodeCaseMap.get("other").writeWeakNodesSwitchLine(entity);
                 }
+                break;
             }
         }
     }
