@@ -43,10 +43,15 @@ public class NeoManagerTest {
     public void analyseNodes() throws IOException {
         List<String> uriList = CommonUtil.readTextFromPath("./source/recordUri.txt");
         List<WeakNodeCase> allWeakNodes = new ArrayList<>();
-        List<String> tops = Arrays.asList("single", "legacy", "noRelation");
+        List<String> tops = Arrays.asList("single", "legacy", "xlore", "noRelation");
         Map<String, WeakNodeCase> topWeakNodes = createNode(tops, allWeakNodes);
         List<String> subjects = Arrays.asList("chinese", "math", "english", "history", "geo", "politics", "physics", "chemistry", "biology");
-        Map<String, WeakNodeCase> subjectWeakNodes = createNode(subjects, allWeakNodes);
+        List<String> inSubjects = Arrays.asList("exam", "nameLong", "contentLong", "short", "table", "pic", "nouse", "other");
+        Map<String, SubjectWeakNodeCase> subjectWeakNodes = new HashMap<>();
+        for(String subject : subjects) {
+            SubjectWeakNodeCase subjectWeakNodeCase = new SubjectWeakNodeCase(subject, inSubjects, allWeakNodes);
+            subjectWeakNodes.put(subject, subjectWeakNodeCase);
+        }
         int progress = 0;
         for(String uri : uriList) {
             progress++;
@@ -59,22 +64,14 @@ public class NeoManagerTest {
                 if(entity.getUri().contains("annotation") || entity.getUri().contains("category")) {
                     topWeakNodes.get("legacy").writeWeakNodesSwitchLine(entity);
                 }
-                else if(!StringUtils.isEmpty(entity.getName()) && entity.getName().length() == 1) {
-                    topWeakNodes.get("single").writeWeakNodesSwitchLine(entity);
-                }
-                else if(!StringUtils.isEmpty(entity.getName()) && entity.getName().length() > 8) {
-                    for(String subject : subjects) {
-                        if(entity.getUri().contains(subject)) {
-                            WeakNodeCase weakNodeCase = subjectWeakNodes.get(subject);
-                            weakNodeCase.writeWeakNodesSwitchLine(entity);
-                        }
-                    }
+                else if(entity.getUri().contains("xlore")) {
+                    topWeakNodes.get("xlore").writeWeakNodesSwitchLine(entity);
                 }
                 else {
                     for(String subject : subjects) {
                         if(entity.getUri().contains(subject)) {
-                            WeakNodeCase weakNodeCase = subjectWeakNodes.get(subject);
-                            weakNodeCase.writeWeakNodesSwitchLine(entity);
+                            SubjectWeakNodeCase subjectWeakNodeCase = subjectWeakNodes.get(subject);
+                            subjectWeakNodeCase.analyseCase(entity);
                         }
                     }
                 }
@@ -193,6 +190,52 @@ public class NeoManagerTest {
         System.out.println("countRelation = " + countRelation);
     }
 
+    class SubjectWeakNodeCase {
+
+        String name;
+
+        Map<String, WeakNodeCase> weakNodeCaseMap;
+
+        public SubjectWeakNodeCase(String name, List<String> childList, List<WeakNodeCase> allNodes) throws IOException {
+            this.name = name;
+            weakNodeCaseMap = new HashMap<>();
+            for(String child : childList) {
+                WeakNodeCase weakNodeCase = new WeakNodeCase(name + "-" + child);
+                weakNodeCaseMap.put(child, weakNodeCase);
+                allNodes.add(weakNodeCase);
+            }
+        }
+
+        public void analyseCase(Entity entity) throws IOException {
+            for(Property property : entity.getProperty()) {
+                if (property.getPredicateLabel().equals("话题内容") || property.getPredicateLabel().equals("话题分析")) {
+                    weakNodeCaseMap.get("exam").writeWeakNodesSwitchLine(entity);
+                }
+                else if(property.getPredicateLabel().equals("表格")) {
+                    weakNodeCaseMap.get("table").writeWeakNodesSwitchLine(entity);
+                }
+                else if(property.getPredicateLabel().equals("图片")) {
+                    weakNodeCaseMap.get("pic").writeWeakNodesSwitchLine(entity);
+                }
+                else if(!property.getPredicateLabel().equals("名称") && property.getObject().equals(entity.getName())) {
+                    weakNodeCaseMap.get("nouse").writeWeakNodesSwitchLine(entity);
+                }
+                else if(entity.getName().length() >= 10) {
+                    weakNodeCaseMap.get("nameLong").writeWeakNodesSwitchLine(entity);
+                }
+                else if(property.getObject().length() >= 50) {
+                    weakNodeCaseMap.get("contentLong").writeWeakNodesSwitchLine(entity);
+                }
+                else if(entity.getName().length() == 1) {
+                    weakNodeCaseMap.get("short").writeWeakNodesSwitchLine(entity);
+                }
+                else {
+                    weakNodeCaseMap.get("other").writeWeakNodesSwitchLine(entity);
+                }
+            }
+        }
+    }
+
     class WeakNodeCase {
 
         String name;
@@ -221,6 +264,9 @@ public class NeoManagerTest {
             int acc = 2;
             for(Property property : entity.getProperty()) {
                 acc += 2;
+                if(property.getPredicateLabel().equals("名称")) {
+                    continue;
+                }
                 needWrite += "propName=" + (StringUtils.isEmpty(property.getPredicateLabel()) ? property.getPredicate() : property.getPredicateLabel()) + " " + "objectName=" + property.getObject() + "\n";
             }
             for(Relation relation : entity.getRelation()) {
