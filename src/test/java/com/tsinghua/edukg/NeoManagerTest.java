@@ -208,7 +208,7 @@ public class NeoManagerTest {
                 if(child.equals("nameLong") || child.equals("other")) {
                     for(String nodeStatus : nodeStatusList) {
                         WeakNodeCase weakNodeCase2 = new WeakNodeCase(name + "-" + child + "-" + nodeStatus);
-                        weakNodeCaseMap.put(nodeStatus, weakNodeCase2);
+                        weakNodeCaseMap.put(child + "-" + nodeStatus, weakNodeCase2);
                         allNodes.add(weakNodeCase2);
                     }
                 }
@@ -231,31 +231,31 @@ public class NeoManagerTest {
                 }
                 else if(entity.getName().length() >= 10) {
                     weakNodeCaseMap.get("nameLong").writeWeakNodesSwitchLine(entity);
-                    handleNodeStatusCase(entity);
+                    handleNodeStatusCase(entity, "nameLong");
                 }
                 else if(entity.getName().length() == 1) {
                     weakNodeCaseMap.get("short").writeWeakNodesSwitchLine(entity);
                 }
                 else {
                     weakNodeCaseMap.get("other").writeWeakNodesSwitchLine(entity);
-                    handleNodeStatusCase(entity);
+                    handleNodeStatusCase(entity, "other");
                 }
                 break;
             }
         }
 
-        void handleNodeStatusCase(Entity entity) throws IOException {
+        void handleNodeStatusCase(Entity entity, String caseName) throws IOException {
             if(entity.getProperty().size() <= 1 && entity.getRelation().size() == 0) {
-                weakNodeCaseMap.get("blank").writeWeakNodesSwitchLine(entity);
+                weakNodeCaseMap.get(caseName + "-blank").writeWeakNodesSwitchLine(entity);
             }
             else if(entity.getRelation().size() == 0) {
-                weakNodeCaseMap.get("lonely").writeWeakNodesSwitchLine(entity);
+                weakNodeCaseMap.get(caseName + "-lonely").writeWeakNodesSwitchLine(entity);
             }
             else if(entity.getProperty().size() <= 1) {
-                weakNodeCaseMap.get("noProp").writeWeakNodesSwitchLine(entity);
+                weakNodeCaseMap.get(caseName + "-noProp").writeWeakNodesSwitchLine(entity);
             }
             else {
-                weakNodeCaseMap.get("other-other").writeWeakNodesSwitchLine(entity);
+                weakNodeCaseMap.get(caseName + "-other-other").writeWeakNodesSwitchLine(entity);
             }
         }
     }
@@ -272,7 +272,7 @@ public class NeoManagerTest {
 
         public WeakNodeCase(String name) throws IOException {
             this.name = name;
-            String path = "./" + name + ".txt";
+            String path = "./result/" + name + ".txt";
             file = new File(path);
             fileWriter = new FileWriter(file.getName());
         }
