@@ -167,14 +167,19 @@ public class AsyncHelper {
         QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
         List<TextBookHighLight> sents;
         String predicate = answer.getPredicate();
+        String subject = answer.getSubject();
         if(!question.contains(predicate)) {
             predicate = null;
         }
-        if(StringUtils.isEmpty(predicate)) {
-            sents = esManager.getHighLightTextBookFromMiniMatchWithoutPredicate(HanlpHelper.CutWordRetNeedConcernWords(question), answer.getSubject());
+        if(!question.contains(subject)) {
+            subject = null;
         }
         else {
-            sents = esManager.getHighLightTextBookFromMiniMatchWithPredicate(HanlpHelper.CutWordRetNeedConcernWords(question), answer.getSubject(), predicate);
+            question = question.replace(subject, "");
+        }
+        sents = esManager.getHighLightTextBookFromMiniMatchWithPredicate(HanlpHelper.CutWordRetNeedConcernWords(question), subject, predicate);
+        if(sents.size() == 0) {
+            sents = esManager.getHighLightTextBookFromMiniMatchWithoutPredicate(HanlpHelper.CutWordRetNeedConcernWords(question), subject);
         }
         if(sents.size() == 0) {
             sents = esManager.getHighLightTextBookFromMiniMatch(HanlpHelper.CutWordRetNeedConcernWords(question));

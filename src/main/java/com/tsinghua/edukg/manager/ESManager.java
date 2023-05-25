@@ -296,14 +296,16 @@ public class ESManager {
             if(HanlpHelper.stopWords.contains(term.word)) {
                 continue;
             }
-            firstWordsMatch += " " + term.word;
+            if(HanlpHelper.firstClassNatureList.contains(term.nature) || HanlpHelper.secondClassNatureList.contains(term.nature)) {
+                firstWordsMatch += " " + term.word;
+            }
         }
         String finalMatch = firstWordsMatch;
         // subject匹配subject
         builder = builder.must(m -> m
-                .matchPhrase(ma -> ma
-                        .field("subject")
-                        .query(subject)
+                .term(ma -> ma
+                        .field("subject.keyword")
+                        .value(subject)
                 )
         );
         builder = builder.must(m -> m
@@ -319,12 +321,12 @@ public class ESManager {
                                 .bool(boolQuery)
                         ),
                 IRQALiu.class);
-        // subject匹配all
+        // subject匹配value
         if(matchSearch.hits().hits().size() == 0) {
             builder = new BoolQuery.Builder();
             builder = builder.must(m -> m
                     .matchPhrase(ma -> ma
-                            .field(field)
+                            .field("value")
                             .query(subject)
                     )
             );
@@ -339,29 +341,6 @@ public class ESManager {
                             .index(irqaIndex)
                             .query(b -> b
                                     .bool(secondBoolQuery)
-                            ),
-                    IRQALiu.class);
-        }
-        // subject匹配all不严格
-        if(matchSearch.hits().hits().size() == 0) {
-            builder = new BoolQuery.Builder();
-            builder = builder.must(m -> m
-                    .match(ma -> ma
-                            .field(field)
-                            .query(subject)
-                    )
-            );
-            builder = builder.must(m -> m
-                    .match(ma -> ma
-                            .field(field)
-                            .query(finalMatch)
-                    )
-            );
-            BoolQuery thirdBoolQuery = builder.build();
-            matchSearch = client.search(s -> s
-                            .index(irqaIndex)
-                            .query(b -> b
-                                    .bool(thirdBoolQuery)
                             ),
                     IRQALiu.class);
         }
@@ -383,7 +362,7 @@ public class ESManager {
      * @throws IOException
      */
     public List<TextBookHighLight> getHighLightTextBookFromMiniMatchWithPredicate(List<Term> keyWords, String subject, String predicate) throws IOException {
-        String field = "all";
+        String field = "value";
         List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
         if(org.springframework.util.StringUtils.isEmpty(subject) || org.springframework.util.StringUtils.isEmpty(predicate)) {
             return textBookHighLightList;
@@ -400,15 +379,15 @@ public class ESManager {
         String finalMatch = firstWordsMatch;
         // subject匹配subject, predicate匹配predicate
         builder = builder.must(m -> m
-                .matchPhrase(ma -> ma
-                        .field("subject")
-                        .query(subject)
+                .term(ma -> ma
+                        .field("subject.keyword")
+                        .value(subject)
                 )
         );
         builder = builder.must(m -> m
-                .matchPhrase(ma -> ma
-                        .field("predicate")
-                        .query(predicate)
+                .term(ma -> ma
+                        .field("predicate.keyword")
+                        .value(predicate)
                 )
         );
         BoolQuery boolQuery = builder.build();
@@ -418,26 +397,49 @@ public class ESManager {
                                 .bool(boolQuery)
                         ),
                 IRQALiu.class);
-        // subject匹配subject不严格, predicate匹配predicate不严格
+        // subject匹配value, predicate匹配predicate
         if(matchSearch.hits().hits().size() == 0) {
             builder = new BoolQuery.Builder();
             builder = builder.must(m -> m
-                    .match(ma -> ma
+                    .matchPhrase(ma -> ma
                             .field(field)
                             .query(subject)
                     )
             );
             builder = builder.must(m -> m
-                    .match(ma -> ma
+                    .term(ma -> ma
+                            .field("predicate.keyword")
+                            .value(predicate)
+                    )
+            );
+            BoolQuery thirdBoolQuery = builder.build();
+            matchSearch = client.search(s -> s
+                            .index(irqaIndex)
+                            .query(b -> b
+                                    .bool(thirdBoolQuery)
+                            ),
+                    IRQALiu.class);
+        }
+        // subject匹配value, predicate匹配value
+        if(matchSearch.hits().hits().size() == 0) {
+            builder = new BoolQuery.Builder();
+            builder = builder.must(m -> m
+                    .matchPhrase(ma -> ma
+                            .field(field)
+                            .query(subject)
+                    )
+            );
+            builder = builder.must(m -> m
+                    .matchPhrase(ma -> ma
                             .field(field)
                             .query(predicate)
                     )
             );
-            BoolQuery secondBoolQuery = builder.build();
+            BoolQuery thirdBoolQuery = builder.build();
             matchSearch = client.search(s -> s
                             .index(irqaIndex)
                             .query(b -> b
-                                    .bool(secondBoolQuery)
+                                    .bool(thirdBoolQuery)
                             ),
                     IRQALiu.class);
         }

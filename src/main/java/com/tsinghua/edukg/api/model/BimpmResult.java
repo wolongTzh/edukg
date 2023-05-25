@@ -10,4 +10,6 @@ public class BimpmResult {
     String index;
 
     String score;
+
+    String detail;
 }
