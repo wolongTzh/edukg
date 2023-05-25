@@ -301,7 +301,7 @@ public class ESManager {
             }
         }
         String finalMatch = firstWordsMatch;
-        // subject匹配subject
+        // subject匹配subject, 分词匹配all
         builder = builder.must(m -> m
                 .term(ma -> ma
                         .field("subject.keyword")
@@ -321,7 +321,7 @@ public class ESManager {
                                 .bool(boolQuery)
                         ),
                 IRQALiu.class);
-        // subject匹配value
+        // subject匹配value, 分词匹配all
         if(matchSearch.hits().hits().size() == 0) {
             builder = new BoolQuery.Builder();
             builder = builder.must(m -> m
@@ -433,6 +433,100 @@ public class ESManager {
                     .matchPhrase(ma -> ma
                             .field(field)
                             .query(predicate)
+                    )
+            );
+            BoolQuery thirdBoolQuery = builder.build();
+            matchSearch = client.search(s -> s
+                            .index(irqaIndex)
+                            .query(b -> b
+                                    .bool(thirdBoolQuery)
+                            ),
+                    IRQALiu.class);
+        }
+        for (Hit<IRQALiu> hit: matchSearch.hits().hits()) {
+            textBookHighLightList.add(TextBookHighLight.builder()
+                    .bookId(hit.id())
+                    .example(hit.source().getAll())
+                    .score(hit.score())
+                    .build());
+        }
+
+        return textBookHighLightList;
+    }
+
+    /**
+     * 刘阳版本irqa检索
+     * @param keyWords
+     * @return
+     * @throws IOException
+     */
+    public List<TextBookHighLight> getHighLightTextBookFromMiniMatchAll(List<Term> keyWords, String subject, String predicate) throws IOException {
+        List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
+        if(org.springframework.util.StringUtils.isEmpty(subject) || org.springframework.util.StringUtils.isEmpty(predicate)) {
+            return textBookHighLightList;
+        }
+        SearchResponse<IRQALiu> matchSearch;
+        String firstWordsMatch = "";
+        BoolQuery.Builder builder = new BoolQuery.Builder();
+        for(Term term : keyWords) {
+            if(HanlpHelper.stopWords.contains(term.word)) {
+                continue;
+            }
+            if(HanlpHelper.firstClassNatureList.contains(term.nature) || HanlpHelper.secondClassNatureList.contains(term.nature)) {
+                firstWordsMatch += " " + term.word;
+            }
+        }
+        String finalMatch = firstWordsMatch;
+        // subject匹配allStand, predicate匹配allStand
+        builder = builder.must(m -> m
+                .matchPhrase(ma -> ma
+                        .field("allStand")
+                        .query(subject)
+                )
+        );
+        builder = builder.must(m -> m
+                .matchPhrase(ma -> ma
+                        .field("allStand")
+                        .query(predicate)
+                )
+        );
+        BoolQuery boolQuery = builder.build();
+        matchSearch = client.search(s -> s
+                        .index(irqaIndex)
+                        .query(b -> b
+                                .bool(boolQuery)
+                        ),
+                IRQALiu.class);
+        // subject匹配allStand, 分词匹配all
+        if(matchSearch.hits().hits().size() == 0) {
+            builder = new BoolQuery.Builder();
+            builder = builder.must(m -> m
+                    .matchPhrase(ma -> ma
+                            .field("allStand")
+                            .query(subject)
+                    )
+            );
+            builder = builder.must(m -> m
+                    .match(ma -> ma
+                            .field("all")
+                            .query(finalMatch)
+                    )
+            );
+            BoolQuery thirdBoolQuery = builder.build();
+            matchSearch = client.search(s -> s
+                            .index(irqaIndex)
+                            .query(b -> b
+                                    .bool(thirdBoolQuery)
+                            ),
+                    IRQALiu.class);
+        }
+        // 分词匹配all
+        if(matchSearch.hits().hits().size() == 0) {
+            builder = new BoolQuery.Builder();
+            builder = builder.must(m -> m
+                    .match(ma -> ma
+                            .field("all")
+                            .query(finalMatch)
                     )
             );
             BoolQuery thirdBoolQuery = builder.build();
