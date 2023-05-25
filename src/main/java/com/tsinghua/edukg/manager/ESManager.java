@@ -283,9 +283,12 @@ public class ESManager {
      * @return
      * @throws IOException
      */
-    public List<TextBookHighLight> getHighLightTextBookFromMiniMatchNew(List<Term> keyWords, String subject, String predicate) throws IOException {
+    public List<TextBookHighLight> getHighLightTextBookFromMiniMatchWithoutPredicate(List<Term> keyWords, String subject) throws IOException {
         String field = "all";
         List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
+        if(org.springframework.util.StringUtils.isEmpty(subject)) {
+            return textBookHighLightList;
+        }
         SearchResponse<IRQALiu> matchSearch;
         String firstWordsMatch = "";
         BoolQuery.Builder builder = new BoolQuery.Builder();
@@ -296,28 +299,19 @@ public class ESManager {
             firstWordsMatch += " " + term.word;
         }
         String finalMatch = firstWordsMatch;
+        // subject匹配subject
         builder = builder.must(m -> m
                 .matchPhrase(ma -> ma
-                        .field(field)
+                        .field("subject")
                         .query(subject)
                 )
         );
-        if(!org.springframework.util.StringUtils.isEmpty(predicate)) {
-            builder = builder.must(m -> m
-                    .term(ma -> ma
-                            .field(field)
-                            .value(predicate)
-                    )
-            );
-        }
-        else {
-            builder = builder.must(m -> m
-                    .match(ma -> ma
-                            .field(field)
-                            .query(finalMatch)
-                    )
-            );
-        }
+        builder = builder.must(m -> m
+                .match(ma -> ma
+                        .field(field)
+                        .query(finalMatch)
+                )
+        );
         BoolQuery boolQuery = builder.build();
         matchSearch = client.search(s -> s
                         .index(irqaIndex)
@@ -325,6 +319,30 @@ public class ESManager {
                                 .bool(boolQuery)
                         ),
                 IRQALiu.class);
+        // subject匹配all
+        if(matchSearch.hits().hits().size() == 0) {
+            builder = new BoolQuery.Builder();
+            builder = builder.must(m -> m
+                    .matchPhrase(ma -> ma
+                            .field(field)
+                            .query(subject)
+                    )
+            );
+            builder = builder.must(m -> m
+                    .match(ma -> ma
+                            .field(field)
+                            .query(finalMatch)
+                    )
+            );
+            BoolQuery secondBoolQuery = builder.build();
+            matchSearch = client.search(s -> s
+                            .index(irqaIndex)
+                            .query(b -> b
+                                    .bool(secondBoolQuery)
+                            ),
+                    IRQALiu.class);
+        }
+        // subject匹配all不严格
         if(matchSearch.hits().hits().size() == 0) {
             builder = new BoolQuery.Builder();
             builder = builder.must(m -> m
@@ -333,27 +351,93 @@ public class ESManager {
                             .query(subject)
                     )
             );
-            if(!org.springframework.util.StringUtils.isEmpty(predicate)) {
-                builder = builder.must(m -> m
-                        .term(ma -> ma
-                                .field(field)
-                                .value(predicate)
-                        )
-                );
-            }
-            else {
-                builder = builder.must(m -> m
-                        .match(ma -> ma
-                                .field(field)
-                                .query(finalMatch)
-                        )
-                );
-            }
-            BoolQuery newBoolQuery = builder.build();
+            builder = builder.must(m -> m
+                    .match(ma -> ma
+                            .field(field)
+                            .query(finalMatch)
+                    )
+            );
+            BoolQuery thirdBoolQuery = builder.build();
             matchSearch = client.search(s -> s
                             .index(irqaIndex)
                             .query(b -> b
-                                    .bool(newBoolQuery)
+                                    .bool(thirdBoolQuery)
+                            ),
+                    IRQALiu.class);
+        }
+        for (Hit<IRQALiu> hit: matchSearch.hits().hits()) {
+            textBookHighLightList.add(TextBookHighLight.builder()
+                    .bookId(hit.id())
+                    .example(hit.source().getAll())
+                    .score(hit.score())
+                    .build());
+        }
+
+        return textBookHighLightList;
+    }
+
+    /**
+     * 刘阳版本irqa检索
+     * @param keyWords
+     * @return
+     * @throws IOException
+     */
+    public List<TextBookHighLight> getHighLightTextBookFromMiniMatchWithPredicate(List<Term> keyWords, String subject, String predicate) throws IOException {
+        String field = "all";
+        List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
+        if(org.springframework.util.StringUtils.isEmpty(subject) || org.springframework.util.StringUtils.isEmpty(predicate)) {
+            return textBookHighLightList;
+        }
+        SearchResponse<IRQALiu> matchSearch;
+        String firstWordsMatch = "";
+        BoolQuery.Builder builder = new BoolQuery.Builder();
+        for(Term term : keyWords) {
+            if(HanlpHelper.stopWords.contains(term.word)) {
+                continue;
+            }
+            firstWordsMatch += " " + term.word;
+        }
+        String finalMatch = firstWordsMatch;
+        // subject匹配subject, predicate匹配predicate
+        builder = builder.must(m -> m
+                .matchPhrase(ma -> ma
+                        .field("subject")
+                        .query(subject)
+                )
+        );
+        builder = builder.must(m -> m
+                .matchPhrase(ma -> ma
+                        .field("predicate")
+                        .query(predicate)
+                )
+        );
+        BoolQuery boolQuery = builder.build();
+        matchSearch = client.search(s -> s
+                        .index(irqaIndex)
+                        .query(b -> b
+                                .bool(boolQuery)
+                        ),
+                IRQALiu.class);
+        // subject匹配subject不严格, predicate匹配predicate不严格
+        if(matchSearch.hits().hits().size() == 0) {
+            builder = new BoolQuery.Builder();
+            builder = builder.must(m -> m
+                    .match(ma -> ma
+                            .field(field)
+                            .query(subject)
+                    )
+            );
+            builder = builder.must(m -> m
+                    .match(ma -> ma
+                            .field(field)
+                            .query(predicate)
+                    )
+            );
+            BoolQuery secondBoolQuery = builder.build();
+            matchSearch = client.search(s -> s
+                            .index(irqaIndex)
+                            .query(b -> b
+                                    .bool(secondBoolQuery)
                             ),
                     IRQALiu.class);
         }

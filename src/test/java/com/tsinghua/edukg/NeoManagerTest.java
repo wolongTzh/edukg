@@ -46,7 +46,7 @@ public class NeoManagerTest {
         List<String> tops = Arrays.asList("single", "legacy", "xlore", "noRelation");
         Map<String, WeakNodeCase> topWeakNodes = createNode(tops, allWeakNodes);
         List<String> subjects = Arrays.asList("chinese", "math", "english", "history", "geo", "politics", "physics", "chemistry", "biology");
-        List<String> inSubjects = Arrays.asList("exam", "nameLong", "contentLong", "short", "table", "pic", "nouse", "other");
+        List<String> inSubjects = Arrays.asList("exam", "nameLong", "short", "table", "pic", "nouse", "other");
         Map<String, SubjectWeakNodeCase> subjectWeakNodes = new HashMap<>();
         for(String subject : subjects) {
             SubjectWeakNodeCase subjectWeakNodeCase = new SubjectWeakNodeCase(subject, inSubjects, allWeakNodes);
@@ -219,9 +219,6 @@ public class NeoManagerTest {
                 }
                 else if(!property.getPredicateLabel().equals("名称") && property.getObject().equals(entity.getName())) {
                     weakNodeCaseMap.get("nouse").writeWeakNodesSwitchLine(entity);
-                }
-                else if(property.getObject().length() >= 50) {
-                    weakNodeCaseMap.get("contentLong").writeWeakNodesSwitchLine(entity);
                 }
                 else if(entity.getName().length() >= 10) {
                     weakNodeCaseMap.get("nameLong").writeWeakNodesSwitchLine(entity);
