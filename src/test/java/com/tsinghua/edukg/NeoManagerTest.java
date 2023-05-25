@@ -196,6 +196,8 @@ public class NeoManagerTest {
 
         Map<String, WeakNodeCase> weakNodeCaseMap;
 
+        List<String> nodeStatusList = Arrays.asList("blank", "lonely", "noProp", "other-other");
+
         public SubjectWeakNodeCase(String name, List<String> childList, List<WeakNodeCase> allNodes) throws IOException {
             this.name = name;
             weakNodeCaseMap = new HashMap<>();
@@ -203,6 +205,13 @@ public class NeoManagerTest {
                 WeakNodeCase weakNodeCase = new WeakNodeCase(name + "-" + child);
                 weakNodeCaseMap.put(child, weakNodeCase);
                 allNodes.add(weakNodeCase);
+                if(child.equals("nameLong") || child.equals("other")) {
+                    for(String nodeStatus : nodeStatusList) {
+                        WeakNodeCase weakNodeCase2 = new WeakNodeCase(name + "-" + child + "-" + nodeStatus);
+                        weakNodeCaseMap.put(nodeStatus, weakNodeCase2);
+                        allNodes.add(weakNodeCase2);
+                    }
+                }
             }
         }
 
@@ -222,14 +231,31 @@ public class NeoManagerTest {
                 }
                 else if(entity.getName().length() >= 10) {
                     weakNodeCaseMap.get("nameLong").writeWeakNodesSwitchLine(entity);
+                    handleNodeStatusCase(entity);
                 }
                 else if(entity.getName().length() == 1) {
                     weakNodeCaseMap.get("short").writeWeakNodesSwitchLine(entity);
                 }
                 else {
                     weakNodeCaseMap.get("other").writeWeakNodesSwitchLine(entity);
+                    handleNodeStatusCase(entity);
                 }
                 break;
+            }
+        }
+
+        void handleNodeStatusCase(Entity entity) throws IOException {
+            if(entity.getProperty().size() <= 1 && entity.getRelation().size() == 0) {
+                weakNodeCaseMap.get("blank").writeWeakNodesSwitchLine(entity);
+            }
+            else if(entity.getRelation().size() == 0) {
+                weakNodeCaseMap.get("lonely").writeWeakNodesSwitchLine(entity);
+            }
+            else if(entity.getProperty().size() <= 1) {
+                weakNodeCaseMap.get("noProp").writeWeakNodesSwitchLine(entity);
+            }
+            else {
+                weakNodeCaseMap.get("other-other").writeWeakNodesSwitchLine(entity);
             }
         }
     }
