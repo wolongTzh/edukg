@@ -220,6 +220,7 @@ public class AsyncHelper {
         catch (Exception e) {
             index = Integer.parseInt(bimpmResult.getIndex());
         }
+        index = Integer.parseInt(bimpmResult.getIndex());
         TextBookHighLight sent;
         if(index >= 0 && index < accSents.size()) {
             sent = accSents.get(index);
