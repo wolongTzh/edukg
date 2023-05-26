@@ -169,21 +169,15 @@ public class AsyncHelper {
         String predicate = answer.getPredicate();
         String subject = answer.getSubject();
         if(!question.contains(predicate)) {
-            predicate = null;
+            predicate = "";
         }
         if(!question.contains(subject)) {
-            subject = null;
+            subject = "";
         }
         else {
             question = question.replace(subject, "");
         }
-        sents = esManager.getHighLightTextBookFromMiniMatchWithPredicate(HanlpHelper.CutWordRetNeedConcernWords(question), subject, predicate);
-        if(sents.size() == 0) {
-            sents = esManager.getHighLightTextBookFromMiniMatchWithoutPredicate(HanlpHelper.CutWordRetNeedConcernWords(question), subject);
-        }
-        if(sents.size() == 0) {
-            sents = esManager.getHighLightTextBookFromMiniMatch(HanlpHelper.CutWordRetNeedConcernWords(question));
-        }
+        sents = esManager.getHighLightTextBookFromMiniMatchAll(HanlpHelper.CutWordRetNeedConcernWords(question), subject, predicate);
         List<TextBookHighLight> accSents = new ArrayList<>();
         int count = 5;
         String answers = "";
@@ -203,7 +197,29 @@ public class AsyncHelper {
         }
         BimpmParam bimpmParam = new BimpmParam(answers, question);
         BimpmResult bimpmResult = bimpmFeignService.bimpmRequest(bimpmParam);
-        Integer index = Integer.parseInt(bimpmResult.getIndex());
+        String scoreRaw = bimpmResult.getDetail();
+        scoreRaw = scoreRaw.replace("[", "");
+        scoreRaw = scoreRaw.replace("]", "");
+        double maxScore = 0.0;
+        int index = 0;
+        int cur = 0;
+        try {
+            for(String scoreSingle : scoreRaw.split("\n")) {
+                if(sents.size() - 1 < cur) {
+                    break;
+                }
+                double scoreBi = Double.parseDouble(scoreSingle.trim().split(" ")[0]);
+                double curScore = scoreBi + sents.get(cur).getScore() / 100;
+                if(curScore > maxScore) {
+                    maxScore = curScore;
+                    index = cur;
+                }
+                cur++;
+            }
+        }
+        catch (Exception e) {
+            index = Integer.parseInt(bimpmResult.getIndex());
+        }
         TextBookHighLight sent;
         if(index >= 0 && index < accSents.size()) {
             sent = accSents.get(index);

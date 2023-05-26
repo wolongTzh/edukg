@@ -462,9 +462,6 @@ public class ESManager {
      */
     public List<TextBookHighLight> getHighLightTextBookFromMiniMatchAll(List<Term> keyWords, String subject, String predicate) throws IOException {
         List<TextBookHighLight> textBookHighLightList = new ArrayList<>();
-        if(org.springframework.util.StringUtils.isEmpty(subject) || org.springframework.util.StringUtils.isEmpty(predicate)) {
-            return textBookHighLightList;
-        }
         SearchResponse<IRQALiu> matchSearch;
         String firstWordsMatch = "";
         BoolQuery.Builder builder = new BoolQuery.Builder();

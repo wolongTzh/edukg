@@ -18,4 +18,6 @@ public class IRQALiu {
     String value;
 
     String all;
+
+    String allStand;
 }

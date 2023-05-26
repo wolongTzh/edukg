@@ -45,7 +45,7 @@ spring:
     password: 5Vc8fC8kjJNiT=SYZFKF
     index:
       examSource: examsource
-      irqa: irqa_yang
+      irqa: irqa_all
       textBook: textbook
 
 mybatis:
