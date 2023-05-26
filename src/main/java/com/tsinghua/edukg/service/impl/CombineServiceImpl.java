@@ -185,7 +185,7 @@ public class CombineServiceImpl implements CombineService {
     public CombineQaVO totalQaForTest(QAParam qaParam) throws IllegalAccessException, IOException, ExecutionException, InterruptedException {
         CombineQaVO combineQaVO = new CombineQaVO();
         String searchText = qaParam.getQuestion();
-        Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlpSimple(qaParam.getQuestion());
+        Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlpSimpleNew(qaParam.getQuestion());
         QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
         List<QAESGrepVO> qaesGrepVOS = future.get();
         // kbqa没有返回结果
