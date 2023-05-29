@@ -193,17 +193,17 @@ public class CombineServiceImpl implements CombineService {
             combineQaVO.setQaesGrepVO(qaesGrepVOS);
         }
         else {
-            String answers = qaesGrepVOS.get(0).getText() + "\t" + answer.getSubject() + "（的）" + answer.getPredicate() + ":" + answer.getAnswerValue();
-            BimpmParam bimpmParam = new BimpmParam(answers, qaParam.getQuestion());
-            BimpmResult bimpmResult = bimpmFeignService.bimpmRequest(bimpmParam);
-            Integer index = Integer.parseInt(bimpmResult.getIndex());
-            if(index == 0) {
-                combineQaVO.setQaesGrepVO(qaesGrepVOS);
-            }
-            else {
-                combineQaVO.setAnswer(answer);
-            }
-//            combineQaVO.setAnswer(answer);
+//            String answers = qaesGrepVOS.get(0).getText() + "\t" + answer.getSubject() + "（的）" + answer.getPredicate() + ":" + answer.getAnswerValue();
+//            BimpmParam bimpmParam = new BimpmParam(answers, qaParam.getQuestion());
+//            BimpmResult bimpmResult = bimpmFeignService.bimpmRequest(bimpmParam);
+//            Integer index = Integer.parseInt(bimpmResult.getIndex());
+//            if(index == 0) {
+//                combineQaVO.setQaesGrepVO(qaesGrepVOS);
+//            }
+//            else {
+//                combineQaVO.setAnswer(answer);
+//            }
+            combineQaVO.setAnswer(answer);
         }
         return combineQaVO;
     }
