@@ -21,4 +21,6 @@ public class CombineLinkingVO {
     GetExamSourceVO questionList;
 
     Object courseList;
+
+    PredicateSearchVO predicateSearchVO;
 }

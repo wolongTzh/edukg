@@ -8,6 +8,7 @@ import com.tsinghua.edukg.enums.BusinessTypeEnum;
 import com.tsinghua.edukg.manager.NeoManager;
 import com.tsinghua.edukg.model.Entity;
 import com.tsinghua.edukg.model.EntitySimp;
+import com.tsinghua.edukg.model.Property;
 import com.tsinghua.edukg.model.VO.*;
 import com.tsinghua.edukg.model.params.GetExamSourceParam;
 import com.tsinghua.edukg.model.params.GetTextBookHighLightParam;
@@ -66,7 +67,11 @@ public class CombineServiceImpl implements CombineService {
     @Override
     public CombineLinkingVO totalSearch(TotalSearchParam param) throws IOException {
         String searchText = param.getSearchText();
-        CombineLinkingVO combineLinkingVO = new CombineLinkingVO();
+        CombineLinkingVO combineLinkingVO = judgePredicate(searchText);
+        if(combineLinkingVO != null) {
+            return combineLinkingVO;
+        }
+        combineLinkingVO = new CombineLinkingVO();
         // 实体链接查询
         List<EntitySimp> instanceList = new ArrayList<>();
         List<LinkingVO> linkingEntities = graphService.linkingEntities(LinkingParam.builder().searchText(searchText).build());
@@ -130,6 +135,29 @@ public class CombineServiceImpl implements CombineService {
 //        }
 //        combineLinkingVO.setBookList(TextBookVO.builder().data(bookList).pageNo(pageNo).pageSize(pageSize).totalCount(getTextBookHighLightVO.getTotalCount()).build());
         combineLinkingVO.setBookList(getTextBookHighLightVO);
+        return combineLinkingVO;
+    }
+
+    CombineLinkingVO judgePredicate(String searchText) {
+        CombineLinkingVO combineLinkingVO = new CombineLinkingVO();
+        String predicate = RuleHandler.getPropertyAbbrWithoutSubject(searchText);
+        if(StringUtils.isEmpty(predicate)) {
+            return null;
+        }
+        Entity entity = neoManager.getEntityListFromPredicateName(predicate);
+        if(entity == null) {
+            return null;
+        }
+        PredicateSearchVO predicateSearchVO = new PredicateSearchVO();
+        for(Property property : entity.getProperty()) {
+            if(property.getPredicate().equals(predicate)) {
+                predicateSearchVO.setExample(property.getSubject() + " " + property.getPredicateLabel() + property.getObject());
+                break;
+            }
+        }
+        predicateSearchVO.setPredicateDes(String.format("“%s”是基础教育知识图谱中的一个知识点属性", searchText));
+        combineLinkingVO.setPredicateSearchVO(predicateSearchVO);
+        combineLinkingVO.setInstanceInfo(entity);
         return combineLinkingVO;
     }
 
