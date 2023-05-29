@@ -237,6 +237,12 @@ public class GraphServiceImpl implements GraphService {
             l.setAbstractMsg(e.getAbstractMsg());
             l.setClassList(e.getClassList());
         }
-        return result;
+        List<LinkingVO> finalResult = new ArrayList<>();
+        for(LinkingVO l : result) {
+            if(l.getName().length() > 1) {
+                finalResult.add(l);
+            }
+        }
+        return finalResult;
     }
 }

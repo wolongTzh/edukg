@@ -120,6 +120,10 @@ public class RuleHandler {
         loadSubAbbrMap();
     }
 
+    public static boolean judgeExistInMap(String searchText) {
+        return cls2labelMap.get(searchText) != null || pred2labelMap.get(searchText) != null;
+    }
+
     /**
      * 判断是否输入的是一个问题
      * 方法是根据词表匹配看看是否有问题中出现的常用词语来判断

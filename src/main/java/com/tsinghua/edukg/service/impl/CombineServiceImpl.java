@@ -95,13 +95,20 @@ public class CombineServiceImpl implements CombineService {
         if(instanceList.size() > pageSize) {
             instanceList = instanceList.subList(0, pageSize);
         }
-        combineLinkingVO.setInstanceList(instanceList);
-        if(!CollectionUtils.isEmpty(instanceList)) {
+        List<EntitySimp> finalInstanceList = new ArrayList<>();
+        for(EntitySimp entitySimp : instanceList) {
+            Entity entity = neoManager.getEntityFromUri(entitySimp.getUri());
+            if(entity.getProperty().size() > 2) {
+                finalInstanceList.add(entitySimp);
+            }
+        }
+        combineLinkingVO.setInstanceList(finalInstanceList);
+        if(!CollectionUtils.isEmpty(finalInstanceList)) {
             // 首实体详细信息赋值（instanceInfo）
-            Entity instanceInfo = neoManager.getEntityFromUri(instanceList.get(0).getUri());
+            Entity instanceInfo = neoManager.getEntityFromUri(finalInstanceList.get(0).getUri());
             RuleHandler.propertyConverter(instanceInfo.getProperty());
             RuleHandler.relationConverter(instanceInfo.getRelation());
-            combineLinkingVO.setCourseList(courseService.getCourseFromUri(instanceList.get(0).getUri()));
+            combineLinkingVO.setCourseList(courseService.getCourseFromUri(finalInstanceList.get(0).getUri()));
             combineLinkingVO.setInstanceInfo(instanceInfo);
             // 试题查询（questionList）
             combineLinkingVO.setQuestionList(examSourceLinkingService.getExamSourceFromUri(GetExamSourceParam.builder().pageNo(pageNo).pageSize(pageSize).uri(instanceInfo.getUri()).build()));
@@ -109,7 +116,7 @@ public class CombineServiceImpl implements CombineService {
                 combineLinkingVO.setQuestionList(examSourceLinkingService.getExamSourceFromText(GetExamSourceParam.builder().pageNo(pageNo).pageSize(pageSize).searchText(searchText).build(), BusinessTypeEnum.LINKING));
             }
         }
-        if(instanceList.size() == 0) {
+        if(finalInstanceList.size() == 0) {
             // 试题查询（questionList）
             combineLinkingVO.setQuestionList(examSourceLinkingService.getExamSourceFromText(GetExamSourceParam.builder().pageNo(pageNo).pageSize(pageSize).searchText(searchText).build(), BusinessTypeEnum.LINKING));
         }
