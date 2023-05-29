@@ -69,6 +69,14 @@ public class CombineServiceImpl implements CombineService {
         String searchText = param.getSearchText();
         CombineLinkingVO combineLinkingVO = judgePredicate(searchText);
         if(combineLinkingVO != null) {
+            // 试题查询（questionList）
+            combineLinkingVO.setQuestionList(examSourceLinkingService.getExamSourceFromUri(GetExamSourceParam.builder().pageNo(pageNo).pageSize(pageSize).uri(combineLinkingVO.getInstanceInfo().getUri()).build()));
+            if(CollectionUtils.isEmpty(combineLinkingVO.getQuestionList().getData())) {
+                combineLinkingVO.setQuestionList(examSourceLinkingService.getExamSourceFromText(GetExamSourceParam.builder().pageNo(pageNo).pageSize(pageSize).searchText(searchText).build(), BusinessTypeEnum.LINKING));
+            }
+            GetTextBookHighLightVO getTextBookHighLightVO = textBookLinkingService.getHighLightMsg(GetTextBookHighLightParam.builder().pageNo(pageNo).pageSize(pageSize).searchText(searchText).build());
+            combineLinkingVO.setCourseList(courseService.getCourseFromUri(combineLinkingVO.getInstanceInfo().getUri()));
+            combineLinkingVO.setBookList(getTextBookHighLightVO);
             return combineLinkingVO;
         }
         combineLinkingVO = new CombineLinkingVO();
