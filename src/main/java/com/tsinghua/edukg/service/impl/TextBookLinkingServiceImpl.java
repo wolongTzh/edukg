@@ -36,8 +36,8 @@ public class TextBookLinkingServiceImpl implements TextBookLinkingService {
         List<TextBook> textBookList = esManager.getTextBookHighLightMsgFromTerm(text);
         List<TextBook> textBookListFinal = new ArrayList<>();
         for(TextBook textBook : textBookList) {
-            String path1 = textBook.getPicBasePath() + "/cover.jpg";
-            String path2 = textBook.getPicBasePath().replace("/OEBPS", "") + "/cover.jpg";
+            String path1 = textBook.getPicBasePath() + "/Images/Cover.jpg";
+            String path2 = textBook.getPicBasePath().replace("/OEBPS", "") + "/Images/Cover.jpg";
             File file1 = new File(path1);
             File file2 = new File(path2);
             if(file1.exists() || file2.exists()) {
