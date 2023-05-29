@@ -203,23 +203,24 @@ public class AsyncHelper {
         double maxScore = 0.0;
         int index = 0;
         int cur = 0;
-        try {
-            for(String scoreSingle : scoreRaw.split("\n")) {
-                if(sents.size() - 1 < cur) {
-                    break;
-                }
-                double scoreBi = Double.parseDouble(scoreSingle.trim().split(" ")[0]);
-                double curScore = scoreBi + sents.get(cur).getScore() / 100;
-                if(curScore > maxScore) {
-                    maxScore = curScore;
-                    index = cur;
-                }
-                cur++;
-            }
-        }
-        catch (Exception e) {
-            index = Integer.parseInt(bimpmResult.getIndex());
-        }
+//        try {
+//            for(String scoreSingle : scoreRaw.split("\n")) {
+//                if(sents.size() - 1 < cur) {
+//                    break;
+//                }
+//                double scoreBi = Double.parseDouble(scoreSingle.trim().split(" ")[0]);
+//                double curScore = scoreBi + sents.get(cur).getScore() / 100;
+//                if(curScore > maxScore) {
+//                    maxScore = curScore;
+//                    index = cur;
+//                }
+//                cur++;
+//            }
+//        }
+//        catch (Exception e) {
+//            index = Integer.parseInt(bimpmResult.getIndex());
+//        }
+        index = Integer.parseInt(bimpmResult.getIndex());
         TextBookHighLight sent;
         if(index >= 0 && index < accSents.size()) {
             sent = accSents.get(index);
