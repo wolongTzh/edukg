@@ -238,8 +238,14 @@ public class GraphServiceImpl implements GraphService {
             l.setClassList(e.getClassList());
         }
         List<LinkingVO> finalResult = new ArrayList<>();
+        boolean flag = false;
         for(LinkingVO l : result) {
             if(l.getName().length() > 1) {
+                flag = true;
+            }
+            Entity entity = neoManager.getEntityFromUri(l.getUri());
+            RuleHandler.propertyConverter(entity.getProperty());
+            if(flag && entity.getProperty().size() > 3) {
                 finalResult.add(l);
             }
         }
