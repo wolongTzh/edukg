@@ -9,13 +9,10 @@ import com.tsinghua.edukg.model.VO.GetTextBookHighLightVO;
 import com.tsinghua.edukg.model.params.GetTextBookHighLightParam;
 import com.tsinghua.edukg.service.TextBookLinkingService;
 import com.tsinghua.edukg.utils.CommonUtil;
-import org.aspectj.apache.bcel.classfile.Field;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,20 +31,10 @@ public class TextBookLinkingServiceImpl implements TextBookLinkingService {
     public GetTextBookHighLightVO getHighLightMsg(GetTextBookHighLightParam param) throws IOException {
         String text = param.getSearchText();
         List<TextBook> textBookList = esManager.getTextBookHighLightMsgFromTerm(text);
-        List<TextBook> textBookListFinal = new ArrayList<>();
-        for(TextBook textBook : textBookList) {
-            String path1 = textBook.getPicBasePath() + "/cover.jpg";
-            String path2 = textBook.getPicBasePath().replace("/OEBPS", "") + "/cover.jpg";
-            File file1 = new File(path1);
-            File file2 = new File(path2);
-            if(file1.exists() || file2.exists()) {
-                textBookListFinal.add(textBook);
-            }
+        if(textBookList.size() == 0) {
+            return new GetTextBookHighLightVO(param.getPageNo(), param.getPageSize(), 0, textBookList);
         }
-        if(textBookListFinal.size() == 0) {
-            return new GetTextBookHighLightVO(param.getPageNo(), param.getPageSize(), 0, textBookListFinal);
-        }
-        List<TextBook> textBookHighLightListPageSplit = CommonUtil.pageHelper(textBookListFinal, param.getPageNo() - 1, param.getPageSize());
+        List<TextBook> textBookHighLightListPageSplit = CommonUtil.pageHelper(textBookList, param.getPageNo() - 1, param.getPageSize());
         if(textBookHighLightListPageSplit == null) {
             throw new BusinessException(BusinessExceptionEnum.PAGE_DARA_OVERSIZE);
         }
@@ -55,7 +42,7 @@ public class TextBookLinkingServiceImpl implements TextBookLinkingService {
             List<TextBookHighLight> chapterList = textBook.getChapterList();
             chapterList.forEach(t -> markHighLightText(t, text));
         }
-        GetTextBookHighLightVO getTextBookHighLightVO = new GetTextBookHighLightVO(param.getPageNo(), param.getPageSize(), textBookListFinal.size(), textBookHighLightListPageSplit);
+        GetTextBookHighLightVO getTextBookHighLightVO = new GetTextBookHighLightVO(param.getPageNo(), param.getPageSize(), textBookList.size(), textBookHighLightListPageSplit);
         return getTextBookHighLightVO;
     }
 
