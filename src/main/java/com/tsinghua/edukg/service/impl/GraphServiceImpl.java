@@ -238,8 +238,8 @@ public class GraphServiceImpl implements GraphService {
             l.setClassList(e.getClassList());
         }
         List<LinkingVO> finalResult = new ArrayList<>();
-        boolean flag = false;
         for(LinkingVO l : result) {
+            boolean flag = false;
             if(l.getName().length() > 1) {
                 flag = true;
             }
