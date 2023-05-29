@@ -169,19 +169,19 @@ public class NeoManager {
         return entityList;
     }
 
-    public Entity getEntityListFromPredicateName(String predicate) {
+    public List<Entity> getEntityListFromPredicateName(String predicate) {
         List<Entity> entityList = new ArrayList<>();
         String query = "MATCH (n:`Resource`) " +
                 " where any(k in keys(n) where k = \"%s\")" +
                 " return n[\"uri\"] as uri" +
-                " limit 1";
+                " limit 10";
         query = String.format(query, predicate, predicate);
         Result result = session.query(query, new HashMap<>());
         for (Map<String, Object> m : result.queryResults()) {
             Entity entity = getEntityFromUri((String) m.get("uri"));
-            return entity;
+            entityList.add(entity);
         }
-        return null;
+        return entityList;
     }
 
     public List<EntityWithScore> getEntityWithScoreFromProperty(String name) {

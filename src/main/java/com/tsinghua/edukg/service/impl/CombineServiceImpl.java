@@ -157,10 +157,21 @@ public class CombineServiceImpl implements CombineService {
         if(StringUtils.isEmpty(predicate)) {
             return null;
         }
-        Entity entity = neoManager.getEntityListFromPredicateName(predicate);
-        if(entity == null) {
+        List<Entity> entityList = neoManager.getEntityListFromPredicateName(predicate);
+        if(entityList.size() == 0) {
             return null;
         }
+        int maxRelaIndex = 0;
+        int maxRelaNum = 0;
+        int cur = -1;
+        for(Entity entity : entityList) {
+            cur++;
+            if(Math.max(entity.getRelation().size(), maxRelaNum) > maxRelaNum) {
+                maxRelaNum = entity.getRelation().size();
+                maxRelaIndex = cur;
+            }
+        }
+        Entity entity = entityList.get(maxRelaIndex);
         RuleHandler.propertyConverter(entity.getProperty());
         RuleHandler.relationConverter(entity.getRelation());
         PredicateSearchVO predicateSearchVO = new PredicateSearchVO();
