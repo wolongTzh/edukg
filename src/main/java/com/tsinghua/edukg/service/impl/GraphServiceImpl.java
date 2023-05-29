@@ -245,7 +245,7 @@ public class GraphServiceImpl implements GraphService {
             }
             Entity entity = neoManager.getEntityFromUri(l.getUri());
             RuleHandler.propertyConverter(entity.getProperty());
-            if(flag && entity.getProperty().size() > 3) {
+            if(flag && entity.getProperty().size() > 1) {
                 finalResult.add(l);
             }
         }
