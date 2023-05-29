@@ -151,7 +151,7 @@ public class CombineServiceImpl implements CombineService {
         PredicateSearchVO predicateSearchVO = new PredicateSearchVO();
         for(Property property : entity.getProperty()) {
             if(property.getPredicate().equals(predicate)) {
-                predicateSearchVO.setExample(property.getSubject() + " " + property.getPredicateLabel() + property.getObject());
+                predicateSearchVO.setExample(property.getSubject() + " " + searchText + " " + property.getObject());
                 break;
             }
         }
