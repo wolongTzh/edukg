@@ -77,6 +77,7 @@ public class CombineServiceImpl implements CombineService {
             GetTextBookHighLightVO getTextBookHighLightVO = textBookLinkingService.getHighLightMsg(GetTextBookHighLightParam.builder().pageNo(pageNo).pageSize(pageSize).searchText(searchText).build());
             combineLinkingVO.setCourseList(courseService.getCourseFromUri(combineLinkingVO.getInstanceInfo().getUri()));
             combineLinkingVO.setBookList(getTextBookHighLightVO);
+            combineLinkingVO.setInstanceList(new ArrayList<>());
             return combineLinkingVO;
         }
         combineLinkingVO = new CombineLinkingVO();
@@ -111,6 +112,7 @@ public class CombineServiceImpl implements CombineService {
         List<EntitySimp> finalInstanceList = new ArrayList<>();
         for(EntitySimp entitySimp : instanceList) {
             Entity entity = neoManager.getEntityFromUri(entitySimp.getUri());
+            RuleHandler.propertyConverter(entity.getProperty());
             if(entity.getProperty().size() > 2) {
                 finalInstanceList.add(entitySimp);
             }

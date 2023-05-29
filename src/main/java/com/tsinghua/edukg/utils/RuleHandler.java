@@ -476,6 +476,13 @@ public class RuleHandler {
                 }
             }
         }
+        iterator = properties.iterator();
+        while (iterator.hasNext()) {
+            Property property = iterator.next();
+            if(property.getPredicateLabel().equals("")) {
+                iterator.remove();
+            }
+        }
     }
 
     public static void relationConverter(List<Relation> relations) {

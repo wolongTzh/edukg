@@ -1816,6 +1816,7 @@
     "http://purl.org/dc/elements/1.1/description": "描述",
     "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": "NaN",
     "http://www.w3.org/2000/01/rdf-schema#label": "名称",
+    "http://www.w3.org/2000/01/rdf-schema#comment": "描述",
     "http://www.w3.org/2002/07/owl#sameAs": "相同于",
     "http://xmlns.com/foaf/0.1/depiction": "描写",
     "http://edukg.org/knowledge/3.0/property/biology#main-R11": "EDUKG2.0类型URI"
