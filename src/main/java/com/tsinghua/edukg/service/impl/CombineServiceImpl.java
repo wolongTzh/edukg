@@ -67,6 +67,7 @@ public class CombineServiceImpl implements CombineService {
     @Override
     public CombineLinkingVO totalSearch(TotalSearchParam param) throws IOException {
         String searchText = param.getSearchText();
+        // 判断是否是输入谓词的情况
         CombineLinkingVO combineLinkingVO = judgePredicate(searchText);
         if(combineLinkingVO != null) {
             // 试题查询（questionList）
@@ -83,29 +84,31 @@ public class CombineServiceImpl implements CombineService {
         combineLinkingVO = new CombineLinkingVO();
         // 实体链接查询
         List<EntitySimp> instanceList = new ArrayList<>();
-        List<LinkingVO> linkingEntities = graphService.linkingEntities(LinkingParam.builder().searchText(searchText).build());
-        for(LinkingVO linkingVO : linkingEntities) {
-            instanceList.add(CombineServiceUtil.buildEntitySimpFromLinkingVO(linkingVO));
-        }
-        // 根据不同情况匹配实体名称或属性（instanceList）
-        if(linkingEntities.size() == 1) {
+//        List<LinkingVO> linkingEntities = graphService.linkingEntities(LinkingParam.builder().searchText(searchText).build());
+//        for(LinkingVO linkingVO : linkingEntities) {
+//            instanceList.add(CombineServiceUtil.buildEntitySimpFromLinkingVO(linkingVO));
+//        }
+//        // 根据不同情况匹配实体名称或属性（instanceList）
+//        if(linkingEntities.size() == 1) {
+//            instanceList.addAll(neoManager.getEntityWithScoreFromName(searchText));
+//            // 去重
+//            instanceList = instanceList.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(()
+//                    -> new TreeSet<>(Comparator.comparing(EntitySimp :: getName))), ArrayList::new));
+//            // 排序
+//            Collections.sort(instanceList, new Comparator<EntitySimp>() {
+//                public int compare(EntitySimp s1, EntitySimp s2) {
+//                    return s1.getName().length() - (s2.getName().length());
+//                }
+//            });
+//            // 过滤
+//            instanceList = instanceList.stream().filter(s -> s.getName().length() < 10).collect(Collectors.toList());
+//        }
+//        if(CollectionUtils.isEmpty(linkingEntities)) {
+        instanceList.addAll(neoManager.getEntityListFromName(searchText));
+        if(instanceList.size() == 0) {
             instanceList.addAll(neoManager.getEntityWithScoreFromName(searchText));
-            // 去重
-            instanceList = instanceList.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(()
-                    -> new TreeSet<>(Comparator.comparing(EntitySimp :: getName))), ArrayList::new));
-            // 排序
-            Collections.sort(instanceList, new Comparator<EntitySimp>() {
-                public int compare(EntitySimp s1, EntitySimp s2) {
-                    return s1.getName().length() - (s2.getName().length());
-                }
-            });
-            // 过滤
-            instanceList = instanceList.stream().filter(s -> s.getName().length() < 10).collect(Collectors.toList());
         }
-        if(CollectionUtils.isEmpty(linkingEntities)) {
-            instanceList.addAll(neoManager.getEntityWithScoreFromName(searchText));
-            instanceList.addAll(neoManager.getEntityWithScoreFromProperty(searchText));
-        }
+//        }
         if(instanceList.size() > pageSize) {
             instanceList = instanceList.subList(0, pageSize);
         }
@@ -158,6 +161,8 @@ public class CombineServiceImpl implements CombineService {
         if(entity == null) {
             return null;
         }
+        RuleHandler.propertyConverter(entity.getProperty());
+        RuleHandler.relationConverter(entity.getRelation());
         PredicateSearchVO predicateSearchVO = new PredicateSearchVO();
         for(Property property : entity.getProperty()) {
             if(property.getPredicate().equals(predicate)) {
