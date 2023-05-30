@@ -188,9 +188,9 @@ public class CombineServiceImpl implements CombineService {
         Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlpSimpleNew(qaParam.getQuestion());
         QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
         List<QAESGrepVO> qaesGrepVOS = future.get();
-        // kbqa没有返回结果
-        if(StringUtils.isEmpty(answer.getAnswerValue())) {
-            combineQaVO.setQaesGrepVO(qaesGrepVOS);
+        // kbqa不应该被选择
+        if(chooseKBQA(answer, qaParam.getQuestion())) {
+            combineQaVO.setAnswer(answer);
         }
         else {
 //            String answers = qaesGrepVOS.get(0).getText() + "\t" + answer.getSubject() + "（的）" + answer.getPredicate() + ":" + answer.getAnswerValue();
@@ -203,8 +203,21 @@ public class CombineServiceImpl implements CombineService {
 //            else {
 //                combineQaVO.setAnswer(answer);
 //            }
-            combineQaVO.setAnswer(answer);
+            combineQaVO.setQaesGrepVO(qaesGrepVOS);
         }
         return combineQaVO;
+    }
+
+    public boolean chooseKBQA(QAResult answer, String question) {
+        if(StringUtils.isEmpty(answer.getAnswerValue())) {
+            return false;
+        }
+        if(!question.contains(answer.getSubject())) {
+            return false;
+        }
+        if(answer.getScore() < 90) {
+            return false;
+        }
+        return true;
     }
 }
