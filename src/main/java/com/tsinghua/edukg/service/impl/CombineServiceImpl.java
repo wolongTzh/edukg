@@ -80,7 +80,6 @@ public class CombineServiceImpl implements CombineService {
             combineLinkingVO.setInstanceList(new ArrayList<>());
             return combineLinkingVO;
         }
-
         combineLinkingVO = new CombineLinkingVO();
         List<EntitySimp> instanceList = new ArrayList<>();
         instanceList.addAll(neoManager.getEntityListFromName(searchText));
@@ -93,12 +92,9 @@ public class CombineServiceImpl implements CombineService {
         List<EntitySimp> finalInstanceList = new ArrayList<>();
         // 删掉不合格实体
         for(EntitySimp entitySimp : instanceList) {
-            if(instanceList.size() == 1) {
-                break;
-            }
             Entity entity = neoManager.getEntityFromUri(entitySimp.getUri());
             RuleHandler.propertyConverter(entity.getProperty());
-            if(entity.getProperty().size() > 2) {
+            if(instanceList.size() == 1 || entity.getProperty().size() > 2) {
                 finalInstanceList.add(entitySimp);
             }
         }
