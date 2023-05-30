@@ -70,7 +70,6 @@ public class CombineServiceImpl implements CombineService {
         // 判断是否是输入谓词的情况
         CombineLinkingVO combineLinkingVO = judgePredicate(searchText);
         if(combineLinkingVO != null) {
-            // 试题查询（questionList）
             combineLinkingVO.setQuestionList(examSourceLinkingService.getExamSourceFromUri(GetExamSourceParam.builder().pageNo(pageNo).pageSize(pageSize).uri(combineLinkingVO.getInstanceInfo().getUri()).build()));
             if(CollectionUtils.isEmpty(combineLinkingVO.getQuestionList().getData())) {
                 combineLinkingVO.setQuestionList(examSourceLinkingService.getExamSourceFromText(GetExamSourceParam.builder().pageNo(pageNo).pageSize(pageSize).searchText(searchText).build(), BusinessTypeEnum.LINKING));
@@ -81,39 +80,22 @@ public class CombineServiceImpl implements CombineService {
             combineLinkingVO.setInstanceList(new ArrayList<>());
             return combineLinkingVO;
         }
+
         combineLinkingVO = new CombineLinkingVO();
-        // 实体链接查询
         List<EntitySimp> instanceList = new ArrayList<>();
-//        List<LinkingVO> linkingEntities = graphService.linkingEntities(LinkingParam.builder().searchText(searchText).build());
-//        for(LinkingVO linkingVO : linkingEntities) {
-//            instanceList.add(CombineServiceUtil.buildEntitySimpFromLinkingVO(linkingVO));
-//        }
-//        // 根据不同情况匹配实体名称或属性（instanceList）
-//        if(linkingEntities.size() == 1) {
-//            instanceList.addAll(neoManager.getEntityWithScoreFromName(searchText));
-//            // 去重
-//            instanceList = instanceList.stream().collect(Collectors.collectingAndThen(Collectors.toCollection(()
-//                    -> new TreeSet<>(Comparator.comparing(EntitySimp :: getName))), ArrayList::new));
-//            // 排序
-//            Collections.sort(instanceList, new Comparator<EntitySimp>() {
-//                public int compare(EntitySimp s1, EntitySimp s2) {
-//                    return s1.getName().length() - (s2.getName().length());
-//                }
-//            });
-//            // 过滤
-//            instanceList = instanceList.stream().filter(s -> s.getName().length() < 10).collect(Collectors.toList());
-//        }
-//        if(CollectionUtils.isEmpty(linkingEntities)) {
         instanceList.addAll(neoManager.getEntityListFromName(searchText));
         if(instanceList.size() == 0) {
             instanceList.addAll(neoManager.getEntityWithScoreFromName(searchText));
         }
-//        }
         if(instanceList.size() > pageSize) {
             instanceList = instanceList.subList(0, pageSize);
         }
         List<EntitySimp> finalInstanceList = new ArrayList<>();
+        // 删掉不合格实体
         for(EntitySimp entitySimp : instanceList) {
+            if(instanceList.size() == 1) {
+                break;
+            }
             Entity entity = neoManager.getEntityFromUri(entitySimp.getUri());
             RuleHandler.propertyConverter(entity.getProperty());
             if(entity.getProperty().size() > 2) {
@@ -140,13 +122,6 @@ public class CombineServiceImpl implements CombineService {
         }
         // 教材查询（bookList）
         GetTextBookHighLightVO getTextBookHighLightVO = textBookLinkingService.getHighLightMsg(GetTextBookHighLightParam.builder().pageNo(pageNo).pageSize(pageSize).searchText(searchText).build());
-//        List<TextBook> bookList = new ArrayList<>();
-//        if(getTextBookHighLightVO.getData() != null && getTextBookHighLightVO.getData().size() > 0) {
-//            for(TextBookHighLight textBookHighLight : getTextBookHighLightVO.getData()) {
-//                bookList.add(textBookLinkingService.getTextBookFromId(textBookHighLight.getBookId()));
-//            }
-//        }
-//        combineLinkingVO.setBookList(TextBookVO.builder().data(bookList).pageNo(pageNo).pageSize(pageSize).totalCount(getTextBookHighLightVO.getTotalCount()).build());
         combineLinkingVO.setBookList(getTextBookHighLightVO);
         return combineLinkingVO;
     }

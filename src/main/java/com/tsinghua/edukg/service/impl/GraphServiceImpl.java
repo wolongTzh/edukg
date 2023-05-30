@@ -220,22 +220,18 @@ public class GraphServiceImpl implements GraphService {
         for(String seg : segResult) {
             start = end;
             end += seg.length();
-            if(sourceMap.containsKey(seg)) {
-                List<String> content = Arrays.asList(sourceMap.get(seg).split(splitTag));
+            List<Entity> entityList = neoManager.getEntityListFromName(seg);
+            if(entityList.size() != 0) {
+                Entity entity = entityList.get(0);
+                String uri = entity.getUri();
                 List<Integer> whereSingle = Arrays.asList(start, end);
-                LinkingVO linkingVO = linkingVOMap.getOrDefault(seg+content.get(0), new LinkingVO(seg, content.get(0), new ArrayList<>(), "", RuleHandler.classConverter(Arrays.asList(content.get(1)))));
+                LinkingVO linkingVO = linkingVOMap.getOrDefault(seg+uri, new LinkingVO(seg, uri, new ArrayList<>(), "", entity.getClassList()));
                 linkingVO.getWhere().add(whereSingle);
-                linkingVOMap.put(seg+content.get(0), linkingVO);
-
+                linkingVOMap.put(seg+uri, linkingVO);
             }
         }
         for(Map.Entry entry : linkingVOMap.entrySet()) {
             result.add((LinkingVO)entry.getValue());
-        }
-        for(LinkingVO l : result) {
-            Entity e = neoManager.getEntityFromUri(l.getUri());
-            l.setAbstractMsg(e.getAbstractMsg());
-            l.setClassList(e.getClassList());
         }
         List<LinkingVO> finalResult = new ArrayList<>();
         for(LinkingVO l : result) {

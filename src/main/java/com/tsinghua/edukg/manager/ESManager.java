@@ -102,7 +102,7 @@ public class ESManager {
                         .bookId(hit.id())
                         .example(hit.source().getHtml()).build());
                 target.setChapterList(chapterList);
-                target.setPicBasePath(String.format(bookPicBasePath, target.getBookName()));
+                target.setPicBasePath(String.format(bookPicBasePath, target.getHtmlName().split("/")[2]));
                 target.setHtml(null);
                 target.setHtmlName(null);
                 textBookRetList.add(target);
