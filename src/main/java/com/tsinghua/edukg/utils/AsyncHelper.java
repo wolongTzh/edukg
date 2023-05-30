@@ -178,6 +178,9 @@ public class AsyncHelper {
             question = question.replace(subject, "");
         }
         sents = esManager.getHighLightTextBookFromMiniMatchAll(HanlpHelper.CutWordRetNeedConcernWords(question), subject, predicate);
+        if(sents.size() == 0) {
+            sents = esManager.getHighLightTextBookFromMiniMatch(HanlpHelper.CutWordRetNeedConcernWords(question));
+        }
         List<TextBookHighLight> accSents = new ArrayList<>();
         int count = 5;
         String answers = "";
