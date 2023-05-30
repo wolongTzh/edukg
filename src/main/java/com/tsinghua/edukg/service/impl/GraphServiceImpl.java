@@ -1,10 +1,7 @@
 package com.tsinghua.edukg.service.impl;
 
-import com.huaban.analysis.jieba.JiebaSegmenter;
-import com.huaban.analysis.jieba.WordDictionary;
 import com.tsinghua.edukg.config.AddressConfig;
 import com.tsinghua.edukg.config.RedisConfig;
-import com.tsinghua.edukg.constant.BusinessConstant;
 import com.tsinghua.edukg.dao.entity.ZYKHtml;
 import com.tsinghua.edukg.dao.mapper.ZYKHtmlMapper;
 import com.tsinghua.edukg.enums.BusinessExceptionEnum;
@@ -28,9 +25,6 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.*;
 
 /**
@@ -61,7 +55,7 @@ public class GraphServiceImpl implements GraphService {
 
     String linkingPath = "static/concept_entities.csv";
 
-    String blackListPath = "static/linkingBlackList.txt";
+    String blackListPath = "static/linkingBlackList.out";
 
     Map<String, String> linkingContentMap = new HashMap<>();
 
