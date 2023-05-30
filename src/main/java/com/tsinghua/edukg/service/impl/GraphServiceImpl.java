@@ -61,11 +61,15 @@ public class GraphServiceImpl implements GraphService {
 
     String linkingPath = "static/concept_entities.csv";
 
+    String blackListPath = "static/linkingBlackList.txt";
+
     Map<String, String> linkingContentMap = new HashMap<>();
 
     String splitTag = "@splitTag@";
 
     String sourcePath = "";
+
+    List<String> blackList = new ArrayList<>();
 
     @Autowired
     public GraphServiceImpl(RedisConfig redisConfig, AddressConfig addressConfig) throws IOException {
@@ -73,6 +77,7 @@ public class GraphServiceImpl implements GraphService {
         String path = linkingPath;
         sourcePath = addressConfig.getSourcePath();
         List<String> contentList = CommonUtil.readTextInResource(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream(path)));
+        blackList = CommonUtil.readTextInResource(new InputStreamReader(this.getClass().getClassLoader().getResourceAsStream(blackListPath)));;
         boolean startTag = true;
         int uri = 0;
         int label = 0;
@@ -104,7 +109,7 @@ public class GraphServiceImpl implements GraphService {
             String add = spliter[uri] + splitTag + spliter[cls];
             linkingContentMap.putIfAbsent(spliter[label], add);
         }
-        System.out.println(1);
+
      }
 
     @Override
@@ -241,7 +246,7 @@ public class GraphServiceImpl implements GraphService {
             }
             Entity entity = neoManager.getEntityFromUri(l.getUri());
             RuleHandler.propertyConverter(entity.getProperty());
-            if(flag && entity.getProperty().size() > 1) {
+            if(!blackList.contains(l.getName()) && flag && entity.getProperty().size() > 1) {
                 finalResult.add(l);
             }
         }
