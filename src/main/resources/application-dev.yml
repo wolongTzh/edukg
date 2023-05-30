@@ -62,6 +62,7 @@ address:
   server:
     qa: http://10.1.1.213:9719/
     linking: http://47.94.201.245:8000/
+    sourcePath: http://47.94.201.245:8081
   file:
     examSource: /data/Gaokao/json
     jiebaDictLinux: /data/Gaokao/jieba/dicts/%s.txt

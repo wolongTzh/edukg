@@ -14,6 +14,9 @@ public class AddressConfig {
     @Value("${address.server.linking}")
     private String linkingAddress;
 
+    @Value("${address.server.sourcePath}")
+    private String sourceAddress;
+
     @Value("${address.file.examSource}")
     private String examSourceAddress;
 

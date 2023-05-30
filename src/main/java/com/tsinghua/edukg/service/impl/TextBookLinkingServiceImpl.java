@@ -1,5 +1,7 @@
 package com.tsinghua.edukg.service.impl;
 
+import com.tsinghua.edukg.config.AddressConfig;
+import com.tsinghua.edukg.config.RedisConfig;
 import com.tsinghua.edukg.enums.BusinessExceptionEnum;
 import com.tsinghua.edukg.exception.BusinessException;
 import com.tsinghua.edukg.manager.ESManager;
@@ -9,6 +11,8 @@ import com.tsinghua.edukg.model.VO.GetTextBookHighLightVO;
 import com.tsinghua.edukg.model.params.GetTextBookHighLightParam;
 import com.tsinghua.edukg.service.TextBookLinkingService;
 import com.tsinghua.edukg.utils.CommonUtil;
+import com.tsinghua.edukg.utils.HttpUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -27,6 +31,13 @@ public class TextBookLinkingServiceImpl implements TextBookLinkingService {
     @Resource
     ESManager esManager;
 
+    String sourceAddress;
+
+    @Autowired
+    public TextBookLinkingServiceImpl(AddressConfig addressConfig) throws IOException {
+        sourceAddress = addressConfig.getSourceAddress();
+    }
+
     @Override
     public GetTextBookHighLightVO getHighLightMsg(GetTextBookHighLightParam param) throws IOException {
         String text = param.getSearchText();
@@ -39,6 +50,10 @@ public class TextBookLinkingServiceImpl implements TextBookLinkingService {
             throw new BusinessException(BusinessExceptionEnum.PAGE_DARA_OVERSIZE);
         }
         for(TextBook textBook : textBookHighLightListPageSplit) {
+            String url = sourceAddress + textBook.getPicBasePath() + "/Images/Cover.jpg";
+            if(HttpUtil.sendGetData(url).equals("")) {
+                textBook.setPicBasePath(textBook.getPicBasePath().replace("/OEBPS", ""));
+            }
             List<TextBookHighLight> chapterList = textBook.getChapterList();
             chapterList.forEach(t -> markHighLightText(t, text));
         }
