@@ -217,6 +217,9 @@ public class GraphServiceImpl implements GraphService {
         int end = 0;
         Map<String, LinkingVO> linkingVOMap = new HashMap<>();
         for(String seg : segResult) {
+            if(seg.length() < 2) {
+                continue;
+            }
             start = end;
             end += seg.length();
             List<Entity> entityList = neoManager.getEntityListFromName(seg);
