@@ -10,6 +10,7 @@ import com.tsinghua.edukg.model.params.HotEntitiesParam;
 import com.tsinghua.edukg.model.params.LinkingParam;
 import com.tsinghua.edukg.model.params.SearchSubgraphParam;
 import com.tsinghua.edukg.service.GraphService;
+import com.tsinghua.edukg.utils.HttpUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Test;
@@ -30,7 +31,7 @@ public class GraphServiceTest {
     @Test
     public void linkingEntitiesTest() {
         LinkingParam param = new LinkingParam();
-        param.setSearchText("李白字什么？");
+        param.setSearchText("请默写古诗元日的特点元日");
         List<LinkingVO> linkingVOList = graphService.linkingEntities(param);
         log.info(JSON.toJSONString(linkingVOList));
     }
@@ -62,5 +63,12 @@ public class GraphServiceTest {
         param.setInstanceList(ls);
         List<Relation> relations = graphService.searchSubgraph(param);
         log.info(JSON.toJSONString(relations));
+    }
+
+    @Test
+    public void testHttpGet() throws IOException {
+        String url = "http://47.94.201.245:8081/data/textbook/高中物理必修第三册/OEBPS/Images/Cover.jpg";
+        String result = HttpUtil.sendGetData(url);
+        log.info(result);
     }
 }
