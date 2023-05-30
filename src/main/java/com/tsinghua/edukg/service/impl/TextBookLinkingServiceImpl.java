@@ -50,10 +50,6 @@ public class TextBookLinkingServiceImpl implements TextBookLinkingService {
             throw new BusinessException(BusinessExceptionEnum.PAGE_DARA_OVERSIZE);
         }
         for(TextBook textBook : textBookHighLightListPageSplit) {
-            String url = sourceAddress + textBook.getPicBasePath() + "/Images/Cover.jpg";
-            if(HttpUtil.sendGetData(url).equals("")) {
-                textBook.setPicBasePath(textBook.getPicBasePath().replace("/OEBPS", ""));
-            }
             List<TextBookHighLight> chapterList = textBook.getChapterList();
             chapterList.forEach(t -> markHighLightText(t, text));
         }
