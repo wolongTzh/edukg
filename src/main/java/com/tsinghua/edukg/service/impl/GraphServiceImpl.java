@@ -209,10 +209,7 @@ public class GraphServiceImpl implements GraphService {
         String text = param.getSearchText();
         List<String> segResult = segmenter.cutWords(text);
         List<LinkingVO> result = new ArrayList<>();
-        Map<String, String> sourceMap = linkingContentMap;
-        if(sourceMap == null) {
-            return null;
-        }
+        Map<String, List<Entity>> sourceMap = new HashMap<>();
         int start = 0;
         int end = 0;
         Map<String, LinkingVO> linkingVOMap = new HashMap<>();
@@ -222,7 +219,14 @@ public class GraphServiceImpl implements GraphService {
             }
             start = end;
             end += seg.length();
-            List<Entity> entityList = neoManager.getEntityListFromName(seg);
+            List<Entity> entityList = new ArrayList<>();
+            if(sourceMap.containsKey(seg)) {
+                entityList = sourceMap.get(seg);
+            }
+            else {
+                entityList = neoManager.getEntityListFromName(seg);
+                sourceMap.put(seg, entityList);
+            }
             if(entityList.size() != 0) {
                 Entity entity = entityList.get(0);
                 String uri = entity.getUri();
