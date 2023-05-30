@@ -214,11 +214,11 @@ public class GraphServiceImpl implements GraphService {
         int end = 0;
         Map<String, LinkingVO> linkingVOMap = new HashMap<>();
         for(String seg : segResult) {
+            start = end;
+            end += seg.length();
             if(seg.length() < 2) {
                 continue;
             }
-            start = end;
-            end += seg.length();
             List<Entity> entityList = new ArrayList<>();
             if(sourceMap.containsKey(seg)) {
                 entityList = sourceMap.get(seg);
