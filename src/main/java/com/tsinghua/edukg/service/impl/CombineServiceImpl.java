@@ -71,19 +71,13 @@ public class CombineServiceImpl implements CombineService {
         // 判断是否是输入谓词的情况
         CombineLinkingVO combineLinkingVO = judgePredicate(searchText);
         if(combineLinkingVO != null) {
-            combineLinkingVO.setQuestionList(examSourceLinkingService.getExamSourceFromUri(GetExamSourceParam.builder().pageNo(pageNo).pageSize(pageSize).uri(combineLinkingVO.getInstanceInfo().getUri()).build()));
-            if(CollectionUtils.isEmpty(combineLinkingVO.getQuestionList().getData())) {
-                combineLinkingVO.setQuestionList(examSourceLinkingService.getExamSourceFromText(GetExamSourceParam.builder().pageNo(pageNo).pageSize(pageSize).searchText(searchText).build(), BusinessTypeEnum.LINKING));
-            }
-            GetTextBookHighLightVO getTextBookHighLightVO = textBookLinkingService.getHighLightMsg(GetTextBookHighLightParam.builder().pageNo(pageNo).pageSize(pageSize).searchText(searchText).build());
-            combineLinkingVO.setCourseList(courseService.getCourseFromUri(combineLinkingVO.getInstanceInfo().getUri()));
-            combineLinkingVO.setBookList(getTextBookHighLightVO);
-            combineLinkingVO.setInstanceList(new ArrayList<>());
             return combineLinkingVO;
         }
         combineLinkingVO = new CombineLinkingVO();
         List<EntitySimp> instanceList = new ArrayList<>();
         instanceList.addAll(neoManager.getEntityListFromName(searchText));
+        // 添加相关知识
+        Set<String> dedup = new HashSet<>();
         if(instanceList.size() > 0) {
             instanceList.subList(0, 1);
             EntitySimp entitySimp = instanceList.get(0);
@@ -99,10 +93,13 @@ public class CombineServiceImpl implements CombineService {
                     name = relation.getSubject();
                     uri = relation.getSubjectUri();
                 }
-                instanceList.add(EntitySimp.builder()
-                                .name(name)
-                                .uri(uri)
-                        .build());
+                if(!dedup.contains(uri)) {
+                    instanceList.add(EntitySimp.builder()
+                            .name(name)
+                            .uri(uri)
+                            .build());
+                    dedup.add(uri);
+                }
             }
         }
         if(instanceList.size() > pageSize) {
@@ -114,8 +111,7 @@ public class CombineServiceImpl implements CombineService {
             Entity entity = neoManager.getEntityFromUri(entitySimp.getUri());
             RuleHandler.propertyConverter(entity.getProperty());
             if(instanceList.size() == 1 || entity.getProperty().size() > 2) {
-                Entity relationKnowledge = neoManager.getEntityFromUri(entitySimp.getUri());
-                entitySimp.setClassList(relationKnowledge.getClassList());
+                entitySimp.setClassList(entity.getClassList());
                 finalInstanceList.add(entitySimp);
             }
         }
@@ -143,7 +139,7 @@ public class CombineServiceImpl implements CombineService {
         return combineLinkingVO;
     }
 
-    CombineLinkingVO judgePredicate(String searchText) {
+    CombineLinkingVO judgePredicate(String searchText) throws IOException {
         CombineLinkingVO combineLinkingVO = new CombineLinkingVO();
         String predicate = RuleHandler.getPropertyAbbrWithoutSubject(searchText);
         if(StringUtils.isEmpty(predicate)) {
@@ -176,6 +172,15 @@ public class CombineServiceImpl implements CombineService {
         predicateSearchVO.setPredicateDes(String.format("“%s”是基础教育知识图谱中的一个知识点属性", searchText));
         combineLinkingVO.setPredicateSearchVO(predicateSearchVO);
         combineLinkingVO.setInstanceInfo(entity);
+        // 资源链接
+        combineLinkingVO.setQuestionList(examSourceLinkingService.getExamSourceFromUri(GetExamSourceParam.builder().pageNo(pageNo).pageSize(pageSize).uri(combineLinkingVO.getInstanceInfo().getUri()).build()));
+        if(CollectionUtils.isEmpty(combineLinkingVO.getQuestionList().getData())) {
+            combineLinkingVO.setQuestionList(examSourceLinkingService.getExamSourceFromText(GetExamSourceParam.builder().pageNo(pageNo).pageSize(pageSize).searchText(searchText).build(), BusinessTypeEnum.LINKING));
+        }
+        GetTextBookHighLightVO getTextBookHighLightVO = textBookLinkingService.getHighLightMsg(GetTextBookHighLightParam.builder().pageNo(pageNo).pageSize(pageSize).searchText(searchText).build());
+        combineLinkingVO.setCourseList(courseService.getCourseFromUri(combineLinkingVO.getInstanceInfo().getUri()));
+        combineLinkingVO.setBookList(getTextBookHighLightVO);
+        combineLinkingVO.setInstanceList(new ArrayList<>());
         return combineLinkingVO;
     }
 
