@@ -17,6 +17,8 @@ public class QAResult {
 
     String origin_pred;
 
+    String predicate;
+
     String templateContent;
 
     int score;
