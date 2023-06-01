@@ -110,7 +110,7 @@ public class CombineServiceImpl implements CombineService {
         for(EntitySimp entitySimp : instanceList) {
             Entity entity = neoManager.getEntityFromUri(entitySimp.getUri());
             RuleHandler.propertyConverter(entity.getProperty());
-            if(instanceList.size() == 1 || entity.getProperty().size() > 2) {
+            if(instanceList.size() == 1 || entity.getProperty().size() > 2 && entity.getName().length() <= 5) {
                 entitySimp.setClassList(entity.getClassList());
                 finalInstanceList.add(entitySimp);
             }
