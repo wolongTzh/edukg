@@ -212,12 +212,12 @@ public class CombineServiceImpl implements CombineService {
         if(StringUtils.isEmpty(answer.getAnswerValue())) {
             return false;
         }
-        if(!question.contains(answer.getSubject())) {
-            return false;
-        }
-        if(answer.getScore() < 90) {
-            return false;
-        }
+//        if(!question.contains(answer.getSubject())) {
+//            return false;
+//        }
+//        if(answer.getScore() < 90) {
+//            return false;
+//        }
         return true;
     }
 }
