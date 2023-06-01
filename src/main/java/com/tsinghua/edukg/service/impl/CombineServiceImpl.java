@@ -93,6 +93,9 @@ public class CombineServiceImpl implements CombineService {
                     name = relation.getSubject();
                     uri = relation.getSubjectUri();
                 }
+                if(StringUtils.isEmpty(name)) {
+                    continue;
+                }
                 if(!dedup.contains(uri)) {
                     instanceList.add(EntitySimp.builder()
                             .name(name)
@@ -107,10 +110,14 @@ public class CombineServiceImpl implements CombineService {
         }
         List<EntitySimp> finalInstanceList = new ArrayList<>();
         // 删掉不合格实体
+        boolean head = true;
         for(EntitySimp entitySimp : instanceList) {
             Entity entity = neoManager.getEntityFromUri(entitySimp.getUri());
             RuleHandler.propertyConverter(entity.getProperty());
-            if(instanceList.size() == 1 || entity.getProperty().size() > 2 && entity.getName().length() <= 5) {
+            if(head || entity.getProperty().size() > 2 && entity.getName().length() <= 5) {
+                if(head) {
+                    head = false;
+                }
                 entitySimp.setClassList(entity.getClassList());
                 finalInstanceList.add(entitySimp);
             }
