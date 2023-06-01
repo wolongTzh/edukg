@@ -114,6 +114,8 @@ public class CombineServiceImpl implements CombineService {
             Entity entity = neoManager.getEntityFromUri(entitySimp.getUri());
             RuleHandler.propertyConverter(entity.getProperty());
             if(instanceList.size() == 1 || entity.getProperty().size() > 2) {
+                Entity relationKnowledge = neoManager.getEntityFromUri(entitySimp.getUri());
+                entitySimp.setClassList(relationKnowledge.getClassList());
                 finalInstanceList.add(entitySimp);
             }
         }
