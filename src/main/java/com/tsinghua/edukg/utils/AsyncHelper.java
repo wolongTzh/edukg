@@ -224,11 +224,11 @@ public class AsyncHelper {
 //            index = Integer.parseInt(bimpmResult.getIndex());
 //        }
         index = Integer.parseInt(bimpmResult.getIndex());
-        TextBookHighLight sent;
+        TextBookHighLight sent = TextBookHighLight.builder().build();
         if(index >= 0 && index < accSents.size()) {
             sent = accSents.get(index);
         }
-        else {
+        else if(accSents.size() > 0) {
             sent = accSents.get(0);
         }
         List<LinkingVO> linkingVOList = graphService.linkingEntities(LinkingParam.builder().searchText(sent.getExample()).build());
