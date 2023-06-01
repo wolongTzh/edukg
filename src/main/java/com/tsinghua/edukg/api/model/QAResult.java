@@ -15,9 +15,11 @@ public class QAResult {
 
     String answerValue;
 
-    String predicate;
+    String origin_pred;
 
     String templateContent;
 
     int score;
+
+    double model_score;
 }

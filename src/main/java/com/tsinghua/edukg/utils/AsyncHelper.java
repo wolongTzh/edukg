@@ -166,12 +166,12 @@ public class AsyncHelper {
         qaParam.setQuestion(question);
         QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
         List<TextBookHighLight> sents;
-        String predicate = answer.getPredicate();
+        String predicate = answer.getOrigin_pred();
         String subject = answer.getSubject();
-        if(!question.contains(predicate)) {
+        if(answer.getModel_score() < -1.0) {
             predicate = "";
         }
-        if(!question.contains(subject)) {
+        if(answer.getModel_score() < -1.0 || !question.contains(subject)) {
             subject = "";
         }
         else {
