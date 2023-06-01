@@ -191,7 +191,7 @@ public class NeoManager {
                 " with n, keys(n) as ks" +
                 " unwind ks as k1" +
                 " match(n)" +
-                " where n[k1] contains \"%s\" and k1 starts with \"edukg\"" +
+                " where n[k1] = \"%s\" and k1 starts with \"edukg\"" +
                 " return n.rdfs__label as name, n.uri as uri, labels(n) as labels, n[k1] as v" +
                 " limit 10";
         query = String.format(query, name, name);

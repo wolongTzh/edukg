@@ -9,6 +9,7 @@ import com.tsinghua.edukg.manager.NeoManager;
 import com.tsinghua.edukg.model.Entity;
 import com.tsinghua.edukg.model.EntitySimp;
 import com.tsinghua.edukg.model.Property;
+import com.tsinghua.edukg.model.Relation;
 import com.tsinghua.edukg.model.VO.*;
 import com.tsinghua.edukg.model.params.GetExamSourceParam;
 import com.tsinghua.edukg.model.params.GetTextBookHighLightParam;
@@ -83,8 +84,26 @@ public class CombineServiceImpl implements CombineService {
         combineLinkingVO = new CombineLinkingVO();
         List<EntitySimp> instanceList = new ArrayList<>();
         instanceList.addAll(neoManager.getEntityListFromName(searchText));
-        if(instanceList.size() == 0) {
-            instanceList.addAll(neoManager.getEntityWithScoreFromName(searchText));
+        if(instanceList.size() > 0) {
+            instanceList.subList(0, 1);
+            EntitySimp entitySimp = instanceList.get(0);
+            Entity entity = neoManager.getEntityFromUri(entitySimp.getUri());
+            for(Relation relation : entity.getRelation()) {
+                String name = "";
+                String uri = "";
+                if(relation.getSubject().equals(entity.getName())) {
+                    name = relation.getObject();
+                    uri = relation.getObjectUri();
+                }
+                else {
+                    name = relation.getSubject();
+                    uri = relation.getSubjectUri();
+                }
+                instanceList.add(EntitySimp.builder()
+                                .name(name)
+                                .uri(uri)
+                        .build());
+            }
         }
         if(instanceList.size() > pageSize) {
             instanceList = instanceList.subList(0, pageSize);
