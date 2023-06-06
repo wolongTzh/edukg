@@ -1,5 +1,6 @@
 package com.tsinghua.edukg.tools;
 
+import com.alibaba.excel.EasyExcel;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -7,7 +8,11 @@ import com.tsinghua.edukg.manager.NeoManager;
 import com.tsinghua.edukg.model.Entity;
 import com.tsinghua.edukg.model.Property;
 import com.tsinghua.edukg.model.Relation;
+import com.tsinghua.edukg.model.excel.OutTemplate;
+import com.tsinghua.edukg.model.excel.TestOutEntity;
+import com.tsinghua.edukg.model.excel.TestSourceEntity;
 import com.tsinghua.edukg.utils.CommonUtil;
+import com.tsinghua.edukg.utils.RuleHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +22,7 @@ import org.springframework.util.StringUtils;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,6 +34,102 @@ public class GraphEditHelper {
     NeoManager neoManager;
 
     String failedPath = "./failedRecord.txt";
+
+    String excelPath = "./outputTemplate.xlsx";
+
+    String newEntityPath = "./newEntity.json";
+
+    String addPropEntityPath = "./addPropEntity.json";
+
+    String addRelationPath = "./addRelation.json";
+
+    String subject = "chinese";
+    @Test
+    public void genAddGraphFiles() throws IOException {
+        List<OutTemplate> list = EasyExcel.read(excelPath).head(OutTemplate.class).sheet().doReadSync();
+        File file1 = new File(newEntityPath);
+        File file2 = new File(addPropEntityPath);
+        File file3 = new File(addRelationPath);
+        FileWriter fileWriter1 = new FileWriter(file1.getName());
+        FileWriter fileWriter2 = new FileWriter(file2.getName());
+        FileWriter fileWriter3 = new FileWriter(file3.getName());
+        List<Entity> newEntityList = new ArrayList<>();
+        List<Entity> existEntityList = new ArrayList<>();
+        List<Relation> relationList = new ArrayList<>();
+        for(OutTemplate out : list) {
+            if(!out.getType().equals("图谱问题") || out.getPredicate().equals("后一句") || out.getPredicate().equals("前一句")) {
+                continue;
+            }
+            Entity entity = new Entity();
+            List<Entity> existEntity = neoManager.getEntityListFromName(out.getSubject());
+            String finalPredicate = "";
+            List<String> predicateList = RuleHandler.geAlltPropertyAbbrWithoutSubject(out.getPredicate());
+            if(predicateList.size() == 0) {
+                log.info("该问题找不到谓词：" + out.getQuestion());
+                continue;
+            }
+            for(String predicate : predicateList) {
+                if(predicate.contains(subject)) {
+                    finalPredicate = predicate;
+                }
+            }
+            if(finalPredicate.equals("")) {
+                finalPredicate = predicateList.get(0);
+            }
+            if(finalPredicate.contains("main-R")) {
+                String subjectUri = "";
+                String objectUri = "";
+                if(existEntity.size() != 0) {
+                    subjectUri = existEntity.get(0).getUri();
+                }
+                List<Entity> objectEntityList = neoManager.getEntityListFromName(out.getAnswer());
+                if(objectEntityList.size() == 0) {
+                    log.info("不存在的关系尾节点实体：" + out.getAnswer());
+                    newEntityList.add(Entity.builder()
+                            .name(out.getAnswer())
+                            .build());
+                    continue;
+                }
+                if(objectEntityList.size() != 0) {
+                    objectUri = objectEntityList.get(0).getUri();
+                }
+                Relation relation = Relation.builder()
+                        .subject(out.getSubject())
+                        .subjectUri(subjectUri)
+                        .predicate(finalPredicate)
+                        .object(out.getAnswer())
+                        .objectUri(objectUri)
+                        .build();
+                relationList.add(relation);
+            }
+            else {
+                Property property = Property.builder()
+                        .predicate(finalPredicate)
+                        .subject(out.getSubject())
+                        .object(out.getAnswer())
+                        .build();
+                entity.setProperty(Arrays.asList(property));
+            }
+
+            if(existEntity.size() != 0 && finalPredicate.contains("main-P")) {
+                entity.setUri(existEntity.get(0).getUri());
+                existEntityList.add(entity);
+            }
+            else if(existEntity.size() == 0) {
+                entity.setName(out.getSubject());
+                newEntityList.add(entity);
+            }
+        }
+        fileWriter1.write(JSON.toJSONString(newEntityList));
+        fileWriter2.write(JSON.toJSONString(existEntityList));
+        fileWriter3.write(JSON.toJSONString(relationList));
+        fileWriter1.flush();
+        fileWriter2.flush();
+        fileWriter3.flush();
+        fileWriter1.close();
+        fileWriter2.close();
+        fileWriter3.close();
+    }
 
     /**
      * 添加关系

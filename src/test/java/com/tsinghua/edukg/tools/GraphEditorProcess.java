@@ -34,11 +34,11 @@ public class GraphEditorProcess {
     @Test
     public void mainProcess() throws IOException {
 
-        String entityAddPath = "./new_entities0420.json";
+        String entityAddPath = "./newEntity.json";
         String entityAddFailedPath = "./new_entity_failed.txt";
-        String propAddPath = "./prop_triples-history.json";
+        String propAddPath = "./addPropEntity.json";
         String propAddFailedPath = "./prop_add_failed.txt";
-        String relationAddPath = "./relation_triples-history.json";
+        String relationAddPath = "./addRelation.json";
         String relationAddFailedPath = "./relation_add_failed.txt";
 
         Map<String, String> nameMap = addEntityWithPureJSON(entityAddPath, entityAddFailedPath);
@@ -144,15 +144,15 @@ public class GraphEditorProcess {
                     continue;
                 }
                 boolean needAddTag = true;
-                if(!CollectionUtils.isEmpty(entity.getProperty())) {
-                    for(Property p : entity.getProperty()) {
-                        if(p.getSubject().equals(property.getSubject()) &&
-                                p.getObject().equals(property.getObject()) &&
-                                p.getPredicate().equals(property.getPredicate())) {
-                            needAddTag = false;
-                        }
-                    }
-                }
+//                if(!CollectionUtils.isEmpty(entity.getProperty())) {
+//                    for(Property p : entity.getProperty()) {
+//                        if(p.getSubject().equals(property.getSubject()) &&
+//                                p.getObject().equals(property.getObject()) &&
+//                                p.getPredicate().equals(property.getPredicate())) {
+//                            needAddTag = false;
+//                        }
+//                    }
+//                }
                 if(needAddTag) {
                     log.info(JSON.toJSONString(property));
                     neoManager.updateProperty(uri, null, property);
@@ -190,15 +190,15 @@ public class GraphEditorProcess {
                 }
                 List<Relation> subjectRelations = subjectEntity.getRelation();
                 boolean needAddTag = true;
-                if(!CollectionUtils.isEmpty(subjectRelations)) {
-                    for(Relation r : subjectRelations) {
-                        if(r.getSubject().equals(relation.getSubject()) &&
-                                r.getObject().equals(relation.getObject()) &&
-                                r.getPredicate().equals(relation.getPredicate())) {
-                            needAddTag = false;
-                        }
-                    }
-                }
+//                if(!CollectionUtils.isEmpty(subjectRelations)) {
+//                    for(Relation r : subjectRelations) {
+//                        if(r.getSubject().equals(relation.getSubject()) &&
+//                                r.getObject().equals(relation.getObject()) &&
+//                                r.getPredicate().equals(relation.getPredicate())) {
+//                            needAddTag = false;
+//                        }
+//                    }
+//                }
                 if(needAddTag) {
                     log.info(JSON.toJSONString(relation));
                     neoManager.updateRelation(null, relation);
