@@ -103,6 +103,16 @@ public class ESManager {
                         .example(hit.source().getHtml()).build());
                 target.setChapterList(chapterList);
                 target.setPicBasePath(String.format(bookPicBasePath, target.getHtmlName().split("/")[2]));
+                boolean digitName = true;
+                for(char c : target.getHtmlName().split("/")[2].toCharArray()) {
+                    if(!Character.isDigit(c)) {
+                        digitName = false;
+                        break;
+                    }
+                }
+                if(digitName) {
+                    target.setPicBasePath(target.getPicBasePath().replace("/OEBPS", ""));
+                }
                 target.setHtml(null);
                 target.setHtmlName(null);
                 textBookRetList.add(target);
