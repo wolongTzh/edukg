@@ -79,9 +79,9 @@ public class ESManager {
         SearchResponse<TextBook> termSearch = client.search(s -> s
                         .index(textBookIndex)
                         .query(q -> q
-                                .term(t -> t
+                                .matchPhrase(t -> t
                                         .field("html")
-                                        .value(termText)
+                                        .query(termText)
                                 )
                         ),
                 TextBook.class);
