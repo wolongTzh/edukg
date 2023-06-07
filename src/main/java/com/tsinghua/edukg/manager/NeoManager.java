@@ -169,6 +169,21 @@ public class NeoManager {
         return entityList;
     }
 
+    public List<Entity> getEntityListFromFuzzyName(String name) {
+        List<Entity> entityList = new ArrayList<>();
+        String query = "MATCH (n:`Resource`) WHERE n.rdfs__label contains \"%s\" RETURN n.uri as uri, n.rdfs__label as rdfs__label, labels(n) as labels";
+        query = String.format(query, name);
+        Result result = session.query(query, new HashMap<>());
+        for (Map<String, Object> m : result.queryResults()) {
+            entityList.add(Entity.builder()
+                    .abstractMsg("")
+                    .name((String) m.get("rdfs__label"))
+                    .uri((String) m.get("uri"))
+                    .classList(RuleHandler.classConverter(Arrays.asList((String[]) m.get("labels")))).build());
+        }
+        return entityList;
+    }
+
     public List<Entity> getEntityListFromPredicateName(String predicate) {
         List<Entity> entityList = new ArrayList<>();
         String query = "MATCH (n:`Resource`) " +
