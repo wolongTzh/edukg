@@ -64,13 +64,21 @@ public class TextBookLinkingServiceImpl implements TextBookLinkingService {
     }
 
     private void markHighLightText(TextBookHighLight textBookHighLight, String target) {
+        target = target.replace("《", "").replace("》", "");
         String source = textBookHighLight.getExample();
         String preTag = ">";
         String postTag = "<";
-        String result = CommonUtil.getMiddleTextFromTags(source, target, preTag, postTag).get(0);
+        List<String> resultList = CommonUtil.getMiddleTextFromTags(source, target, preTag, postTag);
+        if(resultList.size() == 0) {
+            return;
+        }
         preTag = "。";
         postTag = "。";
-        result = CommonUtil.getMiddleTextFromTags(result, target, preTag, postTag).get(0);
+        resultList = CommonUtil.getMiddleTextFromTags(source, target, preTag, postTag);
+        if(resultList.size() == 0) {
+            return;
+        }
+        String result = resultList.get(0);
         textBookHighLight.setExample(result);
     }
 }
