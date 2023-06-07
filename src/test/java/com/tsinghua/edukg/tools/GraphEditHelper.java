@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.tsinghua.edukg.manager.NeoManager;
+import com.tsinghua.edukg.model.ClassInternal;
 import com.tsinghua.edukg.model.Entity;
 import com.tsinghua.edukg.model.Property;
 import com.tsinghua.edukg.model.Relation;
@@ -21,9 +22,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @SpringBootTest
@@ -56,6 +55,7 @@ public class GraphEditHelper {
         List<Entity> newEntityList = new ArrayList<>();
         List<Entity> existEntityList = new ArrayList<>();
         List<Relation> relationList = new ArrayList<>();
+        Map<String, List<Entity>> entityMapSortByLabel = new HashMap<>();
         for(OutTemplate out : list) {
             if(!out.getType().equals("图谱问题") || out.getPredicate().equals("后一句") || out.getPredicate().equals("前一句")) {
                 continue;
@@ -85,9 +85,12 @@ public class GraphEditHelper {
                 List<Entity> objectEntityList = neoManager.getEntityListFromName(out.getAnswer());
                 if(objectEntityList.size() == 0) {
                     log.info("不存在的关系尾节点实体：" + out.getAnswer());
-                    newEntityList.add(Entity.builder()
+                    entityMapSortByLabel.putIfAbsent(out.getLabel(), new ArrayList<>());
+                    List<Entity> entityList = entityMapSortByLabel.get(out.getLabel());
+                    entityList.add(Entity.builder()
                             .name(out.getAnswer())
                             .build());
+                    entityMapSortByLabel.put(out.getLabel(), entityList);
                     continue;
                 }
                 if(objectEntityList.size() != 0) {
@@ -117,10 +120,23 @@ public class GraphEditHelper {
             }
             else if(existEntity.size() == 0) {
                 entity.setName(out.getSubject());
-                newEntityList.add(entity);
+                entityMapSortByLabel.putIfAbsent(out.getLabel(), new ArrayList<>());
+                List<Entity> entityList = entityMapSortByLabel.get(out.getLabel());
+                entityList.add(entity);
+                entityMapSortByLabel.put(out.getLabel(), entityList);
             }
         }
-        fileWriter1.write(JSON.toJSONString(newEntityList));
+        JSONArray jsonArray = new JSONArray();
+        for(Map.Entry entry : entityMapSortByLabel.entrySet()) {
+            String label = (String) entry.getKey();
+            List<Entity> entityList = (List<Entity>) entry.getValue();
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("subject", subject);
+            jsonObject.put("label", label);
+            jsonObject.put("entities", entityList);
+            jsonArray.add(jsonObject);
+        }
+        fileWriter1.write(jsonArray.toJSONString());
         fileWriter2.write(JSON.toJSONString(existEntityList));
         fileWriter3.write(JSON.toJSONString(relationList));
         fileWriter1.flush();
