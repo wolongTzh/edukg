@@ -90,7 +90,7 @@ spring:
     index:
       examSource: examsource
       irqa: irqa
-      textBook: new_book
+      textBook: textbook
 
 mybatis:
   mapper-locations: classpath:/mapper/*.xml
