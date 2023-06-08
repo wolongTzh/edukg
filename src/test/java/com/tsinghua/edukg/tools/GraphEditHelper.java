@@ -57,7 +57,7 @@ public class GraphEditHelper {
         List<Relation> relationList = new ArrayList<>();
         Map<String, List<Entity>> entityMapSortByLabel = new HashMap<>();
         for(OutTemplate out : list) {
-            if(!out.getType().equals("图谱问题") || out.getPredicate().equals("后一句") || out.getPredicate().equals("前一句")) {
+            if(StringUtils.isEmpty(out.getLabel())) {
                 continue;
             }
             Entity entity = new Entity();

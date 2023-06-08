@@ -2,10 +2,7 @@ package com.tsinghua.edukg;
 
 import com.alibaba.fastjson.JSON;
 import com.tsinghua.edukg.manager.NeoManager;
-import com.tsinghua.edukg.model.ClassInternal;
-import com.tsinghua.edukg.model.Entity;
-import com.tsinghua.edukg.model.EntityWithScore;
-import com.tsinghua.edukg.model.Relation;
+import com.tsinghua.edukg.model.*;
 import com.tsinghua.edukg.model.params.SearchSubgraphParam;
 import com.tsinghua.edukg.service.GraphService;
 import com.tsinghua.edukg.utils.RuleHandler;
@@ -34,6 +31,16 @@ public class NeoManagerTest {
     @Autowired
     @Qualifier("neo4jSession")
     Session session;
+
+    @Test
+    public void removeProp() {
+        Property property = Property.builder()
+                .subject("鲁迅")
+                .predicate("edukg_prop_history__main-P371")
+                .object("公务员、教师、作家")
+                .build();
+        neoManager.updateProperty("http://edukg.org/knowledge/3.0/instance/chinese#main-E4768", property, null);
+    }
 
     @Test
     public void getBareEntityFromNameTest() {

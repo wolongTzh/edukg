@@ -384,9 +384,9 @@ public class NeoManager {
 //            if(proCode == null) {
 //                throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "找不到" + subject + "的属性" + prev.getSubject());
 //            }
-            if(StringUtils.isEmpty(RuleHandler.getPropertyAbbrWithoutSubject(prev.getSubject()))
-                    && StringUtils.isEmpty(RuleHandler.getPropertyNameByAbbr(prev.getSubject()))) {
-                throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "找不到关系名" + prev.getSubject());
+            if(StringUtils.isEmpty(RuleHandler.getPropertyAbbrWithoutSubject(prev.getPredicate()))
+                    && StringUtils.isEmpty(RuleHandler.getPropertyNameByAbbr(prev.getPredicate()))) {
+                throw new BusinessException(WebConstant.CUSTOMIZE_ERROR, "找不到关系名" + prev.getPredicate());
             }
             query += " AND n.`" + prev.getPredicate() + "` = $oldValue REMOVE n.`" + prev.getPredicate() + "` ";
             map.put("oldValue", prev.getObject());
