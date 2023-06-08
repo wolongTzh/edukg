@@ -114,6 +114,7 @@ address:
     jiebaDictWin: C:\\Users\\feifei\\Desktop\\Gaokao\\jieba\\dicts\\%s.txt
     stopWords: static/stopWords.out
     sourcePath: /data1/home/keg
+    subjectGraph: /data/subjectGraph/%s.json
   sign:
     split: /
 

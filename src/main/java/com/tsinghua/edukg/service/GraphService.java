@@ -25,6 +25,10 @@ public interface GraphService {
     EntityWithSource getEntityWithSourceFromUri(String uri) throws IOException;
     List<Entity> getEntityFromClass(String className);
 
+    List<Entity> getEntityFromSubject(String subject) throws IOException;
+
+    void updateSubjectGraph() throws IOException;
+
     List<Entity> getEntityFromName(String searchText);
 
     List<Entity> getHotEntities(HotEntitiesParam param);

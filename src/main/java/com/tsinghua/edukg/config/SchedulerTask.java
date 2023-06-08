@@ -11,6 +11,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.Map;
 
 @Component
@@ -66,5 +67,10 @@ public class SchedulerTask {
             redisManager.deleteHotEntities(subject);
             redisManager.getHotEntities(subject);
         }
+    }
+
+    @Scheduled(cron=cron)
+    public void updateSubjectGraph() throws IOException {
+        graphService.updateSubjectGraph();
     }
 }

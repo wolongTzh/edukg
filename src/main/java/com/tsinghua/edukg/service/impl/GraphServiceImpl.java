@@ -1,5 +1,7 @@
 package com.tsinghua.edukg.service.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.tsinghua.edukg.config.AddressConfig;
 import com.tsinghua.edukg.config.RedisConfig;
 import com.tsinghua.edukg.dao.entity.ZYKHtml;
@@ -19,6 +21,7 @@ import com.tsinghua.edukg.utils.CommonUtil;
 import com.tsinghua.edukg.utils.JiebaHelper;
 import com.tsinghua.edukg.utils.RuleHandler;
 import com.tsinghua.edukg.utils.XpointerUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,6 +37,7 @@ import java.util.*;
  * @date 2022/10/12
  */
 @Service
+@Slf4j
 public class GraphServiceImpl implements GraphService {
 
     @Resource
@@ -57,6 +61,8 @@ public class GraphServiceImpl implements GraphService {
 
     String blackListPath = "static/linkingBlackList.out";
 
+    String subjectGraphPath;
+
     Map<String, String> linkingContentMap = new HashMap<>();
 
     String splitTag = "@splitTag@";
@@ -67,6 +73,7 @@ public class GraphServiceImpl implements GraphService {
 
     @Autowired
     public GraphServiceImpl(RedisConfig redisConfig, AddressConfig addressConfig) throws IOException {
+        this.subjectGraphPath = addressConfig.getSubjectGraph();
         openGate = redisConfig.getOpenGate();
         String path = linkingPath;
         sourcePath = addressConfig.getSourcePath();
@@ -178,6 +185,32 @@ public class GraphServiceImpl implements GraphService {
     public List<Entity> getEntityFromClass(String className) {
         List<Entity> entityList = neoManager.getEntityListFromClass(className);
         return entityList;
+    }
+
+    @Override
+    public List<Entity> getEntityFromSubject(String subject) throws IOException {
+        JSONObject jsonObject = CommonUtil.readJsonOut(String.format(subjectGraphPath, subject));
+        return JSONObject.parseArray(jsonObject.toJSONString(), Entity.class);
+    }
+    @Override
+    public void updateSubjectGraph() throws IOException {
+        Map<String, String> subjectMap = RuleHandler.grepSubjectMap();
+        for(Map.Entry entry : subjectMap.entrySet()) {
+            String subject = (String) entry.getKey();
+            log.info("更新" + subject + "学科图谱。。。");
+            List<Entity> entityList = neoManager.getEntityListFromClass(subject);
+            List<Entity> retEntityList = new ArrayList<>();
+            int count = 0;
+            for(Entity entity : entityList) {
+                count++;
+                retEntityList.add(neoManager.getEntityFromUri(entity.getUri()));
+                log.info(count + "/" + entityList.size());
+            }
+            File file = new File(String.format(subjectGraphPath, subject));
+            FileWriter fileWriter = new FileWriter(file.getName(), false);
+            fileWriter.write(JSON.toJSONString(entityList));
+            fileWriter.close();
+        }
     }
 
     @Override

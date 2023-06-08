@@ -104,4 +104,16 @@ public class GraphController {
         List<LinkingVO> linkingVOList = graphService.linkingEntities(param);
         return WebUtil.successResult(linkingVOList);
     }
+
+    /**
+     * 实体链接查询
+     *
+     * @return
+     */
+    @GetMapping(value = "getGraphBySubject")
+    public WebResInfo getGraphBySubject(String subject) throws IOException {
+        GraphControllerUtil.validSubjectExist(subject);
+        List<Entity> entityList = graphService.getEntityFromSubject(subject);
+        return WebUtil.successResult(entityList);
+    }
 }

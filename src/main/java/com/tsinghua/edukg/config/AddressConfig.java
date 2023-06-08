@@ -35,6 +35,9 @@ public class AddressConfig {
     @Value("${address.file.sourcePath}")
     private String sourcePath;
 
+    @Value("${address.file.subjectGraph}")
+    private String subjectGraph;
+
     @Value("${address.sign.split}")
     private String sign;
 }

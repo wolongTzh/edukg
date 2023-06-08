@@ -5,6 +5,7 @@ import com.tsinghua.edukg.exception.BusinessException;
 import com.tsinghua.edukg.model.params.HotEntitiesParam;
 import com.tsinghua.edukg.model.params.LinkingParam;
 import com.tsinghua.edukg.model.params.SearchSubgraphParam;
+import com.tsinghua.edukg.utils.RuleHandler;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
 
@@ -24,6 +25,20 @@ public class GraphControllerUtil extends CommonControllerUtil {
     public static void validGetEntityParam(String uri) {
         if(StringUtils.isEmpty(uri)) {
             throw new BusinessException(BusinessExceptionEnum.PARAMETER_MISSING_ERROR);
+        }
+    }
+
+    /**
+     * 校验学科是否存在
+     *
+     * @param subject
+     */
+    public static void validSubjectExist(String subject) {
+        if(StringUtils.isEmpty(subject)) {
+            throw new BusinessException(BusinessExceptionEnum.PARAMETER_MISSING_ERROR);
+        }
+        if(!RuleHandler.grepSubjectMap().containsKey(subject)) {
+            throw new BusinessException(BusinessExceptionEnum.SUBJECT_NOT_EXIST);
         }
     }
 
