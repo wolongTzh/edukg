@@ -70,6 +70,7 @@ public class RedisManager {
 
     @Cacheable(value = ":subjectGraph", key = "#subject", unless = "#result == null")
     public List<Entity> getSubjectGraph(String subject) throws IOException {
+        System.out.println("in getSubjectGraph redis");
         return graphService.getEntityFromSubjectInFile(subject);
     }
 
