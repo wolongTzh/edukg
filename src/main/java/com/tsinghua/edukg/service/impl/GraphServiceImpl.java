@@ -191,7 +191,7 @@ public class GraphServiceImpl implements GraphService {
     @Override
     public List<Entity> getEntityFromSubject(String subject) throws IOException {
         if(!new File(String.format(subjectGraphPath, subject)).exists()) {
-            throw new BusinessException(BusinessExceptionEnum.SUBJECT_NOT_EXIST);
+            throw new BusinessException(BusinessExceptionEnum.SUBJECT_GRAPH_NOT_EXIST_ERROR);
         }
         JSONArray jsonArray = CommonUtil.readJsonArray(String.format(subjectGraphPath, subject));
         return JSONObject.parseArray(jsonArray.toJSONString(), Entity.class);
