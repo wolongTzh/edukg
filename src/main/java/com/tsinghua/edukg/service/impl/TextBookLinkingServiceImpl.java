@@ -72,6 +72,7 @@ public class TextBookLinkingServiceImpl implements TextBookLinkingService {
         if(resultList.size() == 0) {
             return;
         }
+        source = resultList.get(0);
         preTag = "。";
         postTag = "。";
         resultList = CommonUtil.getMiddleTextFromTags(source, target, preTag, postTag);
