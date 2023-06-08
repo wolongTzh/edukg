@@ -190,6 +190,10 @@ public class GraphServiceImpl implements GraphService {
 
     @Override
     public List<Entity> getEntityFromSubject(String subject) throws IOException {
+        return redisManager.getSubjectGraph(subject);
+    }
+    @Override
+    public List<Entity> getEntityFromSubjectInFile(String subject) throws IOException {
         if(!new File(String.format(subjectGraphPath, subject)).exists()) {
             throw new BusinessException(BusinessExceptionEnum.SUBJECT_GRAPH_NOT_EXIST_ERROR);
         }

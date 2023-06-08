@@ -119,7 +119,7 @@ public class GraphController {
 
 
     /**
-     * 查询学科图谱
+     * 手动更新学科图谱
      *
      * @return
      */

@@ -27,6 +27,8 @@ public interface GraphService {
 
     List<Entity> getEntityFromSubject(String subject) throws IOException;
 
+    List<Entity> getEntityFromSubjectInFile(String subject) throws IOException;
+
     void updateSubjectGraph() throws IOException;
 
     List<Entity> getEntityFromName(String searchText);

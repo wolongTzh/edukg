@@ -3,11 +3,13 @@ package com.tsinghua.edukg.manager;
 import com.tsinghua.edukg.model.Entity;
 import com.tsinghua.edukg.model.SourceAndCount;
 import com.tsinghua.edukg.model.VO.UpdateTotalStatusVO;
+import com.tsinghua.edukg.service.GraphService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -24,6 +26,9 @@ public class RedisManager {
 
     @Autowired
     RedisTemplateManager redisTemplateManager;
+
+    @Autowired
+    GraphService graphService;
 
     @Cacheable(value = ":statistic:maxId", key = "#subject", unless = "#result == null")
     public Integer getMaxIdWithSubject(String subject) {
@@ -61,6 +66,11 @@ public class RedisManager {
     @Cacheable(value = ":statistic:updateSubjectStatus", key = "#subject", unless = "#result == null")
     public UpdateTotalStatusVO updateSubjectStatus(String subject) {
         return neoAssisManager.updateSubjectStatus(subject);
+    }
+
+    @Cacheable(value = ":subjectGraph", key = "#subject", unless = "#result == null")
+    public List<Entity> getSubjectGraph(String subject) throws IOException {
+        return graphService.getEntityFromSubjectInFile(subject);
     }
 
     @CacheEvict(value = ":statistic:updateSubjectStatus", key = "#subject")
