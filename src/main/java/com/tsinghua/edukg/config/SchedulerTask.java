@@ -27,7 +27,7 @@ public class SchedulerTask {
     @Autowired
     GraphService graphService;
 
-    public final String cron = "0 0 0/1 * * ?";
+    public final String cron = "0 0 0 ? * MON";
 
     Map<String, String> subjects = RuleHandler.grepSubjectMap();
 

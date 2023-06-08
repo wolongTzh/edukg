@@ -106,7 +106,7 @@ public class GraphController {
     }
 
     /**
-     * 实体链接查询
+     * 查询学科图谱
      *
      * @return
      */
@@ -115,5 +115,17 @@ public class GraphController {
         GraphControllerUtil.validSubjectExist(subject);
         List<Entity> entityList = graphService.getEntityFromSubject(subject);
         return WebUtil.successResult(entityList);
+    }
+
+
+    /**
+     * 查询学科图谱
+     *
+     * @return
+     */
+    @GetMapping(value = "updateSubjectGraph")
+    public WebResInfo updateSubjectGraph() throws IOException {
+        graphService.updateSubjectGraph();
+        return WebUtil.successResult("请稍后");
     }
 }

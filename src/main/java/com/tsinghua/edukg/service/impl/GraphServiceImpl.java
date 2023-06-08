@@ -1,6 +1,7 @@
 package com.tsinghua.edukg.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.tsinghua.edukg.config.AddressConfig;
 import com.tsinghua.edukg.config.RedisConfig;
@@ -189,8 +190,11 @@ public class GraphServiceImpl implements GraphService {
 
     @Override
     public List<Entity> getEntityFromSubject(String subject) throws IOException {
-        JSONObject jsonObject = CommonUtil.readJsonOut(String.format(subjectGraphPath, subject));
-        return JSONObject.parseArray(jsonObject.toJSONString(), Entity.class);
+        if(!new File(String.format(subjectGraphPath, subject)).exists()) {
+            throw new BusinessException(BusinessExceptionEnum.SUBJECT_NOT_EXIST);
+        }
+        JSONArray jsonArray = CommonUtil.readJsonArray(String.format(subjectGraphPath, subject));
+        return JSONObject.parseArray(jsonArray.toJSONString(), Entity.class);
     }
     @Override
     public void updateSubjectGraph() throws IOException {
@@ -198,17 +202,16 @@ public class GraphServiceImpl implements GraphService {
         for(Map.Entry entry : subjectMap.entrySet()) {
             String subject = (String) entry.getKey();
             log.info("更新" + subject + "学科图谱。。。");
-            List<Entity> entityList = neoManager.getEntityListFromClass(subject);
+            List<Entity> entityList = neoManager.getEntityListFromClass(RuleHandler.convertSubject2Label(subject));
             List<Entity> retEntityList = new ArrayList<>();
             int count = 0;
             for(Entity entity : entityList) {
                 count++;
                 retEntityList.add(neoManager.getEntityFromUri(entity.getUri()));
-                log.info(count + "/" + entityList.size());
             }
             File file = new File(String.format(subjectGraphPath, subject));
-            FileWriter fileWriter = new FileWriter(file.getName(), false);
-            fileWriter.write(JSON.toJSONString(entityList));
+            FileWriter fileWriter = new FileWriter(file.getAbsolutePath(), false);
+            fileWriter.write(JSON.toJSONString(retEntityList));
             fileWriter.close();
         }
     }

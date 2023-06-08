@@ -27,6 +27,7 @@ public enum BusinessExceptionEnum {
     PAGE_DARA_OVERSIZE(WebConstant.PAGE_ERROR, "分页涉及数据超过总量"),
     START_OR_TAIL_URI_ERROR(WebConstant.NODE_FIND_ERROR, "起点或终点uri有误"),
     LABEL_PATTERN_ERROR(WebConstant.PATTERN_COMPILE_ERROR, "label正则表达式匹配错误"),
+    SUBJECT_GRAPH_NOT_EXIST_ERROR(WebConstant.CUSTOMIZE_ERROR, "学科图谱还未生成，请联系相关开发人员解决"),
     ;
 
     public static BusinessExceptionEnum getByCode(Integer code) {
