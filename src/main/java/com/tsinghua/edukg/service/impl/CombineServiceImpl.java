@@ -186,7 +186,15 @@ public class CombineServiceImpl implements CombineService {
         CombineQaVO combineQaVO = new CombineQaVO();
         String searchText = qaParam.getQuestion();
         Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlpSimpleNew(qaParam.getQuestion());
-        QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
+        QAResult answer = null;
+        try {
+            answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
+        }
+        catch (Exception e) {
+            List<QAESGrepVO> qaesGrepVOS = future.get();
+            combineQaVO.setQaesGrepVO(qaesGrepVOS);
+            return combineQaVO;
+        }
         List<QAESGrepVO> qaesGrepVOS = future.get();
         // kbqa不应该被选择
         if(chooseKBQA(answer, qaParam.getQuestion())) {
