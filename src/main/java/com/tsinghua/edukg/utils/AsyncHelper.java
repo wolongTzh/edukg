@@ -164,7 +164,14 @@ public class AsyncHelper {
         List<QAESGrepVO> qaesGrepVOList = new ArrayList<>();
         QAParam qaParam = new QAParam();
         qaParam.setQuestion(question);
-        QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
+        QAResult answer = null;
+        try{
+            answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
+        }
+        catch (Exception e) {
+            answer = new QAResult();
+            answer.setModel_score(-2.0);
+        }
         List<TextBookHighLight> sents;
         String predicate = answer.getOrigin_pred();
         String subject = answer.getSubject();
