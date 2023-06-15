@@ -87,6 +87,9 @@ public class CombineServiceImpl implements CombineService {
                 String uri = "";
                 if(relation.getSubject().equals(entity.getName())) {
                     name = relation.getObject();
+                    if(name != null && name.equals(entity.getName())) {
+                        continue;
+                    }
                     uri = relation.getObjectUri();
                 }
                 else {
