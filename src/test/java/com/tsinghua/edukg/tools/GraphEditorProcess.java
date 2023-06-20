@@ -79,6 +79,9 @@ public class GraphEditorProcess {
         Map<String, String> nameMap = new HashMap<>();
         StringBuilder sb = new StringBuilder();
         JSONArray outerArray  = CommonUtil.readJsonArray(path);
+        if(outerArray == null) {
+            return nameMap;
+        }
         for(int i=0; i<outerArray.size(); i++) {
             JSONObject jsonObject = outerArray.getJSONObject(i);
             try {

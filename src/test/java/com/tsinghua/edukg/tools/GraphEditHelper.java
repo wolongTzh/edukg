@@ -42,10 +42,10 @@ public class GraphEditHelper {
 
     String addRelationPath = "./addRelation.json";
 
-    String subject = "chinese";
+    String subject = "history";
     @Test
     public void genAddGraphFiles() throws IOException {
-        List<OutTemplate> list = EasyExcel.read(excelPath).head(OutTemplate.class).sheet().doReadSync();
+        List<OutTemplate> list = EasyExcel.read(excelPath).head(OutTemplate.class).sheet(subject).doReadSync();
         File file1 = new File(newEntityPath);
         File file2 = new File(addPropEntityPath);
         File file3 = new File(addRelationPath);
