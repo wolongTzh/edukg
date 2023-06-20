@@ -109,6 +109,11 @@ public class ExamSourceLinkingServiceImpl implements ExamSourceLinkingService {
         return result;
     }
 
+    @Override
+    public List<String> getRelationFromTwoObjs(String obj1, String obj2) throws IOException {
+        return esManager.getTwoObjectsESRelatedMsg(obj1, obj2);
+    }
+
     List<JSONObject> findExamSourceJsonByNames(List<String> nameList) throws IOException {
         List<JSONObject> results = new ArrayList<>();
         for(String n : nameList) {

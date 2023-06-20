@@ -66,4 +66,15 @@ public class ExamSourceLinkingController {
         List<QAESGrepVO> qaesGrepVOList = examSourceLinkingService.getAnswerFromIRQA(question);
         return WebUtil.successResult(qaesGrepVOList);
     }
+
+    /**
+     * getRelationFromTwoObjs
+     *
+     * @return
+     */
+    @GetMapping(value = "getRelationText")
+    public WebResInfo getRelationFromTwoObjs(String obj1, String obj2) throws IOException {
+        List<String> matchRet = examSourceLinkingService.getRelationFromTwoObjs(obj1, obj2);
+        return WebUtil.successResult(matchRet);
+    }
 }
