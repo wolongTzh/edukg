@@ -63,9 +63,13 @@ public class SparqlTest {
                 "{ ?uri a <http://www.w3.org/2002/07/owl#DatatypeProperty>." +
                 "?uri <http://www.w3.org/2000/01/rdf-schema#label> ?name}";
 
+        String nodeFilter = "SELECT ?y ?z\n" +
+                " WHERE\n" +
+                "{ <http://edukb.org/knowledge/0.1/instance/chinese#-2238b41d594489a133577ba3d2c1f54f> ?y ?z.}";
+
         switch (threadShold) {
             case 1:
-                testSparql(pro2Source);
+                testSparql(nodeFilter);
                 break;
             case 2:
                 writeFile(pro2Source);
@@ -73,6 +77,99 @@ public class SparqlTest {
             default:
                 break;
         }
+    }
+    @Test
+    public void subjectFilterTrigger() throws IOException {
+        String parentPath = "./allSubjectGraph";
+        File file = new File(parentPath);
+        if(file.isDirectory()) {
+            for(String name : file.list()) {
+                String path = parentPath + "/" + name;
+                System.out.println(path);
+                subjectFilter(path, name);
+            }
+        }
+//        subjectFilter("./allSubjectGraph/physics_版本1.ttl", "geo_版本1.ttl");
+    }
+    public void subjectFilter(String inputPath, String fileName) throws IOException {
+
+        int relationNeed = 5;
+        int propNeed = 5;
+        String outPath = "filterOut/" + fileName + ".out";
+        File file = new File(outPath);
+        FileWriter fileWriter = new FileWriter(file.getAbsolutePath());
+
+        String nodeFilter = "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+                "SELECT ?x ?y ?z ?name\n" +
+                " WHERE\n" +
+                "{ ?z ?x ?y." +
+                "?z rdfs:label ?name.}";
+
+        Model model = ModelFactory.createDefaultModel();
+        //ttl文件路径
+        model.read(inputPath);
+        Query query = QueryFactory.create(nodeFilter);
+        QueryExecution qe = QueryExecutionFactory.create(query, model);
+        StringBuilder sb = new StringBuilder();
+        ResultSet results = qe.execSelect();
+        int relationCount = 0;
+        int propCount = 0;
+        String lastUri = "";
+        String lastName = "";
+        while (results.hasNext()) {
+            QuerySolution querySolution = results.next();
+            RDFNode nodeX = querySolution.get("x");
+            RDFNode nodeY = querySolution.get("y");
+            RDFNode nodeZ = querySolution.get("z");
+            RDFNode nodeName = querySolution.get("name");
+            String x = "";
+            String y = "";
+            String z = "";
+            String name = "";
+            if(nodeX != null) {
+                x = nodeX.toString();
+            }
+            if(nodeY != null) {
+                y = nodeY.toString();
+            }
+            if(nodeZ != null) {
+                z = nodeZ.toString();
+            }
+            if(nodeName != null) {
+                name = nodeName.toString();
+            }
+            if(x.contains("annotation") || x.contains("source") || x.contains("type")) {
+                continue;
+            }
+            if(!z.equals(lastUri)) {
+                if(propCount >= propNeed && relationCount >= relationNeed) {
+                    System.out.println(propCount + " " + relationCount + " " + (lastName.equals("")?name:lastName) + " " + lastUri);
+                    fileWriter.write(propCount + " " + relationCount + " " + (lastName.equals("")?name:lastName) + " " + lastUri + "\n");
+                    fileWriter.flush();
+                }
+                relationCount = 0;
+                propCount = 0;
+                lastName = name;
+                lastUri = z;
+            }
+            String typeCheck = "SELECT ?x\n" +
+                    " WHERE\n" +
+                    "{ <%s> a ?x.}";
+            QueryExecution qeType = QueryExecutionFactory.create(String.format(typeCheck, x), model);
+            ResultSet resultsType = qeType.execSelect();
+            if(!resultsType.hasNext()) {
+                continue;
+            }
+            QuerySolution querySolutionType = resultsType.next();
+            RDFNode nodeType = querySolutionType.get("x");
+            if(nodeType.toString().contains("ObjectProperty")) {
+                relationCount++;
+            }
+            else {
+                propCount++;
+            }
+        }
+        fileWriter.close();
     }
     @Test
     public void getAllPre() throws IOException {
@@ -304,17 +401,22 @@ public class SparqlTest {
         ResultSet results = qe.execSelect();
         while (results.hasNext()) {
             QuerySolution querySolution = results.next();
-            RDFNode nodeX = querySolution.get("name");
-            RDFNode nodeY = querySolution.get("uri");
+            RDFNode nodeX = querySolution.get("x");
+            RDFNode nodeY = querySolution.get("y");
+            RDFNode nodeZ = querySolution.get("z");
             String x = "";
             String y = "";
+            String z = "";
             if(nodeX != null) {
                 x = nodeX.toString();
             }
             if(nodeY != null) {
                 y = nodeY.toString();
             }
-            System.out.println(x + " " + y);
+            if(nodeZ != null) {
+                z = nodeZ.toString();
+            }
+            System.out.println(x + " " + y + " " + z);
         }
     }
 
