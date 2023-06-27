@@ -121,6 +121,30 @@ public class RuleHandler {
     }
 
     /**
+     * 判断是否输入的是一个连问问题
+     * 方法是根据词表匹配看看是否有问题中出现的常用词语来判断
+     * @param question
+     * @return
+     */
+    public static boolean judgeConsistentQuestion(String question) {
+        int count = 0;
+        for(String s : questionJudgeList) {
+            if(question.contains(s) && !s.equals("？")) {
+                if(question.split(s).length <= 2) {
+                    count++;
+                }
+                else {
+                    count += question.split(s).length - 1;
+                }
+            }
+        }
+        if(count > 1) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * 判断是否输入的是一个问题
      * 方法是根据词表匹配看看是否有问题中出现的常用词语来判断
      * @param question

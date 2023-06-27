@@ -23,4 +23,6 @@ public class CombineQaVO {
     Object courseList;
 
     List<QAESGrepVO> qaesGrepVO;
+
+    String consistentAnswer;
 }
