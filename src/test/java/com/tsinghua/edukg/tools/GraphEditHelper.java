@@ -69,7 +69,7 @@ public class GraphEditHelper {
                 continue;
             }
             for(String predicate : predicateList) {
-                if(predicate.contains(subject)) {
+                if(predicate.equals("rdfs__label") || predicate.contains(subject)) {
                     finalPredicate = predicate;
                 }
             }
@@ -114,7 +114,7 @@ public class GraphEditHelper {
                 entity.setProperty(Arrays.asList(property));
             }
 
-            if(existEntity.size() != 0 && finalPredicate.contains("main-P")) {
+            if(existEntity.size() != 0 && (finalPredicate.contains("main-P") || finalPredicate.equals("rdfs__label"))) {
                 entity.setUri(existEntity.get(0).getUri());
                 existEntityList.add(entity);
             }
