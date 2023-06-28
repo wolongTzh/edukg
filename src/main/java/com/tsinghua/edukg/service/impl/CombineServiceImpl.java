@@ -21,6 +21,7 @@ import com.tsinghua.edukg.service.utils.CombineServiceUtil;
 import com.tsinghua.edukg.utils.AsyncHelper;
 import com.tsinghua.edukg.utils.CommonUtil;
 import com.tsinghua.edukg.utils.RuleHandler;
+import com.tsinghua.edukg.utils.WebUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -183,6 +184,71 @@ public class CombineServiceImpl implements CombineService {
 
     @Override
     public CombineQaVO totalQaForTest(QAParam qaParam) throws IllegalAccessException, IOException, ExecutionException, InterruptedException {
+        if(RuleHandler.judgeConsistentQuestion(qaParam.getQuestion())) {
+            return totalQaForConsistent(qaParam);
+        }
+        else return totalQaInner(qaParam);
+    }
+
+    public CombineQaVO totalQaForConsistent(QAParam qaParam) throws IOException, ExecutionException, InterruptedException, IllegalAccessException {
+        CombineQaVO consistentVO = new CombineQaVO();
+        String answer = "";
+        String subject = "";
+        StringBuilder sb = new StringBuilder();
+        boolean start = true;
+        QAResult qaResult = null;
+        try {
+            qaResult = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
+            subject = qaResult.getSubject();
+            if(!qaParam.getQuestion().contains(subject)) {
+                throw new Exception();
+            }
+        }
+        catch (Exception e) {
+            CombineQaVO combineQaVO = totalQaInner(qaParam);
+            return combineQaVO;
+        }
+        for(char c : qaParam.getQuestion().toCharArray()) {
+            if(c == '？' || c == '?' || c == ',' || c == '，') {
+                CombineQaVO curAnswer;
+                if(start) {
+                    curAnswer = totalQaInner(new QAParam(sb.toString()));
+                    start = false;
+                }
+                else {
+                    curAnswer = totalQaInner(new QAParam(subject + sb.toString()));
+                }
+                if(curAnswer.getAnswer() != null) {
+                    answer += curAnswer.getAnswer().getAnswerValue() + "|";
+                }
+                else if(curAnswer.getQaesGrepVO().size() != 0) {
+                    answer += curAnswer.getQaesGrepVO().get(0).getText() + "|";
+                }
+                sb.delete(0, sb.length());
+            }
+            else {
+                sb.append(c);
+            }
+        }
+        if(sb.length() != 0) {
+            CombineQaVO curAnswer;
+            curAnswer = totalQaInner(new QAParam(subject + sb.toString()));
+            if(curAnswer.getAnswer() != null) {
+                answer += curAnswer.getAnswer().getAnswerValue() + "|";
+            }
+            else if(curAnswer.getQaesGrepVO().size() != 0) {
+                answer += curAnswer.getQaesGrepVO().get(0).getText() + "|";
+            }
+            sb.delete(0, sb.length());
+        }
+        consistentVO.setConsistentAnswer(answer);
+        QAResult subjectAnswer = new QAResult();
+        subjectAnswer.setSubject(subject);
+        consistentVO.setAnswer(subjectAnswer);
+        return consistentVO;
+    }
+
+    public CombineQaVO totalQaInner(QAParam qaParam) throws IOException, IllegalAccessException, ExecutionException, InterruptedException {
         CombineQaVO combineQaVO = new CombineQaVO();
         String searchText = qaParam.getQuestion();
         Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlpSimpleNew(qaParam.getQuestion());

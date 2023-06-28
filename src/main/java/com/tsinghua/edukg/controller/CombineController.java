@@ -70,66 +70,6 @@ public class CombineController {
     @PostMapping(value = "totalQaForTest")
     public WebResInfo totalQaForTest(@RequestBody QAParam qaParam) throws IllegalAccessException, IOException, ExecutionException, InterruptedException {
         AlgorithmControllerUtil.validInputQuestionParam(qaParam);
-        if(RuleHandler.judgeConsistentQuestion(qaParam.getQuestion())) {
-            CombineQaVO consistentVO = new CombineQaVO();
-            String answer = "";
-            String subject = "";
-            StringBuilder sb = new StringBuilder();
-            boolean start = true;
-            QAResult qaResult = null;
-            try {
-                qaResult = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
-                subject = qaResult.getSubject();
-                if(subject.equals("王安石")) {
-                    System.out.println(1);
-                }
-                if(!qaParam.getQuestion().contains(subject)) {
-                    throw new Exception();
-                }
-            }
-            catch (Exception e) {
-                CombineQaVO combineQaVO = combineService.totalQaForTest(qaParam);
-                return WebUtil.successResult(combineQaVO);
-            }
-            for(char c : qaParam.getQuestion().toCharArray()) {
-                if(c == '？' || c == '?' || c == ',' || c == '，') {
-                    CombineQaVO curAnswer;
-                    if(start) {
-                        curAnswer = combineService.totalQaForTest(new QAParam(sb.toString()));
-                        start = false;
-                    }
-                    else {
-                        curAnswer = combineService.totalQaForTest(new QAParam(subject + sb.toString()));
-                    }
-                    if(curAnswer.getAnswer() != null) {
-                        answer += curAnswer.getAnswer().getAnswerValue() + "|";
-                    }
-                    else if(curAnswer.getQaesGrepVO().size() != 0) {
-                        answer += curAnswer.getQaesGrepVO().get(0).getText() + "|";
-                    }
-                    sb.delete(0, sb.length());
-                }
-                else {
-                    sb.append(c);
-                }
-            }
-            if(sb.length() != 0) {
-                CombineQaVO curAnswer;
-                curAnswer = combineService.totalQaForTest(new QAParam(subject + sb.toString()));
-                if(curAnswer.getAnswer() != null) {
-                    answer += curAnswer.getAnswer().getAnswerValue() + "|";
-                }
-                else if(curAnswer.getQaesGrepVO().size() != 0) {
-                    answer += curAnswer.getQaesGrepVO().get(0).getText() + "|";
-                }
-                sb.delete(0, sb.length());
-            }
-            consistentVO.setConsistentAnswer(answer);
-            QAResult subjectAnswer = new QAResult();
-            subjectAnswer.setSubject(subject);
-            consistentVO.setAnswer(subjectAnswer);
-            return WebUtil.successResult(consistentVO);
-        }
         CombineQaVO combineQaVO = combineService.totalQaForTest(qaParam);
         return WebUtil.successResult(combineQaVO);
     }

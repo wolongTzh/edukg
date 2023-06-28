@@ -20,6 +20,7 @@ import com.tsinghua.edukg.service.GraphService;
 import com.tsinghua.edukg.utils.CommonUtil;
 import com.tsinghua.edukg.utils.JiebaHelper;
 import com.tsinghua.edukg.utils.RuleHandler;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -143,9 +144,12 @@ public class GraphServiceImpl implements GraphService {
 
     @Override
     public List<LinkingVO> linkingEntities(LinkingParam param) {
-        String text = param.getSearchText();
-        List<String> segResult = segmenter.cutWords(text);
         List<LinkingVO> result = new ArrayList<>();
+        String text = param.getSearchText();
+        if(StringUtils.isEmpty(text)) {
+            return result;
+        }
+        List<String> segResult = segmenter.cutWords(text);
         Map<String, String> sourceMap = linkingContentMap;
         if(sourceMap == null) {
             return null;
