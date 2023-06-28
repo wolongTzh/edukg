@@ -1,8 +1,13 @@
 package com.tsinghua.edukg;
 
+import com.alibaba.excel.EasyExcel;
+import com.alibaba.excel.ExcelWriter;
+import com.alibaba.excel.write.metadata.WriteSheet;
 import com.alibaba.fastjson.JSON;
 import com.tsinghua.edukg.manager.NeoManager;
 import com.tsinghua.edukg.model.*;
+import com.tsinghua.edukg.model.excel.AnalyseWeakNode;
+import com.tsinghua.edukg.model.excel.TestOutEntity;
 import com.tsinghua.edukg.model.params.SearchSubgraphParam;
 import com.tsinghua.edukg.service.GraphService;
 import com.tsinghua.edukg.utils.CommonUtil;
@@ -48,6 +53,9 @@ public class NeoManagerTest {
         List<String> subjects = Arrays.asList("chinese", "math", "english", "history", "geo", "politics", "physics", "chemistry", "biology");
         List<String> inSubjects = Arrays.asList("exam", "nameLong", "short", "table", "pic", "nouse", "other");
         Map<String, SubjectWeakNodeCase> subjectWeakNodes = new HashMap<>();
+        ExcelWriter excelWriter = EasyExcel.write("./allOut.xlsx", AnalyseWeakNode.class).build();
+        WriteSheet writeSheetOuter = EasyExcel.writerSheet("global").build();
+        List<AnalyseWeakNode> analyseWeakNodeList = new ArrayList<>();
         for(String subject : subjects) {
             SubjectWeakNodeCase subjectWeakNodeCase = new SubjectWeakNodeCase(subject, inSubjects, allWeakNodes);
             subjectWeakNodes.put(subject, subjectWeakNodeCase);
@@ -60,12 +68,15 @@ public class NeoManagerTest {
             if(entity.getUri() == null) {
                 continue;
             }
+            boolean haveCheck = false;
             if(entity.getProperty().size() < 3) {
                 if(entity.getUri().contains("annotation") || entity.getUri().contains("category")) {
-                    topWeakNodes.get("legacy").writeWeakNodesSwitchLine(entity);
+                    topWeakNodes.get("legacy").writeWeakNodesSwitchLine(entity, analyseWeakNodeList);
+                    haveCheck = true;
                 }
                 else if(entity.getUri().contains("xlore")) {
-                    topWeakNodes.get("xlore").writeWeakNodesSwitchLine(entity);
+                    topWeakNodes.get("xlore").writeWeakNodesSwitchLine(entity, analyseWeakNodeList);
+                    haveCheck = true;
                 }
                 else {
                     for(String subject : subjects) {
@@ -76,10 +87,16 @@ public class NeoManagerTest {
                     }
                 }
             }
-            if(entity.getRelation().size() == 0) {
-                topWeakNodes.get("noRelation").writeWeakNodesSwitchLine(entity);
+            if(entity.getRelation().size() == 0 && !haveCheck) {
+                topWeakNodes.get("noRelation").writeWeakNodesSwitchLine(entity, analyseWeakNodeList);
             }
         }
+        for(String subject : subjects) {
+            SubjectWeakNodeCase subjectWeakNodeCase = subjectWeakNodes.get(subject);
+            subjectWeakNodeCase.finalWrite(excelWriter);
+        }
+        excelWriter.write(analyseWeakNodeList, writeSheetOuter);
+        excelWriter.finish();
         for(WeakNodeCase weakNodeCase : allWeakNodes) {
             weakNodeCase.printCount();
         }
@@ -198,16 +215,21 @@ public class NeoManagerTest {
 
         List<String> nodeStatusList = Arrays.asList("blank", "lonely", "noProp", "other-other");
 
+        WriteSheet writeSheet;
+
+        List<AnalyseWeakNode> analyseWeakNodeList = new ArrayList<>();
+
         public SubjectWeakNodeCase(String name, List<String> childList, List<WeakNodeCase> allNodes) throws IOException {
+            writeSheet = EasyExcel.writerSheet(name).build();
             this.name = name;
             weakNodeCaseMap = new HashMap<>();
             for(String child : childList) {
-                WeakNodeCase weakNodeCase = new WeakNodeCase(name + "-" + child);
+                WeakNodeCase weakNodeCase = new WeakNodeCase(child);
                 weakNodeCaseMap.put(child, weakNodeCase);
                 allNodes.add(weakNodeCase);
                 if(child.equals("nameLong") || child.equals("other")) {
                     for(String nodeStatus : nodeStatusList) {
-                        WeakNodeCase weakNodeCase2 = new WeakNodeCase(name + "-" + child + "-" + nodeStatus);
+                        WeakNodeCase weakNodeCase2 = new WeakNodeCase(child + "-" + nodeStatus);
                         weakNodeCaseMap.put(child + "-" + nodeStatus, weakNodeCase2);
                         allNodes.add(weakNodeCase2);
                     }
@@ -218,26 +240,26 @@ public class NeoManagerTest {
         public void analyseCase(Entity entity) throws IOException {
             for(Property property : entity.getProperty()) {
                 if (property.getPredicateLabel().equals("话题内容") || property.getPredicateLabel().equals("话题分析")) {
-                    weakNodeCaseMap.get("exam").writeWeakNodesSwitchLine(entity);
+                    weakNodeCaseMap.get("exam").writeWeakNodesSwitchLine(entity, analyseWeakNodeList);
                 }
                 else if(property.getPredicateLabel().equals("表格")) {
-                    weakNodeCaseMap.get("table").writeWeakNodesSwitchLine(entity);
+                    weakNodeCaseMap.get("table").writeWeakNodesSwitchLine(entity, analyseWeakNodeList);
                 }
                 else if(property.getPredicateLabel().equals("图片")) {
-                    weakNodeCaseMap.get("pic").writeWeakNodesSwitchLine(entity);
+                    weakNodeCaseMap.get("pic").writeWeakNodesSwitchLine(entity, analyseWeakNodeList);
                 }
                 else if(!property.getPredicateLabel().equals("名称") && property.getObject().equals(entity.getName())) {
-                    weakNodeCaseMap.get("nouse").writeWeakNodesSwitchLine(entity);
+                    weakNodeCaseMap.get("nouse").writeWeakNodesSwitchLine(entity, analyseWeakNodeList);
                 }
                 else if(entity.getName().length() >= 10) {
-                    weakNodeCaseMap.get("nameLong").writeWeakNodesSwitchLine(entity);
+                    weakNodeCaseMap.get("nameLong").writeWeakNodesSwitchLine(entity, analyseWeakNodeList);
                     handleNodeStatusCase(entity, "nameLong");
                 }
                 else if(entity.getName().length() == 1) {
-                    weakNodeCaseMap.get("short").writeWeakNodesSwitchLine(entity);
+                    weakNodeCaseMap.get("short").writeWeakNodesSwitchLine(entity, analyseWeakNodeList);
                 }
                 else {
-                    weakNodeCaseMap.get("other").writeWeakNodesSwitchLine(entity);
+                    weakNodeCaseMap.get("other").writeWeakNodesSwitchLine(entity, analyseWeakNodeList);
                     handleNodeStatusCase(entity, "other");
                 }
                 break;
@@ -246,17 +268,21 @@ public class NeoManagerTest {
 
         void handleNodeStatusCase(Entity entity, String caseName) throws IOException {
             if(entity.getProperty().size() <= 1 && entity.getRelation().size() == 0) {
-                weakNodeCaseMap.get(caseName + "-blank").writeWeakNodesSwitchLine(entity);
+                weakNodeCaseMap.get(caseName + "-blank").writeWeakNodesSwitchLine(entity, analyseWeakNodeList);
             }
             else if(entity.getRelation().size() == 0) {
-                weakNodeCaseMap.get(caseName + "-lonely").writeWeakNodesSwitchLine(entity);
+                weakNodeCaseMap.get(caseName + "-lonely").writeWeakNodesSwitchLine(entity, analyseWeakNodeList);
             }
             else if(entity.getProperty().size() <= 1) {
-                weakNodeCaseMap.get(caseName + "-noProp").writeWeakNodesSwitchLine(entity);
+                weakNodeCaseMap.get(caseName + "-noProp").writeWeakNodesSwitchLine(entity, analyseWeakNodeList);
             }
             else {
-                weakNodeCaseMap.get(caseName + "-other-other").writeWeakNodesSwitchLine(entity);
+                weakNodeCaseMap.get(caseName + "-other-other").writeWeakNodesSwitchLine(entity, analyseWeakNodeList);
             }
+        }
+
+        void finalWrite(ExcelWriter excelWriter) {
+            excelWriter.write(analyseWeakNodeList, writeSheet);
         }
     }
 
@@ -264,27 +290,26 @@ public class NeoManagerTest {
 
         String name;
 
+        String type;
+
         File file;
 
         FileWriter fileWriter;
 
         Integer count = 0;
 
-        public WeakNodeCase(String name) throws IOException {
-            this.name = name;
-            String path = "./result/" + name + ".txt";
-            file = new File(path);
-            fileWriter = new FileWriter(file.getName());
+        public WeakNodeCase(String type) throws IOException {
+            this.type = type;
         }
 
         public void printCount() throws IOException {
-            System.out.println("The count of " + name + " = " + count);
-            fileWriter.close();
+            System.out.println("The count of " + type + " = " + count);
+//            fileWriter.close();
         }
 
-        public Integer writeWeakNodesSwitchLine(Entity entity) throws IOException {
+        public Integer writeWeakNodesSwitchLine(Entity entity, List<AnalyseWeakNode> analyseWeakNodeList) throws IOException {
             String needWrite = "";
-            needWrite += "uri=" + entity.getUri() + " " + "name=" + entity.getName() + "\n";
+//            needWrite += "uri=" + entity.getUri() + " " + "name=" + entity.getName() + "\n";
             int acc = 2;
             for(Property property : entity.getProperty()) {
                 acc += 2;
@@ -297,8 +322,14 @@ public class NeoManagerTest {
                 acc += 2;
                 needWrite += "relationName=" + relation.getPredicateLabel() + " " + "subject=" + relation.getSubject() + " " + "object=" + relation.getObject() + "\n";
             }
-            fileWriter.write(needWrite + "\n");
-            fileWriter.flush();
+//            fileWriter.write(needWrite + "\n");
+//            fileWriter.flush();
+            analyseWeakNodeList.add(AnalyseWeakNode.builder()
+                            .uri(entity.getUri())
+                            .name(entity.getName())
+                            .content(needWrite)
+                            .type(type)
+                    .build());
             count++;
             return acc;
         }
