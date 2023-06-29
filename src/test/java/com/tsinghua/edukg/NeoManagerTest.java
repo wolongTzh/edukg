@@ -7,12 +7,14 @@ import com.alibaba.fastjson.JSON;
 import com.tsinghua.edukg.manager.NeoManager;
 import com.tsinghua.edukg.model.*;
 import com.tsinghua.edukg.model.excel.AnalyseWeakNode;
+import com.tsinghua.edukg.model.excel.NeedCompletion;
 import com.tsinghua.edukg.model.excel.TestOutEntity;
 import com.tsinghua.edukg.model.params.SearchSubgraphParam;
 import com.tsinghua.edukg.service.GraphService;
 import com.tsinghua.edukg.utils.CommonUtil;
 import com.tsinghua.edukg.utils.RuleHandler;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Rule;
 import org.junit.jupiter.api.Test;
 import org.neo4j.ogm.model.Result;
 import org.neo4j.ogm.session.Session;
@@ -25,6 +27,7 @@ import javax.annotation.Resource;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -42,7 +45,45 @@ public class NeoManagerTest {
     @Qualifier("neo4jSession")
     Session session;
 
-
+    @Test
+    public void completeNodes() throws IOException {
+        RuleHandler ruleHandler = new RuleHandler();
+        List<String> raw = CommonUtil.readTextInResource(new InputStreamReader(ruleHandler.getClass().getClassLoader().getResourceAsStream("static/cls2pred.txt")));
+        Map<String, List<String>> cls2PredMap = new HashMap<>();
+        for(String str : raw) {
+            cls2PredMap.put(str.split("：")[0], Arrays.asList(str.split("：")[1].split(" ")));
+        }
+        List<String> uriList = CommonUtil.readTextFromPath("./source/recordUri.txt");
+        ExcelWriter excelWriter = EasyExcel.write("./allCompletion.xlsx", NeedCompletion.class).build();
+        WriteSheet writeSheetOuter = EasyExcel.writerSheet("global").build();
+        List<NeedCompletion> needCompletions = new ArrayList<>();
+        int progress = 0;
+        for(String uri : uriList) {
+            progress++;
+            System.out.println("progress = " + progress);
+            Entity entity = neoManager.getEntityFromUri(uri);
+            for(ClassInternal c : entity.getClassList()) {
+                if(cls2PredMap.containsKey(c.getLabel())) {
+                    List<String> preds = cls2PredMap.get(c.getLabel());
+                    Set<String> havePred = new HashSet<>();
+                    for(Property prop : entity.getProperty()) {
+                        havePred.add(prop.getPredicateLabel());
+                    }
+                    for(String pred : preds) {
+                        if(!havePred.contains(pred)) {
+                            needCompletions.add(NeedCompletion.builder()
+                                            .uri(entity.getUri())
+                                            .subject(entity.getName())
+                                            .predicate(pred)
+                                    .build());
+                        }
+                    }
+                }
+            }
+        }
+        excelWriter.write(needCompletions, writeSheetOuter);
+        excelWriter.finish();
+    }
 
     @Test
     public void analyseNodes() throws IOException {
@@ -324,9 +365,19 @@ public class NeoManagerTest {
             }
 //            fileWriter.write(needWrite + "\n");
 //            fileWriter.flush();
+            String labelStr = "";
+            for(ClassInternal c : entity.getClassList()) {
+                if(!c.getLabel().equals("")) {
+                    labelStr += c.getLabel() + ", ";
+                }
+            }
+            if(!labelStr.equals("")) {
+                labelStr = labelStr.substring(0, labelStr.length() - 2);
+            }
             analyseWeakNodeList.add(AnalyseWeakNode.builder()
                             .uri(entity.getUri())
                             .name(entity.getName())
+                            .label(labelStr)
                             .content(needWrite)
                             .type(type)
                     .build());

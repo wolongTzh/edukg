@@ -10,20 +10,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AnalyseWeakNode {
+public class NeedCompletion {
 
-    @ExcelProperty(value = "实体名称")
-    String name;
+    @ExcelProperty(value = "主语")
+    String subject;
 
     @ExcelProperty(value = "uri")
     String uri;
 
-    @ExcelProperty(value = "标签")
-    String label;
+    @ExcelProperty(value = "谓词")
+    String predicate;
 
-    @ExcelProperty(value = "实体详细信息")
-    String content;
-
-    @ExcelProperty(value = "实体所属类型")
-    String type;
+    @ExcelProperty(value = "宾语")
+    String object;
 }
