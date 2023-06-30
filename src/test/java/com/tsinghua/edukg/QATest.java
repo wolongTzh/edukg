@@ -42,7 +42,7 @@ public class QATest {
         QAParam qaParam = new QAParam();
         qaParam.setQuestion(question);
         ApiResult<QAResult> qaResult = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam));
-        QAResult accQaResult = qaResult.getAnswerData();
+        QAResult accQaResult = qaResult.getData();
         log.info(JSONArray.toJSONString(accQaResult));
     }
     @Test
@@ -130,7 +130,7 @@ public class QATest {
         catch (Exception e) {
             return null;
         }
-        QAResult accQaResult = qaResult.getAnswerData();
+        QAResult accQaResult = qaResult.getData();
         String algoAnswer = "";
         String sourceEntityName = "";
         String predicate = "";

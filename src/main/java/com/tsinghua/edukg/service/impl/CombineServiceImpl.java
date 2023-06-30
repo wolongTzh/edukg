@@ -203,9 +203,9 @@ public class CombineServiceImpl implements CombineService {
             return combineQaVO;
         }
         Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlp(qaParam.getQuestion());
-        QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
+        QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getData();
         // 没有答案的情况
-        if(StringUtils.isEmpty(answer.getAnswerValue())){
+        if(answer == null || StringUtils.isEmpty(answer.getAnswerValue())){
             combineQaVO.setQaesGrepVO(future.get());
             return combineQaVO;
         }
@@ -230,9 +230,9 @@ public class CombineServiceImpl implements CombineService {
         CombineQaVO combineQaVO = new CombineQaVO();
         String searchText = qaParam.getQuestion();
         Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlp(qaParam.getQuestion());
-        QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
+        QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getData();
         // 没有答案的情况
-        if(StringUtils.isEmpty(answer.getAnswerValue())){
+        if(answer == null || StringUtils.isEmpty(answer.getAnswerValue())){
             combineQaVO.setQaesGrepVO(future.get());
             return combineQaVO;
         }
@@ -250,7 +250,7 @@ public class CombineServiceImpl implements CombineService {
         CombineQaVO combineQaVO = new CombineQaVO();
         String searchText = qaParam.getQuestion();
         Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlpSimple(qaParam.getQuestion());
-        QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
+        QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getData();
         // 没有答案的情况
         if(StringUtils.isEmpty(answer.getAnswerValue())) {
             combineQaVO.setQaesGrepVO(future.get());
