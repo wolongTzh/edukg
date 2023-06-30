@@ -102,7 +102,7 @@ public class GraphEditHelper {
                 }
                 Relation relation = Relation.builder()
                         .subject(out.getSubject())
-                        .subjectUri(subjectUri)
+                        .subjectUri(subjectUri == null ? "" : subjectUri)
                         .predicate(finalPredicate)
                         .object(out.getAnswer())
                         .objectUri(objectUri)
