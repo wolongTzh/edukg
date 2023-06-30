@@ -45,9 +45,9 @@ public class QAService {
         QAResult qaResult = qaFeignService.batchQuery(CommonUtil.entityToMutiMap(new QAQueryParam(predicate, subject))).getData();
         if(qaResult == null) {
             qaResult = new QAResult();
-            qaResult.setSubject(subject);
-            qaResult.setPredicate(predicate);
         }
+        qaResult.setSubject(subject);
+        qaResult.setPredicate(predicate);
         return new QAServiceResult(-0.001, qaResult);
     }
 

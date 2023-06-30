@@ -95,7 +95,7 @@ public class QATest {
     public void filterQuestion() throws IOException {
         List<TestSourceEntity> list = EasyExcel.read(path).head(TestSourceEntity.class).sheet().doReadSync();
         for(TestSourceEntity tse : list) {
-            if(tse.getContent().contains("选自")) {
+            if(tse.getContent().contains("选自哪")) {
                 System.out.println(tse.getContent());
             }
         }

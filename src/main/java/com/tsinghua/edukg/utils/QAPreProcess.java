@@ -43,6 +43,12 @@ public class QAPreProcess {
         if(question.contains("字什么")) {
             return "字";
         }
+        if(question.contains("号什么")) {
+            return "号";
+        }
+        if(question.contains("选自哪")) {
+            return "来源";
+        }
         return "";
     }
 
