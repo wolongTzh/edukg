@@ -40,6 +40,9 @@ public class QAPreProcess {
         if(question.contains("默写")) {
             return "内容";
         }
+        if(question.contains("字什么")) {
+            return "字";
+        }
         return "";
     }
 

@@ -1,6 +1,6 @@
 package com.tsinghua.edukg.service;
 
-import com.tsinghua.edukg.api.model.QAParam;
+import com.tsinghua.edukg.api.model.qa.QAParam;
 import com.tsinghua.edukg.model.VO.CombineLinkingVO;
 import com.tsinghua.edukg.model.VO.CombineQaVO;
 import com.tsinghua.edukg.model.params.TotalSearchParam;

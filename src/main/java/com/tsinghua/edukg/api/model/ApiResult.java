@@ -15,5 +15,5 @@ public class ApiResult<T> {
 
     String msg;
 
-    T answerData;
+    T data;
 }

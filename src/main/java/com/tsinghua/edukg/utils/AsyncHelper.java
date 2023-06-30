@@ -5,8 +5,8 @@ import com.tsinghua.edukg.api.feign.BimpmFeignService;
 import com.tsinghua.edukg.api.feign.QAFeignService;
 import com.tsinghua.edukg.api.model.BimpmParam;
 import com.tsinghua.edukg.api.model.BimpmResult;
-import com.tsinghua.edukg.api.model.QAParam;
-import com.tsinghua.edukg.api.model.QAResult;
+import com.tsinghua.edukg.api.model.qa.QAParam;
+import com.tsinghua.edukg.api.model.qa.QAResult;
 import com.tsinghua.edukg.config.AddressConfig;
 import com.tsinghua.edukg.manager.ESManager;
 import com.tsinghua.edukg.model.TextBookHighLight;
@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -160,13 +159,13 @@ public class AsyncHelper {
     }
 
     @Async(value = "esTaskThreadPool")
-    public Future<List<QAESGrepVO>> qaBackupForHanlpSimpleNew(String question) throws IOException, IllegalAccessException {
+    public Future<List<QAESGrepVO>> qaBackupForHanlpSimpleNewWithBimpm(String question) throws IOException, IllegalAccessException {
         List<QAESGrepVO> qaesGrepVOList = new ArrayList<>();
         QAParam qaParam = new QAParam();
         qaParam.setQuestion(question);
         QAResult answer = null;
         try{
-            answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
+            answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getData();
         }
         catch (Exception e) {
             answer = new QAResult();
@@ -178,6 +177,7 @@ public class AsyncHelper {
         if(answer.getModel_score() < -1.0) {
             predicate = "";
         }
+        // TODO: answer.getModel_score() NPE
         if(answer.getModel_score() < -1.0 || !question.contains(subject)) {
             subject = "";
         }
@@ -236,6 +236,83 @@ public class AsyncHelper {
             sent = accSents.get(index);
         }
         else if(accSents.size() > 0) {
+            sent = accSents.get(0);
+        }
+        List<LinkingVO> linkingVOList = graphService.linkingEntities(LinkingParam.builder().searchText(sent.getExample()).build());
+        qaesGrepVOList.add(QAESGrepVO.builder()
+                .bookId(sent.getBookId())
+                .linkingVOList(linkingVOList)
+                .text(sent.getExample())
+                .build());
+        return new AsyncResult<>(qaesGrepVOList);
+    }
+
+    @Async(value = "esTaskThreadPool")
+    public Future<List<QAESGrepVO>> qaBackupForHanlpSimpleNew(String question) throws IOException, IllegalAccessException {
+        List<QAESGrepVO> qaesGrepVOList = new ArrayList<>();
+        QAParam qaParam = new QAParam();
+        qaParam.setQuestion(question);
+        QAResult answer = null;
+        try{
+            answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getData();
+        }
+        catch (Exception e) {
+            answer = new QAResult();
+            answer.setModel_score(-2.0);
+        }
+        List<TextBookHighLight> sents;
+        String predicate = answer.getOrigin_pred();
+        String subject = answer.getSubject();
+        if(answer.getModel_score() < -1.0) {
+            predicate = "";
+        }
+        // TODO: answer.getModel_score() NPE
+        if(answer.getModel_score() < -1.0 || !question.contains(subject)) {
+            subject = "";
+        }
+        else {
+            question = question.replace(subject, "");
+        }
+        sents = esManager.getHighLightTextBookFromMiniMatchAll(HanlpHelper.CutWordRetNeedConcernWords(question), subject, predicate);
+        if(sents.size() == 0) {
+            sents = esManager.getHighLightTextBookFromMiniMatch(HanlpHelper.CutWordRetNeedConcernWords(question));
+        }
+        List<TextBookHighLight> accSents = new ArrayList<>();
+        int count = 5;
+        String answers = "";
+        for(TextBookHighLight sent : sents) {
+            if(count == 0) {
+                break;
+            }
+            accSents.add(sent);
+            if(count == 1) {
+                answers += sent.getExample();
+            }
+            else {
+                answers += sent.getExample() + "\t";
+            }
+            count--;
+
+        }
+//        try {
+//            for(String scoreSingle : scoreRaw.split("\n")) {
+//                if(sents.size() - 1 < cur) {
+//                    break;
+//                }
+//                double scoreBi = Double.parseDouble(scoreSingle.trim().split(" ")[0]);
+//                double curScore = scoreBi + sents.get(cur).getScore() / 100;
+//                if(curScore > maxScore) {
+//                    maxScore = curScore;
+//                    index = cur;
+//                }
+//                cur++;
+//            }
+//        }
+//        catch (Exception e) {
+//            index = Integer.parseInt(bimpmResult.getIndex());
+//        }
+        TextBookHighLight sent = TextBookHighLight.builder().build();
+        if(accSents.size() > 0) {
             sent = accSents.get(0);
         }
         List<LinkingVO> linkingVOList = graphService.linkingEntities(LinkingParam.builder().searchText(sent.getExample()).build());

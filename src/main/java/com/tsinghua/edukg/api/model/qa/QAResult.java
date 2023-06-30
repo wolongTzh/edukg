@@ -1,4 +1,4 @@
-package com.tsinghua.edukg.api.model;
+package com.tsinghua.edukg.api.model.qa;
 
 import lombok.Data;
 

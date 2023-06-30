@@ -5,10 +5,8 @@ import com.tsinghua.edukg.api.EntityLinkService;
 import com.tsinghua.edukg.api.QAService;
 import com.tsinghua.edukg.api.feign.EntityLinkingFeign;
 import com.tsinghua.edukg.api.feign.QAFeignService;
-import com.tsinghua.edukg.api.model.ApiResult;
 import com.tsinghua.edukg.api.model.EntityLinkParam;
-import com.tsinghua.edukg.api.model.QAParam;
-import com.tsinghua.edukg.api.model.QAResult;
+import com.tsinghua.edukg.api.model.qa.QAParam;
 import com.tsinghua.edukg.controller.utils.AlgorithmControllerUtil;
 import com.tsinghua.edukg.model.VO.CombineQaVO;
 import com.tsinghua.edukg.model.WebResInfo;
@@ -23,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**

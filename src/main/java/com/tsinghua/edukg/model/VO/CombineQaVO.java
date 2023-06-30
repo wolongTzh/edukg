@@ -1,8 +1,7 @@
 package com.tsinghua.edukg.model.VO;
 
-import com.tsinghua.edukg.api.model.QAResult;
+import com.tsinghua.edukg.api.model.qa.QAResult;
 import com.tsinghua.edukg.model.Entity;
-import com.tsinghua.edukg.model.EntitySimp;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

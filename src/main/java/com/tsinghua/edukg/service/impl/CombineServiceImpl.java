@@ -1,12 +1,12 @@
 package com.tsinghua.edukg.service.impl;
 
+import com.tsinghua.edukg.api.QAService;
 import com.tsinghua.edukg.api.feign.BimpmFeignService;
 import com.tsinghua.edukg.api.feign.QAFeignService;
-import com.tsinghua.edukg.api.model.BimpmParam;
-import com.tsinghua.edukg.api.model.BimpmResult;
-import com.tsinghua.edukg.api.model.QAParam;
-import com.tsinghua.edukg.api.model.QAResult;
-import com.tsinghua.edukg.dao.entity.Course;
+import com.tsinghua.edukg.api.model.qa.QAParam;
+import com.tsinghua.edukg.api.model.qa.QAParseResult;
+import com.tsinghua.edukg.api.model.qa.QAResult;
+import com.tsinghua.edukg.api.model.qa.QAServiceResult;
 import com.tsinghua.edukg.enums.BusinessTypeEnum;
 import com.tsinghua.edukg.manager.NeoManager;
 import com.tsinghua.edukg.model.Entity;
@@ -20,8 +20,8 @@ import com.tsinghua.edukg.service.*;
 import com.tsinghua.edukg.service.utils.CombineServiceUtil;
 import com.tsinghua.edukg.utils.AsyncHelper;
 import com.tsinghua.edukg.utils.CommonUtil;
+import com.tsinghua.edukg.utils.QAPreProcess;
 import com.tsinghua.edukg.utils.RuleHandler;
-import com.tsinghua.edukg.utils.WebUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -54,6 +54,9 @@ public class CombineServiceImpl implements CombineService {
 
     @Autowired
     BimpmFeignService bimpmFeignService;
+
+    @Autowired
+    QAService qaService;
 
     @Autowired
     ExamSourceLinkingService examSourceLinkingService;
@@ -140,7 +143,7 @@ public class CombineServiceImpl implements CombineService {
             return combineQaVO;
         }
         Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlp(qaParam.getQuestion());
-        QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
+        QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getData();
         // 没有答案的情况
         if(StringUtils.isEmpty(answer.getAnswerValue())){
             combineQaVO.setQaesGrepVO(future.get());
@@ -167,7 +170,7 @@ public class CombineServiceImpl implements CombineService {
         CombineQaVO combineQaVO = new CombineQaVO();
         String searchText = qaParam.getQuestion();
         Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlp(qaParam.getQuestion());
-        QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
+        QAResult answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getData();
         // 没有答案的情况
         if(StringUtils.isEmpty(answer.getAnswerValue())){
             combineQaVO.setQaesGrepVO(future.get());
@@ -196,18 +199,18 @@ public class CombineServiceImpl implements CombineService {
         String subject = "";
         StringBuilder sb = new StringBuilder();
         boolean start = true;
-        QAResult qaResult = null;
-        try {
-            qaResult = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
-            subject = qaResult.getSubject();
-            if(!qaParam.getQuestion().contains(subject)) {
-                throw new Exception();
-            }
+        subject = QAPreProcess.analyseSubject(qaParam.getQuestion());
+        QAParseResult qaParseResult = qaFeignService.parse(CommonUtil.entityToMutiMap(qaParam)).getData();
+        if(StringUtils.isEmpty(subject)) {
+            subject = qaParseResult.getNo_constraint().getTitle();
         }
-        catch (Exception e) {
-            CombineQaVO combineQaVO = totalQaInner(qaParam);
-            return combineQaVO;
+        if(StringUtils.isEmpty(subject)) {
+            subject = qaParseResult.getConstraint().getTitle();
         }
+        if(StringUtils.isEmpty(subject)) {
+            return totalQaInner(qaParam);
+        }
+        String predicate = "";
         for(char c : qaParam.getQuestion().toCharArray()) {
             if(c == '？' || c == '?' || c == ',' || c == '，') {
                 CombineQaVO curAnswer;
@@ -218,13 +221,16 @@ public class CombineServiceImpl implements CombineService {
                 else {
                     curAnswer = totalQaInner(new QAParam(subject + sb.toString()));
                 }
-                if(curAnswer.getAnswer() != null) {
+                predicate += curAnswer.getAnswer().getPredicate();
+                if(curAnswer.getAnswer() != null && !StringUtils.isEmpty(curAnswer.getAnswer().getAnswerValue())) {
                     answer += curAnswer.getAnswer().getAnswerValue() + "|";
                 }
                 else if(curAnswer.getQaesGrepVO().size() != 0) {
                     answer += curAnswer.getQaesGrepVO().get(0).getText() + "|";
+                    predicate += " nouse";
                 }
                 sb.delete(0, sb.length());
+                predicate += " | ";
             }
             else {
                 sb.append(c);
@@ -233,17 +239,21 @@ public class CombineServiceImpl implements CombineService {
         if(sb.length() != 0) {
             CombineQaVO curAnswer;
             curAnswer = totalQaInner(new QAParam(subject + sb.toString()));
+            predicate += curAnswer.getAnswer().getPredicate();
             if(curAnswer.getAnswer() != null) {
                 answer += curAnswer.getAnswer().getAnswerValue() + "|";
             }
             else if(curAnswer.getQaesGrepVO().size() != 0) {
                 answer += curAnswer.getQaesGrepVO().get(0).getText() + "|";
+                predicate += " nouse";
             }
             sb.delete(0, sb.length());
+            predicate += " | ";
         }
         consistentVO.setConsistentAnswer(answer);
         QAResult subjectAnswer = new QAResult();
         subjectAnswer.setSubject(subject);
+        subjectAnswer.setPredicate(predicate);
         consistentVO.setAnswer(subjectAnswer);
         return consistentVO;
     }
@@ -252,19 +262,20 @@ public class CombineServiceImpl implements CombineService {
         CombineQaVO combineQaVO = new CombineQaVO();
         String searchText = qaParam.getQuestion();
         Future<List<QAESGrepVO>> future = asyncHelper.qaBackupForHanlpSimpleNew(qaParam.getQuestion());
-        QAResult answer = null;
-        try {
-            answer = qaFeignService.qaRequest(CommonUtil.entityToMutiMap(qaParam)).getAnswerData();
-        }
-        catch (Exception e) {
-            List<QAESGrepVO> qaesGrepVOS = future.get();
-            combineQaVO.setQaesGrepVO(qaesGrepVOS);
-            return combineQaVO;
-        }
+        QAServiceResult answer = null;
+//        try {
+            answer = qaService.completeQA(qaParam.getQuestion());
+//        }
+//        catch (Exception e) {
+//            List<QAESGrepVO> qaesGrepVOS = future.get();
+//            combineQaVO.setQaesGrepVO(qaesGrepVOS);
+//            return combineQaVO;
+//        }
         List<QAESGrepVO> qaesGrepVOS = future.get();
+        combineQaVO.setAnswer(answer.getQaResult());
         // kbqa不应该被选择
-        if(chooseKBQA(answer, qaParam.getQuestion())) {
-            combineQaVO.setAnswer(answer);
+        if(!chooseKBQA(answer.getQaResult(), qaParam.getQuestion(), answer.getModelScore())) {
+            combineQaVO.setQaesGrepVO(qaesGrepVOS);
         }
         else {
 //            String answers = qaesGrepVOS.get(0).getText() + "\t" + answer.getSubject() + "（的）" + answer.getPredicate() + ":" + answer.getAnswerValue();
@@ -277,21 +288,21 @@ public class CombineServiceImpl implements CombineService {
 //            else {
 //                combineQaVO.setAnswer(answer);
 //            }
-            combineQaVO.setQaesGrepVO(qaesGrepVOS);
+
         }
         return combineQaVO;
     }
 
-    public boolean chooseKBQA(QAResult answer, String question) {
+    public boolean chooseKBQA(QAResult answer, String question, double modelScore) {
         if(StringUtils.isEmpty(answer.getAnswerValue())) {
             return false;
         }
         if(!question.contains(answer.getSubject())) {
             return false;
         }
-        if(answer.getModel_score() < -1) {
-            return false;
-        }
+//        if(modelScore < -1) {
+//            return false;
+//        }
         return true;
     }
 }

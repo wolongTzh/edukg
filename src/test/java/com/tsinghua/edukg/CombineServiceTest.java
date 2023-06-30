@@ -1,7 +1,7 @@
 package com.tsinghua.edukg;
 
 import com.alibaba.fastjson.JSON;
-import com.tsinghua.edukg.api.model.QAParam;
+import com.tsinghua.edukg.api.model.qa.QAParam;
 import com.tsinghua.edukg.model.VO.CombineLinkingVO;
 import com.tsinghua.edukg.model.VO.CombineQaVO;
 import com.tsinghua.edukg.model.params.TotalSearchParam;
@@ -30,8 +30,15 @@ public class CombineServiceTest {
 
     @Test
     public void totalQaTest() throws IOException, IllegalAccessException, ExecutionException, InterruptedException {
-        String searchText = "克隆技术是什么";
+        String searchText = "晏子是春秋时期哪国人？姓什么,名什么,字什么？";
         CombineQaVO combineQaVO = combineService.totalQa(new QAParam(searchText));
+        log.info(JSON.toJSONString(combineQaVO));
+    }
+
+    @Test
+    public void totalQaForTest() throws IOException, ExecutionException, InterruptedException, IllegalAccessException {
+        String searchText = "朱光潜(1897-1986)的作品有哪些？";
+        CombineQaVO combineQaVO = combineService.totalQaForTest(new QAParam(searchText));
         log.info(JSON.toJSONString(combineQaVO));
     }
 }

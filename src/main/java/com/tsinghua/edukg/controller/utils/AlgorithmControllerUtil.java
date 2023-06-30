@@ -1,7 +1,7 @@
 package com.tsinghua.edukg.controller.utils;
 
 import com.tsinghua.edukg.api.model.EntityLinkParam;
-import com.tsinghua.edukg.api.model.QAParam;
+import com.tsinghua.edukg.api.model.qa.QAParam;
 import com.tsinghua.edukg.enums.BusinessExceptionEnum;
 import com.tsinghua.edukg.exception.BusinessException;
 import org.apache.commons.lang3.StringUtils;

@@ -1,16 +1,13 @@
 package com.tsinghua.edukg.controller;
 
 import com.tsinghua.edukg.api.feign.QAFeignService;
-import com.tsinghua.edukg.api.model.QAParam;
-import com.tsinghua.edukg.api.model.QAResult;
+import com.tsinghua.edukg.api.model.qa.QAParam;
 import com.tsinghua.edukg.controller.utils.AlgorithmControllerUtil;
 import com.tsinghua.edukg.model.VO.CombineLinkingVO;
 import com.tsinghua.edukg.model.VO.CombineQaVO;
 import com.tsinghua.edukg.model.WebResInfo;
 import com.tsinghua.edukg.model.params.TotalSearchParam;
 import com.tsinghua.edukg.service.CombineService;
-import com.tsinghua.edukg.utils.CommonUtil;
-import com.tsinghua.edukg.utils.RuleHandler;
 import com.tsinghua.edukg.utils.WebUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
