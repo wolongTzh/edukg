@@ -119,7 +119,7 @@ public class GraphEditHelper {
             }
 
             if(existEntity.size() != 0 && (finalPredicate.contains("main-P") || finalPredicate.equals("rdfs__label") || finalPredicate.contains("auxiliary"))) {
-                entity.setUri(existEntity.get(0).getUri());
+                entity.setUri(existEntity.get(0).getUri() == null ? "" : existEntity.get(0).getUri());
                 existEntityList.add(entity);
             }
             else if(existEntity.size() == 0) {
