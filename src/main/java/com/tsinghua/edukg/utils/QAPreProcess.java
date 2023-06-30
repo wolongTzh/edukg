@@ -49,6 +49,9 @@ public class QAPreProcess {
         if(question.contains("选自哪")) {
             return "来源";
         }
+        if(question.contains("主角")) {
+            return "相关人物";
+        }
         return "";
     }
 
