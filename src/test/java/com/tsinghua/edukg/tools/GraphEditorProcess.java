@@ -52,24 +52,26 @@ public class GraphEditorProcess {
                 jsonObject.put("uri", realUri);
             }
         }
-        JSONArray relationJsonArray = CommonUtil.readJsonArray(relationAddPath);
-        for(int i=0; i<relationJsonArray.size(); i++) {
-            JSONObject jsonObject = relationJsonArray.getJSONObject(i);
-            String uri = jsonObject.getString("subjectUri");
-            String subject = jsonObject.getString("subject");
-            if(uri.equals("")) {
-                String realUri = nameMap.get(subject);
-                jsonObject.put("subjectUri", realUri);
-            }
-            uri = jsonObject.getString("objectUri");
-            String object = jsonObject.getString("object");
-            if(uri.equals("")) {
-                String realUri = nameMap.get(object);
-                jsonObject.put("objectUri", realUri);
-            }
-        }
         addPropertyWithPureJSON(propJsonArray, propAddFailedPath);
-        addRelationWithPureJSON(relationJsonArray, relationAddFailedPath);
+        JSONArray relationJsonArray = CommonUtil.readJsonArray(relationAddPath);
+        if(relationJsonArray != null) {
+            for(int i=0; i<relationJsonArray.size(); i++) {
+                JSONObject jsonObject = relationJsonArray.getJSONObject(i);
+                String uri = jsonObject.getString("subjectUri");
+                String subject = jsonObject.getString("subject");
+                if(uri.equals("")) {
+                    String realUri = nameMap.get(subject);
+                    jsonObject.put("subjectUri", realUri);
+                }
+                uri = jsonObject.getString("objectUri");
+                String object = jsonObject.getString("object");
+                if(uri.equals("")) {
+                    String realUri = nameMap.get(object);
+                    jsonObject.put("objectUri", realUri);
+                }
+            }
+            addRelationWithPureJSON(relationJsonArray, relationAddFailedPath);
+        }
     }
 
     public Map<String, String> addEntityWithPureJSON(String path, String failedPath) throws IOException {
