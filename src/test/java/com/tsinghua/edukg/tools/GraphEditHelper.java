@@ -42,7 +42,7 @@ public class GraphEditHelper {
 
     String addRelationPath = "./addRelation.json";
 
-    String subject = "history";
+    String subject = "chinese";
     @Test
     public void genAddGraphFiles() throws IOException {
         List<OutTemplate> list = EasyExcel.read(excelPath).head(OutTemplate.class).sheet(subject).doReadSync();
@@ -56,12 +56,16 @@ public class GraphEditHelper {
         List<Entity> existEntityList = new ArrayList<>();
         List<Relation> relationList = new ArrayList<>();
         Map<String, List<Entity>> entityMapSortByLabel = new HashMap<>();
+        Map<String, Entity> addedEntity = new HashMap<>();
         for(OutTemplate out : list) {
             if(StringUtils.isEmpty(out.getLabel())) {
                 continue;
             }
             Entity entity = new Entity();
             List<Entity> existEntity = neoManager.getEntityListFromName(out.getSubject());
+            if(existEntity.size() == 0 && addedEntity.containsKey(out.getSubject())) {
+                existEntity.add(addedEntity.get(out.getSubject()));
+            }
             String finalPredicate = "";
             List<String> predicateList = RuleHandler.geAlltPropertyAbbrWithoutSubject(out.getPredicate());
             if(predicateList.size() == 0) {
@@ -124,6 +128,7 @@ public class GraphEditHelper {
                 List<Entity> entityList = entityMapSortByLabel.get(out.getLabel());
                 entityList.add(entity);
                 entityMapSortByLabel.put(out.getLabel(), entityList);
+                addedEntity.put(out.getSubject(), entity);
             }
         }
         JSONArray jsonArray = new JSONArray();
