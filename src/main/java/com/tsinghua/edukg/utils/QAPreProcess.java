@@ -60,8 +60,8 @@ public class QAPreProcess {
             retainInner = true;
         }
         else if(question.contains("'") && question.contains("'")) {
-            preTag = "“";
-            postTag = "”";
+            preTag = "'";
+            postTag = "'";
             retainInner = true;
         }
         List<String> resultList = CommonUtil.getMiddleTextFromTags(question, preTag, postTag);
@@ -76,7 +76,15 @@ public class QAPreProcess {
 
     public static SubAndPre poetryHandle(String question, String direction) {
         SubAndPre subAndPre = new SubAndPre();
-        subAndPre.setPredicate(direction);
+        if(direction.equals("上一句")) {
+            subAndPre.setPredicate("前一句");
+        }
+        else if(direction.equals("下一句")) {
+            subAndPre.setPredicate("后一句");
+        }
+        else {
+            subAndPre.setPredicate(direction);
+        }
         List<String> delWords = Arrays.asList("默写", "补充", "补全", "填写", "的", "写出");
         for(String word : delWords) {
             question = question.replace(word, "");
@@ -86,6 +94,9 @@ public class QAPreProcess {
             question = question.substring(question.indexOf("中") + 1);
         }
         else if(question.contains("“") && question.contains("”")) {
+            subAndPre.setSubject(subject);
+        }
+        else if(question.contains("'") && question.contains("'")) {
             subAndPre.setSubject(subject);
         }
         else if(question.contains("。")) {
@@ -99,11 +110,12 @@ public class QAPreProcess {
 
     public static SubAndPre idiomHandle(String question) {
         SubAndPre subAndPre = new SubAndPre();
-        List<String> delWords = Arrays.asList("是", "成语", "这个词", "，", "字典中");
+        List<String> delWords = Arrays.asList("是", "成语", "这个词", "字典中");
         for(String word : delWords) {
             question = question.replace(word, "");
         }
         String subject = analyseSubject(question);
+        question = question.replace("，", "");
         if(subject.equals("")) {
             subject = question.split("什么意思")[0];
         }

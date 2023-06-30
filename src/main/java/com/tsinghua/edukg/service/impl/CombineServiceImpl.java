@@ -238,9 +238,14 @@ public class CombineServiceImpl implements CombineService {
         }
         if(sb.length() != 0) {
             CombineQaVO curAnswer;
-            curAnswer = totalQaInner(new QAParam(subject + sb.toString()));
+            if(sb.length() == qaParam.getQuestion().length()) {
+                curAnswer = totalQaInner(new QAParam(sb.toString()));
+            }
+            else {
+                curAnswer = totalQaInner(new QAParam(subject + sb.toString()));
+            }
             predicate += curAnswer.getAnswer().getPredicate();
-            if(curAnswer.getAnswer() != null) {
+            if(curAnswer.getAnswer() != null && !StringUtils.isEmpty(curAnswer.getAnswer().getAnswerValue())) {
                 answer += curAnswer.getAnswer().getAnswerValue() + "|";
             }
             else if(curAnswer.getQaesGrepVO().size() != 0) {
@@ -250,10 +255,10 @@ public class CombineServiceImpl implements CombineService {
             sb.delete(0, sb.length());
             predicate += " | ";
         }
-        consistentVO.setConsistentAnswer(answer);
+        consistentVO.setConsistentAnswer(answer.substring(0, answer.length() - 1));
         QAResult subjectAnswer = new QAResult();
         subjectAnswer.setSubject(subject);
-        subjectAnswer.setPredicate(predicate);
+        subjectAnswer.setPredicate(predicate.substring(0, predicate.length() - 3));
         consistentVO.setAnswer(subjectAnswer);
         return consistentVO;
     }

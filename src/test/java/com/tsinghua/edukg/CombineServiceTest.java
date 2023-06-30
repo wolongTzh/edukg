@@ -30,14 +30,14 @@ public class CombineServiceTest {
 
     @Test
     public void totalQaTest() throws IOException, IllegalAccessException, ExecutionException, InterruptedException {
-        String searchText = "晏子是春秋时期哪国人？姓什么,名什么,字什么？";
+        String searchText = "孔子什么时期的什么家？";
         CombineQaVO combineQaVO = combineService.totalQa(new QAParam(searchText));
         log.info(JSON.toJSONString(combineQaVO));
     }
 
     @Test
     public void totalQaForTest() throws IOException, ExecutionException, InterruptedException, IllegalAccessException {
-        String searchText = "朱光潜(1897-1986)的作品有哪些？";
+        String searchText = "谁言寸草心的后一句是什么";
         CombineQaVO combineQaVO = combineService.totalQaForTest(new QAParam(searchText));
         log.info(JSON.toJSONString(combineQaVO));
     }
