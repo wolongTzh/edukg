@@ -212,7 +212,7 @@ public class CombineServiceImpl implements CombineService {
         }
         String predicate = "";
         for(char c : qaParam.getQuestion().toCharArray()) {
-            if(c == '？' || c == '?' || c == ',' || c == '，') {
+            if(c == '？' || c == '?' || c == ',' || c == '，' || c == '。') {
                 CombineQaVO curAnswer;
                 if(start) {
                     curAnswer = totalQaInner(new QAParam(sb.toString()));

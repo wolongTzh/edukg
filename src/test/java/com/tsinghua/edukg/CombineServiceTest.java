@@ -37,7 +37,7 @@ public class CombineServiceTest {
 
     @Test
     public void totalQaForTest() throws IOException, ExecutionException, InterruptedException, IllegalAccessException {
-        String searchText = "默写自缘身在最高层的上一句";
+        String searchText = "默写《石灰吟》";
         CombineQaVO combineQaVO = combineService.totalQaForTest(new QAParam(searchText));
         log.info(JSON.toJSONString(combineQaVO));
     }
