@@ -102,7 +102,7 @@ public class DomainRangeTest {
                     }
                 }
                 for(Relation relation : entityCon.getRelation()) {
-                    if(!StringUtils.isEmpty(relation.getPredicateLabel()) && relation.getPredicate().contains(subject) && !predMap.containsKey(
+                    if(!StringUtils.isEmpty(relation.getPredicateLabel()) && relation.getPredicate().contains("chinese") && !predMap.containsKey(
                             relation.getPredicate())) {
                         List<Cls2Pred> cls2PredList = excelOut.get(subject);
                         if(firstTag) {
@@ -137,7 +137,7 @@ public class DomainRangeTest {
                                 if(StringUtils.isEmpty(classInternal.getLabel())) {
                                     continue;
                                 }
-                                if(!range.contains(classInternal.getLabel())) {
+                                if(!StringUtils.isEmpty(range) && !range.contains(classInternal.getLabel())) {
                                     needAddExample = true;
                                     range += "," + classInternal.getLabel();
                                 }
