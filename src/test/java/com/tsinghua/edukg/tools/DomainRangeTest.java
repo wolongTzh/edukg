@@ -44,6 +44,9 @@ public class DomainRangeTest {
             sheets2.put(subject, EasyExcel.writerSheet(subject).build());
         }
         for(Map.Entry entry : clsMap.entrySet()) {
+            if(!((String) entry.getKey()).contains("chinese")) {
+                continue;
+            }
             System.out.println("cur cls is :" + entry.getKey() + "  " + entry.getValue());
             boolean firstTag = true;
             String clsName = (String) entry.getValue();
