@@ -93,8 +93,8 @@ public class SparqlTest {
     }
     public void subjectFilter(String inputPath, String fileName) throws IOException {
 
-        int relationNeed = 5;
-        int propNeed = 5;
+        int relationNeed = 2;
+        int propNeed = 2;
         String outPath = "filterOut/" + fileName + ".out";
         File file = new File(outPath);
         FileWriter fileWriter = new FileWriter(file.getAbsolutePath());
