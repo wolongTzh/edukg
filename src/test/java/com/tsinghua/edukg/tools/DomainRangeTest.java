@@ -44,6 +44,7 @@ public class DomainRangeTest {
             sheets2.put(subject, EasyExcel.writerSheet(subject).build());
         }
         for(Map.Entry entry : clsMap.entrySet()) {
+            System.out.println("cur cls is :" + entry.getKey() + "  " + entry.getValue());
             boolean firstTag = true;
             String clsName = (String) entry.getValue();
             String subject = "";
@@ -57,6 +58,7 @@ public class DomainRangeTest {
             String clsCode = RuleHandler.getLabelAbbrByUri((String) entry.getKey());
             List<com.tsinghua.edukg.model.Entity> entityList = neoManager.getEntityListFromClass(clsCode);
             for(com.tsinghua.edukg.model.Entity entity : entityList) {
+                System.out.println("cur entity is : " + entity.getName() + " " + entity.getUri());
                 com.tsinghua.edukg.model.Entity entityCon = neoManager.getEntityFromUri(entity.getUri());
                 for(Property property : entityCon.getProperty()) {
                     if(!StringUtils.isEmpty(property.getPredicateLabel()) && property.getPredicate().contains(subject) && !predMap.containsKey(property.getPredicate())) {
