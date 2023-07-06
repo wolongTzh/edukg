@@ -61,11 +61,11 @@ public class DomainRangeTest {
             String clsCode = RuleHandler.getLabelAbbrByUri((String) entry.getKey());
             List<com.tsinghua.edukg.model.Entity> entityList = neoManager.getEntityListFromClass(clsCode);
             for(com.tsinghua.edukg.model.Entity entity : entityList) {
-                System.out.println("cur entity is : " + entity.getName() + " " + entity.getUri());
                 com.tsinghua.edukg.model.Entity entityCon = neoManager.getEntityFromUri(entity.getUri());
                 for(Property property : entityCon.getProperty()) {
-                    if(!StringUtils.isEmpty(property.getPredicateLabel()) && property.getPredicate().contains(subject) && !predMap.containsKey(property.getPredicate())) {
+                    if(!StringUtils.isEmpty(property.getPredicateLabel()) && (property.getPredicate().contains(subject) || property.getPredicate().contains("common") || property.getPredicate().contains("rdfs")) && !predMap.containsKey(property.getPredicate())) {
                         List<Cls2Pred> cls2PredList = excelOut.get(subject);
+                        // 不希望在后面的每一行都把cls的名字打一遍
                         if(firstTag) {
                             cls2PredList.add(Cls2Pred.builder()
                                     .pred(property.getPredicateLabel() + " " + property.getPredicate())
@@ -82,6 +82,7 @@ public class DomainRangeTest {
                                     .predOrRelation("属性")
                                     .build());
                         }
+                        // 该属性谓词之前处理过
                         if(domainRangeMap.containsKey(property.getPredicate())) {
                             DomainRange domainRange = domainRangeMap.get(property.getPredicate());
                             String domain = domainRange.getDomain();
@@ -93,6 +94,7 @@ public class DomainRangeTest {
                                 domainRange.setExample(example);
                             }
                         }
+                        // 该属性谓词之前未被处理过
                         else {
                             domainRangeMap.put(property.getPredicate(), DomainRange.builder()
                                     .pred(property.getPredicateLabel() + " " + property.getPredicate())
@@ -105,9 +107,13 @@ public class DomainRangeTest {
                     }
                 }
                 for(Relation relation : entityCon.getRelation()) {
-                    if(!StringUtils.isEmpty(relation.getPredicateLabel()) && relation.getPredicate().contains("chinese") && !predMap.containsKey(
+                    if(relation.getSubject().equals("《诗经》") && relation.getObject().equals("一") && clsName.equals("汉字")) {
+                        System.out.println(1);
+                    }
+                    if(!StringUtils.isEmpty(relation.getPredicateLabel()) && (relation.getPredicate().contains(subject) || relation.getPredicate().contains("common")) && !predMap.containsKey(
                             relation.getPredicate())) {
                         List<Cls2Pred> cls2PredList = excelOut.get(subject);
+                        // 不希望在后面的每一行都把cls的名字打一遍
                         if(firstTag) {
                             cls2PredList.add(Cls2Pred.builder()
                                     .pred(relation.getPredicateLabel() + " " + relation.getPredicate())
@@ -124,67 +130,78 @@ public class DomainRangeTest {
                                     .predOrRelation("关系")
                                     .build());
                         }
+                        DomainRange domainRange = new DomainRange();
+                        // 该关系谓词之前处理过
                         if(domainRangeMap.containsKey(relation.getPredicate())) {
-                            DomainRange domainRange = domainRangeMap.get(relation.getPredicate());
-                            String domain = domainRange.getDomain();
-                            String range = domainRange.getRange();
-                            com.tsinghua.edukg.model.Entity tempEntity = neoManager.getEntityFromUri(relation.getObjectUri());
-                            String clsList = "";
-                            boolean needAddExample = false;
+                            domainRange = domainRangeMap.get(relation.getPredicate());
+                        }
+                        // 该关系谓词之前未被处理过
+                        else {
+                            domainRange = DomainRange.builder()
+                                    .pred(relation.getPredicateLabel() + " " + relation.getPredicate())
+                                    .domain("")
+                                    .range("")
+                                    .predOrRelation("关系")
+                                    .build();
+                        }
+                        // 进行domainRange对象装填
+                        String domain = domainRange.getDomain();
+                        String range = domainRange.getRange();
+                        com.tsinghua.edukg.model.Entity objectEntity = neoManager.getEntityFromUri(relation.getObjectUri());
+                        String subjectClsList = "";
+                        String objectClsList = "";
+                        boolean domainAdd = false;
+                        boolean rangeAdd = false;
+                        // 遍历每一个subject实体具有的cls
+                        for(ClassInternal classInternal : entityCon.getClassList()) {
+                            if (StringUtils.isEmpty(classInternal.getLabel())) {
+                                continue;
+                            }
+                            subjectClsList += "," + classInternal.getLabel();
+                        }
+                        subjectClsList = subjectClsList.substring(1);
+                        // 遍历每一个object实体具有的cls
+                        for(ClassInternal classInternal : objectEntity.getClassList()) {
+                            if (StringUtils.isEmpty(classInternal.getLabel())) {
+                                continue;
+                            }
+                            objectClsList += "," + classInternal.getLabel();
+                        }
+                        objectClsList = objectClsList.substring(1);
+                        // 如果subject实体包含了当前的class
+                        if(subjectClsList.contains(clsName)) {
+                            // domain如果包含过了当前正在处理的cls，就不用再添加一次了
                             if(!domain.contains(clsName)) {
-                                needAddExample = true;
+                                domainAdd = true;
                                 domain += "," + clsName;
                                 domainRange.setDomain(domain);
                             }
-                            for(ClassInternal classInternal : tempEntity.getClassList()) {
-                                if(StringUtils.isEmpty(classInternal.getLabel())) {
-                                    continue;
-                                }
-                                if(!StringUtils.isEmpty(range) && !range.contains(classInternal.getLabel())) {
-                                    needAddExample = true;
-                                    range += "," + classInternal.getLabel();
-                                }
+                        }
+                        // 如果object实体包含了当前的class
+                        if(objectClsList.contains(clsName)) {
+                            // range如果包含过了当前正在处理的cls，就不用再添加一次了
+                            if(!StringUtils.isEmpty(range) && !range.contains(clsName)) {
+                                rangeAdd = true;
+                                range += "," + clsName;
                                 domainRange.setRange(range);
                             }
-                            if(needAddExample) {
-                                for(ClassInternal classInternal : tempEntity.getClassList()) {
-                                    if(StringUtils.isEmpty(classInternal.getLabel())) {
-                                        continue;
-                                    }
-                                    clsList += "," + classInternal.getLabel();
-                                }
-                                clsList = clsList.substring(1);
-                                String example = domainRange.getExample();
-                                example += "subject=" + relation.getSubject() + "，subjectCls=" + clsName + "，predicate=" + relation.getPredicateLabel() + "，object=" + relation.getObject() + "，objectCls=" + clsList + "\n";
-                                domainRange.setExample(example);
-                            }
                         }
-                        else {
-                            DomainRange domainRange = DomainRange.builder()
-                                    .pred(relation.getPredicateLabel() + " " + relation.getPredicate())
-                                    .domain(clsName)
-                                    .predOrRelation("关系")
-                                    .build();
-                            Entity tempEntity = neoManager.getEntityFromUri(relation.getObjectUri());
-                            String range = "";
-                            for(ClassInternal classInternal : tempEntity.getClassList()) {
-                                if(StringUtils.isEmpty(classInternal.getLabel())) {
-                                    continue;
-                                }
-                                range += "," + classInternal.getLabel();
+                        // 判断example是否需要添加，如果添加了新的domain或range才需要添加
+                        if(domainAdd || rangeAdd) {
+                            String example = domainRange.getExample();
+                            if(domainAdd && rangeAdd) {
+                                example += "subject=" + relation.getSubject() + "，subjectCls=" + clsName + "，predicate=" + relation.getPredicateLabel() + "，object=" + relation.getObject() + "，objectCls=" + clsName + "\n";
                             }
-                            domainRange.setRange(range.substring(1));
-                            String clsList = "";
-                            for(ClassInternal classInternal : tempEntity.getClassList()) {
-                                if(StringUtils.isEmpty(classInternal.getLabel())) {
-                                    continue;
-                                }
-                                clsList += "," + classInternal.getLabel();
+                            else if(domainAdd) {
+                                example += "subject=" + relation.getSubject() + "，subjectCls=" + clsName + "，predicate=" + relation.getPredicateLabel() + "，object=" + relation.getObject() + "，objectCls=" + objectClsList + "\n";
                             }
-                            clsList = clsList.substring(1);
-                            String example = "";
-                            example += "subject=" + relation.getSubject() + "，subjectCls=" + clsName + "，predicate=" + relation.getPredicateLabel() + "，object=" + relation.getObject() + "，objectCls=" + clsList + "\n";
+                            else if(rangeAdd) {
+                                example += "subject=" + relation.getSubject() + "，subjectCls=" + subjectClsList + "，predicate=" + relation.getPredicateLabel() + "，object=" + relation.getObject() + "，objectCls=" + clsName + "\n";
+                            }
                             domainRange.setExample(example);
+                        }
+                        // 之前未处理过该谓词，加入map
+                        if(!domainRangeMap.containsKey(relation.getPredicate())) {
                             domainRangeMap.put(relation.getPredicate(), domainRange);
                         }
                         predMap.put(relation.getPredicate(), relation.getPredicateLabel());
