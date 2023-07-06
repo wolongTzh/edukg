@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Cls2Pred {
+public class Cls2Pred implements Cloneable{
 
     @ExcelProperty(value = "cls信息")
     String cls;
@@ -23,4 +23,10 @@ public class Cls2Pred {
 
     @ExcelProperty(value = "属性or关系")
     String predOrRelation;
+
+    @Override
+    public Cls2Pred clone() throws CloneNotSupportedException {
+        return (Cls2Pred) super.clone();
+    }
+
 }
