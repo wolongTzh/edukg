@@ -7,11 +7,12 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.tsinghua.edukg.manager.NeoManager;
 import com.tsinghua.edukg.model.ClassInternal;
+import com.tsinghua.edukg.model.Entity;
 import com.tsinghua.edukg.model.Property;
 import com.tsinghua.edukg.model.Relation;
+import com.tsinghua.edukg.model.excel.Cls2Entity;
 import com.tsinghua.edukg.model.excel.Cls2Pred;
 import com.tsinghua.edukg.model.excel.DomainRange;
-import com.tsinghua.edukg.model.excel.TestSourceEntity;
 import com.tsinghua.edukg.utils.CommonUtil;
 import com.tsinghua.edukg.utils.RuleHandler;
 import lombok.extern.slf4j.Slf4j;
@@ -35,36 +36,33 @@ public class DomainRangeTest {
         Map<String, String> clsMap = RuleHandler.grepClassOfAbbrMap();
         List<String> subjectList = Arrays.asList("chinese", "geo", "biology", "english", "history", "math", "physics", "politics", "chemistry", "common");
         ExcelWriter excelWriter = EasyExcel.write("./cls2pred.xlsx", Cls2Pred.class).build();
-        ExcelWriter excelWriter2 = EasyExcel.write("./domainRange.xlsx", DomainRange.class).build();
         Map<String, WriteSheet> sheets = new HashMap<>();
-        Map<String, WriteSheet> sheets2 = new HashMap<>();
         Map<String, List<Cls2Pred>> excelOut = new HashMap<>();
-        Map<String, List<DomainRange>> excelOut2 = new HashMap<>();
+        Map<String, List<Cls2Entity>> excelIn = new HashMap<>();
+        String path = "./cls2Entity.xlsx";
         for(String subject : subjectList) {
+            List<Cls2Entity> cls2EntityList = EasyExcel.read(path).head(Cls2Entity.class).sheet(subject).doReadSync();
+            excelIn.put(subject, cls2EntityList);
             excelOut.put(subject, new ArrayList<>());
-            excelOut2.put(subject, new ArrayList<>());
             sheets.put(subject, EasyExcel.writerSheet(subject).build());
-            sheets2.put(subject, EasyExcel.writerSheet(subject).build());
         }
-        for(Map.Entry entry : clsMap.entrySet()) {
-            if(!((String) entry.getKey()).contains("chinese")) {
+        for(Map.Entry entry : excelIn.entrySet()) {
+            if(!((String) entry.getKey()).equals("chinese")) {
                 continue;
             }
-            System.out.println("cur cls is :" + entry.getKey() + "  " + entry.getValue());
+            String subject = (String) entry.getKey();
+            List<Cls2Entity> cls2EntityList = (List<Cls2Entity>) entry.getValue();
+            String curCls = "";
             boolean firstTag = true;
-            String clsName = (String) entry.getValue();
-            String subject = "";
-            for(String sub : subjectList) {
-                if(((String) entry.getKey()).contains(sub)) {
-                    subject = sub;
-                    break;
-                }
-            }
             Map<String, String> predMap = new HashMap<>();
-            String clsCode = RuleHandler.getLabelAbbrByUri((String) entry.getKey());
-            List<com.tsinghua.edukg.model.Entity> entityList = neoManager.getEntityListFromClass(clsCode);
-            for(com.tsinghua.edukg.model.Entity entity : entityList) {
-                com.tsinghua.edukg.model.Entity entityCon = neoManager.getEntityFromUri(entity.getUri());
+            for(Cls2Entity cls2Entity : cls2EntityList) {
+                if(!StringUtils.isEmpty(cls2Entity.getCls())) {
+                    curCls = cls2Entity.getCls();
+                    System.out.println("cur cls is :" + curCls);
+                    predMap = new HashMap<>();
+                    firstTag = true;
+                }
+                Entity entityCon = neoManager.getEntityFromUri(cls2Entity.getEntityUri());
                 for(Property property : entityCon.getProperty()) {
                     if(!StringUtils.isEmpty(property.getPredicateLabel()) && (property.getPredicate().contains(subject) || property.getPredicate().contains("common") || property.getPredicate().contains("rdfs")) && !predMap.containsKey(property.getPredicate())) {
                         // 遍历每一个subject实体具有的cls
@@ -79,7 +77,7 @@ public class DomainRangeTest {
                         List<Cls2Pred> cls2PredList = excelOut.get(subject);
                         Cls2Pred cls2Pred = Cls2Pred.builder()
                                 .pred(property.getPredicateLabel() + " " + property.getPredicate())
-                                .cls(clsName)
+                                .cls(curCls)
                                 .example("subject=" + property.getSubject() + "，subjectCls=" + subjectClsList + "，predicate=" + property.getPredicateLabel() + "，object=" + property.getObject())
                                 .predOrRelation("属性")
                                 .build();
@@ -99,7 +97,7 @@ public class DomainRangeTest {
                         if(!entityCon.getUri().equals(relation.getSubjectUri())) {
                             continue;
                         }
-                        com.tsinghua.edukg.model.Entity objectEntity = neoManager.getEntityFromUri(relation.getObjectUri());
+                        Entity objectEntity = neoManager.getEntityFromUri(relation.getObjectUri());
                         // 生成subject和object的classlist
                         String subjectClsList = "";
                         String objectClsList = "";
@@ -122,7 +120,7 @@ public class DomainRangeTest {
                         List<Cls2Pred> cls2PredList = excelOut.get(subject);
                         Cls2Pred cls2Pred = Cls2Pred.builder()
                                 .pred(relation.getPredicateLabel() + " " + relation.getPredicate())
-                                .cls(clsName)
+                                .cls(curCls)
                                 .example("subject=" + relation.getSubject() + "，subjectCls=" + subjectClsList + "，predicate=" + relation.getPredicateLabel() + "，object=" + relation.getObject() + "，objectCls=" + objectClsList)
                                 .predOrRelation("关系")
                                 .build();
@@ -140,7 +138,6 @@ public class DomainRangeTest {
         for(String subject : subjectList) {
             // 根据cls分map
             List<Cls2Pred> cls2PredList = excelOut.get(subject);
-            List<DomainRange> domainRangeList = excelOut2.get(subject);
             Map<String, List<Cls2Pred>> clsPredMap = new HashMap<>();
             String curCls = "";
             List<Cls2Pred> cls2PredListNew = new ArrayList<>();
@@ -168,17 +165,83 @@ public class DomainRangeTest {
                 cls2PredListFinal.addAll(cls2PredList1);
             }
             excelOut.put(subject, cls2PredListFinal);
-            // 生成domain range excel
-            domainRangeGen(clsPredMap, domainRangeList, subject);
             // 写入excel
             excelWriter.write(excelOut.get(subject), sheets.get(subject));
-            excelWriter2.write(excelOut2.get(subject), sheets2.get(subject));
         }
         excelWriter.finish();
-        excelWriter2.finish();
+    }
+
+    @Test
+    public void cls2EntityGen() {
+        Map<String, String> clsMap = RuleHandler.grepClassOfAbbrMap();
+        List<String> subjectList = Arrays.asList("chinese", "geo", "biology", "english", "history", "math", "physics", "politics", "chemistry", "common");
+        ExcelWriter excelWriter = EasyExcel.write("./cls2entity.xlsx", Cls2Entity.class).build();
+        Map<String, WriteSheet> sheets = new HashMap<>();
+        Map<String, List<Cls2Entity>> excelOut = new HashMap<>();
+        for(String subject : subjectList) {
+            excelOut.put(subject, new ArrayList<>());
+            sheets.put(subject, EasyExcel.writerSheet(subject).build());
+        }
+        for(Map.Entry entry : clsMap.entrySet()) {
+            if(!((String) entry.getKey()).contains("chinese")) {
+                continue;
+            }
+            System.out.println("cur cls is :" + entry.getKey() + "  " + entry.getValue());
+            String subject = "";
+            for(String sub : subjectList) {
+                if(((String) entry.getKey()).contains(sub)) {
+                    subject = sub;
+                    break;
+                }
+            }
+            String clsCode = RuleHandler.getLabelAbbrByUri((String) entry.getKey());
+            List<Entity> entityList = neoManager.getEntityListFromClass(clsCode);
+            Map<String, Entity> clsListMap = new HashMap<>();
+            for(Entity entityShell : entityList) {
+                Entity entity = neoManager.getEntityFromUri(entityShell.getUri());
+                String clsList = "";
+                for(ClassInternal classInternal : entity.getClassList()) {
+                    if (StringUtils.isEmpty(classInternal.getLabel())) {
+                        continue;
+                    }
+                    clsList += "," + classInternal.getLabel();
+                }
+                clsList = clsList.substring(1);
+                // 保留属性关系最多的实体
+                if(clsListMap.containsKey(clsList)) {
+                    Entity entityOld = clsListMap.get(clsList);
+                    if((entity.getRelation().size() + entity.getProperty().size()) > (entityOld.getProperty().size() + entityOld.getRelation().size())) {
+                        clsListMap.put(clsList, entity);
+                    }
+                }
+                else {
+                    clsListMap.put(clsList, entity);
+                }
+            }
+            boolean startFlag = true;
+            List<Cls2Entity> cls2Entities = excelOut.get(subject);
+            for(Map.Entry entry1 : clsListMap.entrySet()) {
+                Entity entity = (Entity) entry1.getValue();
+                Cls2Entity cls2Entity = Cls2Entity.builder()
+                        .cls((String) entry.getValue())
+                        .entityName(entity.getName())
+                        .entityClass((String) entry1.getKey())
+                        .entityUri(entity.getUri())
+                        .build();
+                if(!startFlag) {
+                    cls2Entity.setCls(null);
+                }
+                startFlag = false;
+                cls2Entities.add(cls2Entity);
+            }
+        }
+        for(String subject : subjectList) {
+            excelWriter.write(excelOut.get(subject), sheets.get(subject));
+        }
+        excelWriter.finish();
     }
     @Test
-    public void readAndGenDomain() {
+    public void domainRangeGen() {
         String path = "./cls2pred.xlsx";
         String subject = "chinese";
         ExcelWriter excelWriter2 = EasyExcel.write("./domainRange.xlsx", DomainRange.class).build();
@@ -209,12 +272,12 @@ public class DomainRangeTest {
             List<Cls2Pred> cls2PredList1 = (List<Cls2Pred>) entry.getValue();
             cls2PredListFinal.addAll(cls2PredList1);
         }
-        domainRangeGen(clsPredMap, domainRangeList, subject);
+        domainRangeGenHelper(clsPredMap, domainRangeList, subject);
         excelWriter2.write(domainRangeList, sheet2);
         excelWriter2.finish();
     }
 
-    public void domainRangeGen(Map<String, List<Cls2Pred>> cls2PredMap, List<DomainRange> domainRangeList, String subject) {
+    public void domainRangeGenHelper(Map<String, List<Cls2Pred>> cls2PredMap, List<DomainRange> domainRangeList, String subject) {
         Map<String, DomainRange> predDomainRangeMap = new HashMap<>();
         for(Map.Entry entry : cls2PredMap.entrySet()) {
             List<Cls2Pred> cls2PredList = (List<Cls2Pred>) entry.getValue();
@@ -228,7 +291,7 @@ public class DomainRangeTest {
                 if(!pred.contains(subject)) {
                     continue;
                 }
-                String example = cls2Pred.getExample() + examplePost;
+                String example = cls2Pred.getExample();
                 DomainRange domainRange = new DomainRange();
                 // map中已经包含该谓词的信息了
                 if(predDomainRangeMap.containsKey(pred)) {
@@ -257,23 +320,24 @@ public class DomainRangeTest {
                 // 当前pred为关系
                 else {
                     // 需要添加domain的情况
-                    if(example.split("subjectCls=")[1].split("，predicate")[0].contains(curCls)) {
-                        if(!domain.equals("")) {
-                            domain += ",";
-                        }
-                        domain += curCls;
+                    if(!domain.equals("")) {
+                        domain += ",";
                     }
+                    domain += curCls;
                     // 需要添加range的情况
-                    if(example.split("objectCls=")[1].contains(curCls)) {
-                        if(!range.equals("")) {
-                            range += ",";
+                    for(String atom : example.split("objectCls=")[1].split(",")) {
+                        if(!range.contains(atom)) {
+                            if(!range.equals("")) {
+                                range += ",";
+                            }
+                            range += atom;
                         }
-                        range += curCls;
                     }
                 }
                 if(!domainExample.equals("")) {
                     domainExample += "\n";
                 }
+                example = cls2Pred.getExample() + examplePost;
                 domainExample += example;
                 domainRange.setDomain(domain);
                 domainRange.setRange(range);
