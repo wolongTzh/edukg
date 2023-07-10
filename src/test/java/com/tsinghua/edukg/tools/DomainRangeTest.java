@@ -196,7 +196,8 @@ public class DomainRangeTest {
             }
             String clsCode = RuleHandler.getLabelAbbrByUri((String) entry.getKey());
             List<Entity> entityList = neoManager.getEntityListFromClass(clsCode);
-            Map<String, Entity> clsListMap = new HashMap<>();
+            Map<String, List<Entity>> clsListMap = new HashMap<>();
+            Map<String, String> clsListPredJudgeMap = new HashMap<>();
             for(Entity entityShell : entityList) {
                 Entity entity = neoManager.getEntityFromUri(entityShell.getUri());
                 String clsList = "";
@@ -207,32 +208,57 @@ public class DomainRangeTest {
                     clsList += "," + classInternal.getLabel();
                 }
                 clsList = clsList.substring(1);
-                // 保留属性关系最多的实体
-                if(clsListMap.containsKey(clsList)) {
-                    Entity entityOld = clsListMap.get(clsList);
-                    if((entity.getRelation().size() + entity.getProperty().size()) > (entityOld.getProperty().size() + entityOld.getRelation().size())) {
-                        clsListMap.put(clsList, entity);
+                // 保留该clsList下各种谓词的实体
+                boolean addedTag = false;
+                if(!clsListPredJudgeMap.containsKey(clsList)) {
+                    clsListMap.put(clsList, new ArrayList<>());
+                    clsListPredJudgeMap.put(clsList, "");
+                }
+                List<Entity> clsEntityList = clsListMap.get(clsList);
+                String clsListPred = clsListPredJudgeMap.get(clsList);
+                for(Property property : entity.getProperty()) {
+                    if(!property.getPredicate().contains(subject) && !property.getPredicate().contains("common")) {
+                        continue;
+                    }
+                    if(!clsListPred.contains(property.getPredicateLabel())) {
+                        clsListPred += "," + property.getPredicateLabel();
+                        if(!addedTag) {
+                            clsEntityList.add(entity);
+                            addedTag = true;
+                        }
                     }
                 }
-                else {
-                    clsListMap.put(clsList, entity);
+                for(Relation relation : entity.getRelation()) {
+                    if(!relation.getPredicate().contains(subject) && !relation.getPredicate().contains("common")) {
+                        continue;
+                    }
+                    if(!clsListPred.contains(relation.getPredicateLabel())) {
+                        clsListPred += "," + relation.getPredicateLabel();
+                        if(!addedTag) {
+                            clsEntityList.add(entity);
+                            addedTag = true;
+                        }
+                    }
                 }
+                clsListPredJudgeMap.put(clsList, clsListPred);
             }
             boolean startFlag = true;
             List<Cls2Entity> cls2Entities = excelOut.get(subject);
             for(Map.Entry entry1 : clsListMap.entrySet()) {
-                Entity entity = (Entity) entry1.getValue();
-                Cls2Entity cls2Entity = Cls2Entity.builder()
-                        .cls((String) entry.getValue())
-                        .entityName(entity.getName())
-                        .entityClass((String) entry1.getKey())
-                        .entityUri(entity.getUri())
-                        .build();
-                if(!startFlag) {
-                    cls2Entity.setCls(null);
+                List<Entity> entityList1 = (List<Entity>) entry1.getValue();
+                for(Entity entity : entityList1) {
+                    Cls2Entity cls2Entity = Cls2Entity.builder()
+                            .cls((String) entry.getValue())
+                            .entityName(entity.getName())
+                            .entityClass((String) entry1.getKey())
+                            .entityUri(entity.getUri())
+                            .build();
+                    if(!startFlag) {
+                        cls2Entity.setCls(null);
+                    }
+                    startFlag = false;
+                    cls2Entities.add(cls2Entity);
                 }
-                startFlag = false;
-                cls2Entities.add(cls2Entity);
             }
         }
         for(String subject : subjectList) {
