@@ -374,7 +374,7 @@ public class ESManager {
         SearchResponse<IRQALiu> matchSearch;
         BoolQuery boolQuery = builder.build();
         matchSearch = client.search(s -> s
-                        .index(textBookIndex)
+                        .index("irqa")
                         .query(b -> b
                                 .bool(boolQuery)
                         ),
