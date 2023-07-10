@@ -40,13 +40,36 @@ public class NeoManagerTest {
     Session session;
 
     @Test
-    public void removeProp() {
-        Property property = Property.builder()
-                .subject("鲁迅")
-                .predicate("edukg_prop_history__main-P371")
-                .object("公务员、教师、作家")
+    public void removeRelation() {
+        Relation pre = Relation.builder()
+                .predicate("edukg_prop_chinese__main-R2")
+                .subjectUri("http://edukg.org/knowledge/3.0/instance/chinese#main-E6105")
+                .objectUri("http://edukg.org/knowledge/3.0/instance/chinese#main-E4621")
                 .build();
-        neoManager.updateProperty("http://edukg.org/knowledge/3.0/instance/chinese#main-E4768", property, null);
+        neoManager.updateRelation(pre, null);
+    }
+
+    @Test
+    public void updateLabels() {
+        String uri = "http://edukg.org/knowledge/3.0/instance/chinese#main-E7392";
+        List<String> labels = Arrays.asList("edukg_cls_chinese__main-C0", "edukg_cls_chinese__main-C24");
+        neoManager.updateLabels(uri, labels);
+    }
+
+    @Test
+    public void updateProp() {
+        String uri = "http://edukg.org/knowledge/3.0/instance/chinese#main-E2093";
+        Property pre = Property.builder()
+                .subject("水调歌头")
+                .predicate("edukg_prop_chinese__main-P12")
+                .object("明月几时有？把酒问青天。不知天上宫阙（què），今夕是何年。我欲乘风归去，又恐琼楼玉宇，高处不胜寒。起舞弄清影，何似在人间。\\n转朱阁，低绮（qǐ）户，照无眠。不应有恨，何事长向别时圆？人有悲欢离合，月有阴晴圆缺，此事古难全。但愿人长久，千里共婵娟。")
+                .build();
+        Property post = Property.builder()
+                .subject("水调歌头")
+                .predicate("edukg_prop_chinese__main-P12")
+                .object("人有悲欢离合，月有阴晴圆缺，此事古难全。但愿人长久，千里共婵娟。")
+                .build();
+        neoManager.updateProperty(uri, pre, post);
     }
     @Test
     public void domainRangeGen() {
