@@ -1,14 +1,31 @@
 package com.tsinghua.edukg;
 
+import com.tsinghua.edukg.dao.entity.ZYKHtml;
+import com.tsinghua.edukg.dao.mapper.ZYKHtmlMapper;
 import com.tsinghua.edukg.utils.CommonUtil;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.jena.query.*;
-import org.apache.jena.rdf.model.*;
-import org.junit.Test;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.RDFNode;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.nodes.Node;
+import org.jsoup.nodes.TextNode;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.StringUtils;
 
-import java.io.*;
+import javax.annotation.Resource;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 @SpringBootTest
@@ -30,7 +47,10 @@ public class SparqlTest {
      */
     String outputPath = "./annotation.txt";
 
-    @Test
+    @Resource
+    ZYKHtmlMapper zykHtmlMapper;
+
+//    @Test
     public void handler() throws IOException {
         // 作者 -> 作品
         // 欧阳修 醉翁亭记
@@ -79,6 +99,121 @@ public class SparqlTest {
         }
     }
     @Test
+    public void findSourceFromPred() throws IOException {
+        String inputPath = "./knowledge.ttl";
+        String predicate = "作者";
+        String sql = "prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n" +
+                "prefix co: <http://edukb.org/knowledge/0.1/property/common#>\n" +
+                " SELECT ?headName ?source\n" +
+                " WHERE\n" +
+                "{ ?uri rdfs:label \"作者\"." +
+                "?headUri ?uri ?tailUri." +
+                "?headUri rdfs:label ?headName." +
+                "?tailUri rdfs:label ?tailName." +
+                "?headUri co:source ?source}";
+        sql = String.format(sql, predicate);
+        Model model = ModelFactory.createDefaultModel();
+        //ttl文件路径
+        model.read(inputPath);
+        Query query = QueryFactory.create(sql);
+        QueryExecution qe = QueryExecutionFactory.create(query, model);
+        ResultSet results = qe.execSelect();
+        Map<String, List<String>> sourceMap = new HashMap<>();
+        while (results.hasNext()) {
+            QuerySolution querySolution = results.next();
+            RDFNode nodeX = querySolution.get("headName");
+            RDFNode nodeY = querySolution.get("source");
+            String headName = "";
+            String source = "";
+            if(nodeX != null) {
+                headName = nodeX.toString();
+            }
+            if(nodeY != null) {
+                source = nodeY.toString();
+            }
+            System.out.println(headName + " " + source);
+            List<String> sourceList = new ArrayList<>();
+            if(sourceMap.containsKey(headName)) {
+                sourceList = sourceMap.get(headName);
+            }
+            else {
+                sourceMap.put(headName, sourceList);
+            }
+            if(source.contains("http")) {
+                sourceList.add(source);
+            }
+        }
+        String htmlPath = "/data1/home/keg";
+        for(Map.Entry entry : sourceMap.entrySet()) {
+            String name = (String) entry.getKey();
+            List<String> sourceList = (List<String>) entry.getValue();
+            for(String source : sourceList) {
+                int index = Integer.parseInt(source.split("#xpointer")[0].split("label/")[1]);
+                ZYKHtml zykHtml = zykHtmlMapper.selectByPrimaryKey(index);
+                htmlPath += zykHtml.getFilePath();
+                File htmlFile = new File(htmlPath);
+                Document document = Jsoup.parse(htmlFile, "UTF-8");
+                SourceInfo sourceInfo = getSource(source, document, name);
+                System.out.println(sourceInfo.getRawText());
+            }
+        }
+    }
+
+    public SourceInfo getSource(String url, Document document, String name) {
+//        url = "http://kb.cs.tsinghua.edu.cn/apibztask/label/243#xpointer(start-point(string-range(//BODY/P[3]/text()[1],'',1))/range-to(string-range(//BODY/P[3]/text()[1],'',3)))";
+        String template = url.split("BODY/")[1].split("/text\\(\\)")[0];
+        Element spanElement = document.select("body").first();
+        for(String atom : template.split("/")) {
+            try {
+                spanElement = spanElement.select(atom.split("\\[")[0]).get(Integer.parseInt(atom.split("\\[")[1].split("\\]")[0]) - 1);
+            }
+            catch (Exception e) {
+                continue;
+            }
+        }
+        int start = 0;
+        int end = 0;
+        try {
+            start = Integer.parseInt(url.split("\\)\\)")[0].split("'',")[1]);
+            end = Integer.parseInt(url.split("\\)\\)\\)")[0].split("'',")[2]);
+        }
+        catch (Exception e) {
+            return null;
+        }
+        String rawText = "", parseName = "";
+        int alignLen = 0;
+        for(Node child : spanElement.childNodes()) {
+            if(child instanceof TextNode) {
+                rawText = ((TextNode) child).text().toString();
+                try {
+                    parseName = ((TextNode) child).text().toString().substring(start, end);
+                }
+                catch (Exception e) {
+                    continue;
+                }
+                break;
+            }
+            String childText = child.toString();
+            for(String s : CommonUtil.getMiddleTextFromTags(childText, "<", ">")) {
+                childText = childText.replace(s, "");
+            }
+            alignLen += childText.length();
+        }
+        if(name.equals(parseName)) {
+            return SourceInfo.builder()
+                    .startPos(start)
+                    .name(name)
+                    .endPos(end)
+                    .rawText(rawText)
+                    .element(spanElement)
+                    .alignLen(alignLen)
+                    .build();
+        }
+        return null;
+    }
+
+
+//    @Test
     public void subjectFilterTrigger() throws IOException {
         String parentPath = "./allSubjectGraph";
         File file = new File(parentPath);
@@ -171,7 +306,7 @@ public class SparqlTest {
         }
         fileWriter.close();
     }
-    @Test
+//    @Test
     public void getAllPre() throws IOException {
 
 //        List<String> contents = CommonUtil.readPlainTextFile("./anoData/propertyLs.txt");
@@ -450,3 +585,24 @@ public class SparqlTest {
         fileWritter.close();
     }
 }
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+class SourceInfo {
+
+    int startPos;
+
+    int endPos;
+
+    String name;
+
+    String rawText;
+
+    Element element;
+
+    int alignLen;
+}
+
+
