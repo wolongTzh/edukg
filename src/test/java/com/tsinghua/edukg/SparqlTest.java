@@ -143,14 +143,14 @@ public class SparqlTest {
                 sourceList.add(source);
             }
         }
-        String htmlPath = "/data1/home/keg";
+        String htmlPath = "/data/textbook";
         for(Map.Entry entry : sourceMap.entrySet()) {
             String name = (String) entry.getKey();
             List<String> sourceList = (List<String>) entry.getValue();
             for(String source : sourceList) {
                 int index = Integer.parseInt(source.split("#xpointer")[0].split("label/")[1]);
                 ZYKHtml zykHtml = zykHtmlMapper.selectByPrimaryKey(index);
-                htmlPath += zykHtml.getFilePath();
+                htmlPath += zykHtml.getFilePath().replace("/epub", "");
                 File htmlFile = new File(htmlPath);
                 Document document = Jsoup.parse(htmlFile, "UTF-8");
                 SourceInfo sourceInfo = getSource(source, document, name);
