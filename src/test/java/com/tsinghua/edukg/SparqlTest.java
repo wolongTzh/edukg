@@ -153,7 +153,9 @@ public class SparqlTest {
                 File htmlFile = new File(htmlPath);
                 Document document = Jsoup.parse(htmlFile, "UTF-8");
                 SourceInfo sourceInfo = getSource(source, document, name);
-                System.out.println(sourceInfo.getRawText());
+                if(sourceInfo != null) {
+                    System.out.println("name = " + name + " || rawText = " + sourceInfo.getRawText());
+                }
             }
         }
     }
