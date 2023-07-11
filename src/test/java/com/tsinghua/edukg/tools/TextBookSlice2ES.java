@@ -37,6 +37,9 @@ public class TextBookSlice2ES {
                 childPath = rootPath + "/" + fileName + "/OEBPS/Text";
             }
             File childList = new File(childPath);
+            if(!childList.exists()) {
+                continue;
+            }
             for(String midName : childList.list()) {
                 String path = childPath + "/" + midName;
                 List<String> retList = readHtml(path);
