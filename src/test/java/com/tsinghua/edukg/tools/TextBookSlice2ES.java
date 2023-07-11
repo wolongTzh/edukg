@@ -16,7 +16,7 @@ import java.util.List;
 public class TextBookSlice2ES {
     @Test
     public void readDir() throws IOException {
-        String rootPath = "";
+        String rootPath = "/data/textbook";
         String basePath = "./out%s.txt";
         int acc = 0;
         int num = 1;
@@ -24,6 +24,7 @@ public class TextBookSlice2ES {
         FileWriter fileWriter = new FileWriter(out.getName());
         File rootList = new File(rootPath);
         for(String fileName : rootList.list()) {
+            System.out.println("cur file is " + fileName);
             File midList = new File(rootPath + "/" + fileName);
             String childPath = "";
             if(midList.list().length > 3) {
