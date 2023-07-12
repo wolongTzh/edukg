@@ -54,7 +54,7 @@ public class HtmlParserUtil {
             }
             int index = Integer.parseInt(subjectUrl.split("#xpointer")[0].split("label/")[1]);
             ZYKHtml zykHtml = zykHtmlMapper.selectByPrimaryKey(index);
-            htmlPath += zykHtml.getFilePath();
+            htmlPath += zykHtml.getFilePath().replace("/epub", "");
             File htmlFile = new File(htmlPath);
             Document document = Jsoup.parse(htmlFile, "UTF-8");
             SourceInfo outerSource = getAlignMsg(subjectUrl, objectUrl, document);
