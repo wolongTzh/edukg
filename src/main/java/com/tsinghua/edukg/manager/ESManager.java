@@ -356,7 +356,7 @@ public class ESManager {
     }
 
     public List<String> getTwoObjectsESRelatedMsg(String obj1, String obj2) throws IOException {
-        String field = "content";
+        String field = "allStand";
         List<String> matchList = new ArrayList<>();
         BoolQuery.Builder builder = new BoolQuery.Builder();
         builder = builder.must(m -> m
@@ -374,7 +374,7 @@ public class ESManager {
         SearchResponse<IRQALiu> matchSearch;
         BoolQuery boolQuery = builder.build();
         matchSearch = client.search(s -> s
-                        .index("irqa")
+                        .index("textbook_slice")
                         .query(b -> b
                                 .bool(boolQuery)
                         ),
