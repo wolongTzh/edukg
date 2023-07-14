@@ -4,19 +4,24 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.tsinghua.edukg.dao.entity.ZYKHtml;
 import com.tsinghua.edukg.dao.mapper.ZYKHtmlMapper;
+import com.tsinghua.edukg.service.ToolService;
 import com.tsinghua.edukg.utils.CommonUtil;
+import com.tsinghua.edukg.utils.HtmlParserUtil;
+import com.tsinghua.edukg.utils.SparqlUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import com.alibaba.fastjson.JSON;
+import org.checkerframework.checker.units.qual.A;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.nodes.TextNode;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import javax.annotation.Resource;
@@ -31,6 +36,15 @@ public class HtmlParser {
 
     @Resource
     ZYKHtmlMapper zykHtmlMapper;
+
+    @Autowired
+    ToolService toolService;
+    @Test
+    public void htmlParserUtilTest() throws IOException {
+        String predicate = "字";
+        toolService.getExamples(predicate, 0);
+    }
+
 
     @Test
     public void genProp() throws IOException {
