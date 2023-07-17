@@ -29,7 +29,7 @@ public class ToolServiceImpl implements ToolService {
             count++;
             System.out.println(ret);
             JSONObject jsonObject = htmlParserUtil.mainProcess(ret, predicate, type);
-            if(jsonObject.get("relation") == null || jsonObject.get("text") != null && jsonObject.get("text").toString().length() >= 30) {
+            if(jsonObject.get("relation") == null || jsonObject.get("text") != null && jsonObject.get("text").toString().length() >= 100) {
                 count--;
                 continue;
             }
