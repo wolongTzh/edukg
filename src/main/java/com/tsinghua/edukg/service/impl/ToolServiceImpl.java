@@ -20,9 +20,19 @@ public class ToolServiceImpl implements ToolService {
     public List<JSONObject> getExamples(String predicate, int type) throws IOException {
         List<JSONObject> jsonObjectList = new ArrayList<>();
         List<String> retList = SparqlUtil.mainProcess(predicate, type);
+        int maxCount = 10;
+        int count = 0;
         for(String ret : retList) {
+            if(count == maxCount) {
+                break;
+            }
+            count++;
             System.out.println(ret);
             JSONObject jsonObject = htmlParserUtil.mainProcess(ret, predicate, type);
+            if(jsonObject.get("relation") == null) {
+                count--;
+                continue;
+            }
             jsonObjectList.add(jsonObject);
         }
         return jsonObjectList;
