@@ -30,7 +30,7 @@ public class SparqlUtil {
 
     public static List<String> getProLoc(String preType) throws IOException {
         List<String> retList = new ArrayList<>();
-        int maxSize = 20;
+        int maxSize = 100;
         String name2Source = "SELECT ?name ?source ?pred\n" +
                 " WHERE\n" +
                 "{ ?uri " + preType + " ?pred.\n" +
