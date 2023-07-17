@@ -85,7 +85,7 @@ public class SparqlUtil {
     }
 
     public static List<String> getRelationLoc(String preType) throws IOException {
-        int maxSize = 20;
+        int maxSize = 100;
         List<String> retList = new ArrayList<>();
         String name2Source = "SELECT ?name ?source ?pred ?obsource\n" +
                 " WHERE\n" +
